@@ -23,8 +23,6 @@ public class Skill {
 	
 	private int dmgRatioAviation;
 	
-	private int dmgRatioAA;
-	
 	// Boosts to flat stats.
 	private double buffToFirepower;
 	
@@ -122,47 +120,46 @@ public class Skill {
 		this.dmgRatioCannon = Integer.parseInt(list.get(5));
 		this.dmgRatioTorpedo = Integer.parseInt(list.get(6));
 		this.dmgRatioAviation = Integer.parseInt(list.get(7));
-		this.dmgRatioAA = Integer.parseInt(list.get(8));
-		this.buffToFirepower = Double.parseDouble(list.get(9));
-		this.buffToTorpedo = Double.parseDouble(list.get(10));
-		this.buffToAviation = Double.parseDouble(list.get(11));
-		this.buffToAA = Double.parseDouble(list.get(12));
+		this.buffToFirepower = Double.parseDouble(list.get(8));
+		this.buffToTorpedo = Double.parseDouble(list.get(9));
+		this.buffToAviation = Double.parseDouble(list.get(10));
+		this.buffToAA = Double.parseDouble(list.get(11));
 		
-		this.dmgToHMS = Double.parseDouble(list.get(13));
-		this.dmgToUSS = Double.parseDouble(list.get(14));
-		this.dmgToIJN = Double.parseDouble(list.get(15));
-		this.dmgToKMS = Double.parseDouble(list.get(16));
-		this.dmgToROC = Double.parseDouble(list.get(17));
-		this.dmgToFFNF = Double.parseDouble(list.get(18));
-		this.dmgToMNF = Double.parseDouble(list.get(19));
-		this.dmgToSIREN = Double.parseDouble(list.get(20));
+		this.dmgToHMS = Double.parseDouble(list.get(12));
+		this.dmgToUSS = Double.parseDouble(list.get(13));
+		this.dmgToIJN = Double.parseDouble(list.get(14));
+		this.dmgToKMS = Double.parseDouble(list.get(15));
+		this.dmgToROC = Double.parseDouble(list.get(16));
+		this.dmgToFFNF = Double.parseDouble(list.get(17));
+		this.dmgToMNF = Double.parseDouble(list.get(18));
+		this.dmgToSIREN = Double.parseDouble(list.get(19));
 		
-		this.dmgToDD = Double.parseDouble(list.get(21));
-		this.dmgToCL = Double.parseDouble(list.get(22));
-		this.dmgToCA = Double.parseDouble(list.get(23));
-		this.dmgToLC = Double.parseDouble(list.get(24));
-		this.dmgToBC = Double.parseDouble(list.get(25));
-		this.dmgToBB = Double.parseDouble(list.get(26));
-		this.dmgToAB = Double.parseDouble(list.get(27));
-		this.dmgToCVL = Double.parseDouble(list.get(28));
-		this.dmgToCV = Double.parseDouble(list.get(29));
-		this.dmgToSUB = Double.parseDouble(list.get(30));
+		this.dmgToDD = Double.parseDouble(list.get(20));
+		this.dmgToCL = Double.parseDouble(list.get(21));
+		this.dmgToCA = Double.parseDouble(list.get(22));
+		this.dmgToLC = Double.parseDouble(list.get(23));
+		this.dmgToBC = Double.parseDouble(list.get(24));
+		this.dmgToBB = Double.parseDouble(list.get(25));
+		this.dmgToAB = Double.parseDouble(list.get(26));
+		this.dmgToCVL = Double.parseDouble(list.get(27));
+		this.dmgToCV = Double.parseDouble(list.get(28));
+		this.dmgToSUB = Double.parseDouble(list.get(29));
 		
-		this.HEBUFF = Double.parseDouble(list.get(31));
-		this.APBUFF = Double.parseDouble(list.get(32));
-		this.initialEnhance = Double.parseDouble(list.get(33));
-		this.manualEnhance = Double.parseDouble(list.get(34));
-		this.injuryByCannon = Double.parseDouble(list.get(35));
-		this.injuryByTorpedo = Double.parseDouble(list.get(36));
-		this.injuryByAir = Double.parseDouble(list.get(37));
-		this.dmgByCannon = Double.parseDouble(list.get(38));
-		this.dmgByTorp = Double.parseDouble(list.get(39));
-		this.dmgByAir = Double.parseDouble(list.get(40));
-		this.comboDamage = Double.parseDouble(list.get(41));
-		this.critByCannon = Double.parseDouble(list.get(42));
-		this.critByTorp = Double.parseDouble(list.get(43));
-		this.critByAir = Double.parseDouble(list.get(44));
-		this.salvoBonus = Double.parseDouble(list.get(45));
+		this.HEBUFF = Double.parseDouble(list.get(30));
+		this.APBUFF = Double.parseDouble(list.get(31));
+		this.initialEnhance = Double.parseDouble(list.get(32));
+		this.manualEnhance = Double.parseDouble(list.get(33));
+		this.injuryByCannon = Double.parseDouble(list.get(34));
+		this.injuryByTorpedo = Double.parseDouble(list.get(35));
+		this.injuryByAir = Double.parseDouble(list.get(36));
+		this.dmgByCannon = Double.parseDouble(list.get(37));
+		this.dmgByTorp = Double.parseDouble(list.get(38));
+		this.dmgByAir = Double.parseDouble(list.get(39));
+		this.comboDamage = Double.parseDouble(list.get(40));
+		this.critByCannon = Double.parseDouble(list.get(41));
+		this.critByTorp = Double.parseDouble(list.get(42));
+		this.critByAir = Double.parseDouble(list.get(43));
+		this.salvoBonus = Double.parseDouble(list.get(44));
 	}
 	
 	public String getSkillName() {
@@ -195,10 +192,6 @@ public class Skill {
 	
 	public int getDmgRatioAviation() {
 		return dmgRatioAviation;
-	}
-	
-	public int getDmgRatioAA() {
-		return dmgRatioAA;
 	}
 	
 	public double getBuffToFirepower() {

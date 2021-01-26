@@ -114,6 +114,9 @@ public class WeaponTypesForSlot {
 			case 2:
 				weaponType = "Heavy Cruiser Guns/Light Cruiser Guns";
 				break;
+			case 3:
+				weaponType = "Heavy Cruiser Guns/Large Cruiser Guns";
+				break;
 			default:
 				break;
 		}

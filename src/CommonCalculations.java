@@ -7,7 +7,7 @@ public class CommonCalculations {
 	
 	ArrayList<String> canons = new ArrayList<String>(Arrays.asList("Destroyer Guns", "Light Cruiser Guns", "Heavy Cruiser Guns", "Large Cruiser Guns", "Battleship Guns"));
 	
-	public double getFinalDamage(ShipFile ship, CommonWeapon weapon, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames, AuxGear auxGear, int shipSlot, boolean crit,
+	public double getFinalDamage(ShipFile ship, CommonWeapon weapon, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames, AuxGear auxGearOne, AuxGear auxGearTwo, int shipSlot, boolean crit,
 	String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, String noteColor) {
 		// Avoid index out of bounds if something is empty
 		double finalDmg = 0;
@@ -28,7 +28,7 @@ public class CommonCalculations {
 			double ammoBuffStat = 0;
 			
 			//Corrected Damage
-			correctedDamageStat = getCorrectedDamage(ship, weapon, skillList, skillNames, shipSlot, auxGear);
+			correctedDamageStat = getCorrectedDamage(ship, weapon, skillList, skillNames, shipSlot, auxGearOne, auxGearTwo);
 			
 			//Scaling Weapons (Weapon Type Mod)
 			weaponTypeModStat = getWeaponTypeMod(skillList, weapon, armorBreak);
@@ -92,7 +92,7 @@ public class CommonCalculations {
 	 * @param skillNames Array List containing the names of all the skills being used.
 	 * @param shipSlot The slot the weapon is equip to.
 	 */
-	public double getCorrectedDamage(ShipFile ship, CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int shipSlot, AuxGear auxGear) {
+	public double getCorrectedDamage(ShipFile ship, CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int shipSlot, AuxGear auxGearOne, AuxGear auxGearTwo) {
 		double finalDmg = 0;
 		double wepDmg = weapon.getDamage();
 		double wepCoff = weapon.getCoefficient();
@@ -135,10 +135,16 @@ public class CommonCalculations {
 		}
 		
 		// Get the stats from the aux gears.
-		if (weapon.getWeaponType().equals("Torpedos") && auxGear != null) {
-			stat += auxGear.getTorpedo();
-		} else if (!weapon.getWeaponType().equals("Torpedos") && auxGear != null) {
-			stat += auxGear.getFirepower();
+		if (weapon.getWeaponType().equals("Torpedos") && auxGearOne != null) {
+			stat += auxGearOne.getTorpedo();
+			if (auxGearTwo != null) {
+				stat += auxGearTwo.getTorpedo();
+			}
+		} else if (!weapon.getWeaponType().equals("Torpedos") && auxGearOne != null) {
+			stat += auxGearOne.getFirepower();
+			if (auxGearTwo != null) {
+				stat += auxGearTwo.getFirepower();
+			}
 		}
 		
 		// Get skill stats
@@ -172,11 +178,11 @@ public class CommonCalculations {
 	 * Method for getting Injure by x and Damage by x.
 	 */
 	public double getWeaponTypeMod(ArrayList<Skill> skills, CommonWeapon weapon, boolean armorBreak) {
-		double buffDamage = 0;
+		double buffDamage = 1;
 		if (weapon.getWeaponType().equals("Torpedos")) {
-			buffDamage += getMiscStats(skills, "Injure Torpedo", 0) + getMiscStats(skills, "Injure Torpedo", 0); 
+			buffDamage += getMiscStats(skills, "Injure Torpedo", 0) + getMiscStats(skills, "Damage Torpedo", 0); 
 		} else {
-			buffDamage += getMiscStats(skills, "Injure Cannon", 0) + getMiscStats(skills, "Injure Cannon", 0);
+			buffDamage += getMiscStats(skills, "Injure Cannon", 0) + getMiscStats(skills, "Damage Cannon", 0);
 		}
 		return buffDamage;
 	}
@@ -446,20 +452,15 @@ public class CommonCalculations {
 					if (skills.get(i).getDmgRatioTorpedo() == 1) {
 						startValue += skills.get(i).getDmgRatio();
 					}
-				} else if (DRT.equals("AA")) {
-					if (skills.get(i).getDmgRatioAA() == 1) {
-						startValue = startValue += skills.get(i).getDmgRatio();
-					}
-				}
-				
+				}	
 			} else if (section.equals("Buff To Firepower")) {
 				startValue += skills.get(i).getBuffToFirepower();
 			} else if (section.equals("Buff To Torpedo")) {
 				startValue += skills.get(i).getBuffToTorpedo();
 			} else if (section.equals("Buff To AA")) {
 				startValue += skills.get(i).getBuffToAA();
-			} else {
-				return startValue;
+			} else if (section.equals("Buff To Aviation")) {
+				startValue += skills.get(i).getBuffToAviation();
 			}
 		}
 		return startValue;
@@ -487,8 +488,6 @@ public class CommonCalculations {
 				startValue += skill.getDmgToMNF();
 			} else if (faction.equals("SIREN")) {
 				startValue += skill.getDmgToSIREN();
-			} else {
-				return startValue;
 			}
 		}
 		return startValue;
@@ -520,8 +519,6 @@ public class CommonCalculations {
 				startValue += skill.getDmgToCV();
 			} else if (type.equals("SUB")) {
 				startValue += skill.getDmgToSUB();
-			} else { // For other things, such as gold ships, torpedos boats, etc.
-				return startValue;
 			}
 		}
 		return startValue;
@@ -546,17 +543,13 @@ public class CommonCalculations {
 			} else if (buff.equals("Injure Torpedo")) {
 				startValue += skill.getInjuryByTorpedo();
 			} else if (buff.equals("Damage Cannon")) {
-				startValue += skill.getDmgRationCannon();
+				startValue += skill.getDmgByCannon();
 			} else if (buff.equals("Damage Torpedo")) {
-				startValue += skill.getDmgRatioTorpedo();
+				startValue += skill.getDmgByTorpedo();
 			} else if (buff.equals("Crit Cannon")) {
 				startValue += skill.getCritByCannon();
 			} else if(buff.equals("Crit Torpedo")) {
 				startValue += skill.getCritByTorpedo();
-			} else if (buff.equals("Salvo Bonus")) {
-				startValue += skill.getSalvoBonus();
-			} else {
-				return startValue;
 			}
 	 	}
 		return startValue;
