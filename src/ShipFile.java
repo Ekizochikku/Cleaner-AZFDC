@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ShipFile {
 	
-	GUIUtility utility = new GUIUtility();
+	private GUIUtility utility = new GUIUtility();
 	
 	private String shipName;
 	
