@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AuxGear {
 	
-	GUIUtility utility;
+	private GUIUtility utility;
 	
 	private String gearName;
 	

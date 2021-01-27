@@ -1,7 +1,7 @@
 
 public class WeaponTypesForSlot {
 	
-	String weaponType;
+	public String weaponType;
 	
 	public WeaponTypesForSlot() {
 		weaponType = "";

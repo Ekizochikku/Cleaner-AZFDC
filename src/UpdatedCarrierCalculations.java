@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class UpdatedCarrierCalculations {
 	
-	GUIUtility gt = new GUIUtility();
+	private GUIUtility gt = new GUIUtility();
 	
 	/*
 	 * Main calculation method for carriers that will add up all the damage that will done from bombs and torpedos. Multiple calls to getCalculatedDamage is needed because each bomb can do its own damage.

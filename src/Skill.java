@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Skill {
 
-	GUIUtility utility;
+	private GUIUtility utility;
 	
 	private String skillName;
 	

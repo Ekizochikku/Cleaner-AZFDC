@@ -18,7 +18,7 @@ import javax.swing.JTextPane;
 
 public class GUIUtility {
 
-	WeaponTypesForSlot weaponType;
+	private WeaponTypesForSlot weaponType;
 	
 	/**
 	 * CONSTRUCTOR
@@ -265,7 +265,7 @@ public class GUIUtility {
 	 * @param theFile
 	 * @return theList
 	 */
-	private ArrayList<String> getEntityNames(String theFile) throws FileNotFoundException, IOException {
+	public ArrayList<String> getEntityNames(String theFile) throws FileNotFoundException, IOException {
 		ArrayList<String> theList = new ArrayList<String>();
 		BufferedReader br = new BufferedReader(new FileReader(theFile));
 		String line = br.readLine(); //Skip the Header Line

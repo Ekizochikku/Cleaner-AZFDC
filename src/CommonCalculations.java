@@ -3,9 +3,9 @@ import java.util.Arrays;
 
 public class CommonCalculations {
 	
-	GUIUtility utility = new GUIUtility();
+	private GUIUtility utility = new GUIUtility();
 	
-	ArrayList<String> canons = new ArrayList<String>(Arrays.asList("Destroyer Guns", "Light Cruiser Guns", "Heavy Cruiser Guns", "Large Cruiser Guns", "Battleship Guns"));
+	private ArrayList<String> canons = new ArrayList<String>(Arrays.asList("Destroyer Guns", "Light Cruiser Guns", "Heavy Cruiser Guns", "Large Cruiser Guns", "Battleship Guns"));
 	
 	public double getFinalDamage(ShipFile ship, CommonWeapon weapon, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames, AuxGear auxGearOne, AuxGear auxGearTwo, int shipSlot, boolean crit,
 	String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, String noteColor) {

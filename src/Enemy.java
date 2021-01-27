@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Enemy {
 	
-	GUIUtility utility;
+	private GUIUtility utility;
 	 
 	 private String world;
 	 
