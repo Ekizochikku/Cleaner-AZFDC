@@ -52,9 +52,51 @@ public class UpdatedCarrierCalculations {
 			
 			// Corrected Damage
 			correctedDamageStat = getCorrectedDamage(ship, weapon, shipSlot, skills, skillNames, ordinance, slotOneAuxGear, slotTwoAuxGear);
+			
+			// Weapon Type Mod (Scaling Weapon Buffs)
+			weaponTypeModStat = getWeaponTypeMod(skills);
+			
+			// Critical Damage Buff
+			if (crit) {
+				criticalDamageStat = getCriticalDamage(ship, weapon, skills);
+			}
+			
+			// Armor Modifier
+			armorModStat = getArmorModifier(ship, weapon, enemy, skills, ordinance);
+			
+			//Enhancing Damage
+			// Not needed since this only applies to ships with cannons.
+			
+			// Combo Damage
+			// Not requiring weapon to be a torpedo cause why not. More damage for funsies.
+			if (skillNames.contains("The Bull of Scapa Flow")) {
+				comboStat += .4;
+			}
+			
+			// Level Difference
+			lvlDiffStat = getLevelDifference(enemy, dangerLevel);
+			
+			// Injure Ratio
+			injRatStat = getDmgRatiotoStatBuffs(skills, "Injure Ratio", 0, "");
+			
+			// Damage Ratio
+			dmgRatStat = getDmgRatiotoStatBuffs(skills, "Damage Ratio", 0, "Aviation");
+			
+			// Damage to Nation
+			dmgNatStat = getDamageToNation(skills, enemy);
+			
+			// Damage to Ship Type
+			dmgTypeStat = getDamageToTypes(ship, enemy, skills);
+			
+			// Ammo Type Buff
+			// Not needed since stats scale off aviation stat
+			
+			double intermediateDamage = (correctedDamageStat + removeRandom) * weaponTypeModStat * criticalDamageStat * armorModStat * 
+					(1 + injRatStat) * (1 + dmgRatStat) * lvlDiffStat * (1 + dmgNatStat) * (1 + dmgTypeStat) * (1 + ammoBuffStat - 0) * airDmgRedStat * (1 + comboStat);
+			double temp1 = Math.max(1, Math.floor(intermediateDamage));
+			double temp2 = Math.floor(temp1 * enhancingDmgStat);
+			estimatedDamage = Math.floor(temp2 * dmgRedStat);
 		}
-		
-		
 		return estimatedDamage;
 	}
 	
@@ -199,6 +241,97 @@ public class UpdatedCarrierCalculations {
 		return getDmgRatiotoStatBuffs(skills, "Injure Ratio", 0, "");
 	}
 	
+	private double getDamageRatio(ShipFile ship, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames) {
+		double dmgRatio = 0;
+		for (int i = 0; i < skillList.size(); i++) {
+			Skill skill = skillList.get(i);
+			if (skill.getDmgRatioAviation() == 1) {
+				dmgRatio += skill.getDmgRatio();
+			}
+		}
+		
+		return dmgRatio;
+	}
+	
+	private double getDamageToNation(ArrayList<Skill> skills, Enemy enemy) {
+		double dmgToNation = 0;
+		String nation = enemy.getNation();
+		if (nation.equals("NULL")) {
+			return 1;
+		} else {
+			switch (nation) {
+			case "HMS":
+				dmgToNation = getDmgToFactions(skills, "HMS", 0);
+				break;
+			case "USS":
+				dmgToNation = getDmgToFactions(skills, "USS", 0);
+				break;
+			case "IJN":
+				dmgToNation = getDmgToFactions(skills, "IJN", 0);
+				break;
+			case "KMS":
+				dmgToNation = getDmgToFactions(skills, "KMS", 0);
+				break;
+			case "ROC":
+				dmgToNation = getDmgToFactions(skills, "ROC", 0);
+				break;
+			case "FFNF":
+				dmgToNation = getDmgToFactions(skills, "FFNF", 0);
+				break;
+			case "MNF":
+				dmgToNation = getDmgToFactions(skills, "MNF", 0);
+				break;
+			case "SIREN":
+				dmgToNation = getDmgToFactions(skills, "SIREN", 0);
+				break;
+			default:
+				break;
+			}
+		}
+		return dmgToNation;
+	}
+	
+	private double getDamageToTypes(ShipFile ship, Enemy enemy, ArrayList<Skill> skills) {
+		double dmgToType = 0;
+		String enemyType = enemy.getShipType();
+		switch (enemyType) {
+			case "DD":
+				dmgToType = getDmgToTypes(skills, "DD", 0);
+				break;
+			case "CL":
+				dmgToType = getDmgToTypes(skills, "CL", 0);
+				break;
+			case "CA":
+				dmgToType = getDmgToTypes(skills, "CA", 0);
+				break;
+			case "LC":
+				dmgToType = getDmgToTypes(skills, "LC", 0);
+				break;
+			case "BC":
+				dmgToType = getDmgToTypes(skills, "BC", 0);
+				break;
+			case "BB":
+				dmgToType = getDmgToTypes(skills, "BB", 0);
+				break;
+			case "BBV":
+				dmgToType = getDmgToTypes(skills, "BBV", 0);
+				break;
+			case "CVL":
+				dmgToType = getDmgToTypes(skills, "CVL", 0);
+				break;
+			case "CV":
+				dmgToType = getDmgToTypes(skills, "CV", 0);
+				break;
+			case "SUB":
+				dmgToType = getDmgToTypes(skills, "SUB", 0);
+				break;
+			default:
+				break;
+		}
+		return dmgToType;
+		
+	}
+	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// RANDOM HELPER METHODS TO NOT CLOG UP STUFF.
 	// METHODS ARE COPY OVER FROM THE OTHER CALCULATION METHOD SO SOME THINGS CAN BE DELETED/CHANGED IN THE METHODS THEMSELVES.
@@ -214,14 +347,18 @@ public class UpdatedCarrierCalculations {
 				startValue += skills.get(i).getInjureRatio();
 			} else if (section.equals("Damage Ratio")) {
 				if (DRT.equals("Cannon")) {
-					if (skills.get(i).getDmgRationCannon() == 1) {
+					if (skills.get(i).getDmgRatioCannon() == 1) {
 						startValue += skills.get(i).getDmgRatio();
 					}
 				} else if (DRT.equals("Torpedo")) {
 					if (skills.get(i).getDmgRatioTorpedo() == 1) {
 						startValue += skills.get(i).getDmgRatio();
 					}
-				}	
+				} else if (DRT.equals("Aviation")) {
+					if (skills.get(i).getDmgRatioAviation() == 1) {
+						startValue += skills.get(i).getDmgRatio();
+					}
+				}
 			} else if (section.equals("Buff To Firepower")) {
 				startValue += skills.get(i).getBuffToFirepower();
 			} else if (section.equals("Buff To Torpedo")) {
@@ -316,9 +453,9 @@ public class UpdatedCarrierCalculations {
 			} else if (buff.equals("Injure Air")) {
 				startValue += skill.getInjuryByAir();
 			} else if (buff.equals("Damage Cannon")) {
-				startValue += skill.getDmgRationCannon();
+				startValue += skill.getDmgByCannon();
 			} else if (buff.equals("Damage Torpedo")) {
-				startValue += skill.getDmgRatioTorpedo();
+				startValue += skill.getDmgByTorpedo();
 			} else if (buff.equals("Damage Air")) {
 				startValue += skill.getDmgByAir();
 			} else if (buff.equals("Crit Cannon")) {

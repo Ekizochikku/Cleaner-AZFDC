@@ -182,7 +182,7 @@ public class Skill {
 		return dmgRatio;
 	}
 	
-	public int getDmgRationCannon() {
+	public int getDmgRatioCannon() {
 		return dmgRatioCannon;
 	}
 	

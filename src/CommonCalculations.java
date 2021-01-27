@@ -445,7 +445,7 @@ public class CommonCalculations {
 				startValue += skills.get(i).getInjureRatio();
 			} else if (section.equals("Damage Ratio")) {
 				if (DRT.equals("Cannon")) {
-					if (skills.get(i).getDmgRationCannon() == 1) {
+					if (skills.get(i).getDmgRatioCannon() == 1) {
 						startValue += skills.get(i).getDmgRatio();
 					}
 				} else if (DRT.equals("Torpedo")) {
