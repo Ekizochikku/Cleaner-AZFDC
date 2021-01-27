@@ -16,7 +16,7 @@ public class MainGUI extends JFrame {
 	private JPanel shipWeaponPane;
 	private JPanel skillPane;
 	private JPanel calculatePane;
-	private JPanel panel;
+	private JPanel currentPanel;
 
 	/**
 	 * Launch the application.
@@ -44,10 +44,10 @@ public class MainGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		panel = new JPanel();
 		shipWeaponPane = new ShipWeaponPanel();
 		skillPane = new SkillPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+		currentPanel = shipWeaponPane;
+		contentPane.add(currentPanel, BorderLayout.CENTER);
 		JToolBar toolBar = new JToolBar();
 		toolBar.setRollover(true);
 		toolBar.setFloatable(false);
@@ -56,9 +56,9 @@ public class MainGUI extends JFrame {
 		JButton shipWeaponButton = new JButton("Ships/Weapons");
 		shipWeaponButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.remove(panel);
-				panel = shipWeaponPane;
-				contentPane.add(panel, BorderLayout.CENTER);
+				contentPane.remove(currentPanel);
+				currentPanel = shipWeaponPane;
+				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
 				contentPane.repaint();
 				setVisible(true);
@@ -69,9 +69,9 @@ public class MainGUI extends JFrame {
 		JButton skillsButton = new JButton("Skills");
 		skillsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.remove(panel);
-				panel = skillPane;
-				contentPane.add(panel, BorderLayout.CENTER);
+				contentPane.remove(currentPanel);
+				currentPanel = skillPane;
+				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
 				contentPane.repaint();
 				setVisible(true);
