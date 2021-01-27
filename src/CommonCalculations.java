@@ -435,6 +435,7 @@ public class CommonCalculations {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//RANDOM HELPER METHODS TO NOT CLOG UP STUFF.
+	// These methods are meant to be loops unlike the others above
 	/*
 	 * Method that loops to get certain stats from file from index 0 to index 11.
 	 * Other stats are left out to be done in its own method.
