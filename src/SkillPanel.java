@@ -17,7 +17,7 @@ public class SkillPanel extends JPanel {
 		lblSkillList.setBounds(22, 11, 85, 23);
 		add(lblSkillList);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<?> comboBox = new JComboBox();
 		comboBox.setBounds(22, 36, 172, 28);
 		add(comboBox);
 		
