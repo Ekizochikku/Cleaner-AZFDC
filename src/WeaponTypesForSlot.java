@@ -446,7 +446,7 @@ public class WeaponTypesForSlot {
 				weaponType = "Bomber Planes/Light Cruiser Guns";
 				break;
 			case 7:
-				weaponType = "Fighter Planes/Bomber Planes";
+				weaponType = "Bomber Planes/Torpedo Planes";
 				break;
 			default:
 				break;

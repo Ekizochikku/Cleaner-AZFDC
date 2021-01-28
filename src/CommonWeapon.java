@@ -33,6 +33,7 @@ public class CommonWeapon {
 		setVariables(list);
 	}
 	
+	// Gen stat can be firepower or torpdo stat because the weapon will only use one or the other
 	private void setVariables(ArrayList<String> list) {
 		this.wepName = list.get(0);
 		this.genStat = Double.parseDouble(list.get(1));
