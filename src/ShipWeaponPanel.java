@@ -41,6 +41,7 @@ public class ShipWeaponPanel extends JPanel {
 		lblShipName.setBounds(227, 11, 86, 14);
 		add(lblShipName);
 		
+		//ship names are added based on the list that is selected
 		
 		
 		JComboBox comboBox_1 = new JComboBox();
