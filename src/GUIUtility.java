@@ -143,7 +143,7 @@ public class GUIUtility {
 	}
 	
 	/**
-	 * Returns all the names of the weapons of the chosen type
+	 * Returns all the names of the weapons of the chosen type.
 	 * @param weaponType
 	 * @return
 	 * @throws FileNotFoundException
