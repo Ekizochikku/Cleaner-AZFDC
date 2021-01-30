@@ -43,7 +43,7 @@ public class ShipWeaponPanel extends JPanel {
 		
 		//might be done in the main method not too sure
 		//ship types will need to be changed to it's actual name
-		String[] shipTypeList = {"DD", "CL", "CA", "LC", "BC", "BB", "AB", "MON", "SUB", "CV", "CVL"};
+		String[] shipTypeList = {"Destroyers", "Light Cruisers", "Heavy Cruisers", "Large Cruisers", "Battlecruisers", "Battleships", "Aviation Battleships", "Monitors", "Submarines", "Aircraft Carriers", "Light Aircraft Carriers"};
 		JComboBox shipTypeCBox = new JComboBox<Object>(shipTypeList);
 		shipTypeCBox.setBounds(10, 36, 161, 25);
 		shipTypeCBox.setMaximumRowCount(10);
@@ -69,21 +69,15 @@ public class ShipWeaponPanel extends JPanel {
 				//calculateButton.setEnabled(false);
 				currentShipName = (String) shipNameCBox.getSelectedItem();
 				List<String> attributes = new ArrayList<String>();
-				try {
-					//attributes = GUIUtility.getShipParams(shipTypeName, currentShipName);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				int skillIdx = -1;
 				switch(shipTypeName) {
-				case "AB":
+				case "Aviation Battleships":
 					skillIdx = 14;
 					break;
-				case "CV":
+				case "Aircraft Carriers":
 					skillIdx = 15;
 					break;
-				case "CVL":
+				case "Light Aircraft Carriers":
 					skillIdx = 15;
 					break;
 				default:
