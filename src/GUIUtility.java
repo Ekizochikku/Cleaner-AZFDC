@@ -150,10 +150,10 @@ public class GUIUtility {
 	 * @throws IOException
 	 */
 	public ArrayList<String> getNamesOfWeaponsOfChosenWeaponType(String weaponType) throws FileNotFoundException, IOException {
-		String shipTypeFile = getShipTypeFile(weaponType);
-		ArrayList<String> shipNames = new ArrayList<String>();
-		shipNames = getEntityNames(shipTypeFile);
-		return shipNames;
+		String weaponTypeFile = getWeaponTypeFile(weaponType);
+		ArrayList<String> weaponNames = new ArrayList<String>();
+		weaponNames = getEntityNames(weaponTypeFile);
+		return weaponNames;
 	}
 	
 	/**

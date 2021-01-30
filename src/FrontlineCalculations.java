@@ -5,7 +5,9 @@ public class FrontlineCalculations {
 	
 	private GUIUtility utility = new GUIUtility();
 	
-	private ArrayList<String> canons = new ArrayList<String>(Arrays.asList("Destroyer Guns", "Light Cruiser Guns", "Heavy Cruiser Guns", "Large Cruiser Guns", "Battleship Guns"));
+	final private ArrayList<String> cannonTypes = new ArrayList<String>(Arrays.asList("Destroyer Guns", "Light Cruiser Guns", "Heavy Cruiser Guns", "Large Cruiser Guns", "Battleship Guns"));
+	final private ArrayList<String> massachusettsGunException = new ArrayList<String>(Arrays.asList("Single 127mm (5\"/38 Mk 21)", "Single 127mm (5\"/38 Mk 30)", "Single 76mm (3\"/50 caliber gun)", "Twin 127mm (5\"/38 Mk 32)", "Twin 127mm (5\"/38 Mk 38)"));
+	
 	
 	/**
 	 * Calculates the total damage that will be done in one shot / hit.
@@ -54,7 +56,7 @@ public class FrontlineCalculations {
 			correctedDamageStat = getCorrectedDamage(ship, weapon, auxGearOne, auxGearTwo, skillList, skillNames, shipSlot);
 			
 			//Scaling Weapons (Weapon Type Mod)
-			weaponTypeModStat = getWeaponTypeMod(skillList, weapon, armorBreak);
+			weaponTypeModStat = getWeaponTypeMod(skillList, skillNames, enemy, weapon, shipSlot, armorBreak);
 			
 			//Critical Damage
 			if (crit || skillNames.contains("Wahrheit")) {
@@ -62,11 +64,11 @@ public class FrontlineCalculations {
 			}
 			
 			//Armor Modifier
-			armorModStat = getArmorModifier(ship, enemy, weapon, skillList, skillNames, ammoType, noteColor);
+			armorModStat = getArmorModifier(ship, enemy, weapon, skillList, skillNames, ammoType, shipSlot, noteColor);
 			
 			// Enhancing Damage
 			if (firstSalvo) {
-				enhancingDmgStat = getEnhanceDamage(skillList, manual);
+				enhancingDmgStat = getEnhanceDamage(weapon, skillList, skillNames, shipSlot, manual);
 			}
 			
 			//Combo Damage
@@ -122,7 +124,7 @@ public class FrontlineCalculations {
 		double wepCoff = weapon.getCoefficient();
 		double slotEff = 0;
 		
-		// Get the efficiency of the weapon slot. Avaiable slots are 1 or 2.
+		// Get the efficiency of the weapon slot. Available slots are 1 or 2.
 		if (shipSlot == 1) {
 			slotEff = ship.getEffSlot(1);
 		} else {
@@ -161,6 +163,12 @@ public class FrontlineCalculations {
 			skillStat = getDmgRatiotoStatBuffs(skills, "Buff To Cannon", 1, "");
 		}
 		
+		//////////////////////////////////////////////////////////////////////////////////////////
+		// Exceptions
+		if (skillNames.contains("AA Firepower") && cannonTypes.contains(weapon.getWeaponType())) {
+			skillStat += ship.getAA() * 0.30;
+		}
+		
 		// Scaling Damage. Monarach and Izumo have a higher scaling damage.
 		double scalingDamageStat = 1;
 		if (ship.getShipName().equals("Monarch") || ship.getShipName().equals("Izumo")) {
@@ -180,12 +188,22 @@ public class FrontlineCalculations {
 	 * @param armorBreak
 	 * @return
 	 */
-	public double getWeaponTypeMod(ArrayList<Skill> skills, CommonWeapon weapon, boolean armorBreak) {
+	public double getWeaponTypeMod(ArrayList<Skill> skills, ArrayList<String> skillNames, Enemy enemy, CommonWeapon weapon, int shipSlot, boolean armorBreak) {
 		double buffDamage = 1;
 		if (weapon.getWeaponType().equals("Torpedos")) {
 			buffDamage += getMiscStats(skills, "Injure Torpedo", 0) + getMiscStats(skills, "Damage Torpedo", 0); 
 		} else {
 			buffDamage += getMiscStats(skills, "Injure Cannon", 0) + getMiscStats(skills, "Damage Cannon", 0);
+		}
+		
+		// EXCEPTIONS
+		if (skillNames.contains("2,700 Pounds of Justice")) {
+			// For this purpose guarantee an armor break
+			if (shipSlot == 2 && enemy.getArmor().equals("H") && massachusettsGunException.contains(weapon.getWepName())) {
+				buffDamage += .08;
+			}
+		} else if (armorBreak && enemy.getArmor().equals("H")) {
+			buffDamage += .08;
 		}
 		return buffDamage;
 	}
@@ -214,6 +232,7 @@ public class FrontlineCalculations {
 	
 	/**
 	 * Calculates how much damage will be done to an enemy based off the armor they have.
+	 * X/X/X is Light Armor Mod, Medium Armor Mod, Heavy Armor Mod
 	 * @param ship
 	 * @param enemy
 	 * @param weapon
@@ -223,8 +242,20 @@ public class FrontlineCalculations {
 	 * @param noteColor
 	 * @return
 	 */
-	public double getArmorModifier(ShipFile ship, Enemy enemy, CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int ammoType, String noteColor) {
+	public double getArmorModifier(ShipFile ship, Enemy enemy, CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int ammoType, int shipSlot, String noteColor) {
 		double armorMod = 0;
+		boolean change = false;
+		
+		// Check if any of the skills that will change the damage modifier is in the given skill list.
+		ArrayList<String> changeToggle = new ArrayList<String>(Arrays.asList("2,700 Pounds of Justice"));
+		for (int i = 0; i < changeToggle.size(); i++) {
+			if (skillNames.contains(changeToggle.get(i))) {
+				change = true;
+				break;
+			}
+		}
+		
+		
 		String enemyArmor = enemy.getArmor();
 		if (enemyArmor.equals("L")) {
 			armorMod = weapon.getLightDamage();
@@ -232,6 +263,23 @@ public class FrontlineCalculations {
 			armorMod = weapon.getMediumDamage();
 		} else {
 			armorMod = weapon.getHeavyDamage();
+		}
+		
+		if (!change) {
+			return armorMod;
+		} else { // Exceptions. If there are multiple skills that will change the armor modifier, it will go by alphabetical order.
+			if (skillNames.contains("2,700 Pounds of Justice")) {
+				// For this purpose guarantee an armor break
+				if (shipSlot == 2 && massachusettsGunException.contains(weapon.getWepName())) {
+					if (enemy.getArmor().equals("L")) {
+						armorMod = .65;
+					} else if (enemy.getArmor().equals("M")) {
+						armorMod = 1.35;
+					} else {
+						armorMod = 1.15;
+					}
+				}
+			}
 		}
 		return armorMod;
 	}
@@ -242,12 +290,19 @@ public class FrontlineCalculations {
 	 * @param manual
 	 * @return
 	 */
-	public double getEnhanceDamage(ArrayList<Skill> skills, boolean manual) {
+	public double getEnhanceDamage(CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int shipSlot, boolean manual) {
 		double enhance = 0;
 		if (manual) {
 			enhance = 1.20 + getMiscStats(skills, "Initial Enhance", 0) + getMiscStats(skills, "Manual Enhance", 0);
 		} else {
 			enhance = 1.00 + getMiscStats(skills, "Initial Enhance", 0);
+		}
+		
+		// SKILL EXCEPTIONS
+		if (skillNames.contains("2,700 Pounds of Justice")) {
+			if (shipSlot == 2 && massachusettsGunException.contains(weapon.getWepName())) {
+				enhance += .15;
+			}
 		}
 		
 		return enhance;
@@ -284,7 +339,7 @@ public class FrontlineCalculations {
 	 */
 	public double getDamageRatio(ArrayList<Skill> skills, CommonWeapon weapon, Enemy enemy, int evenOdd, ArrayList<String> skillNames) {
 		double ratio = 0;
-		if (canons.contains(weapon.getWeaponType())) {
+		if (cannonTypes.contains(weapon.getWeaponType())) {
 			ratio = getDmgRatiotoStatBuffs(skills, "Damage Ratio", 0, "Cannon");
 		} else if (weapon.getWeaponType().equals("Torpedos")) {
 			ratio = getDmgRatiotoStatBuffs(skills, "Damage Ratio", 0, "Torpedo");
