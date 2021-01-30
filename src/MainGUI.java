@@ -17,6 +17,7 @@ public class MainGUI extends JFrame {
 	private JPanel skillPane;
 	private JPanel calculatePane;
 	private JPanel currentPanel;
+	private JPanel worldPane;
 
 	/**
 	 * Launch the application.
@@ -46,6 +47,7 @@ public class MainGUI extends JFrame {
 		setContentPane(contentPane);
 		shipWeaponPane = new ShipWeaponPanel();
 		skillPane = new SkillPanel();
+		worldPane = new WorldPanel();
 		currentPanel = shipWeaponPane;
 		contentPane.add(currentPanel, BorderLayout.CENTER);
 		JToolBar toolBar = new JToolBar();
@@ -79,7 +81,19 @@ public class MainGUI extends JFrame {
 		});
 		toolBar.add(skillsButton);
 		
+		JButton worldButton = new JButton("World");
+		worldButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				contentPane.remove(currentPanel);
+				currentPanel = worldPane;
+				contentPane.add(currentPanel, BorderLayout.CENTER);
+				contentPane.validate();
+				contentPane.repaint();
+				setVisible(true);
+			}
+		});
+		toolBar.add(worldButton);
+		
 		
 	}
-
 }

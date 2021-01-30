@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class ShipWeaponPanel extends JPanel {
 	//The current damage type being applied
@@ -38,15 +40,63 @@ public class ShipWeaponPanel extends JPanel {
 		shipTypeName = (String) shipTypeCBox.getSelectedItem();
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
-		lblShipName.setBounds(227, 11, 86, 14);
+		lblShipName.setBounds(181, 11, 86, 14);
 		add(lblShipName);
 		
 		//ship names are added based on the list that is selected
 		
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(209, 36, 135, 25);
-		add(comboBox_1);
+		JComboBox shipNameCBox = new JComboBox();
+		shipNameCBox.setBounds(181, 36, 168, 25);
+		add(shipNameCBox);
+		
+		JLabel lblWeaponTypeSlot = new JLabel("Weapon Type Slot 1:");
+		lblWeaponTypeSlot.setBounds(10, 72, 109, 25);
+		add(lblWeaponTypeSlot);
+		
+		JComboBox weapon1TypeCBox = new JComboBox();
+		weapon1TypeCBox.setBounds(10, 108, 161, 25);
+		add(weapon1TypeCBox);
+		
+		JLabel lblNewLabel = new JLabel("Weapon Name Slot 1:");
+		lblNewLabel.setBounds(181, 74, 116, 20);
+		add(lblNewLabel);
+		
+		JComboBox weapon1NameCBox = new JComboBox();
+		weapon1NameCBox.setBounds(181, 109, 168, 23);
+		add(weapon1NameCBox);
+		
+		JLabel lblWeaponTypeSlot_1 = new JLabel("Weapon Type Slot 2:");
+		lblWeaponTypeSlot_1.setBounds(10, 156, 109, 25);
+		add(lblWeaponTypeSlot_1);
+		
+		JLabel lblWeaponNameSlot_1 = new JLabel("Weapon Name Slot 2:");
+		lblWeaponNameSlot_1.setBounds(181, 158, 116, 20);
+		add(lblWeaponNameSlot_1);
+		
+		JComboBox weapon2TypeCBox = new JComboBox();
+		weapon2TypeCBox.setBounds(10, 192, 161, 25);
+		add(weapon2TypeCBox);
+		
+		JComboBox weapon2NameCBox = new JComboBox();
+		weapon2NameCBox.setBounds(181, 193, 168, 23);
+		add(weapon2NameCBox);
+		
+		JLabel lblWeaponTypeSlot_2 = new JLabel("Weapon Type Slot 3:");
+		lblWeaponTypeSlot_2.setBounds(10, 228, 109, 25);
+		add(lblWeaponTypeSlot_2);
+		
+		JLabel lblWeaponNameSlot = new JLabel("Weapon Name Slot 3:");
+		lblWeaponNameSlot.setBounds(181, 230, 116, 20);
+		add(lblWeaponNameSlot);
+		
+		JComboBox weapon3TypeCBox = new JComboBox();
+		weapon3TypeCBox.setBounds(10, 264, 161, 25);
+		add(weapon3TypeCBox);
+		
+		JComboBox weapon3NameCBox = new JComboBox();
+		weapon3NameCBox.setBounds(181, 265, 168, 23);
+		add(weapon3NameCBox);
 		
 		/*code we'll need to have in the same panel (ammo types) 
 		
