@@ -23,7 +23,7 @@ public class ShipPanel extends JPanel {
 	private String currentWeaponType;
 	//The current selected weapon name
 	private String currentWeaponName = null;
-	
+	private JComboBox shipNameCBox, shipTypeCBox;
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -41,11 +41,28 @@ public class ShipPanel extends JPanel {
 		//might be done in the main method not too sure
 		//ship types will need to be changed to it's actual name
 		String[] shipTypeList = {"Destroyers", "Light Cruisers", "Heavy Cruisers", "Large Cruisers", "Battlecruisers", "Battleships", "Aviation Battleships", "Monitors", "Submarines", "Aircraft Carriers", "Light Aircraft Carriers"};
-		JComboBox shipTypeCBox = new JComboBox<Object>(shipTypeList);
+		shipTypeCBox = new JComboBox<Object>(shipTypeList);
 		shipTypeCBox.setBounds(10, 36, 161, 25);
 		shipTypeCBox.setMaximumRowCount(10);
 		shipTypeCBox.setSelectedIndex(0);
 		add(shipTypeCBox);
+		shipTypeCBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					shipTypeName = (String) shipTypeCBox.getSelectedItem();
+					GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			
+		});
+		
 		
 		shipTypeName = (String) shipTypeCBox.getSelectedItem();
 				
@@ -56,7 +73,7 @@ public class ShipPanel extends JPanel {
 		//ship names are added based on the list that is selected
 		
 		
-		JComboBox shipNameCBox = new JComboBox();
+		shipNameCBox = new JComboBox();
 		shipNameCBox.setBounds(181, 36, 168, 25);
 		add(shipNameCBox);
 		GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
