@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class ShipWeaponPanel extends JPanel {
+public class ShipPanel extends JPanel {
 	//The current damage type being applied
 	private int currentDMGType = 0; //0 = HE, 1 = AP
 	private String shipTypeName;
@@ -23,16 +23,13 @@ public class ShipWeaponPanel extends JPanel {
 	private String currentWeaponType;
 	//The current selected weapon name
 	private String currentWeaponName = null;
-	//Allows user to select the weapon type for slot 3 for current ship
-	private JComboBox<Object> weapon1TypeCBox;
-	private JComboBox weapon1NameCBox;
 	
 	/**
 	 * Create the panel.
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public ShipWeaponPanel() throws FileNotFoundException, IOException {
+	public ShipPanel() throws FileNotFoundException, IOException {
 		setLayout(null);
 		
 		JLabel lblShipType = new JLabel("Ship Type:");
@@ -183,110 +180,38 @@ public class ShipWeaponPanel extends JPanel {
 				}
 				*/ 
 				if(currentShipName != "") {
-					try {
-						GUIUtility.insertType(weapon1TypeCBox, 4, shipTypeName, currentShipName, 1);
-						currentWeaponType = (String) weapon1TypeCBox.getSelectedItem();
-						GUIUtility.insertNames(weapon1NameCBox, false, currentWeaponType);
-						/*
-						GUIUtility.insertType(weaponTypeCBox2, 5, shipTypeName, currentShipName, 2);
-						currentWeaponTypeSlot2 = (String) weaponTypeCBox2.getSelectedItem();
-						GUIUtility.insertNames(weaponNameSlot2, false, currentWeaponTypeSlot2);
-						
-						if(shipTypeName == "CV" || shipTypeName == "CVL") {
-							GUIUtility.enableDisableSlot3(lblNewLabel, weaponTypeCBox3, lblWeaponTypeSlot, weaponNameSlot3,
-									lblSlotDamage, slot3Pane, true);
-							GUIUtility.insertType(weaponTypeCBox3, 6, shipTypeName, currentShipName, 3);
-							currentWeaponTypeSlot3 = (String) weaponTypeCBox3.getSelectedItem();
-							GUIUtility.insertNames(weaponNameSlot3, false, currentWeaponTypeSlot3);
-
-						} else {
-							GUIUtility.enableDisableSlot3(lblNewLabel, weaponTypeCBox3, lblWeaponTypeSlot, weaponNameSlot3,
-									lblSlotDamage, slot3Pane, false);
-						}	
-						*/					
-						
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+//					try {
+////						GUIUtility.insertType(weapon1TypeCBox, 4, shipTypeName, currentShipName, 1);
+////						currentWeaponType = (String) weapon1TypeCBox.getSelectedItem();
+////						GUIUtility.insertNames(weapon1NameCBox, false, currentWeaponType);
+//						/*
+//						GUIUtility.insertType(weaponTypeCBox2, 5, shipTypeName, currentShipName, 2);
+//						currentWeaponTypeSlot2 = (String) weaponTypeCBox2.getSelectedItem();
+//						GUIUtility.insertNames(weaponNameSlot2, false, currentWeaponTypeSlot2);
+//						
+//						if(shipTypeName == "CV" || shipTypeName == "CVL") {
+//							GUIUtility.enableDisableSlot3(lblNewLabel, weaponTypeCBox3, lblWeaponTypeSlot, weaponNameSlot3,
+//									lblSlotDamage, slot3Pane, true);
+//							GUIUtility.insertType(weaponTypeCBox3, 6, shipTypeName, currentShipName, 3);
+//							currentWeaponTypeSlot3 = (String) weaponTypeCBox3.getSelectedItem();
+//							GUIUtility.insertNames(weaponNameSlot3, false, currentWeaponTypeSlot3);
+//
+//						} else {
+//							GUIUtility.enableDisableSlot3(lblNewLabel, weaponTypeCBox3, lblWeaponTypeSlot, weaponNameSlot3,
+//									lblSlotDamage, slot3Pane, false);
+//						}	
+//						*/					
+//						
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
 				}
 			}
 		});
-		
-		
-		
-		weapon1NameCBox = new JComboBox();
-		weapon1NameCBox.setBounds(181, 109, 168, 23);
-		add(weapon1NameCBox);
-		
-		
-		JLabel lblWeaponTypeSlot = new JLabel("Weapon Type Slot 1:");
-		lblWeaponTypeSlot.setBounds(10, 72, 109, 25);
-		add(lblWeaponTypeSlot);
 		
 		//Hard Coded initial screen of weapon type will need to change later most likely.
 		String[] weaponTypeList1 = {"DDGUNS"};
-		weapon1TypeCBox = new JComboBox<Object>(weaponTypeList1);
-		weapon1TypeCBox.setMaximumRowCount(5);
-		//weapon1TypeCBox.setSelectedIndex(0);
-		currentWeaponType = (String) weapon1TypeCBox.getSelectedItem();
-
-		weapon1TypeCBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-//				System.out.println("This is a test");
-				try {
-					currentWeaponType = (String) weapon1TypeCBox.getSelectedItem();
-					GUIUtility.insertNames(weapon1NameCBox, false, currentWeaponType);
-					currentWeaponName = (String) weapon1NameCBox.getSelectedItem();
-//					System.out.println(currentShipName);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-		weapon1TypeCBox.setBounds(10, 108, 161, 25);
-		add(weapon1TypeCBox);
-		
-		
-		
-		JLabel lblNewLabel = new JLabel("Weapon Name Slot 1:");
-		lblNewLabel.setBounds(181, 74, 116, 20);
-		add(lblNewLabel);
-		
-
-		
-		JLabel lblWeaponTypeSlot_1 = new JLabel("Weapon Type Slot 2:");
-		lblWeaponTypeSlot_1.setBounds(10, 156, 109, 25);
-		add(lblWeaponTypeSlot_1);
-		
-		JLabel lblWeaponNameSlot_1 = new JLabel("Weapon Name Slot 2:");
-		lblWeaponNameSlot_1.setBounds(181, 158, 116, 20);
-		add(lblWeaponNameSlot_1);
-		
-		JComboBox weapon2TypeCBox = new JComboBox();
-		weapon2TypeCBox.setBounds(10, 192, 161, 25);
-		add(weapon2TypeCBox);
-		
-		JComboBox weapon2NameCBox = new JComboBox();
-		weapon2NameCBox.setBounds(181, 193, 168, 23);
-		add(weapon2NameCBox);
-		
-		JLabel lblWeaponTypeSlot_2 = new JLabel("Weapon Type Slot 3:");
-		lblWeaponTypeSlot_2.setBounds(10, 228, 109, 25);
-		add(lblWeaponTypeSlot_2);
-		
-		JLabel lblWeaponNameSlot = new JLabel("Weapon Name Slot 3:");
-		lblWeaponNameSlot.setBounds(181, 230, 116, 20);
-		add(lblWeaponNameSlot);
-		
-		JComboBox weapon3TypeCBox = new JComboBox();
-		weapon3TypeCBox.setBounds(10, 264, 161, 25);
-		add(weapon3TypeCBox);
-		
-		JComboBox weapon3NameCBox = new JComboBox();
-		weapon3NameCBox.setBounds(181, 265, 168, 23);
-		add(weapon3NameCBox);
 		
 		/*code we'll need to have in the same panel (ammo types) 
 		

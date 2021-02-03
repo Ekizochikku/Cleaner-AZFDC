@@ -11,11 +11,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
+import javax.swing.border.EtchedBorder;
+import java.awt.Dimension;
 
 public class MainGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel shipWeaponPane;
+	private JPanel shipPane;
+	private JPanel weaponPane;
 	private JPanel skillPane;
 	private JPanel calculatePane;
 	private JPanel currentPanel;
@@ -43,34 +46,37 @@ public class MainGUI extends JFrame {
 	 * @throws FileNotFoundException 
 	 */
 	public MainGUI() throws FileNotFoundException, IOException {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1071, 660);
+		setBounds(100, 100, 1150, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		shipWeaponPane = new ShipWeaponPanel();
+		shipPane = new ShipPanel();
+		weaponPane = new WeaponPanel();
 		skillPane = new SkillPanel();
 		worldPane = new WorldPanel();
-		currentPanel = shipWeaponPane;
+		calculatePane = new CalculatePanel();
+		currentPanel = shipPane;
 		contentPane.add(currentPanel, BorderLayout.CENTER);
 		JToolBar toolBar = new JToolBar();
 		toolBar.setRollover(true);
 		toolBar.setFloatable(false);
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		
-		JButton shipWeaponButton = new JButton("Ships/Weapons");
-		shipWeaponButton.addActionListener(new ActionListener() {
+		JButton shipButton = new JButton("Ship");
+		shipButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(currentPanel);
-				currentPanel = shipWeaponPane;
+				currentPanel = shipPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
 				contentPane.repaint();
 				setVisible(true);
 			}
 		});
-		toolBar.add(shipWeaponButton);
+		toolBar.add(shipButton);
 		
 		JButton skillsButton = new JButton("Skills");
 		skillsButton.addActionListener(new ActionListener() {
@@ -83,6 +89,19 @@ public class MainGUI extends JFrame {
 				setVisible(true);
 			}
 		});
+		
+		JButton btnWeaponsgear = new JButton("Weapons/Gear");
+		btnWeaponsgear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				contentPane.remove(currentPanel);
+				currentPanel = weaponPane;
+				contentPane.add(currentPanel, BorderLayout.CENTER);
+				contentPane.validate();
+				contentPane.repaint();
+				setVisible(true);
+			}
+		});
+		toolBar.add(btnWeaponsgear);
 		toolBar.add(skillsButton);
 		
 		JButton worldButton = new JButton("World");
@@ -97,6 +116,19 @@ public class MainGUI extends JFrame {
 			}
 		});
 		toolBar.add(worldButton);
+		
+		JButton calculateButton = new JButton("Calculate");
+		calculateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				contentPane.remove(currentPanel);
+				currentPanel = calculatePane;
+				contentPane.add(currentPanel, BorderLayout.CENTER);
+				contentPane.validate();
+				contentPane.repaint();
+				setVisible(true);
+			}
+		});
+		contentPane.add(calculateButton, BorderLayout.SOUTH);
 		
 		
 	}
