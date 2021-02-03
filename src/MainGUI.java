@@ -23,7 +23,8 @@ public class MainGUI extends JFrame {
 	private JPanel calculatePane;
 	private JPanel currentPanel;
 	private JPanel worldPane;
-
+	
+	
 	/**
 	 * Launch the application.
 	 */

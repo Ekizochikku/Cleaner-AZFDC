@@ -4,6 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import java.awt.Font;
 
 public class SkillPanel extends JPanel {
 
@@ -14,27 +15,55 @@ public class SkillPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel lblSkillList = new JLabel("Skill List:");
-		lblSkillList.setBounds(22, 11, 85, 23);
+		lblSkillList.setBounds(532, 11, 85, 23);
+		lblSkillList.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblSkillList);
 		
 		JComboBox<?> comboBox = new JComboBox();
-		comboBox.setBounds(22, 36, 172, 28);
+		comboBox.setBounds(489, 36, 172, 28);
 		add(comboBox);
 		
 		JButton btnAddSkill = new JButton("Add Skill");
-		btnAddSkill.setBounds(215, 39, 113, 25);
+		btnAddSkill.setBounds(518, 39, 113, 25);
 		add(btnAddSkill);
 		
 		JLabel lblSkillDescription = new JLabel("Skill Description:");
-		lblSkillDescription.setBounds(22, 88, 136, 28);
+		lblSkillDescription.setBounds(507, 88, 136, 28);
+		lblSkillDescription.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblSkillDescription);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 127, 345, 174);
-		add(scrollPane);
+		JScrollPane skillDescriptionScrollPane = new JScrollPane();
+		skillDescriptionScrollPane.setBounds(357, 127, 435, 133);
+		add(skillDescriptionScrollPane);
 		
-		JTextPane textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
+		JTextPane skillDescriptionText = new JTextPane();
+		skillDescriptionText.setEditable(false);
+		skillDescriptionScrollPane.setViewportView(skillDescriptionText);
+		
+		JLabel lblSkillUsers = new JLabel("Skill Users:");
+		lblSkillUsers.setBounds(523, 298, 104, 23);
+		lblSkillUsers.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(lblSkillUsers);
+		
+		JScrollPane skillUserScrollPane = new JScrollPane();
+		skillUserScrollPane.setBounds(390, 343, 370, 53);
+		add(skillUserScrollPane);
+		
+		JTextPane skillUserText = new JTextPane();
+		skillUserScrollPane.setViewportView(skillUserText);
+		
+		JScrollPane activeSkillScrollPane = new JScrollPane();
+		activeSkillScrollPane.setBounds(390, 516, 370, 53);
+		add(activeSkillScrollPane);
+		
+		JTextPane activeSkillsText = new JTextPane();
+		activeSkillsText.setEditable(false);
+		activeSkillScrollPane.setViewportView(activeSkillsText);
+		
+		JLabel lblActiveSkills = new JLabel("Active Skills:");
+		lblActiveSkills.setBounds(523, 467, 104, 23);
+		lblActiveSkills.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(lblActiveSkills);
 
 	}
 }
