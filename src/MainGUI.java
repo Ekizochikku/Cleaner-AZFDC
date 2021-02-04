@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EtchedBorder;
 import java.awt.Dimension;
+import javax.swing.border.TitledBorder;
 
 public class MainGUI extends JFrame {
 
@@ -23,6 +24,7 @@ public class MainGUI extends JFrame {
 	private JPanel calculatePane;
 	private JPanel currentPanel;
 	private JPanel worldPane;
+	private String currentShipName;
 	
 	
 	/**
@@ -55,6 +57,7 @@ public class MainGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		shipPane = new ShipPanel();
+		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		weaponPane = new WeaponPanel();
 		skillPane = new SkillPanel();
 		worldPane = new WorldPanel();
@@ -132,5 +135,8 @@ public class MainGUI extends JFrame {
 		contentPane.add(calculateButton, BorderLayout.SOUTH);
 		
 		
+	}
+	public void setShipName(String theShipName) {
+		currentShipName = theShipName;
 	}
 }

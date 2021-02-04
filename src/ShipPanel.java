@@ -11,8 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
 import java.awt.Component;
 import javax.swing.Box;
+import java.awt.Font;
+import javax.swing.JTextPane;
 
 public class ShipPanel extends JPanel {
 	//The current damage type being applied
@@ -31,9 +35,9 @@ public class ShipPanel extends JPanel {
 	 */
 	public ShipPanel() throws FileNotFoundException, IOException {
 		setLayout(null);
-		
 		JLabel lblShipType = new JLabel("Ship Type:");
-		lblShipType.setBounds(10, 11, 59, 14);
+		lblShipType.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblShipType.setBounds(363, 82, 86, 25);
 		add(lblShipType);
 		
 		
@@ -42,7 +46,7 @@ public class ShipPanel extends JPanel {
 		//ship types will need to be changed to it's actual name
 		String[] shipTypeList = {"Destroyers", "Light Cruisers", "Heavy Cruisers", "Large Cruisers", "Battlecruisers", "Battleships", "Aviation Battleships", "Monitors", "Submarines", "Aircraft Carriers", "Light Aircraft Carriers"};
 		shipTypeCBox = new JComboBox<Object>(shipTypeList);
-		shipTypeCBox.setBounds(10, 36, 161, 25);
+		shipTypeCBox.setBounds(363, 127, 161, 25);
 		shipTypeCBox.setMaximumRowCount(10);
 		shipTypeCBox.setSelectedIndex(0);
 		add(shipTypeCBox);
@@ -67,16 +71,87 @@ public class ShipPanel extends JPanel {
 		shipTypeName = (String) shipTypeCBox.getSelectedItem();
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
-		lblShipName.setBounds(181, 11, 86, 14);
+		lblShipName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblShipName.setBounds(534, 82, 95, 25);
 		add(lblShipName);
 		
 		//ship names are added based on the list that is selected
 		
 		
 		shipNameCBox = new JComboBox();
-		shipNameCBox.setBounds(181, 36, 168, 25);
+		shipNameCBox.setBounds(534, 127, 191, 25);
 		add(shipNameCBox);
 		GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
+		
+		JLabel lblFaction = new JLabel("Faction:");
+		lblFaction.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblFaction.setBounds(363, 181, 86, 25);
+		add(lblFaction);
+		
+		JLabel lblClass = new JLabel("Class:");
+		lblClass.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblClass.setBounds(534, 181, 86, 25);
+		add(lblClass);
+		
+		JLabel lblHealth = new JLabel("Health:");
+		lblHealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblHealth.setBounds(363, 270, 86, 25);
+		add(lblHealth);
+		
+		JLabel lblFirepower = new JLabel("Firepower:");
+		lblFirepower.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblFirepower.setBounds(534, 270, 86, 25);
+		add(lblFirepower);
+		
+		JLabel lblTorpedo = new JLabel("Torpedo:");
+		lblTorpedo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTorpedo.setBounds(363, 366, 86, 25);
+		add(lblTorpedo);
+		
+		JLabel lblAntiAir = new JLabel("Anti Air:");
+		lblAntiAir.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblAntiAir.setBounds(534, 366, 86, 25);
+		add(lblAntiAir);
+		
+		JLabel lblAviation = new JLabel("Aviation:");
+		lblAviation.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblAviation.setBounds(682, 366, 86, 25);
+		add(lblAviation);
+		
+		JTextPane factionTxt = new JTextPane();
+		factionTxt.setEditable(false);
+		factionTxt.setBounds(363, 217, 95, 31);
+		add(factionTxt);
+		
+		JTextPane classTxt = new JTextPane();
+		classTxt.setEditable(false);
+		classTxt.setBounds(534, 217, 95, 31);
+		add(classTxt);
+		
+		JTextPane healthTxt = new JTextPane();
+		healthTxt.setEditable(false);
+		healthTxt.setBounds(363, 306, 95, 31);
+		add(healthTxt);
+		
+		JTextPane firepowerTxt = new JTextPane();
+		firepowerTxt.setEditable(false);
+		firepowerTxt.setBounds(534, 306, 95, 31);
+		add(firepowerTxt);
+		
+		JTextPane torpedoTxt = new JTextPane();
+		torpedoTxt.setEditable(false);
+		torpedoTxt.setBounds(363, 402, 95, 31);
+		add(torpedoTxt);
+		
+		JTextPane antiAirTxt = new JTextPane();
+		antiAirTxt.setEditable(false);
+		antiAirTxt.setBounds(534, 402, 95, 31);
+		add(antiAirTxt);
+		
+		JTextPane aviationTxt = new JTextPane();
+		aviationTxt.setEditable(false);
+		aviationTxt.setBounds(682, 402, 95, 31);
+		add(aviationTxt);
 		//future action listeners for the color stuff
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
