@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EtchedBorder;
 import java.awt.Dimension;
+import javax.swing.border.TitledBorder;
 
 public class MainGUI extends JFrame {
 
@@ -32,8 +33,6 @@ public class MainGUI extends JFrame {
 	private String currentWeaponType;
 	//The current selected weapon name
 	private String currentWeaponName = null;
-	
-
 	/**
 	 * Launch the application.
 	 */
@@ -64,6 +63,8 @@ public class MainGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		shipPane = new ShipWeaponPanel(this);
+		shipPane = new ShipPanel();
+		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		weaponPane = new WeaponPanel();
 		skillPane = new SkillPanel();
 		worldPane = new WorldPanel();
@@ -182,4 +183,7 @@ public class MainGUI extends JFrame {
 		this.currentWeaponName = currentWeaponName;
 	}
 	
+	public void setShipName(String theShipName) {
+		currentShipName = theShipName;
+	}
 }

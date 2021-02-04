@@ -18,23 +18,50 @@ public class SkillPanel extends JPanel {
 		add(lblSkillList);
 		
 		JComboBox<?> comboBox = new JComboBox();
-		comboBox.setBounds(22, 36, 172, 28);
+		comboBox.setBounds(434, 36, 255, 28);
 		add(comboBox);
 		
 		JButton btnAddSkill = new JButton("Add Skill");
-		btnAddSkill.setBounds(215, 39, 113, 25);
+		btnAddSkill.setBounds(700, 39, 113, 25);
 		add(btnAddSkill);
 		
 		JLabel lblSkillDescription = new JLabel("Skill Description:");
-		lblSkillDescription.setBounds(22, 88, 136, 28);
+		lblSkillDescription.setBounds(493, 88, 136, 28);
+		lblSkillDescription.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblSkillDescription);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 127, 345, 174);
-		add(scrollPane);
+		JScrollPane skillDescriptionScrollPane = new JScrollPane();
+		skillDescriptionScrollPane.setBounds(344, 127, 435, 133);
+		add(skillDescriptionScrollPane);
 		
-		JTextPane textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
+		JTextPane skillDescriptionText = new JTextPane();
+		skillDescriptionText.setEditable(false);
+		skillDescriptionScrollPane.setViewportView(skillDescriptionText);
+		
+		JLabel lblSkillUsers = new JLabel("Skill Users:");
+		lblSkillUsers.setBounds(509, 298, 104, 23);
+		lblSkillUsers.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(lblSkillUsers);
+		
+		JScrollPane skillUserScrollPane = new JScrollPane();
+		skillUserScrollPane.setBounds(376, 343, 370, 53);
+		add(skillUserScrollPane);
+		
+		JTextPane skillUserText = new JTextPane();
+		skillUserScrollPane.setViewportView(skillUserText);
+		
+		JScrollPane activeSkillScrollPane = new JScrollPane();
+		activeSkillScrollPane.setBounds(376, 445, 370, 124);
+		add(activeSkillScrollPane);
+		
+		JTextPane activeSkillsText = new JTextPane();
+		activeSkillsText.setEditable(false);
+		activeSkillScrollPane.setViewportView(activeSkillsText);
+		
+		JLabel lblActiveSkills = new JLabel("Active Skills:");
+		lblActiveSkills.setBounds(509, 407, 104, 23);
+		lblActiveSkills.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(lblActiveSkills);
 
 	}
 }
