@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,6 +24,15 @@ public class MainGUI extends JFrame {
 	private JPanel calculatePane;
 	private JPanel currentPanel;
 	private JPanel worldPane;
+	//The current damage type being applied
+	private int currentDMGType = 0; //0 = HE, 1 = AP
+	private String shipTypeName;
+	private String currentShipName;
+	private String currentColorSelected;
+	private String currentWeaponType;
+	//The current selected weapon name
+	private String currentWeaponName = null;
+	
 
 	/**
 	 * Launch the application.
@@ -53,7 +63,7 @@ public class MainGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		shipPane = new ShipPanel();
+		shipPane = new ShipWeaponPanel(this);
 		weaponPane = new WeaponPanel();
 		skillPane = new SkillPanel();
 		worldPane = new WorldPanel();
@@ -132,4 +142,44 @@ public class MainGUI extends JFrame {
 		
 		
 	}
+	public int getCurrentDMGType() {
+		return currentDMGType;
+	}
+
+	public void setCurrentDMGType(int currentDMGType) {
+		this.currentDMGType = currentDMGType;
+	}
+
+	public String getShipTypeName() {
+		return shipTypeName;
+	}
+
+	public void setShipTypeName(String shipTypeName) {
+		this.shipTypeName = shipTypeName;
+	}
+
+	public String getCurrentShipName() {
+		return currentShipName;
+	}
+
+	public void setCurrentShipName(String currentShipName) {
+		this.currentShipName = currentShipName;
+	}
+
+	public String getCurrentWeaponType() {
+		return currentWeaponType;
+	}
+
+	public void setCurrentWeaponType(String currentWeaponType) {
+		this.currentWeaponType = currentWeaponType;
+	}
+
+	public String getCurrentWeaponName() {
+		return currentWeaponName;
+	}
+
+	public void setCurrentWeaponName(String currentWeaponName) {
+		this.currentWeaponName = currentWeaponName;
+	}
+	
 }
