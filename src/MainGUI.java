@@ -85,6 +85,8 @@ public class MainGUI extends JFrame {
 		worldPane.setBackground(new Color(210, 210, 210));
 		
 		calculatePane = new CalculatePanel();
+		calculatePane.setOpaque(true);
+		calculatePane.setBackground(new Color(210, 210, 210));
 		currentPanel = shipPane;
 		
 		currentPanel.setOpaque(true);

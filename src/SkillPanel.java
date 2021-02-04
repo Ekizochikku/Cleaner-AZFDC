@@ -17,7 +17,8 @@ public class SkillPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel lblSkillList = new JLabel("Skill List:");
-		lblSkillList.setBounds(22, 11, 85, 23);
+		lblSkillList.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblSkillList.setBounds(509, 11, 85, 23);
 		add(lblSkillList);
 		
 		JComboBox<?> comboBox = new JComboBox();
