@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
 
@@ -41,6 +42,8 @@ public class MainGUI extends JFrame {
 			public void run() {
 				try {
 					MainGUI frame = new MainGUI();
+					frame.getContentPane().setBackground(Color.GRAY);
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,12 +67,29 @@ public class MainGUI extends JFrame {
 		setContentPane(contentPane);
 		shipPane = new ShipWeaponPanel(this);
 		shipPane = new ShipPanel();
+		shipPane.setOpaque(true);
+		shipPane.setBackground(new Color(210, 210, 210));
+		
 		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		weaponPane = new WeaponPanel();
+		weaponPane.setOpaque(true);
+		weaponPane.setBackground(new Color(210, 210, 210));
+		
 		skillPane = new SkillPanel();
+		
+		skillPane.setOpaque(true);
+		skillPane.setBackground(new Color(210, 210, 210));
+		
 		worldPane = new WorldPanel();
+		worldPane.setOpaque(true);
+		worldPane.setBackground(new Color(210, 210, 210));
+		
 		calculatePane = new CalculatePanel();
 		currentPanel = shipPane;
+		
+		currentPanel.setOpaque(true);
+		currentPanel.setBackground(new Color(210, 210, 210));
+		
 		contentPane.add(currentPanel, BorderLayout.CENTER);
 		JToolBar toolBar = new JToolBar();
 		toolBar.setRollover(true);
@@ -183,7 +203,4 @@ public class MainGUI extends JFrame {
 		this.currentWeaponName = currentWeaponName;
 	}
 	
-	public void setShipName(String theShipName) {
-		currentShipName = theShipName;
-	}
 }
