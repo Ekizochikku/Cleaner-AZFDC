@@ -34,7 +34,7 @@ public class ShipPanel extends JPanel {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public ShipPanel() throws FileNotFoundException, IOException {
+	public ShipPanel(MainGUI guiVariables) throws FileNotFoundException, IOException {
 		setLayout(null);
 		JLabel lblShipType = new JLabel("Ship Type:");
 		lblShipType.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -54,8 +54,8 @@ public class ShipPanel extends JPanel {
 		shipTypeCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					shipTypeName = (String) shipTypeCBox.getSelectedItem();
-					GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
+					guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
+					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -69,7 +69,7 @@ public class ShipPanel extends JPanel {
 		});
 		
 		
-		shipTypeName = (String) shipTypeCBox.getSelectedItem();
+		guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
 		lblShipName.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -82,7 +82,7 @@ public class ShipPanel extends JPanel {
 		shipNameCBox = new JComboBox();
 		shipNameCBox.setBounds(534, 127, 191, 25);
 		add(shipNameCBox);
-		GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
+		GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
 		
 		JLabel lblFaction = new JLabel("Faction:");
 		lblFaction.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -157,10 +157,10 @@ public class ShipPanel extends JPanel {
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
-				currentShipName = (String) shipNameCBox.getSelectedItem();
+				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 				List<String> attributes = new ArrayList<String>();
 				int skillIdx = -1;
-				switch(shipTypeName) {
+				switch(guiVariables.getCurrentShipName()) {
 				case "Aviation Battleships":
 					skillIdx = 14;
 					break;
@@ -272,8 +272,7 @@ public class ShipPanel extends JPanel {
 					isArmorBroken.setSelected(false);
 				}
 				*/ 
-				if(currentShipName != "") {
-//					try {
+				if(guiVariables.getCurrentShipName() != "") {//					try {
 ////						GUIUtility.insertType(weapon1TypeCBox, 4, shipTypeName, currentShipName, 1);
 ////						currentWeaponType = (String) weapon1TypeCBox.getSelectedItem();
 ////						GUIUtility.insertNames(weapon1NameCBox, false, currentWeaponType);
@@ -360,3 +359,4 @@ public class ShipPanel extends JPanel {
 		return currentColorSelected;
 	}
 }
+

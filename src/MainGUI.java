@@ -65,8 +65,7 @@ public class MainGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		shipPane = new ShipWeaponPanel(this);
-		shipPane = new ShipPanel();
+		shipPane = new ShipPanel(this);
 		shipPane.setOpaque(true);
 		shipPane.setBackground(new Color(210, 210, 210));
 		
