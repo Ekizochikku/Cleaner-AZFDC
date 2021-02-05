@@ -79,7 +79,7 @@ public class MainGUI extends JFrame {
 		skillPane.setOpaque(true);
 		skillPane.setBackground(new Color(210, 210, 210));
 		
-		worldPane = new WorldPanel();
+		worldPane = new WorldPanel(this);
 		worldPane.setOpaque(true);
 		worldPane.setBackground(new Color(210, 210, 210));
 		
