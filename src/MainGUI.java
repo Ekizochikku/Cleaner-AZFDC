@@ -34,6 +34,10 @@ public class MainGUI extends JFrame {
 	private String currentWeaponType;
 	//The current selected weapon name
 	private String currentWeaponName = null;
+	private String theCurrentWorld;
+	private int currentDangerLevel = 3;
+	private String theCurrentEnemy;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -204,4 +208,30 @@ public class MainGUI extends JFrame {
 		this.currentWeaponName = currentWeaponName;
 	}
 	
+	public void setDangerLvl(int dangerlvl) {
+//		System.out.println("Danger Level set to: " + dangerlvl);
+		this.currentDangerLevel = dangerlvl;
+	}
+	
+	public int getDangerLvl() {
+		return currentDangerLevel;
+	}
+	
+	public void setEnemy(String enemyName) {
+//		System.out.println("Enemy set to: " + enemyName);
+		this.theCurrentEnemy = enemyName;
+	}
+	
+	public String getEnemy() {
+		return theCurrentEnemy;
+	}
+	
+	public void setWorld(String world) {
+//		System.out.println("World set to: " + world);
+		this.theCurrentWorld = world;
+	}
+	
+	public String getWorld() {
+		return theCurrentWorld;
+	}
 }

@@ -165,6 +165,9 @@ public class WorldPanel extends JPanel {
 			antiAirText.setText((String) enemyParameters.get(5));
 			typeText.setText((String) enemyParameters.get(6));
 			nationText.setText((String) enemyParameters.get(7));
+			mainGUI.setDangerLvl(currentDangerLevel);
+			mainGUI.setWorld(theCurrentWorld);
+			mainGUI.setEnemy(theCurrentEnemy);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
