@@ -29,6 +29,8 @@ public class ShipPanel extends JPanel {
 	//The current selected weapon name
 	private String currentWeaponName = null;
 	private JComboBox shipNameCBox, shipTypeCBox;
+	private MainGUI gui;
+	private GUIUtility gUtil;
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -41,8 +43,8 @@ public class ShipPanel extends JPanel {
 		lblShipType.setBounds(363, 82, 86, 25);
 		add(lblShipType);
 		
-		
-		
+		gui = guiVariables;
+		gUtil = new GUIUtility();
 		//might be done in the main method not too sure
 		//ship types will need to be changed to it's actual name
 		String[] shipTypeList = {"Destroyers", "Light Cruisers", "Heavy Cruisers", "Large Cruisers", "Battlecruisers", "Battleships", "Aviation Battleships", "Monitors", "Submarines", "Aircraft Carriers", "Light Aircraft Carriers"};
@@ -55,7 +57,11 @@ public class ShipPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
+					shipTypeName = (String) shipTypeCBox.getSelectedItem();
 					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
+					shipNameCBox.setSelectedIndex(1);
+					currentShipName = (String) shipNameCBox.getSelectedItem();
+					setAttributes();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -70,6 +76,7 @@ public class ShipPanel extends JPanel {
 		
 		
 		guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
+		shipTypeName = (String) shipTypeCBox.getSelectedItem();
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
 		lblShipName.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -83,6 +90,9 @@ public class ShipPanel extends JPanel {
 		shipNameCBox.setBounds(534, 127, 191, 25);
 		add(shipNameCBox);
 		GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
+		shipNameCBox.setSelectedIndex(1);
+		currentShipName = (String) shipNameCBox.getSelectedItem();
+		setAttributes();
 		
 		JLabel lblFaction = new JLabel("Faction:");
 		lblFaction.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -158,6 +168,7 @@ public class ShipPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
 				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
+				currentShipName = (String) shipNameCBox.getSelectedItem();
 				List<String> attributes = new ArrayList<String>();
 				int skillIdx = -1;
 				switch(guiVariables.getCurrentShipName()) {
@@ -174,7 +185,10 @@ public class ShipPanel extends JPanel {
 					skillIdx = 13;
 					break;
 				}
-				
+				setAttributes();
+//				for(String s: attributes) {
+//					System.out.println(s);
+//				}
 				//Put this in the skill tab
 				/*
 				currentSkills.clear();
@@ -341,6 +355,20 @@ public class ShipPanel extends JPanel {
 		 */
 
 	}
+	
+	private void setAttributes() {
+		List<String> attributes = new ArrayList<String>();
+		try {
+			attributes = gUtil.getShipParameters(shipTypeName, currentShipName);
+			for(String s: attributes)  {
+				System.out.println(s);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * get get method for type and ship names 
 	 */
