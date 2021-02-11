@@ -31,6 +31,14 @@ public class ShipPanel extends JPanel {
 	private JComboBox shipNameCBox, shipTypeCBox;
 	private MainGUI gui;
 	private GUIUtility gUtil;
+	private JTextPane factionTxt;
+	private JTextPane classTxt;
+	private JTextPane healthTxt;
+	private JTextPane firepowerTxt;
+	private JTextPane torpedoTxt;
+	private JTextPane antiAirTxt;
+	private JTextPane aviationTxt;
+	
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -51,7 +59,6 @@ public class ShipPanel extends JPanel {
 		shipTypeCBox = new JComboBox<Object>(shipTypeList);
 		shipTypeCBox.setBounds(363, 127, 161, 25);
 		shipTypeCBox.setMaximumRowCount(10);
-		shipTypeCBox.setSelectedIndex(0);
 		add(shipTypeCBox);
 		shipTypeCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -59,7 +66,6 @@ public class ShipPanel extends JPanel {
 					guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
 					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
-					shipNameCBox.setSelectedIndex(1);
 					currentShipName = (String) shipNameCBox.getSelectedItem();
 					setAttributes();
 				} catch (FileNotFoundException e) {
@@ -90,9 +96,7 @@ public class ShipPanel extends JPanel {
 		shipNameCBox.setBounds(534, 127, 191, 25);
 		add(shipNameCBox);
 		GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
-		shipNameCBox.setSelectedIndex(1);
 		currentShipName = (String) shipNameCBox.getSelectedItem();
-		setAttributes();
 		
 		JLabel lblFaction = new JLabel("Faction:");
 		lblFaction.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -129,47 +133,47 @@ public class ShipPanel extends JPanel {
 		lblAviation.setBounds(682, 366, 86, 25);
 		add(lblAviation);
 		
-		JTextPane factionTxt = new JTextPane();
+		factionTxt = new JTextPane();
 		factionTxt.setEditable(false);
 		factionTxt.setBounds(363, 217, 95, 31);
 		add(factionTxt);
 		
-		JTextPane classTxt = new JTextPane();
+		classTxt = new JTextPane();
 		classTxt.setEditable(false);
 		classTxt.setBounds(534, 217, 95, 31);
 		add(classTxt);
 		
-		JTextPane healthTxt = new JTextPane();
+		healthTxt = new JTextPane();
 		healthTxt.setEditable(false);
 		healthTxt.setBounds(363, 306, 95, 31);
 		add(healthTxt);
 		
-		JTextPane firepowerTxt = new JTextPane();
+		firepowerTxt = new JTextPane();
 		firepowerTxt.setEditable(false);
 		firepowerTxt.setBounds(534, 306, 95, 31);
 		add(firepowerTxt);
 		
-		JTextPane torpedoTxt = new JTextPane();
+		torpedoTxt = new JTextPane();
 		torpedoTxt.setEditable(false);
 		torpedoTxt.setBounds(363, 402, 95, 31);
 		add(torpedoTxt);
 		
-		JTextPane antiAirTxt = new JTextPane();
+		antiAirTxt = new JTextPane();
 		antiAirTxt.setEditable(false);
 		antiAirTxt.setBounds(534, 402, 95, 31);
 		add(antiAirTxt);
 		
-		JTextPane aviationTxt = new JTextPane();
+		aviationTxt = new JTextPane();
 		aviationTxt.setEditable(false);
 		aviationTxt.setBounds(682, 402, 95, 31);
 		add(aviationTxt);
+		setAttributes();
 		//future action listeners for the color stuff
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
 				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 				currentShipName = (String) shipNameCBox.getSelectedItem();
-				List<String> attributes = new ArrayList<String>();
 				int skillIdx = -1;
 				switch(guiVariables.getCurrentShipName()) {
 				case "Aviation Battleships":
@@ -360,9 +364,42 @@ public class ShipPanel extends JPanel {
 		List<String> attributes = new ArrayList<String>();
 		try {
 			attributes = gUtil.getShipParameters(shipTypeName, currentShipName);
-			for(String s: attributes)  {
-				System.out.println(s);
+//			for(String s: attributes)  {
+//				System.out.println(s);
+//			}
+			factionTxt.setText(attributes.get(1));
+			classTxt.setText(attributes.get(2));
+			switch(shipTypeName) {
+			case "Aviation Battleships":
+				healthTxt.setText(attributes.get(9));
+				firepowerTxt.setText(attributes.get(10));
+				torpedoTxt.setText(attributes.get(11));
+				antiAirTxt.setText(attributes.get(12));
+				aviationTxt.setText(attributes.get(13));
+				break;
+			case "Aircraft Carriers":
+				healthTxt.setText(attributes.get(10));
+				firepowerTxt.setText(attributes.get(11));
+				torpedoTxt.setText(attributes.get(12));
+				antiAirTxt.setText(attributes.get(13));
+				aviationTxt.setText(attributes.get(14));
+				break;
+			case "Light Aircraft Carriers":
+				healthTxt.setText(attributes.get(10));
+				firepowerTxt.setText(attributes.get(11));
+				torpedoTxt.setText(attributes.get(12));
+				antiAirTxt.setText(attributes.get(13));
+				aviationTxt.setText(attributes.get(14));
+				break;
+			default:
+				healthTxt.setText(attributes.get(9));
+				firepowerTxt.setText(attributes.get(10));
+				torpedoTxt.setText(attributes.get(11));
+				antiAirTxt.setText(attributes.get(12));
+				aviationTxt.setText("0");
+				break;
 			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

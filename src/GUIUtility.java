@@ -588,7 +588,7 @@ public class GUIUtility {
 			System.out.println("Inserting name for weapon type: " + theType);
 			initialUserChoice = theList.getNamesOfWeaponsOfChosenWeaponType(theType);
 		}
-		initialUserChoice.add("");
+//		initialUserChoice.add("");
 		Collections.sort(initialUserChoice);
 		comboBox.setModel(new DefaultComboBoxModel<Object>(initialUserChoice.toArray()));
 	}
