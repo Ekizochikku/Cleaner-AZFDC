@@ -10,7 +10,9 @@ public class CommonWeapon {
 	
 	private String weaponType;
 	
-	private double genStat;
+	private double firepower;
+	
+	private double torpedo;
 	
 	private double aaStat;
 	
@@ -36,14 +38,15 @@ public class CommonWeapon {
 	// Gen stat can be firepower or torpdo stat because the weapon will only use one or the other
 	private void setVariables(ArrayList<String> list) {
 		this.wepName = list.get(0);
-		this.genStat = Double.parseDouble(list.get(1));
-		this.aaStat = Double.parseDouble(list.get(2));
-		this.damage = Double.parseDouble(list.get(3));
-		this.coefficient = Double.parseDouble(list.get(4));
-		this.ammoType = list.get(5);
-		this.lDamage = Double.parseDouble(list.get(6));
-		this.mDamage = Double.parseDouble(list.get(7));
-		this.hDamage = Double.parseDouble(list.get(8));
+		this.firepower = Double.parseDouble(list.get(1));
+		this.torpedo = Double.parseDouble(list.get(2));
+		this.aaStat = Double.parseDouble(list.get(3));
+		this.damage = Double.parseDouble(list.get(4));
+		this.coefficient = Double.parseDouble(list.get(5));
+		this.ammoType = list.get(6);
+		this.lDamage = Double.parseDouble(list.get(7));
+		this.mDamage = Double.parseDouble(list.get(8));
+		this.hDamage = Double.parseDouble(list.get(9));
 	}
 	
 	public String getWepName() {
@@ -54,8 +57,12 @@ public class CommonWeapon {
 		return weaponType;
 	}
 	
-	public double getGenStat() {
-		return genStat;
+	public double getFirepower () {
+		return firepower;
+	}
+	
+	public double getTorpedo() {
+		return torpedo;
 	}
 	
 	public double getAAStat() {

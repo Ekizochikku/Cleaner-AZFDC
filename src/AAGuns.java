@@ -10,6 +10,8 @@ public class AAGuns {
 	
 	private String weaponType;
 	
+	private int firepower;
+	
 	private int AAStat;
 	
 	public AAGuns(String weaponName, String weaponType) throws FileNotFoundException, IOException {
@@ -21,11 +23,16 @@ public class AAGuns {
 	
 	private void setVariables(ArrayList<String> list) {
 		this.wepName = list.get(0);
-		this.AAStat = Integer.parseInt(list.get(1));
+		this.firepower = Integer.parseInt(list.get(1));
+		this.AAStat = Integer.parseInt(list.get(2));
 	}
 	
 	public String getWeaponName() {
 		return wepName;
+	}
+	
+	public int getFirepower() {
+		return firepower;
 	}
 	
 	public int getAAStat() {

@@ -2,27 +2,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FrontlineCalculations {
-	
-	private GUIUtility utility = new GUIUtility();
-	
 	final private ArrayList<String> cannonTypes = new ArrayList<String>(Arrays.asList("Destroyer Guns", "Light Cruiser Guns", "Heavy Cruiser Guns", "Large Cruiser Guns", "Battleship Guns"));
+	final private ArrayList<String> specialShips = new ArrayList<String>(Arrays.asList("Bearn", "Eagle", "Zeppy"));
 	final private ArrayList<String> IJNGuns= new ArrayList<String>(Arrays.asList("Single 100mm (Type 88)", "Single 120mm (10th Year Type)", "Single 120mm (11th Year Type)", "Single 120mm (Type 3)", "Single 127mm (Type 3 Mod B)", "Twin 100mm (Type 98)", "Twin 127mm (Type 3 Mod B)", "Twin 127mm (Type 3)"));
 	final private ArrayList<String> massachusettsGunException = new ArrayList<String>(Arrays.asList("Single 127mm (5\"/38 Mk 21)", "Single 127mm (5\"/38 Mk 30)", "Single 76mm (3\"/50 caliber gun)", "Twin 127mm (5\"/38 Mk 32)", "Twin 127mm (5\"/38 Mk 38)"));
 	final private ArrayList<String> vanguardFleet = new ArrayList<String>(Arrays.asList("Destroyer", "Light Cruiser", "Heavy Cruiser", "Large Cruiser"));
 	final private ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruiser", "Battleship", "Light Aircraft Carrier", "Aircraft Carrier", "Monitor", "Aviation Battleship"));
 	
-	
 	/**
-	 * Calculates the damage done in 1 shot / hit
+	 * Calculate the total final Damage a ship will do. The exceptions will he handled in its own class. (Maybe).
+	 * For the methods that have specialShipFound passed in, those ships will only have one weapon being used since places won't be giving firepower stats and are a different object.
+	 * Pass in the weapon being calculated into the second weapon to avoid errors. (This second weapon for SPECIAL SHIPS ONLY will have no effect on the calculation since it will be a duplicate.
 	 * @param ship
-	 * @param mainWeapon - The weapon in the current slot being calculated
-	 * @param statsWeapon - The other weapon not being used to calculate its damage output. Stats are being used for certain exceptions
-	 * @param aaGun - Only needed to get the aa stats for certain exception skills.
+	 * @param mainWeapon
+	 * @param secondWeapon
+	 * @param thirdWeapon
+	 * @param aaGun
 	 * @param enemy
 	 * @param skillList
 	 * @param skillNames
-	 * @param auxGearOne
-	 * @param auxGearTwo
+	 * @param gearOne
+	 * @param gearTwo
 	 * @param shipSlot
 	 * @param crit
 	 * @param world
@@ -36,12 +36,13 @@ public class FrontlineCalculations {
 	 * @param noteColor
 	 * @return
 	 */
-	public double getFinalDamage(ShipFile ship, CommonWeapon mainWeapon, CommonWeapon statsWeapon, AAGuns aaGun, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames, AuxGear auxGearOne, AuxGear auxGearTwo, int shipSlot, boolean crit,
-	String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, String noteColor) {
-		
-		// Avoid index out of bounds error
+	public double getFinalDamage(ShipFile ship, CommonWeapon mainWeapon, CommonWeapon secondWeapon, AAGuns aaGun, AAGuns seattleGun, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames, AuxGear gearOne, AuxGear gearTwo, 
+			int shipSlot, boolean crit, String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, String noteColor) {
+		boolean specialShipFound = specialShips.contains(ship.getShipName());
+
 		double finalDamage = 0;
-		if (!mainWeapon.getWepName().isEmpty() && mainWeapon.getWepName() != null) {
+		// Main weapon and second weapon should not be null.
+		if (mainWeapon != null) {
 			double correctedDamageStat = 0;
 			double weaponTypeModStat = 0;
 			double criticalDamageStat = 1; // Default at 1
@@ -57,38 +58,56 @@ public class FrontlineCalculations {
 			double dmgTypeStat = 0;
 			double ammoBuffStat = 0;
 			
-			//Corrected Damage
-			correctedDamageStat = getCorrectedDamage(ship, mainWeapon, statsWeapon, aaGun, auxGearOne, auxGearTwo, skillList, skillNames, shipSlot);
+			// Corrected Damage
+			correctedDamageStat = getCorrectedDamage(ship, mainWeapon, secondWeapon, aaGun, seattleGun, gearOne, gearTwo, skillList, skillNames, shipSlot, specialShipFound);
 			
-			//Scaling Weapons (Weapon Type Mod)
-			weaponTypeModStat = getWeaponTypeMod(skillList, skillNames, enemy, mainWeapon, shipSlot, armorBreak);
-			
-			//Critical Damage
-			if (crit || skillNames.contains("Wahrheit")) {
-				criticalDamageStat = 1.5 + getCriticalDamage(ship, mainWeapon, skillList, skillNames, evenOdd);
+			// Scaling Weapons (Weapon Type Mod)
+			if (specialShipFound) {
+				weaponTypeModStat = getWeaponTypeMod(skillList, skillNames,enemy, mainWeapon, mainWeapon, shipSlot, armorBreak, specialShipFound);
+			} else {
+				weaponTypeModStat = getWeaponTypeMod(skillList, skillNames,enemy, mainWeapon, secondWeapon, shipSlot, armorBreak, specialShipFound);
 			}
 			
-			//Armor Modifier
-			armorModStat = getArmorModifier(ship, enemy, mainWeapon, skillList, skillNames, ammoType, shipSlot, noteColor);
+			
+			// Critical Damage
+			if (crit || skillNames.contains("Wahrheit")) {
+				criticalDamageStat = 1.5 + (getCriticalDamage(ship, mainWeapon, skillList, skillNames, evenOdd));
+			}
+			
+			// Armor Modifier
+			if (specialShipFound) {
+				armorModStat = getArmorModifier(ship, enemy, mainWeapon, mainWeapon, skillList, skillNames, ammoType, shipSlot, noteColor, specialShipFound);
+			} else {
+				armorModStat = getArmorModifier(ship, enemy, mainWeapon, secondWeapon, skillList, skillNames, ammoType, shipSlot, noteColor, specialShipFound);
+			}
+			
 			
 			// Enhancing Damage
-			if (firstSalvo) {
-				enhancingDmgStat = getEnhanceDamage(mainWeapon, skillList, skillNames, shipSlot, manual);
+			if (specialShipFound) {
+				enhancingDmgStat = getEnhanceDamage(mainWeapon, mainWeapon, skillList, skillNames, shipSlot, manual, specialShipFound);
+			} else {
+				enhancingDmgStat = getEnhanceDamage(mainWeapon, secondWeapon, skillList, skillNames, shipSlot, manual, specialShipFound);
 			}
 			
-			//Combo Damage
-			if (ship.getShipName().equals("U-47") && skillNames.contains("The Bull of Scapa Flow")) {
+			
+			// Combo Damage
+			if (skillNames.contains("Bull of Scapa Flow")) {
 				comboStat += 0.40;
 			}
 			
-			//Level Difference
+			// Level Difference
 			lvlDiffStat = getLevelDifference(enemy, dangerLvl);
 			
 			//Injure Ratio
 			injRatStat = getInjureRatio(skillList);
 			
 			//Damage Ratio
-			dmgRatStat = getDamageRatio(skillList, ship,  mainWeapon, statsWeapon, enemy, shipSlot, evenOdd, skillNames);
+			if (specialShipFound) {
+				dmgRatStat = getDamageRatio(skillList, ship,  mainWeapon, mainWeapon, enemy, shipSlot, evenOdd, skillNames, specialShipFound);
+			} else {
+				dmgRatStat = getDamageRatio(skillList, ship,  mainWeapon, secondWeapon, enemy, shipSlot, evenOdd, skillNames, specialShipFound);
+			}
+			
 			
 			//Damage to Nation
 			dmgNatStat = factionDamage(enemy, skillList);
@@ -106,110 +125,126 @@ public class FrontlineCalculations {
 			double temp1 = Math.max(1, Math.floor(intermediateDmg));
 			double temp2 = Math.floor(temp1 * enhancingDmgStat);
 			finalDamage = Math.floor(temp2 * dmgRedStat);
-			
 		}
-		
 		return finalDamage;
 	}
 	
 	/**
-	 * Calculates the corrected damage.
+	 * METHOD THAT CALCULATES THE CORRECTED DAMAGE.
 	 * @param ship
-	 * @param weapon
-	 * @param auxGearOne
-	 * @param auxGearTwo
-	 * @param skills
+	 * @param mainWeapon
+	 * @param secondWeapon
+	 * @param aaGun
+	 * @param seattleGun
+	 * @param gearOne
+	 * @param gearTwo
+	 * @param skillList
 	 * @param skillNames
 	 * @param shipSlot
 	 * @return
 	 */
-	private double getCorrectedDamage(ShipFile ship, CommonWeapon mainWeapon, CommonWeapon statsWeapon, AAGuns aaGun, AuxGear auxGearOne, AuxGear auxGearTwo, ArrayList<Skill> skills, ArrayList<String> skillNames, int shipSlot) {
-		double finalDmg = 0;
-		double weaponDmg = mainWeapon.getDamage();
-		double wepCoff = mainWeapon.getCoefficient();
-		double slotEff = 0;
-		
-		// Get the efficiency of the weapon slot. Available slots are 1 or 2.
+	public double getCorrectedDamage(ShipFile ship, CommonWeapon mainWeapon, CommonWeapon secondWeapon, AAGuns aaGun, AAGuns seattleGun, AuxGear gearOne, AuxGear gearTwo, ArrayList<Skill> skillList, ArrayList<String> skillNames, int shipSlot, boolean specialShipFound) {
+		double finalDamage = 0;
+		double weaponDamage = mainWeapon.getDamage();
+		double weaponCoefficient = mainWeapon.getCoefficient();
+		double slotEfficiency = 0;
 		if (shipSlot == 1) {
-			slotEff += ship.getEffSlot(1);
+			slotEfficiency = ship.getEffSlot(1);
 			if (skillNames.contains("Special Gunnery Training") && mainWeapon.getWepName().equals("Triple 310mm (Type 0 Prototype")) {
-				slotEff += 0.12;
+				slotEfficiency += 0.12;
 			}
 			// Seattle Exception. Not caring for AA efficiency because AA damage is not being calculated.
-			if (statsWeapon.getWeaponType().equals("Anti-Air Guns") && skillNames.contains("Dual Nock")) {
-				slotEff += 0.15;
+			if (seattleGun != null && skillNames.contains("Dual Nock")) {
+				slotEfficiency += 0.15;
 			}
 			
 			if (skillNames.contains("Kitakaze Style - Horizon Splitter")) {
 				for (String ijnWeapon : IJNGuns) {
 					if (mainWeapon.getWepName().contains(ijnWeapon)) {
-						slotEff += 0.15;
+						slotEfficiency += 0.15;
 						break;
 					}
 				}
 			}
 			if (skillNames.contains("Sword or Shield")) {
-				slotEff  += 0.20;
+				slotEfficiency  += 0.20;
 			}
-			
+			if (skillNames.contains("Long Live the Revolution!") && mainWeapon.getWepName().contains("Triple 305mm (Pattern 1907)")) {
+				slotEfficiency += 0.80;
+			}
+			if (skillNames.contains("Reno Barrage") && (mainWeapon.getWeaponType().equals("Destroyer Guns") || secondWeapon.getWeaponType().equals("Destroyer Guns"))) {
+				slotEfficiency += 0.10;
+			}
+		} else if (shipSlot == 2) {
+			slotEfficiency = ship.getEffSlot(2);
 		} else {
-			slotEff = ship.getEffSlot(2);
+			slotEfficiency = ship.getEffSlot(3);
 		}
 		
-		// Get Firepower/Torepdo depending on what weapon type is being calculated (AA Stat is only needed because of certain skills that scale off it. Flat Numbers).
-		double shipWeaponAuxStat = 0;
-		// Torpedos
+		// Get firepower / torpedo stat depending on the weapon being calculated.
+		double shipWeaponStat = 0;
 		if (mainWeapon.getWeaponType().equals("Torpedos")) {
-			shipWeaponAuxStat = ship.getTorpedo() + mainWeapon.getGenStat();
+			shipWeaponStat = ship.getTorpedo() + mainWeapon.getTorpedo() + secondWeapon.getTorpedo() + aaGun.getFirepower() + gearOne.getTorpedo() + gearTwo.getTorpedo();
+		// Special case for seattle where she can equip an AA gun to her second slot, so the stats would be gathered from that.
+		} else if (seattleGun != null) {
+			shipWeaponStat = ship.getFirepower() + mainWeapon.getFirepower() + seattleGun.getFirepower()  + aaGun.getFirepower() + gearOne.getFirepower() + gearTwo.getFirepower();
+		// Special case where certain ships can use a cannon in their third slot and submarines.
+		} else if (specialShips.contains(ship.getShipName()) || ship.getShipType().equals("Submarines")) {
+			shipWeaponStat = ship.getFirepower() + mainWeapon.getFirepower() + gearOne.getFirepower() + gearTwo.getFirepower();
 		} else {
-			// Cannons
-			shipWeaponAuxStat = ship.getFirepower() + mainWeapon.getGenStat();
-			if (skillNames.contains("Taste My Wrath!") && cannonTypes.contains(mainWeapon.getWeaponType())) {
-				shipWeaponAuxStat += 240;
-			}
+			shipWeaponStat = ship.getFirepower() + mainWeapon.getFirepower() + secondWeapon.getFirepower()  + aaGun.getFirepower() + gearOne.getFirepower() + gearTwo.getFirepower();
 		}
+		
+		if (skillNames.contains("Taste My Wrath!") && cannonTypes.contains(mainWeapon.getWeaponType())) {
+			shipWeaponStat += 240;
+		}
+		
 		// Exceptions that affect both firepower and torpedo stats
 		if (skillNames.contains("A Witch Who Never Admits Defeat")) {
-			shipWeaponAuxStat += 40;
+			shipWeaponStat += 40;
 		}
 		if (skillNames.contains("Fading Memories of Glory") && mainWeapon.getWeaponType().equals("Torpedos")) {
-			shipWeaponAuxStat -= ship.getTorpedo();
+			shipWeaponStat -= ship.getTorpedo();
 		}
-		
-		// Get the stats from the aux gears (Flat Numbers).
-		if (mainWeapon.getWeaponType().equals("Torpedos") && auxGearOne != null) {
-			shipWeaponAuxStat += auxGearOne.getTorpedo();
-			if (auxGearTwo != null) {
-				shipWeaponAuxStat += auxGearTwo.getTorpedo();
-			}
-		} else if (!mainWeapon.getWeaponType().equals("Torpedos") && auxGearOne != null) {
-			shipWeaponAuxStat += auxGearOne.getFirepower();
-			if (auxGearTwo != null) {
-				shipWeaponAuxStat += auxGearTwo.getFirepower();
-			}
-		}
-		
 		
 		// Get stats from skills (Percentages)
-		double skillStat = 0;
+		double statsFromSkills = 0;
 		// Check Torpedos first
 		if (mainWeapon.getWeaponType().equals("Torpedos")) {
-			skillStat = getDmgRatiotoStatBuffs(skills, "Buff To Torpedo", 1, "");
+			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Torpedo", 1, "");
 		} else {
-			skillStat = getDmgRatiotoStatBuffs(skills, "Buff To Cannon", 1, "");
+			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Cannon", 1, "");
 		}
 		
-		//////////////////////////////////////////////////////////////////////////////////////////
-		// Exceptions
+		// Exceptions for cannons. (THIS WILL NEED TO CHECK IF THE SPECIAL SHIPS IS TRIGGERED.
 		if (cannonTypes.contains(mainWeapon.getWeaponType())) {
-			if (skillNames.contains("AA Firepower")) {
-				double tempAA = ship.getAA() + mainWeapon.getAAStat() + statsWeapon.getAAStat() + aaGun.getAAStat() + auxGearOne.getAA() + auxGearTwo.getAA();
-				skillStat += tempAA * 0.30;
+			if (skillNames.contains("AA Firepower") && !ship.getShipType().equals("Submarines") && !specialShipFound) {
+				double tempAA = ship.getAA() + mainWeapon.getAAStat() + secondWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
+				statsFromSkills += tempAA * 0.30;
+			} else {
+				double tempAA = ship.getAA() + mainWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
+				statsFromSkills += tempAA * 0.30;
 			}
 			
-			if (skillNames.contains("Iron Wing Annihilation")) {
-				double tempAA = ship.getAA() + mainWeapon.getAAStat() + statsWeapon.getAAStat() + aaGun.getAAStat() + auxGearOne.getAA() + auxGearTwo.getAA();
-				skillStat += tempAA * 0.15;
+			if (skillNames.contains("Iron Wing Annihilation") && !ship.getShipType().equals("Submarines") && !specialShipFound) {
+				double tempAA = ship.getAA() + mainWeapon.getAAStat() + secondWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
+				statsFromSkills += tempAA * 0.15;
+			} else {
+				double tempAA = ship.getAA() + mainWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
+				statsFromSkills += tempAA * 0.30;
+			}
+			
+			// Firepower stat since the weapon being calculated is a cannon. (No need to worry about special ship since the first and second weapon name will be the same.)
+			if (skillNames.contains("Air-Surface Switch")) {
+				if (mainWeapon.getWepName().contains("Twin 127mm (5\"/38 Mk 38)") || secondWeapon.getWepName().contains("Twin 127mm (5\"/38 Mk 38)")) {
+					statsFromSkills -= 0.15;
+				} else {
+					statsFromSkills += 0.15;
+				}
+			}
+			// Must be Queen Elizabeth for the other bonus.
+			if (skillNames.contains("For the Queen") && ship.getShipName().equals("Queen Elizabeth")) {
+				statsFromSkills += 0.07;
 			}
 		}
 		
@@ -219,43 +254,43 @@ public class FrontlineCalculations {
 			scalingDamageStat = 1.2;
 		}
 		
-		double finalStat = shipWeaponAuxStat * skillStat * scalingDamageStat;
-		finalDmg = weaponDmg * wepCoff * slotEff * (1 + (finalStat / 100));
-		
-		return finalDmg;	
+		double finalStat = shipWeaponStat * statsFromSkills * scalingDamageStat;
+		finalDamage = weaponDamage * weaponCoefficient * slotEfficiency * (1 + (finalStat / 100));
+		return finalDamage;
 	}
 	
 	/**
-	 * Determines how much bonus damage an enemy will take.
+	 * METHOD THAT CALCUALTED THE WEAPON TYPE MOD.
 	 * @param skills
-	 * @param weapon
+	 * @param skillNames
+	 * @param enemy
+	 * @param mainWeapon
+	 * @param statsWeapon
+	 * @param shipSlot
 	 * @param armorBreak
 	 * @return
 	 */
-	public double getWeaponTypeMod(ArrayList<Skill> skills, ArrayList<String> skillNames, Enemy enemy, CommonWeapon weapon, int shipSlot, boolean armorBreak) {
+	public double getWeaponTypeMod(ArrayList<Skill> skills, ArrayList<String> skillNames, Enemy enemy, CommonWeapon mainWeapon, CommonWeapon secondWeapon, int shipSlot, boolean armorBreak, boolean specialShipFound) {
 		double buffDamage = 1;
-		if (weapon.getWeaponType().equals("Torpedos")) {
+		if (mainWeapon.getWeaponType().equals("Torpedos")) {
 			buffDamage += getMiscStats(skills, "Injure Torpedo", 0) + getMiscStats(skills, "Damage Torpedo", 0); 
 		} else {
 			buffDamage += getMiscStats(skills, "Injure Cannon", 0) + getMiscStats(skills, "Damage Cannon", 0);
 		}
 		
-		// EXCEPTIONS
-		if (skillNames.contains("2,700 Pounds of Justice")) {
-			// For this purpose guarantee an armor break
-			if (shipSlot == 2 && enemy.getArmor().equals("H") && massachusettsGunException.contains(weapon.getWepName())) {
-				buffDamage += 0.08;
-			}
-		} else if (enemy.getArmor().equals("H") && skillNames.contains("APsolute Ammunition")) {
-			buffDamage += 0.08;
-		} else if (armorBreak && !weapon.getWeaponType().equals("Torpedos")) {
-			buffDamage += 0.08;
+		// Use a method that will return the max between if armorBreak is true or getting the method to see if there's a skill that causes an armor break;
+		if (enemy.getArmor().equals("H")) {
+			double armorBreakValue = 0.08;
+			// 0 IS A PLACEHOLDER METHOD NEEDS TO BE INSERTED HERE.
+			buffDamage += Math.max(armorBreakValue, 0);
 		}
+		
 		return buffDamage;
+		
 	}
 	
 	/**
-	 * Get damage bonus from critical damage
+	 * METHOD THAT CALCULATES THE BONUS DAMAGE DONE BY CRITICAL DAMAGE
 	 * @param ship
 	 * @param weapon
 	 * @param skills
@@ -280,22 +315,24 @@ public class FrontlineCalculations {
 	}
 	
 	/**
-	 * Calculates how much damage will be done to an enemy based off the armor they have.
-	 * X/X/X is Light Armor Mod, Medium Armor Mod, Heavy Armor Mod
+	 * METHOD THAT CALCULATES THE PERCENTAGE DAMAGE THAT WILL BE DONE BASED OFF THE ARMOR OF THE ENEMY
 	 * @param ship
 	 * @param enemy
 	 * @param weapon
+	 * @param statsWeapon
 	 * @param skills
 	 * @param skillNames
 	 * @param ammoType
+	 * @param shipSlot
 	 * @param noteColor
 	 * @return
 	 */
-	public double getArmorModifier(ShipFile ship, Enemy enemy, CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int ammoType, int shipSlot, String noteColor) {
+	public double getArmorModifier(ShipFile ship, Enemy enemy, CommonWeapon mainWeapon, CommonWeapon secondWeapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int ammoType, int shipSlot, String noteColor, boolean specialShipFound) {
 		double armorMod = 0;
 		boolean change = false;
 		
 		// Check if any of the skills that will change the damage modifier is in the given skill list.
+		// UPDATE NAMES AFTER ALL EXCEPTIONS HAVE BEEN ADDED.
 		ArrayList<String> changeToggle = new ArrayList<String>(Arrays.asList("2,700 Pounds of Justice"));
 		for (int i = 0; i < changeToggle.size(); i++) {
 			if (skillNames.contains(changeToggle.get(i))) {
@@ -307,26 +344,34 @@ public class FrontlineCalculations {
 		
 		String enemyArmor = enemy.getArmor();
 		if (enemyArmor.equals("L")) {
-			armorMod = weapon.getLightDamage();
+			armorMod = mainWeapon.getLightDamage();
 		} else if (enemyArmor.equals("M")) {
-			armorMod = weapon.getMediumDamage();
+			armorMod = mainWeapon.getMediumDamage();
 		} else {
-			armorMod = weapon.getHeavyDamage();
+			armorMod = mainWeapon.getHeavyDamage();
 		}
 		
 		if (!change) {
 			return armorMod;
 		} else { // Exceptions. If there are multiple skills that will change the armor modifier, it will go by alphabetical order.
 			if (skillNames.contains("2,700 Pounds of Justice")) {
-				// For this purpose guarantee an armor break
-				if (shipSlot == 2 && massachusettsGunException.contains(weapon.getWepName())) {
-					if (enemy.getArmor().equals("L")) {
-						armorMod = .65;
-					} else if (enemy.getArmor().equals("M")) {
-						armorMod = 1.35;
-					} else {
-						armorMod = 1.15;
+				// For this purpose guarantee an armor break.
+				// THIS EXCEPTION WILL ONLY TRIGGER IF THE MAIN WEAPON IS BEING CALCULATED SINCE THE SECOND PART OF THIS SKILL CHANGES THE MAIN GUN'S AMMO TYPE, NOT THE SECONDARY GUNS.
+				if (shipSlot == 1) {
+					for (int i = 0; i < massachusettsGunException.size(); i++) {
+						// For special ships, this will not trigger since ship slot would be the third one.
+						if (secondWeapon.getWepName().contains(massachusettsGunException.get(i))) {
+							if (enemy.getArmor().equals("L")) {
+								armorMod = .65;
+							} else if (enemy.getArmor().equals("M")) {
+								armorMod = 1.35;
+							} else {
+								armorMod = 1.15;
+							}
+							break;
+						}
 					}
+					
 				}
 			} else if (shipSlot == 1 && skillNames.contains("APsolute Ammunition")) {
 				if (enemyArmor.equals("L")) {
@@ -354,7 +399,7 @@ public class FrontlineCalculations {
 						armorMod = .75;
 					}
 				}
-			} else if (weapon.getWeaponType().equals("Torpedos") && skillNames.contains("Impartial Destruction")) {
+			} else if (mainWeapon.getWeaponType().equals("Torpedos") && skillNames.contains("Impartial Destruction")) {
 				armorMod = 1.15;
 			} else if (shipSlot == 1 && skillNames.contains("Kitakaze Style - Horizon Splitter")) {
 				armorMod = 1.15;
@@ -366,12 +411,16 @@ public class FrontlineCalculations {
 	}
 	
 	/**
-	 * Calculates the enhancing damage will be done
+	 * METHOD THAT CALCULATES THE ENHANCING DAMAGE
+	 * @param weapon
+	 * @param statsWeapon
 	 * @param skills
+	 * @param skillNames
+	 * @param shipSlot
 	 * @param manual
 	 * @return
 	 */
-	public double getEnhanceDamage(CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int shipSlot, boolean manual) {
+	public double getEnhanceDamage(CommonWeapon mainWeapon, CommonWeapon secondWeapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int shipSlot, boolean manual, boolean specialShipFound) {
 		double enhance = 0;
 		if (manual) {
 			enhance = 1.20 + getMiscStats(skills, "Initial Enhance", 0) + getMiscStats(skills, "Manual Enhance", 0);
@@ -379,13 +428,17 @@ public class FrontlineCalculations {
 			enhance = 1.00 + getMiscStats(skills, "Initial Enhance", 0);
 		}
 		
-		// SKILL EXCEPTIONS
+		// Special ships will fail since they would be using ship slot 3.
 		if (skillNames.contains("2,700 Pounds of Justice")) {
-			if (shipSlot == 2 && massachusettsGunException.contains(weapon.getWepName())) {
-				enhance += .15;
+			if (shipSlot == 1) {
+				for (int i = 0; i < massachusettsGunException.size(); i++) {
+					if (mainWeapon.getWepName().contains(massachusettsGunException.get(i))) {
+						enhance += 0.15;
+						break;
+					}
+				}
 			}
 		}
-		
 		return enhance;
 	}
 	
@@ -418,18 +471,18 @@ public class FrontlineCalculations {
 	 * @param skillNames
 	 * @return
 	 */
-	public double getDamageRatio(ArrayList<Skill> skills, ShipFile ship, CommonWeapon weapon, CommonWeapon secondaryWeapon, Enemy enemy, int shipSlot, int evenOdd, ArrayList<String> skillNames) {
+	public double getDamageRatio(ArrayList<Skill> skills, ShipFile ship, CommonWeapon mainWeapon, CommonWeapon secondWeapon, Enemy enemy, int shipSlot, int evenOdd, ArrayList<String> skillNames, boolean specialShipFound) {
 		double ratio = 0;
-		if (cannonTypes.contains(weapon.getWeaponType())) {
+		if (cannonTypes.contains(mainWeapon.getWeaponType())) {
 			ratio = getDmgRatiotoStatBuffs(skills, "Damage Ratio", 0, "Cannon");
-		} else if (weapon.getWeaponType().equals("Torpedos")) {
+		} else if (mainWeapon.getWeaponType().equals("Torpedos")) {
 			ratio = getDmgRatiotoStatBuffs(skills, "Damage Ratio", 0, "Torpedo");
 		}
 		
 		// Skill exceptions area.
 		
 		// Makes sure weapon is a gun.
-		if (!weapon.getWeaponType().equals("Torpedos")) {
+		if (!mainWeapon.getWeaponType().equals("Torpedos")) {
 			if (skillNames.contains("Sonata of Chaos") && evenOdd == 1) {
 				ratio += 0.2;
 			}
@@ -437,15 +490,15 @@ public class FrontlineCalculations {
 				ratio += 0.01;
 			}
 			if (shipSlot == 1 && skillNames.contains("Blazing Peaks")) {
-				int calibur = Integer.valueOf(weapon.getWepName().replaceAll("[^0-9]",""));
+				int calibur = Integer.valueOf(mainWeapon.getWepName().replaceAll("[^0-9]",""));
 				if (calibur > 280) {
 					ratio += 0.25;
 				}
 			}
 			if (shipSlot == 1 && skillNames.contains("Semi-Armor Piercing High-Explosive")) {
-				if (weapon.getAmmoType().contains("HE") || weapon.getAmmoType().contains("SAP")) {
+				if (mainWeapon.getAmmoType().contains("HE") || mainWeapon.getAmmoType().contains("SAP")) {
 					ratio += 0.12;
-				} else if (weapon.getAmmoType().contains("AP")) {
+				} else if (mainWeapon.getAmmoType().contains("AP")) {
 					ratio += 0.15;
 				}
 			}
@@ -466,7 +519,7 @@ public class FrontlineCalculations {
 			ratio += 0.40;
 		}
 		if (skillNames.contains("Wahrheit")) {
-			if (shipSlot == 1 && secondaryWeapon.getWeaponType().equals("Light Cruiser Guns") || shipSlot == 2 && weapon.getWeaponType().equals("Light Cruiser Guns")) {
+			if (shipSlot == 1 && secondWeapon.getWeaponType().equals("Light Cruiser Guns") || shipSlot == 2 && mainWeapon.getWeaponType().equals("Light Cruiser Guns")) {
 				ratio -= 0.35;
 			}
 		}
@@ -533,10 +586,10 @@ public class FrontlineCalculations {
 		return btaDmg;
 	}
 	
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * RANDOM HELPER METHODS FOR LOOPING TO CLEAR UP SOME LOOPS IN OTHER METHODS.
-	 * ANY SPECIFIC DETAILS WITH NICHES NEEDED TO BE ADDED SHOULD BE ADDED IN THE METHODS ABOVE.
+	/* |--------------------------------------------------------------------------------------------------------------|
+	 * | These methods below are used to reduce redundant for loops and if statements in the other methods.           |
+	 * | They should not be changed unless something goes wrong and needs correction, such as wrong spelling or index |
+	 * |--------------------------------------------------------------------------------------------------------------|
 	 */
 	public double getDmgRatiotoStatBuffs(ArrayList<Skill> skills, String section, int startValue, String DRT) {
 		for (int i = 0; i < skills.size(); i++) {
