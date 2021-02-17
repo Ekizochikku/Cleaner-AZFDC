@@ -2,7 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Skill {
+public class Skill implements Comparable<Skill>{
 
 	private GUIUtility utility;
 	
@@ -341,7 +341,10 @@ public class Skill {
 	public double getSalvoBonus() {
 		return salvoBonus;
 	}
-	
-	
+
+	@Override
+	public int compareTo(Skill o) {
+		return this.getSkillName().compareTo(o.getSkillName());
+	}
 	
 }

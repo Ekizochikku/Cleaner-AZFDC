@@ -78,7 +78,7 @@ public class MainGUI extends JFrame {
 		weaponPane.setOpaque(true);
 		weaponPane.setBackground(new Color(210, 210, 210));
 		
-		skillPane = new SkillPanel();
+		skillPane = new SkillPanel(this);
 		
 		skillPane.setOpaque(true);
 		skillPane.setBackground(new Color(210, 210, 210));

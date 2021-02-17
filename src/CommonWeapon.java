@@ -92,4 +92,8 @@ public class CommonWeapon {
 	public double getHeavyDamage() {
 		return hDamage;
 	}
+	
+	public void setAmmoType(String ammoType) {
+		this.ammoType = ammoType;
+	}
 }
