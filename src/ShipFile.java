@@ -70,7 +70,7 @@ public class ShipFile {
         this.firepower = Double.parseDouble(sp.get(11));
         this.torpedo = Double.parseDouble(sp.get(12));
         this.antiair = Double.parseDouble(sp.get(13));
-        if (shipType.equals("Aircraft Carriers") || shipType.equals("Light Aircraft Carriers") || shipType.equals("Aviation Battleship")) {
+        if (shipType.equals("Aircraft Carriers") || shipType.equals("Light Aircraft Carriers") || shipType.equals("Aviation Battleships")) {
             this.aviation = Double.parseDouble(sp.get(14));
             this.skill1 = sp.get(15);
             this.skill2 = sp.get(16);
