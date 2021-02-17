@@ -6,8 +6,8 @@ public class FrontlineCalculations {
 	final private ArrayList<String> specialShips = new ArrayList<String>(Arrays.asList("Bearn", "Eagle", "Zeppy"));
 	final private ArrayList<String> IJNGuns= new ArrayList<String>(Arrays.asList("Single 100mm (Type 88)", "Single 120mm (10th Year Type)", "Single 120mm (11th Year Type)", "Single 120mm (Type 3)", "Single 127mm (Type 3 Mod B)", "Twin 100mm (Type 98)", "Twin 127mm (Type 3 Mod B)", "Twin 127mm (Type 3)"));
 	final private ArrayList<String> massachusettsGunException = new ArrayList<String>(Arrays.asList("Single 127mm (5\"/38 Mk 21)", "Single 127mm (5\"/38 Mk 30)", "Single 76mm (3\"/50 caliber gun)", "Twin 127mm (5\"/38 Mk 32)", "Twin 127mm (5\"/38 Mk 38)"));
-	final private ArrayList<String> vanguardFleet = new ArrayList<String>(Arrays.asList("Destroyer", "Light Cruiser", "Heavy Cruiser", "Large Cruiser"));
-	final private ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruiser", "Battleship", "Light Aircraft Carrier", "Aircraft Carrier", "Monitor", "Aviation Battleship"));
+	final private ArrayList<String> vanguardFleet = new ArrayList<String>(Arrays.asList("Destroyers", "Light Cruisers", "Heavy Cruisers", "Large Cruisers"));
+	final private ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruisers", "Battleships", "Light Aircraft Carriers", "Aircraft Carriers", "Monitors", "Aviation Battleships"));
 	
 	/**
 	 * Calculate the total final Damage a ship will do. The exceptions will he handled in its own class. (Maybe).
@@ -70,7 +70,7 @@ public class FrontlineCalculations {
 			
 			
 			// Critical Damage
-			if (crit || skillNames.contains("Wahrheit")) {
+			if (crit || skillNames.contains("Wahrheit") || (skillNames.contains("The Iris's vindication") && manual)) {
 				criticalDamageStat = 1.5 + (getCriticalDamage(ship, mainWeapon, skillList, skillNames, evenOdd));
 			}
 			
@@ -166,6 +166,18 @@ public class FrontlineCalculations {
 					}
 				}
 			}
+			if (skillNames.contains("I'm Not Afraid Anymore!")) {
+				boolean nonIjnGun = true;
+				for (String ijnWeapon : IJNGuns) {
+					if (mainWeapon.getWepName().contains(ijnWeapon)) {
+						nonIjnGun = false;
+						break;
+					}
+				}
+				if (nonIjnGun) {
+					slotEfficiency += 0.20;
+				}
+			}
 			if (skillNames.contains("Sword or Shield")) {
 				slotEfficiency  += 0.20;
 			}
@@ -179,6 +191,11 @@ public class FrontlineCalculations {
 			slotEfficiency = ship.getEffSlot(2);
 		} else {
 			slotEfficiency = ship.getEffSlot(3);
+			if (skillNames.contains("Sacrament: Holy Bombardment") || skillNames.contains("Royal Arts: Knight's Arsenal")) {
+				if (cannonTypes.contains(mainWeapon.getWeaponType())) {
+					slotEfficiency += 0.45;
+				}
+			}
 		}
 		
 		// Get firepower / torpedo stat depending on the weapon being calculated.
@@ -207,11 +224,16 @@ public class FrontlineCalculations {
 			shipWeaponStat -= ship.getTorpedo();
 		}
 		
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		// Get stats from skills (Percentages)
 		double statsFromSkills = 0;
 		// Check Torpedos first
 		if (mainWeapon.getWeaponType().equals("Torpedos")) {
 			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Torpedo", 1, "");
+			if (skillNames.contains("Stalwart Advance") && vanguardFleet.contains(ship.getShipType())) {
+				statsFromSkills += 0.10;
+			}
 		} else {
 			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Cannon", 1, "");
 		}
@@ -245,6 +267,18 @@ public class FrontlineCalculations {
 			// Must be Queen Elizabeth for the other bonus.
 			if (skillNames.contains("For the Queen") && ship.getShipName().equals("Queen Elizabeth")) {
 				statsFromSkills += 0.07;
+			}
+			
+			if (skillNames.contains("Arbiter of Z") && (ship.getShipType().equals("Light Cruisers") || ship.getShipType().equals("Heavy Cruisers"))) {
+				statsFromSkills += 0.08;
+			}
+			
+			if (skillNames.contains("Substitute Mechanism: Holy Thurible")) {
+				statsFromSkills += 0.05;
+			}
+			
+			if (skillNames.contains("Protector of the New Moon") || ship.getShipType().equals("Destroyers")) {
+				statsFromSkills += 0.15;
 			}
 		}
 		
@@ -381,7 +415,24 @@ public class FrontlineCalculations {
 				} else { // Heavy Armor
 					armorMod = 0.85;
 				}
-			}else if (shipSlot == 1 && skillNames.contains("Expert Loader")) {
+			} else if (skillNames.contains("Armor-Penetrating Arrow") && noteColor.equals("Blue")) {
+				if (enemyArmor.equals("L")) {
+					armorMod = 1.20;
+				} else if (enemyArmor.equals("M")) {
+					armorMod = 1.20;
+				} else { // Heavy Armor
+					armorMod = 0.90;
+				}
+			}
+			else if (skillNames.contains("Armor-Piercing Hypercharge")) {
+				if (enemyArmor.equals("L")) {
+					armorMod = 1.0;
+				} else if (enemyArmor.equals("M")) {
+					armorMod = 1.10;
+				} else { // Heavy Armor
+					armorMod = 1.20;
+				}
+			} else if (shipSlot == 1 && skillNames.contains("Expert Loader")) {
 				if (ammoType == 1) {
 					if (enemyArmor.equals("L")) {
 						armorMod = 1.35;
@@ -399,12 +450,34 @@ public class FrontlineCalculations {
 						armorMod = .75;
 					}
 				}
-			} else if (mainWeapon.getWeaponType().equals("Torpedos") && skillNames.contains("Impartial Destruction")) {
+			} else if (skillNames.contains("High-Explosive Volley Fever") && noteColor.equals("Red")) {
+				if (enemyArmor.equals("L")) {
+					armorMod = 1.10;
+				} else if (enemyArmor.equals("M")) {
+					armorMod = 1.20;
+				} else { // Heavy Armor
+					armorMod = 1.00;
+				}
+			}
+			else if (mainWeapon.getWeaponType().equals("Torpedos") && skillNames.contains("Impartial Destruction")) {
 				armorMod = 1.15;
 			} else if (shipSlot == 1 && skillNames.contains("Kitakaze Style - Horizon Splitter")) {
 				armorMod = 1.15;
 			} else if (shipSlot == 1 && skillNames.contains("Tricolo Order")) {
 				armorMod = 1;
+			} else if (shipSlot == 1 && skillNames.contains("The Fearless Privateer") && mainWeapon.getAmmoType().equals("Normal") || mainWeapon.getAmmoType().contains("HE")) {
+				if (enemyArmor.equals("L")) {
+					armorMod = 1.25;
+				} else if (enemyArmor.equals("m")) {
+					armorMod = 1.25;
+				} else {
+					armorMod = 1.05;
+				}
+			}
+			
+			// Exceptions that increases the amount of armor modifier to a certain armor type
+			if (skillNames.contains("Substitute Mechanism: Holy Thurible") && enemyArmor.equals("H") && shipSlot == 1 && mainWeapon.getAmmoType().equals("HE")) {
+				armorMod += 0.15;
 			}
 		}
 		return armorMod;
@@ -506,6 +579,10 @@ public class FrontlineCalculations {
 				ratio += 0.15;
 			}
 			
+			if (skillNames.contains("The Iris's Vindication") && (mainWeapon.getAmmoType().contains("HE") || secondWeapon.getAmmoType().contains("HE"))) {
+				ratio += 0.12;
+			}
+			
 		}
 		
 		// Skill exceptions that will boost overall damage and other special requirements.
@@ -521,6 +598,14 @@ public class FrontlineCalculations {
 		if (skillNames.contains("Wahrheit")) {
 			if (shipSlot == 1 && secondWeapon.getWeaponType().equals("Light Cruiser Guns") || shipSlot == 2 && mainWeapon.getWeaponType().equals("Light Cruiser Guns")) {
 				ratio -= 0.35;
+			}
+		}
+		// Ship is either part of the vanguard fleet or main fleet.
+		if (skillNames.contains("Auspice of the Stars")) {
+			if (vanguardFleet.contains(ship.getShipType())) {
+				ratio += 0.15;
+			} else {
+				ratio += 0.10;
 			}
 		}
 		return ratio;

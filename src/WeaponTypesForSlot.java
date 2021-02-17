@@ -43,6 +43,18 @@ public class WeaponTypesForSlot {
 		return weaponType;
 	}
 	
+	public String slotThreeDestroyers(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Anti-Air Guns";
+				break;
+			default:
+				break;
+		}
+		
+		return weaponType;
+	}
+	
 	////////////////////////////////////////LIGHT CRUISERS SECTION////////////////////////////////////////
 	
 	/**
@@ -73,6 +85,31 @@ public class WeaponTypesForSlot {
 	 * @return
 	 */
 	public String slotTwoLightCruisers(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Torpedos";
+				break;
+			case 1:
+				weaponType = "Destoryer Guns";
+				break;
+			case 2:
+				weaponType = "Light Cruiser Guns";
+				break;
+			case 3:
+				weaponType = "Anti-Air Guns";
+				break;
+			case 4:
+				weaponType = "Destroyer Guns/Light Cruiser Guns";
+				break;
+			case 5:
+				weaponType = "Light Cruiser Guns/Anti-Air Guns";
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
+	public String slotThreeLightCruisers(int weaponNumber) {
 		switch (weaponNumber) {
 			case 0:
 				weaponType = "Torpedos";
@@ -154,6 +191,32 @@ public class WeaponTypesForSlot {
 		return weaponType;
 	}
 	
+	public String slotThreeHeavyCruisers(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Torpedos";
+				break;
+			case 1:
+				weaponType = "Destroyer Guns";
+				break;
+			case 2:
+				weaponType = "Light Cruiser Guns";
+				break;
+			case 3:
+				weaponType = "Anti-Air Guns";
+				break;
+			case 4:
+				weaponType = "Destroyer Guns/Light Cruiser Guns";
+				break;
+			case 5:
+				weaponType = "Light Cruiser Guns/Anti-Air Guns";
+				break;
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
 	////////////////////////////////////////LARGE CRUISERS SECTION////////////////////////////////////////
 	
 	/**
@@ -184,6 +247,23 @@ public class WeaponTypesForSlot {
 	 * @return
 	 */
 	public String slotTwoLargeCruisers(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Destroyer Guns";
+				break;
+			case 1:
+				weaponType = "Light Cruiser Guns";
+				break;
+			case 2:
+				weaponType = "Anti-Air Guns";
+				break;
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
+	public String slotThreeLargeCruisers(int weaponNumber) {
 		switch (weaponNumber) {
 			case 0:
 				weaponType = "Destroyer Guns";
@@ -239,6 +319,17 @@ public class WeaponTypesForSlot {
 		return weaponType;
 	}
 	
+	public String slotThreeBattlecruisers(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Anti-Air Guns";
+				break;
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
 	////////////////////////////////////////BATTLESHIPS SECTION////////////////////////////////////////
 	
 	/**
@@ -272,6 +363,17 @@ public class WeaponTypesForSlot {
 				break;
 			case 2:
 				weaponType = "Destroyer Guns/Light Cruiser Guns";
+				break;
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
+	public String slotThreeBattleships(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Anti-Air Guns";
 				break;
 			default:
 				break;
@@ -313,6 +415,20 @@ public class WeaponTypesForSlot {
 		return weaponType;
 	}
 	
+	public String slotThreeAviationBattleShips(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Seaplanes";
+				break;
+			case 1:
+				weaponType = "Anti-Air Guns";
+				break;
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
 	////////////////////////////////////////MONITORS SECTION////////////////////////////////////////
 	
 	/**
@@ -340,6 +456,20 @@ public class WeaponTypesForSlot {
 		switch (weaponNumber) {
 			case 0:
 				weaponType = "Destroyer Guns";
+				break;
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
+	public String slotThreeMonitors(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Destroyer Guns";
+				break;
+			case 1:
+				weaponType = "Anti-Air Guns";
 				break;
 			default:
 				break;

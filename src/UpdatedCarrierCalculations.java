@@ -3,7 +3,6 @@ import java.util.Arrays;
 
 public class UpdatedCarrierCalculations {
 	
-	private GUIUtility gt = new GUIUtility();
 	// USS Planes.
 	private final ArrayList<String> USSPlanes = new ArrayList<String>(Arrays.asList("Brewster F2A Buffalo", "Brewster F2A Buffalo (Thach Squadron)", "Brewster XF2A-4 Buffalo (Prototype)", "Grumman F4F Wildcat", 
 			"Grumman F6F Hellcat", "Grumman F7F Tigercat", "Grumman F8F Bearcat", "Grumman XF5F Skyrocket", "Vought F4U Corsair", "Vought F4U Corsair", "Douglas TBD Devastator", "Douglas XTB2D-1 Skypirate", "Grumman TBF Avenger", 
@@ -14,34 +13,37 @@ public class UpdatedCarrierCalculations {
 	
 	// CARRIERS THAT CAN USE CANNONS AND HAVE CANNONS SELECTED WITH BE USING THE OTHER CALUCLATION METHOD.
 	
+	// FOR AVIATION BATTLE SHIPS MAIN WEAPON WILL BE THE PLANE, SECOND AND THIRD WEAPON WILL BE THE SAME THING AS THE MAIN WEAPON TO AVOID ERRORS.
+	
 	/*
 	 * Main calculation method for carriers that will add up all the damage that will done from bombs and torpedos. Multiple calls to getCalculatedDamage is needed because each bomb can do its own damage.
 	 * Different from the Cannon and Torpedo calculation method due to different requirements on how air damage is dealt.
 	 */
-	public double getCarrierFinalDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, CommonWeapon specialCannon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames,
+	public double getCarrierFinalDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames,
 			AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear, int shipSlot, boolean crit, int dangerLevel, boolean armorBreak, int removeRandom, int bombOneDropped, int bombTwoDropped, int torpedosDropped) {
 		
 		// Calculating damage that will be done depending on what bomb or torpedo is dropped. This will calculate the damage assuming each ordinance hits.
 		double finalDmg = 0;
 		if (mainWeapon.getBombOneDmg() != 0) {
-			finalDmg += getCalculatedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, specialCannon, enemy, skills, skillNames, slotOneAuxGear, slotTwoAuxGear, shipSlot, crit, dangerLevel, armorBreak, removeRandom, "bombOne", 1) * bombOneDropped;
+			finalDmg += getCalculatedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, enemy, skills, skillNames, slotOneAuxGear, slotTwoAuxGear, shipSlot, crit, dangerLevel, armorBreak, removeRandom, "bombOne", 1) * bombOneDropped;
 		}
 		
 		if (mainWeapon.getBombTwoDmg() != 0) {
-			finalDmg += getCalculatedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, specialCannon, enemy, skills, skillNames, slotOneAuxGear, slotTwoAuxGear, shipSlot, crit, dangerLevel, armorBreak, removeRandom, "bombTwo", 2) * bombTwoDropped;
+			finalDmg += getCalculatedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, enemy, skills, skillNames, slotOneAuxGear, slotTwoAuxGear, shipSlot, crit, dangerLevel, armorBreak, removeRandom, "bombTwo", 2) * bombTwoDropped;
 		}
 		
 		if (mainWeapon.getTorpDmg() != 0) {
-			finalDmg += getCalculatedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, specialCannon, enemy, skills, skillNames, slotOneAuxGear, slotTwoAuxGear, shipSlot, crit, dangerLevel, armorBreak, removeRandom, "torpedo", 3) * torpedosDropped;
+			finalDmg += getCalculatedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, enemy, skills, skillNames, slotOneAuxGear, slotTwoAuxGear, shipSlot, crit, dangerLevel, armorBreak, removeRandom, "torpedo", 3) * torpedosDropped;
 		}
 		
 		return finalDmg;
 		
 	}
 	
-	public double getCalculatedDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, CommonWeapon specialCannon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames,
+	public double getCalculatedDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames,
 			AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear, int shipSlot, boolean crit, int dangerLevel, boolean armorBreak, int removeRandom, String ordinance, int armorSlot) {
 		double estimatedDamage = 0;
+		boolean isAviationBB = ship.getShipType().equals("Aviation Battleship");
 		
 		if (!mainWeapon.getPlaneName().isEmpty() && mainWeapon.getPlaneName() != null) {
 			double correctedDamageStat = 0;
@@ -61,10 +63,10 @@ public class UpdatedCarrierCalculations {
 			double ammoBuffStat = 1;
 			
 			// Corrected Damage
-			correctedDamageStat = getCorrectedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, specialCannon, shipSlot, skills, skillNames, ordinance, slotOneAuxGear, slotTwoAuxGear);
+			correctedDamageStat = getCorrectedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, shipSlot, skills, skillNames, ordinance, slotOneAuxGear, slotTwoAuxGear, isAviationBB);
 			
 			// Weapon Type Mod (Scaling Weapon Buffs)
-			weaponTypeModStat = getWeaponTypeMod(skills);
+			weaponTypeModStat = getWeaponTypeMod(skills, skillNames);
 			
 			// Critical Damage Buff
 			if (crit) {
@@ -122,7 +124,7 @@ public class UpdatedCarrierCalculations {
 	 * @param slotTwoAuxGear
 	 * @return
 	 */
-	private double getCorrectedDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, CommonWeapon specialCannon, int shipSlot, ArrayList<Skill> skills, ArrayList<String> skillNames, String ordinance, AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear) {
+	private double getCorrectedDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, int shipSlot, ArrayList<Skill> skills, ArrayList<String> skillNames, String ordinance, AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear, boolean isAviationBB) {
 		double finalDmg = 0;
 		double wepDmg = 0;
 		double wepCoff = 1;
@@ -142,27 +144,20 @@ public class UpdatedCarrierCalculations {
 			default:
 				break;
 		}
-		// Get cannon damage
-		if (shipSlot == 3 && specialCannon != null) {
-			wepDmg = specialCannon.getDamage();
-		}
 		
 		// Efficiency Slot
 		if (shipSlot == 1) {
 			effSlot = ship.getEffSlot(1);
-			if (skillNames.contains("Hellcat's Roar") && mainWeapon.getPlaneName().contains("Grumman F6F Hellcat")) {
-				effSlot += .30;
-			}
 		} else if (shipSlot == 2) {
 			effSlot = ship.getEffSlot(2);
 		} else {
 			effSlot = ship.getEffSlot(3);
-			if (skillNames.contains("Sacrament: Holy Bombardment") && specialCannon != null) {
+			if (skillNames.contains("Sacrament: Holy Bombardment")) {
 				effSlot += 0.45;
 			}
 		}
 		// Exceptions that can effect the efficiency of any slot
-		if (skillNames.contains("Eagle Sky") && specialCannon == null) {
+		if (skillNames.contains("Eagle Sky")) {
 			for (String plane: USSPlanes) {
 				if (mainWeapon.getPlaneName().contains(plane)) {
 					effSlot += 0.15;
@@ -171,7 +166,12 @@ public class UpdatedCarrierCalculations {
 			}
 		}
 		
-		if (skillNames.contains("Ironblood Hawk") && specialCannon == null) {
+		if (skillNames.contains("Hellcat's Roar") && (mainWeapon.getPlaneName().contains("Grumman F6F Hellcat") || secondWeapon.getPlaneName().contains("Grumman F6F Hellcat") || thirdWeapon.getPlaneName().contains("Grumman F6F Hellcat"))
+				&& mainWeapon.getPlaneType().equals("Fighter Planes")) {
+			effSlot += .30;
+		}
+		
+		if (skillNames.contains("Ironblood Hawk")) {
 			for (String plane: KMSPlanes) {
 				if (mainWeapon.getPlaneName().contains(plane) || secondWeapon.getPlaneName().contains(plane) || thirdWeapon.getPlaneName().contains(plane)) {
 					effSlot += 0.15;
@@ -180,18 +180,17 @@ public class UpdatedCarrierCalculations {
 			}
 		}
 		
-		if (skillNames.contains("Supporting Wings") && mainWeapon.getPlaneName().contains("Fairey Albacore") || specialCannon == null) {
+		if (skillNames.contains("Supporting Wings") && mainWeapon.getPlaneName().contains("Fairey Albacore")) {
 			effSlot += 0.15;
 		}
 		
 		// Stats from the ship and gear (weapon and auxiliary gear) and skills that grant a flat amount instead of a percentage.
 		double basicStatBoost = 0;
-		if (specialCannon == null) {
-			basicStatBoost = ship.getAviation() + mainWeapon.getAviation() + secondWeapon.getAviation() + thirdWeapon.getAviation() + slotOneAuxGear.getAviation() + slotTwoAuxGear.getAviation();
+		if (isAviationBB) {
+			basicStatBoost = ship.getAviation() + mainWeapon.getAviation() + slotOneAuxGear.getAviation() + slotTwoAuxGear.getAviation();
 		} else {
-			basicStatBoost = ship.getFirepower() + specialCannon.getGenStat() + slotOneAuxGear.getFirepower() + slotTwoAuxGear.getFirepower();
+			basicStatBoost = ship.getAviation() + mainWeapon.getAviation() + secondWeapon.getAviation() + thirdWeapon.getAviation() + slotOneAuxGear.getAviation() + slotTwoAuxGear.getAviation();
 		}
-		
 		
 		// Stats that would be gained from skills
 		double statsFromBuff = getDmgRatiotoStatBuffs(skills, "Buff To Aviation", 1, "");
@@ -209,9 +208,12 @@ public class UpdatedCarrierCalculations {
 	 * @param skills
 	 * @return
 	 */
-	private double getWeaponTypeMod(ArrayList<Skill> skills) {
+	private double getWeaponTypeMod(ArrayList<Skill> skills, ArrayList<String> skillNames) {
 		double buffDamage = 1;
 		buffDamage += getMiscStats(skills, "Injure Air", 0) + getMiscStats(skills, "Damage Air", 0);
+		if (skillNames.contains("Beckoning of Ice")) {
+			buffDamage += 0.05;
+		}
 		
 		return buffDamage;
 	}
@@ -299,6 +301,10 @@ public class UpdatedCarrierCalculations {
 			if (skill.getDmgRatioAviation() == 1) {
 				dmgRatio += skill.getDmgRatio();
 			}
+		}
+		
+		if (skillNames.contains("Auspice of the Stars")) {
+			dmgRatio += 0.10;
 		}
 		
 		return dmgRatio;
