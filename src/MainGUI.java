@@ -38,6 +38,10 @@ public class MainGUI extends JFrame {
 	private String currentWeaponNameSlot2 = null;
 	private String curentWeaponNameSlot3 = null;
 	
+	private String theCurrentWorld;
+	private int currentDangerLevel = 3;
+	private String theCurrentEnemy;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -220,22 +224,6 @@ public class MainGUI extends JFrame {
 	
 	public void setCurrentWeaponNameSlot1(String currentWeaponName) {
 		this.currentWeaponName = currentWeaponName;
-	}
-
-	public String getCurrentWeaponNameSlot2() {
-		return currentWeaponNameSlot2;
-	}
-
-	public void setCurrentWeaponNameSlot2(String currentWeaponNameSlot2) {
-		this.currentWeaponNameSlot2 = currentWeaponNameSlot2;
-	}
-
-	public String getCurentWeaponNameSlot3() {
-		return curentWeaponNameSlot3;
-	}
-
-	public void setCurentWeaponNameSlot3(String curentWeaponNameSlot3) {
-		this.curentWeaponNameSlot3 = curentWeaponNameSlot3;
 	}
 	
 	public void setDangerLvl(int dangerlvl) {
