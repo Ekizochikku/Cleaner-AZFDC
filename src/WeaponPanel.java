@@ -11,7 +11,7 @@ import javax.swing.JTextPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
-
+//NOTE: Needs to be changed once Brian says GO AHEAD
 public class WeaponPanel extends JPanel {
 	
 	JComboBox weaponName1Combo, weaponName2Combo, weaponName3Combo, 

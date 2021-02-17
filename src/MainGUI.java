@@ -78,12 +78,12 @@ public class MainGUI extends JFrame {
 		weaponPane.setOpaque(true);
 		weaponPane.setBackground(new Color(210, 210, 210));
 		
-		skillPane = new SkillPanel();
+		skillPane = new SkillPanel(this);
 		
 		skillPane.setOpaque(true);
 		skillPane.setBackground(new Color(210, 210, 210));
 		
-		worldPane = new WorldPanel();
+		worldPane = new WorldPanel(this);
 		worldPane.setOpaque(true);
 		worldPane.setBackground(new Color(210, 210, 210));
 		
@@ -238,4 +238,30 @@ public class MainGUI extends JFrame {
 		this.curentWeaponNameSlot3 = curentWeaponNameSlot3;
 	}
 	
+	public void setDangerLvl(int dangerlvl) {
+//		System.out.println("Danger Level set to: " + dangerlvl);
+		this.currentDangerLevel = dangerlvl;
+	}
+	
+	public int getDangerLvl() {
+		return currentDangerLevel;
+	}
+	
+	public void setEnemy(String enemyName) {
+//		System.out.println("Enemy set to: " + enemyName);
+		this.theCurrentEnemy = enemyName;
+	}
+	
+	public String getEnemy() {
+		return theCurrentEnemy;
+	}
+	
+	public void setWorld(String world) {
+//		System.out.println("World set to: " + world);
+		this.theCurrentWorld = world;
+	}
+	
+	public String getWorld() {
+		return theCurrentWorld;
+	}
 }

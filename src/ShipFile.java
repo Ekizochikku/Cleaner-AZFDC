@@ -57,42 +57,34 @@ public class ShipFile {
 	 */
 	private void setVariables(ArrayList<String> sp, String shipType) {
 		this.shipName = sp.get(0);
-		this.faction = sp.get(1);
-		this.shipClass = sp.get(2);
-		this.shipType = sp.get(3);
-		this.weapon1type = Integer.parseInt(sp.get(4));
-		this.weapon2type = Integer.parseInt(sp.get(5));
-		if (shipType.equals("Aircraft Carrier") || shipType.equals("Light Aircraft Carrier") || shipType.equals("Submarine")) {
-			this.weapon3type = Integer.parseInt(sp.get(6));
-			this.slot1eff = Double.parseDouble(sp.get(7));
-			this.slot2eff = Double.parseDouble(sp.get(8));
-			this.slot3eff = Double.parseDouble(sp.get(9));
-			this.health = Double.parseDouble(sp.get(10));
-			this.firepower = Double.parseDouble(sp.get(11));
-			this.torpedo = Double.parseDouble(sp.get(12));
-			this.antiair = Double.parseDouble(sp.get(13));
-			this.aviation = Double.parseDouble(sp.get(14));
-			this.skill1 = sp.get(15);
-			this.skill2 = sp.get(16);
-			this.skill3 = sp.get(17);
-			this.skill4 = sp.get(18);
-			this.skill5 = sp.get(19);
-		} else {
-			this.weapon3type = -1;
-			this.slot1eff = Double.parseDouble(sp.get(6));
-			this.slot2eff = Double.parseDouble(sp.get(7));
-			this.slot3eff = Double.parseDouble(sp.get(8));
-			this.health = Double.parseDouble(sp.get(9));
-			this.firepower = Double.parseDouble(sp.get(10));
-			this.torpedo = Double.parseDouble(sp.get(11));
-			this.antiair = Double.parseDouble(sp.get(12));
-			this.aviation = -1.0;
-			this.skill1 = sp.get(13);
-			this.skill2 = sp.get(14);
-			this.skill3 = sp.get(15);
-			this.skill4 = sp.get(16);
-			this.skill5 = sp.get(17);
-		}
+        this.faction = sp.get(1);
+        this.shipClass = sp.get(2);
+        this.shipType = sp.get(3);
+        this.weapon1type = Integer.parseInt(sp.get(4));
+        this.weapon2type = Integer.parseInt(sp.get(5));
+        this.weapon3type = Integer.parseInt(sp.get(6));
+        this.slot1eff = Double.parseDouble(sp.get(7));
+        this.slot2eff = Double.parseDouble(sp.get(8));
+        this.slot3eff = Double.parseDouble(sp.get(9));
+        this.health = Double.parseDouble(sp.get(10));
+        this.firepower = Double.parseDouble(sp.get(11));
+        this.torpedo = Double.parseDouble(sp.get(12));
+        this.antiair = Double.parseDouble(sp.get(13));
+        if (shipType.equals("Aircraft Carriers") || shipType.equals("Light Aircraft Carriers") || shipType.equals("Aviation Battleship")) {
+            this.aviation = Double.parseDouble(sp.get(14));
+            this.skill1 = sp.get(15);
+            this.skill2 = sp.get(16);
+            this.skill3 = sp.get(17);
+            this.skill4 = sp.get(18);
+            this.skill5 = sp.get(19);
+        } else {
+            this.aviation = -1.0;
+            this.skill1 = sp.get(14);
+            this.skill2 = sp.get(15);
+            this.skill3 = sp.get(16);
+            this.skill4 = sp.get(17);
+            this.skill5 = sp.get(18);
+        }
 	}
 	
 	public String getShipName() {
