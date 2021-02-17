@@ -81,6 +81,7 @@ public class GUIUtility {
 	 * @param weaponType
 	 * @return
 	 */
+	//Might break here on stuff wihtout the name guns
 	public String getWeaponTypeFile(String weaponType) {
 		String fileName = "";
 		switch (weaponType) {
@@ -150,7 +151,12 @@ public class GUIUtility {
 	 * @throws IOException
 	 */
 	public ArrayList<String> getNamesOfWeaponsOfChosenWeaponType(String weaponType) throws FileNotFoundException, IOException {
+		
+		//needs to convert the actual name (Destroyers) to the acronym (DD) or else this breaks now 
+		
+		System.out.println("the weapon type string is:" + weaponType);		
 		String weaponTypeFile = getWeaponTypeFile(weaponType);
+		System.out.println("The weapon type file is: " + weaponTypeFile);
 		ArrayList<String> weaponNames = new ArrayList<String>();
 		weaponNames = getEntityNames(weaponTypeFile);
 		return weaponNames;
@@ -423,37 +429,37 @@ public class GUIUtility {
 		String slottedWep = "";
 		System.out.println("The ship type is:" + shipType);
 		switch (shipType) {
-			case "Destroyer":
+			case "Destroyers":
 				slottedWep = weaponType.slotOneDestroyers(weaponNumber);
 				break;
-			case "Light Cruiser":
+			case "Light Cruisers":
 				slottedWep = weaponType.slotOneLightCruisers(weaponNumber);
 				break;
-			case "Heavy Cruiser":
+			case "Heavy Cruisers":
 				slottedWep = weaponType.slotOneHeavyCruisers(weaponNumber);
 				break;
-			case "Large Cruiser":
+			case "Large Cruisers":
 				slottedWep = weaponType.slotOneLargeCruisers(weaponNumber);
 				break;
-			case "Battlecruiser":
+			case "Battlecruisers":
 				slottedWep = weaponType.slotOneBattlecruisers(weaponNumber);
 				break;
-			case "Battleship":
+			case "Battleships":
 				slottedWep =  weaponType.slotOneBattleships(weaponNumber);
 				break;
-			case "Aviation Battleship":
+			case "Aviation Battleships":
 				slottedWep = weaponType.slotOneAviationBattleShips(weaponNumber);
 				break;
-			case "Monitor":
+			case "Monitors":
 				slottedWep = weaponType.slotOneMonitors(weaponNumber);
 				break;
-			case "Light Aircraft Carrier":
+			case "Light Aircraft Carriers":
 				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
 				break;
-			case "Aircraft Carrier":
+			case "Aircraft Carriers":
 				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
 				break;
-			case "Submarine":
+			case "Submarines":
 				slottedWep = weaponType.slotOneAndTwoSubmarines(weaponNumber);
 				break;
 			default:
@@ -472,37 +478,37 @@ public class GUIUtility {
 		String slottedWep = "";
 		System.out.println("The ship type is:" + shipType);
 		switch (shipType) {
-			case "Destroyer":
+			case "Destroyers":
 				slottedWep = weaponType.slotTwoDestroyers(weaponNumber);
 				break;
-			case "Light Cruiser":
+			case "Light Cruisers":
 				slottedWep = weaponType.slotTwoLightCruisers(weaponNumber);
 				break;
-			case "Heavy Cruiser":
+			case "Heavy Cruisers":
 				slottedWep = weaponType.slotTwoHeavyCruisers(weaponNumber);
 				break;
-			case "Large Cruiser":
+			case "Large Cruisers":
 				slottedWep = weaponType.slotTwoLargeCruisers(weaponNumber);
 				break;
-			case "Battlecruiser":
+			case "Battlecruisers":
 				slottedWep = weaponType.slotTwoBattlecruisers(weaponNumber);
 				break;
-			case "Battleship":
+			case "Battleships":
 				slottedWep =  weaponType.slotTwoBattleships(weaponNumber);
 				break;
-			case "Aviation Battleship":
+			case "Aviation Battleships":
 				slottedWep = weaponType.slotTwoAviationBattleShips(weaponNumber);
 				break;
-			case "Monitor":
+			case "Monitors":
 				slottedWep = weaponType.slotTwoMonitors(weaponNumber);
 				break;
-			case "Light Aircraft Carrier":
+			case "Light Aircraft Carriers":
 				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
 				break;
-			case "Aircraft Carrier":
+			case "Aircraft Carriers":
 				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
 				break;
-			case "Submarine":
+			case "Submarines":
 				slottedWep = weaponType.slotOneAndTwoSubmarines(weaponNumber);
 				break;
 			default:
@@ -522,13 +528,13 @@ public class GUIUtility {
 		String slottedWep = "";
 		System.out.println("The ship type is:" + shipType);
 		switch (shipType) {
-			case "Light Aircraft Carrier":
+			case "Light Aircraft Carriers":
 				slottedWep = weaponType.slotThreeCarriers(weaponNumber);
 				break;
-			case "Aircraft Carrier":
+			case "Aircraft Carriers":
 				slottedWep = weaponType.slotThreeCarriers(weaponNumber);
 				break;
-			case "Submarine":
+			case "Submarines":
 				slottedWep = weaponType.slotThreeSubmarines(weaponNumber);
 				break;
 			default:
@@ -575,7 +581,7 @@ public class GUIUtility {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("unchecked")
-	public static void insertNames(JComboBox comboBox,boolean isShip, String theType) throws FileNotFoundException, IOException {
+	public static void insertNames(JComboBox<Object> comboBox,boolean isShip, String theType) throws FileNotFoundException, IOException {
 		ArrayList<String> initialUserChoice = null; 
 		GUIUtility theList;
 		theList = new GUIUtility();
@@ -639,7 +645,7 @@ public class GUIUtility {
 	 * @author Kevin Nguyen
 	 * @param same names just check the window builder for what is what. 
 	 */
-	public static void enableDisableSlot3(JLabel lblNewLabel, JComboBox weaponTypeCBox3, JLabel lblWeaponTypeSlot, JComboBox weaponNameSlot3,
+	public static void enableDisableSlot3(JLabel lblNewLabel, JComboBox<?> weaponTypeCBox3, JLabel lblWeaponTypeSlot, JComboBox<String> weaponNameSlot3,
 			JLabel lblSlotDamage, JTextPane slot3Pane ,boolean carrier) {
 		if(carrier) {
 			//Just in case removeAllItems crashes the code if the combo box is empty
@@ -682,38 +688,27 @@ public class GUIUtility {
 	 */
 	public static ArrayList<String> createWeaponTypeList(String compatibleWeapons) {
 		System.out.println("string is: " +compatibleWeapons + " Length is " + compatibleWeapons.length());
+		String[] types = compatibleWeapons.split("/");
 		ArrayList<String> weaponTypeArray = new ArrayList<String>();		
 		String weaponType = "";
 		String weaponType2 = "";
-		//System.out.println("Current word for type list " + compatibleWeapons);
-		if((compatibleWeapons.length() > 2) && ((!(compatibleWeapons.equals("SEAPLANE"))) && (!(compatibleWeapons.equals("TORPEDOS")) 
-				&& (!(compatibleWeapons.equals("SUBTORPEDOS"))&& (!(compatibleWeapons.equals("FIGHTERP"))&& (!(compatibleWeapons.equals("TORPEDOP"))
-						&& (!(compatibleWeapons.equals("BOMBERP"))&& (!(compatibleWeapons.equals("BOMBERP/CL")))))))))) {
-				
-			for (int i = 0; i <= compatibleWeapons.length() - 1; i++) {
-				if(i < 2) {
-					weaponType += compatibleWeapons.charAt(i);
-				}
-				else if (i > 2) {
-					weaponType2 += compatibleWeapons.charAt(i);
-				}
+		System.out.println("Current word for type list " + compatibleWeapons);
+		if(types.length > 1) {
+			//only checks for 2 weapon types per slot	
+			weaponType = types[0];
+			weaponType2 = types[1];
 			
-			} 
+			 
 				
-			//System.out.println("Two weapon checks types" + weaponType + " " + weaponType2);
-			weaponTypeArray.add((weaponType += "GUNS"));
-			weaponTypeArray.add((weaponType2 += "GUNS"));
-			} else {
-				//System.out.println("hit else statement" + compatibleWeapons);
-				if((compatibleWeapons.length() == 2)) {
-					compatibleWeapons += "GUNS";
-					weaponTypeArray.add(compatibleWeapons);
-				} else {
-					weaponTypeArray.add(compatibleWeapons);
-				}
-			}
-		//System.out.println(weaponTypeArray);
-
+			System.out.println("Two weapon checks types" + weaponType + " " + weaponType2);
+			weaponTypeArray.add((weaponType));
+			weaponTypeArray.add((weaponType2));
+		} else {
+			System.out.println("hit else statement" + compatibleWeapons);
+			weaponTypeArray.add(compatibleWeapons);
+		}
+		System.out.println(weaponTypeArray);
+		
 		return weaponTypeArray;
 	}
 	
@@ -764,6 +759,47 @@ public class GUIUtility {
 			theList.addAll(nonDupedEnemySet);
 			br.close();
 			return theList;
+	}
+	/**
+	 * Method to insert the types for all 3 weapon slots after a ship name is chosen
+	 * if a ship is currently selected then the types are creates
+	 * else weapon types and names are disabled with tool tips
+	 * 
+	 * going to utilize ship file later
+	 * @author Kevin Nguyen
+	 */
+	public static void insertAllWeaponTypeSlots(MainGUI guiVariables, JComboBox<Object> weaponTypeCBox1,  
+			JComboBox<Object> weaponTypeCBox2,  JComboBox<Object> weaponTypeCBox3, 
+			JComboBox<Object> weaponNameSlot1, JComboBox<Object> weaponNameSlot2, JComboBox<Object> weaponNameSlot3, boolean initial) {
+		//if a 
+		if(guiVariables.getCurrentShipName() != "") {
+			try {
+				if(initial) {
+					guiVariables.setCurrentShipName("Akatsuki");
+					guiVariables.setShipTypeName("Destroyers");
+				} 
+					GUIUtility.insertType(weaponTypeCBox1, 4, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 1);
+					guiVariables.setCurrentWeaponTypeSlot1((String) weaponTypeCBox1.getSelectedItem());
+					GUIUtility.insertNames(weaponNameSlot1, false, guiVariables.getCurrentWeaponTypeSlot1());
+				
+				GUIUtility.insertType(weaponTypeCBox2, 5, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 2);
+				guiVariables.setCurrentWeaponTypeSlot2((String) weaponTypeCBox2.getSelectedItem());
+				GUIUtility.insertNames(weaponNameSlot2, false, guiVariables.getCurrentWeaponTypeSlot2());
+				
+				/*
+				GUIUtility.insertType(weaponTypeCBox3, 6, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 3);
+				guiVariables.setCurrentWeaponTypeSlot3((String) weaponTypeCBox3.getSelectedItem());
+				GUIUtility.insertNames(weaponNameSlot3, false, guiVariables.getCurrentWeaponTypeSlot3());
+				*/
+													
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			System.out.println("hello");
+		}
 	}
 	
 	/*

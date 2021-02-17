@@ -56,6 +56,7 @@ public class ShipPanel extends JPanel {
 				try {
 					guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
+					
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -158,6 +159,7 @@ public class ShipPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
 				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
+				System.out.println("Current Ship name is: " + guiVariables.getCurrentShipName());
 				List<String> attributes = new ArrayList<String>();
 				int skillIdx = -1;
 				switch(guiVariables.getCurrentShipName()) {
@@ -302,8 +304,6 @@ public class ShipPanel extends JPanel {
 			}
 		});
 		
-		//Hard Coded initial screen of weapon type will need to change later most likely.
-		String[] weaponTypeList1 = {"DDGUNS"};
 		
 		/*code we'll need to have in the same panel (ammo types) 
 		

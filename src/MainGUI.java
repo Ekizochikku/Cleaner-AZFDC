@@ -32,8 +32,12 @@ public class MainGUI extends JFrame {
 	private String currentShipName;
 	private String currentColorSelected;
 	private String currentWeaponType;
+	
 	//The current selected weapon name
 	private String currentWeaponName = null;
+	private String currentWeaponNameSlot2 = null;
+	private String curentWeaponNameSlot3 = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -70,7 +74,7 @@ public class MainGUI extends JFrame {
 		shipPane.setBackground(new Color(210, 210, 210));
 		
 		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		weaponPane = new WeaponPanel();
+		weaponPane = new WeaponPanel(this);
 		weaponPane.setOpaque(true);
 		weaponPane.setBackground(new Color(210, 210, 210));
 		
@@ -188,20 +192,50 @@ public class MainGUI extends JFrame {
 		this.currentShipName = currentShipName;
 	}
 
-	public String getCurrentWeaponType() {
+	public String getCurrentWeaponTypeSlot1() {
 		return currentWeaponType;
 	}
 
-	public void setCurrentWeaponType(String currentWeaponType) {
+	public void setCurrentWeaponTypeSlot1(String currentWeaponType) {
 		this.currentWeaponType = currentWeaponType;
 	}
 
-	public String getCurrentWeaponName() {
+	public String getCurrentWeaponNameSlot1() {
 		return currentWeaponName;
 	}
+	public String getCurrentWeaponTypeSlot2() {
+		return currentWeaponType;
+	}
 
-	public void setCurrentWeaponName(String currentWeaponName) {
+	public void setCurrentWeaponTypeSlot2(String currentWeaponType) {
+		this.currentWeaponType = currentWeaponType;
+	}
+	public String getCurrentWeaponTypeSlot3() {
+		return currentWeaponType;
+	}
+
+	public void setCurrentWeaponTypeSlot3(String currentWeaponType) {
+		this.currentWeaponType = currentWeaponType;
+	}
+	
+	public void setCurrentWeaponNameSlot1(String currentWeaponName) {
 		this.currentWeaponName = currentWeaponName;
+	}
+
+	public String getCurrentWeaponNameSlot2() {
+		return currentWeaponNameSlot2;
+	}
+
+	public void setCurrentWeaponNameSlot2(String currentWeaponNameSlot2) {
+		this.currentWeaponNameSlot2 = currentWeaponNameSlot2;
+	}
+
+	public String getCurentWeaponNameSlot3() {
+		return curentWeaponNameSlot3;
+	}
+
+	public void setCurentWeaponNameSlot3(String curentWeaponNameSlot3) {
+		this.curentWeaponNameSlot3 = curentWeaponNameSlot3;
 	}
 	
 }
