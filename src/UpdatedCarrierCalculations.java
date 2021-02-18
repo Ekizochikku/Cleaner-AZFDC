@@ -10,6 +10,7 @@ public class UpdatedCarrierCalculations {
 	// KMS Planes
 	private final ArrayList<String> KMSPlanes = new ArrayList<String>(Arrays.asList("Arado Ar 197", "Focke-Wulf Fw 190 A-5 (Carrier-based Prototype)", "Messerschmitt BF-109T", "Messerschmitt Me-155A", "Heinkel He 50b", "Junkers Ju-87C", "Arado Ar 195",
 			"Fieseler Fi 167", "Junkers Ju-87 D-4"));
+	final private ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruisers", "Battleships", "Light Aircraft Carriers", "Aircraft Carriers", "Monitors", "Aviation Battleships"));
 	
 	// CARRIERS THAT CAN USE CANNONS AND HAVE CANNONS SELECTED WITH BE USING THE OTHER CALUCLATION METHOD.
 	
@@ -89,7 +90,7 @@ public class UpdatedCarrierCalculations {
 			lvlDiffStat = getLevelDifference(enemy, dangerLevel);
 			
 			// Injure Ratio
-			injRatStat = getInjureRatio(skills);
+			injRatStat = getInjureRatio(skills, skillNames);
 			
 			// Damage Ratio
 			dmgRatStat = getDamageRatio(ship, enemy, skills, skillNames);
@@ -186,7 +187,7 @@ public class UpdatedCarrierCalculations {
 		
 		// Stats from the ship and gear (weapon and auxiliary gear) and skills that grant a flat amount instead of a percentage.
 		double basicStatBoost = 0;
-		if (isAviationBB) {
+		if (isAviationBB || ship.getShipName().equals("I-13")) {
 			basicStatBoost = ship.getAviation() + mainWeapon.getAviation() + slotOneAuxGear.getAviation() + slotTwoAuxGear.getAviation();
 		} else {
 			basicStatBoost = ship.getAviation() + mainWeapon.getAviation() + secondWeapon.getAviation() + thirdWeapon.getAviation() + slotOneAuxGear.getAviation() + slotTwoAuxGear.getAviation();
@@ -196,6 +197,9 @@ public class UpdatedCarrierCalculations {
 		double statsFromBuff = getDmgRatiotoStatBuffs(skills, "Buff To Aviation", 1, "");
 		if (skillNames.contains("Mark of Sirius")) {
 			statsFromBuff += 0.10;
+		}
+		if (skillNames.contains("Royal Alliance") && mainFleet.contains(ship.getShipType())) {
+			statsFromBuff += 0.12;
 		}
 		
 		double finalStatAttacker = basicStatBoost * statsFromBuff * 0.80;
@@ -290,8 +294,12 @@ public class UpdatedCarrierCalculations {
 	 * @param skills
 	 * @return
 	 */
-	private double getInjureRatio(ArrayList<Skill> skills) {
-		return getDmgRatiotoStatBuffs(skills, "Injure Ratio", 0, "");
+	private double getInjureRatio(ArrayList<Skill> skills, ArrayList<String> skillNames) {
+		double injBuff = getDmgRatiotoStatBuffs(skills, "Injure Ratio", 0, "");
+		if (skillNames.contains("Crane's Endeavor")) {
+			injBuff += 0.60;
+		}
+		return injBuff;
 	}
 	
 	private double getDamageRatio(ShipFile ship, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames) {
@@ -305,6 +313,26 @@ public class UpdatedCarrierCalculations {
 		
 		if (skillNames.contains("Auspice of the Stars")) {
 			dmgRatio += 0.10;
+		}
+		
+		if (skillNames.contains("4th Combined Fleet Flagship") && ship.getShipType().equals("Light Aircaft Carriers") || ship.getShipType().equals("Aircraft Carriers")) {
+			dmgRatio += 0.20;
+		}
+		
+		if (skillNames.contains("Unwavering Strength") && ship.getShipType().equals("Light Aircaft Carriers") || ship.getShipType().equals("Aircraft Carriers")) {
+			dmgRatio += 0.20;
+		}
+		if (skillNames.contains("Victorious Song") && (ship.getShipType().equals("Light Aircaft Carriers") || ship.getShipType().equals("Aircraft Carriers")) && enemy.getShipType().equals("BB")) {
+			dmgRatio += 0.10;
+		}
+		if (skillNames.contains("Predestined Launch") && mainFleet.contains(ship.getShipType())) {
+			dmgRatio += 0.10;
+		}
+		if (skillNames.contains("Scorched Blade (Red)")) {
+			dmgRatio += 0.15;
+		}
+		if (skillNames.contains("Venus Friends")) {
+			dmgRatio += 0.15;
 		}
 		
 		return dmgRatio;

@@ -63,14 +63,14 @@ public class FrontlineCalculations {
 			
 			// Scaling Weapons (Weapon Type Mod)
 			if (specialShipFound) {
-				weaponTypeModStat = getWeaponTypeMod(skillList, skillNames,enemy, mainWeapon, mainWeapon, shipSlot, armorBreak, specialShipFound);
+				weaponTypeModStat = getWeaponTypeMod(ship, skillList, skillNames,enemy, mainWeapon, mainWeapon, shipSlot, armorBreak, specialShipFound);
 			} else {
-				weaponTypeModStat = getWeaponTypeMod(skillList, skillNames,enemy, mainWeapon, secondWeapon, shipSlot, armorBreak, specialShipFound);
+				weaponTypeModStat = getWeaponTypeMod(ship, skillList, skillNames,enemy, mainWeapon, secondWeapon, shipSlot, armorBreak, specialShipFound);
 			}
 			
 			
 			// Critical Damage
-			if (crit || skillNames.contains("Wahrheit") || (skillNames.contains("The Iris's vindication") && manual)) {
+			if (crit || skillNames.contains("Wahrheit") || (skillNames.contains("The Iris's vindication") && manual) || (skillNames.contains("Sniper") && ship.getShipType().equals("Battleships") || ship.getShipType().equals("Battlecruisers"))){
 				criticalDamageStat = 1.5 + (getCriticalDamage(ship, mainWeapon, skillList, skillNames, evenOdd));
 			}
 			
@@ -187,6 +187,9 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Reno Barrage") && (mainWeapon.getWeaponType().equals("Destroyer Guns") || secondWeapon.getWeaponType().equals("Destroyer Guns"))) {
 				slotEfficiency += 0.10;
 			}
+			if (skillNames.contains("Dual Nock") || shipSlot == 1 && secondWeapon.getWeaponType().equals("Anti-Air Guns")) {
+				slotEfficiency += 0.15;
+			}
 		} else if (shipSlot == 2) {
 			slotEfficiency = ship.getEffSlot(2);
 		} else {
@@ -234,6 +237,12 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Stalwart Advance") && vanguardFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.10;
 			}
+			if (skillNames.contains("8th Destroyer Division") && ship.getShipType().equals("Destroyers")) {
+				statsFromSkills += 0.08;
+			}
+			if (skillNames.contains("I Love My Sisters!") || ship.getShipType().equals("Destroyers")) {
+				statsFromSkills += 0.15;
+			}
 		} else {
 			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Cannon", 1, "");
 		}
@@ -280,7 +289,25 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Protector of the New Moon") || ship.getShipType().equals("Destroyers")) {
 				statsFromSkills += 0.15;
 			}
+			
+			if (skillNames.contains("Task Force Leader")) {
+				if (ship.getShipType().equals("Destroyers") || ship.getShipType().equals("Battleships")) {
+					statsFromSkills += 0.15;
+				}
+			}
+			if (skillNames.contains("8th Destroyer Division") && ship.getShipType().equals("Destroyers")) {
+				statsFromSkills += 0.15;
+			}
+			
+			if (skillNames.contains("I Love My Sisters!") || ship.getShipType().equals("Destroyers")) {
+				statsFromSkills += 0.10;
+			}
+			if (skillNames.contains("Royal Alliance") && vanguardFleet.contains(ship.getShipType())) {
+				statsFromSkills += 0.12;
+			}
 		}
+		
+		
 		
 		// Scaling Damage. Monarach and Izumo have a higher scaling damage.
 		double scalingDamageStat = 1;
@@ -304,7 +331,7 @@ public class FrontlineCalculations {
 	 * @param armorBreak
 	 * @return
 	 */
-	public double getWeaponTypeMod(ArrayList<Skill> skills, ArrayList<String> skillNames, Enemy enemy, CommonWeapon mainWeapon, CommonWeapon secondWeapon, int shipSlot, boolean armorBreak, boolean specialShipFound) {
+	public double getWeaponTypeMod(ShipFile ship, ArrayList<Skill> skills, ArrayList<String> skillNames, Enemy enemy, CommonWeapon mainWeapon, CommonWeapon secondWeapon, int shipSlot, boolean armorBreak, boolean specialShipFound) {
 		double buffDamage = 1;
 		if (mainWeapon.getWeaponType().equals("Torpedos")) {
 			buffDamage += getMiscStats(skills, "Injure Torpedo", 0) + getMiscStats(skills, "Damage Torpedo", 0); 
@@ -313,12 +340,13 @@ public class FrontlineCalculations {
 		}
 		
 		// Use a method that will return the max between if armorBreak is true or getting the method to see if there's a skill that causes an armor break;
-		if (enemy.getArmor().equals("H")) {
-			double armorBreakValue = 0.08;
-			// 0 IS A PLACEHOLDER METHOD NEEDS TO BE INSERTED HERE.
-			buffDamage += Math.max(armorBreakValue, 0);
+		if (enemy.getArmor().equals("H") && cannonTypes.contains(mainWeapon.getWeaponType())) {
+			buffDamage += 0.08;
 		}
-		
+		if (skillNames.contains("Poisonous Sting") && ship.getShipType().equals("Destroyers")) {
+			buffDamage += 0.12;
+		}
+				
 		return buffDamage;
 		
 	}
@@ -345,6 +373,11 @@ public class FrontlineCalculations {
 				critBuff += 0.30;
 			}
 		}
+		
+		// Overall crit damage buff
+		if (skillNames.contains("Wolf Pack Formation - U-96") && ship.getShipType().equals("Submarines")) {
+			critBuff += 0.15;
+		}
 		return critBuff;
 	}
 	
@@ -367,7 +400,8 @@ public class FrontlineCalculations {
 		
 		// Check if any of the skills that will change the damage modifier is in the given skill list.
 		// UPDATE NAMES AFTER ALL EXCEPTIONS HAVE BEEN ADDED.
-		ArrayList<String> changeToggle = new ArrayList<String>(Arrays.asList("2,700 Pounds of Justice"));
+		ArrayList<String> changeToggle = new ArrayList<String>(Arrays.asList("2,700 Pounds of Justice", "APsolute Ammunition", "Armor-Penetrating Arrow", "Armor-Piercing Hypercharge", "Expert Loader", "High-Explosive Volley Fever", "Impartial Destruction", 
+				"Kitakaze Style - Horizon Splitter", "Tricolo Order", "The Fearless Privateer"));
 		for (int i = 0; i < changeToggle.size(); i++) {
 			if (skillNames.contains(changeToggle.get(i))) {
 				change = true;
@@ -423,6 +457,7 @@ public class FrontlineCalculations {
 				} else { // Heavy Armor
 					armorMod = 0.90;
 				}
+				mainWeapon.setAmmoType("AP");
 			}
 			else if (skillNames.contains("Armor-Piercing Hypercharge")) {
 				if (enemyArmor.equals("L")) {
@@ -432,6 +467,7 @@ public class FrontlineCalculations {
 				} else { // Heavy Armor
 					armorMod = 1.20;
 				}
+				mainWeapon.setAmmoType("HE");
 			} else if (shipSlot == 1 && skillNames.contains("Expert Loader")) {
 				if (ammoType == 1) {
 					if (enemyArmor.equals("L")) {
@@ -468,7 +504,7 @@ public class FrontlineCalculations {
 			} else if (shipSlot == 1 && skillNames.contains("The Fearless Privateer") && mainWeapon.getAmmoType().equals("Normal") || mainWeapon.getAmmoType().contains("HE")) {
 				if (enemyArmor.equals("L")) {
 					armorMod = 1.25;
-				} else if (enemyArmor.equals("m")) {
+				} else if (enemyArmor.equals("M")) {
 					armorMod = 1.25;
 				} else {
 					armorMod = 1.05;
@@ -477,6 +513,14 @@ public class FrontlineCalculations {
 			
 			// Exceptions that increases the amount of armor modifier to a certain armor type
 			if (skillNames.contains("Substitute Mechanism: Holy Thurible") && enemyArmor.equals("H") && shipSlot == 1 && mainWeapon.getAmmoType().equals("HE")) {
+				armorMod += 0.15;
+			}
+			
+			if (skillNames.contains("Rock-Paper-Cannon Salvo") && enemyArmor.equals("L") && cannonTypes.contains(mainWeapon.getWeaponType())) {
+				armorMod += 0.15;
+			}
+			
+			if (skillNames.contains("Humble-Part Timer") && enemyArmor.equals("L")) {
 				armorMod += 0.15;
 			}
 		}
@@ -608,6 +652,23 @@ public class FrontlineCalculations {
 				ratio += 0.10;
 			}
 		}
+		if (skillNames.contains("Westward Trident") && enemy.getArmor().equals("L")) {
+			ratio += 0.15;
+		}
+		if (skillNames.contains("Giant Hunter") && enemy.getArmor().equals("M")) {
+			ratio += 0.25;
+		}
+		
+		if (skillNames.contains("Predestined Launch") && mainFleet.contains(ship.getShipType())) {
+			ratio += 0.10;
+		}
+		if (skillNames.contains("Scorched Blade (Red)")) {
+			ratio += 0.15;
+		}
+		if (skillNames.contains("Venus Friends")) {
+			ratio += 0.15;
+		}
+		
 		return ratio;
 	}
 	
