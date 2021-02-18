@@ -11,22 +11,46 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 
-
+/**
+ * Panel to display information related to the current world selected by the user and the enemy stats
+ * from the current world. Enemy data used to help determine damage calculations. 
+ * 
+ * @author Walter Hanson
+ *
+ */
 
 public class WorldPanel extends JPanel {
+	//Main application
 	private MainGUI mainGUI;
+	//Current selected world
 	private String theCurrentWorld;
+	//Backend methods
 	private GUIUtility guiUtil;
+	//Current danger level of selected enemy
 	private int currentDangerLevel = 3;
+	//Current selected enemy
 	private String theCurrentEnemy;
+	//Contains all enemies in the selected level
 	private JComboBox enemySelection;
+	//Danger level of selected enemy
 	private JTextPane dangerLvlText;
+	//Health of selected enemy
 	private JTextPane healthText;
+	//Armor of selected enemy
 	private JTextPane armorText;
+	//Anti Air of selected enemy
 	private JTextPane antiAirText;
+	//Type of selected enemy
 	private JTextPane typeText;
+	//Nation of selected enemy
 	private JTextPane nationText;
 	
+	/**
+	 * Create the Panel.
+	 * 
+	 * @param gui Main application class so information can be transmitted between classes.
+	 * @author Walter Hanson
+	 */
 	public WorldPanel(MainGUI gui) {
 		setLayout(null);
 		mainGUI = gui;
@@ -150,6 +174,12 @@ public class WorldPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Method to gather and display the stats of the current selected Enemy and update
+	 * MainGUI.
+	 * 
+	 * @author Walter Hanson
+	 */
 	private void setUpEnemies() {
 		theCurrentEnemy = (String) enemySelection.getSelectedItem();
 		ArrayList<String> enemyParameters;

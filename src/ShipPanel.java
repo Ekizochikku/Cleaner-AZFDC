@@ -19,26 +19,48 @@ import javax.swing.Box;
 import java.awt.Font;
 import javax.swing.JTextPane;
 
+/**
+ * Panel to display information of selected ship by user. Allows user to select a ship to be
+ * used to determine how it will interact in combat.
+ * 
+ * @author Walter Hanson
+ *
+ */
 public class ShipPanel extends JPanel {
-	
+	//The ship type of the selected ship
 	private String shipTypeName;
+	//The name of the selected ship
 	private String currentShipName;
+	//ComboBoxs for user to select the ship type and ship name to use for calculations
 	private JComboBox shipNameCBox, shipTypeCBox;
+	//The current ship selected
 	private ShipFile currentShip;
+	//Main application
 	private MainGUI gui;
+	//Backend methods
 	private GUIUtility gUtil;
+	//Faction of current ship
 	private JTextPane factionTxt;
+	//Class of current ship
 	private JTextPane classTxt;
+	//Health of current ship
 	private JTextPane healthTxt;
+	//Firepower of current ship
 	private JTextPane firepowerTxt;
+	//Torpedo stats of current ship
 	private JTextPane torpedoTxt;
+	//Anti Air of current ship
 	private JTextPane antiAirTxt;
+	//Aviation stats of current ship
 	private JTextPane aviationTxt;
 	
 	/**
 	 * Create the panel.
+	 * 
+	 * @param guiVariables Main application class so information can be transmitted between classes.
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
+	 * @author Walter Hanson
 	 */
 	public ShipPanel(MainGUI guiVariables) throws FileNotFoundException, IOException {
 		setLayout(null);
@@ -223,6 +245,11 @@ public class ShipPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Set up text fields to display the stats of the current selected ship.
+	 * 
+	 * @author Walter Hanson
+	 */
 	private void setAttributes() {
 		if(currentShipName == "" || shipTypeName == null) {
 			factionTxt.setText("");

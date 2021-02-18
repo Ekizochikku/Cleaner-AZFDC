@@ -19,19 +19,35 @@ import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
+/**
+ * Panel to display and contain information pertaining to the skills for ships. Allows
+ * user to add skills for their ships to be used in damage calculations. 
+ * 
+ * @author Walter Hanson
+ *
+ */
 public class SkillPanel extends JPanel {
 
+	//List of active skills
 	private ArrayList<Skill> currentSkills;
+	//JList to display the active skills and allow users to remove
 	private JList activeSkillsList;
+	//Main application
 	private MainGUI gui;
+	//Backend methods
 	private GUIUtility gUtil;
+	//Displays the selected skill description
 	private JTextPane skillDescriptionText;
+	//Displays the ships that are allowed to use selected skill
 	private JTextPane skillUserText;
+	//Contains a list of all the skills in the game for user to select
 	private JComboBox<String> skillListCBox;
 	
 	/**
 	 * Create the panel.
+	 * @param theGui Main application class so information can be transmitted between classes.
+	 * @author Walter Hanson
+	 * 
 	 */
 	public SkillPanel(MainGUI theGui) {
 		setLayout(null);
