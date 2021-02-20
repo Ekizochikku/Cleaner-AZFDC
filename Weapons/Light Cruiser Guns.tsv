@@ -1,0 +1,56 @@
+Equipment Name	Firepower	Torpedo	Anti-Air	Damage	Coefficient	Ammo Type	Damage to L	Damage to M	Damage to H
+Single 140mm (3rd Year Type) (Tier 1)	0	0	0	8	125%	Normal	1	0.75	0.4
+Single 140mm (3rd Year Type) (Tier 2)	5	0	0	9	125%	Normal	1	0.75	0.4
+Single 140mm (3rd Year Type) (Tier 3)	12	0	0	13	125%	HE+	1.45	1.05	0.7
+Single 150mm (6"/47 caliber gun) (Tier 1)	0	0	0	20	110%	Normal	1	0.75	0.4
+Single 150mm (SK C/28) (Tier 1)	5	0	0	10	110%	AP	1	0.8	0.6
+Single 150mm (SK C/28) (Tier 2)	12	0	0	14	110%	AP	1	0.8	0.6
+Single 150mm (SK C/28) (Tier 3)	25	0	0	21	110%	AP	1	0.8	0.6
+Single 150mm (TbtsK C/36) (Tier 1)	5	0	0	10	105%	AP	1	0.8	0.6
+Single 150mm (TbtsK C/36) (Tier 3)	25	0	0	15	105%	AP	1	0.8	0.6
+Single 152mm (41st Year Type) (Tier 3)	12	0	0	16	125%	HE+	1	0.8	0.6
+Single 152mm (6"/45 Pattern 1892) (Tier 1)	0	0	0	22	110%	Normal	1	0.75	0.4
+Single 152mm (6"/45 Pattern 1892) (Tier 3)	12	0	0	34	110%	Normal	1	0.75	0.4
+Single 152mm (BL 6" Mk XII) (Tier 1)	0	0	0	11	110%	AP	1	0.8	0.6
+Single 152mm (BL 6" Mk XII) (Tier 2)	5	0	0	12	110%	AP	1	0.8	0.6
+Single 152mm (BL 6" Mk XII) (Tier 3)	12	0	0	16	110%	AP	1	0.8	0.6
+Single 155mm (Mle 1920) (Tier 0)	12	0	0	19	110%	Normal	1	0.75	0.4
+Triple 150mm (SK C/25) (Tier 1)	5	0	0	10	105%	AP	1	0.8	0.6
+Triple 150mm (SK C/25) (Tier 2)	12	0	0	14	105%	AP	1	0.8	0.6
+Triple 150mm (SK C/25) (Tier 3)	25	0	0	21	105%	AP	1	0.8	0.6
+Triple 152mm (6"/47 Mk 16) (Tier 1)	5	0	0	10	105%	Normal	1	0.75	0.4
+Triple 152mm (6"/47 Mk 16) (Tier 2)	12	0	0	14	105%	Normal	1	0.75	0.4
+Triple 152mm (6"/47 Mk 16) (Tier 3)	25	0	0	19	105%	HE+	1	0.8	0.6
+Triple 152mm (6"/47 Mk 16) Mod 1 (Tier 0)	45	0	0	20	105%	HE+	1	0.8	0.6
+Triple 152mm (6"/47 Mk 17 DP Prototype) (Tier 0)	30	0	15	15	105%	HE++	1.45	1.1	0.75
+Triple 152mm (BL 6" Mk XXIII) (Tier 1)	5	0	0	11	105%	AP	1	0.8	0.6
+Triple 152mm (BL 6" Mk XXIII) (Tier 3)	25	0	0	22	105%	AP	1	0.8	0.6
+Triple 152mm (BL 6" Mk XXV Prototype) (Tier 0)	45	0	0	24	105%	AP+	1.1	0.9	0.7
+Triple 152mm (MK-5) (Tier 1)	12	0	0	10	105%	Normal	1	0.75	0.4
+Triple 152mm (MK-5) (Tier 2)	25	0	0	15	105%	HE+	1	0.8	0.6
+Triple 152mm (MK-5) (Tier 3)	45	0	0	16	105%	HE+	1	0.8	0.6
+Triple 152mm (Mle 1930) (Tier 1)	0	0	0	10	105%	Normal	1	0.75	0.4
+Triple 152mm (Mle 1930) (Tier 3)	12	0	0	15	105%	AP	1	0.8	0.6
+Triple 155mm (3rd Year Type) (Tier 1)	12	0	0	12	105%	Normal	1	0.75	0.4
+Triple 155mm (3rd Year Type) (Tier 2)	25	0	0	17	105%	HE+	1	0.8	0.6
+Triple 155mm (3rd Year Type) (Tier 3)	45	0	0	18	105%	HE+	1	0.8	0.6
+Twin 140mm (3rd Year Type) (Tier 1)	5	0	0	8	110%	Normal	1	0.75	0.4
+Twin 140mm (3rd Year Type) (Tier 2)	12	0	0	12	110%	HE+	1	0.8	0.6
+Twin 140mm (3rd Year Type) (Tier 3)	25	0	0	17	110%	HE+	1	0.8	0.6
+Twin 150mm (SK C/28) (Tier 0)	25	0	0	21	105%	AP	1	0.8	0.6
+Twin 150mm (TbtsK C/36) (Tier 1)	5	0	0	10	105%	AP	1	0.8	0.6
+Twin 150mm (TbtsK C/36) (Tier 2)	12	0	0	14	105%	AP	1	0.8	0.6
+Twin 150mm (TbtsK C/36) (Tier 3)	25	0	0	21	105%	AP	1	0.8	0.6
+Twin 152mm (41st Year Type) (Tier 1)	5	0	0	9	110%	Normal	1	0.75	0.4
+Twin 152mm (41st Year Type) (Tier 2)	12	0	0	13	110%	HE+	1	0.8	0.6
+Twin 152mm (41st Year Type) (Tier 3)	25	0	0	18	110%	HE+	1	0.8	0.6
+Twin 152mm (6"/53 Mk 15) (Tier 0)	12	0	0	16	110%	Normal	1	0.75	0.4
+Twin 152mm (6"/53 Mk 18) (Tier 1)	0	0	0	10	110%	Normal	1	0.75	0.4
+Twin 152mm (6"/53 Mk 18) (Tier 2)	5	0	0	11	110%	Normal	1	0.75	0.4
+Twin 152mm (6"/53 Mk 18) (Tier 3)	12	0	0	15	110%	Normal	1	0.75	0.4
+Twin 152mm (BL 6" Mk XXII) (Tier 0)	12	0	0	16	110%	HE	1.4	0.9	0.7
+Twin 152mm (BL 6" Mk XXIII) (Tier 1)	5	0	0	11	110%	AP	1	0.8	0.6
+Twin 152mm (BL 6" Mk XXIII) (Tier 2)	12	0	0	15	110%	AP	1	0.8	0.6
+Twin 152mm (BL 6" Mk XXIII) (Tier 3)	25	0	0	22	110%	AP	1	0.8	0.6
+Twin 152mm (Pattern 1892) (Tier 3)	12	0	0	14	110%	Normal	1	0.75	0.4
+Twin 155mm (Mle 1920) (Tier 0)	12	0	0	19	110%	Normal	1	0.75	0.4

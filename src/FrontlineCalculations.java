@@ -71,7 +71,7 @@ public class FrontlineCalculations {
 			
 			// Critical Damage
 			if (crit || skillNames.contains("Wahrheit") || (skillNames.contains("The Iris's vindication") && manual) || (skillNames.contains("Sniper") && ship.getShipType().equals("Battleships") || ship.getShipType().equals("Battlecruisers"))){
-				criticalDamageStat = 1.5 + (getCriticalDamage(ship, mainWeapon, skillList, skillNames, evenOdd));
+				criticalDamageStat = 1.5 + (getCriticalDamage(ship, mainWeapon, skillList, skillNames, evenOdd, shipSlot, gearOne, gearTwo));
 			}
 			
 			// Armor Modifier
@@ -125,6 +125,14 @@ public class FrontlineCalculations {
 			double temp1 = Math.max(1, Math.floor(intermediateDmg));
 			double temp2 = Math.floor(temp1 * enhancingDmgStat);
 			finalDamage = Math.floor(temp2 * dmgRedStat);
+			if (gearOne.getGearName().equals("Awakening Pearl") || gearTwo.getGearName().equals("Awakening Pearl")) {
+				finalDamage = finalDamage * 1.03;
+			}
+			
+			if (gearOne.getGearName().equals("Frontier Medal") || gearTwo.getGearName().equals("Medal") && (ship.getShipType().equals("Battleships")) || (ship.getShipType().equals("Battlecruisers"))) {
+				double lostDamage = finalDamage * 0.10;
+				finalDamage -= lostDamage;
+			}
 		}
 		return finalDamage;
 	}
@@ -146,6 +154,12 @@ public class FrontlineCalculations {
 	public double getCorrectedDamage(ShipFile ship, CommonWeapon mainWeapon, CommonWeapon secondWeapon, AAGuns aaGun, AAGuns seattleGun, AuxGear gearOne, AuxGear gearTwo, ArrayList<Skill> skillList, ArrayList<String> skillNames, int shipSlot, boolean specialShipFound) {
 		double finalDamage = 0;
 		double weaponDamage = mainWeapon.getDamage();
+		if (mainWeapon.getWeaponType().equals("Torpedos") && gearOne.getGearName().contains("533mm Magnetic Torpedo")) {
+			weaponDamage = weaponDamage * 1.05;
+		}
+		if (mainWeapon.getWeaponType().equals("Torpedos") && gearOne.getGearName().contains("533mm Magnetic Torpedo")) {
+			weaponDamage = weaponDamage * 1.05;
+		}
 		double weaponCoefficient = mainWeapon.getCoefficient();
 		double slotEfficiency = 0;
 		if (shipSlot == 1) {
@@ -247,7 +261,7 @@ public class FrontlineCalculations {
 			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Cannon", 1, "");
 		}
 		
-		// Exceptions for cannons. (THIS WILL NEED TO CHECK IF THE SPECIAL SHIPS IS TRIGGERED.
+		// Exceptions for cannons. (THIS WILL NEED TO CHECK IF THE SPECIAL SHIPS IS TRIGGERED).
 		if (cannonTypes.contains(mainWeapon.getWeaponType())) {
 			if (skillNames.contains("AA Firepower") && !ship.getShipType().equals("Submarines") && !specialShipFound) {
 				double tempAA = ship.getAA() + mainWeapon.getAAStat() + secondWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
@@ -305,6 +319,10 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Royal Alliance") && vanguardFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.12;
 			}
+			// Exception for auxgear
+			if (gearOne.getGearName().equals("Z Flag") || gearTwo.getGearName().equals("Z Flag")) {
+				statsFromSkills += 0.05;
+			}
 		}
 		
 		
@@ -360,7 +378,7 @@ public class FrontlineCalculations {
 	 * @param evenOdd
 	 * @return
 	 */
-	public double getCriticalDamage(ShipFile ship, CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int evenOdd) {
+	public double getCriticalDamage(ShipFile ship, CommonWeapon weapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int evenOdd, int shipSlot, AuxGear gearOne, AuxGear gearTwo) {
 		double critBuff = 0;
 		if (weapon.getWeaponType().equals("Torpedos")) {
 			critBuff = getMiscStats(skills, "Crit Torpedo", 0);
@@ -377,6 +395,16 @@ public class FrontlineCalculations {
 		// Overall crit damage buff
 		if (skillNames.contains("Wolf Pack Formation - U-96") && ship.getShipType().equals("Submarines")) {
 			critBuff += 0.15;
+		}
+		
+		// Aux Gear effects
+		if (shipSlot == 1) {
+			if (gearOne.getGearName().equals("Type 1 Armor Piercing Shell") || gearTwo.getGearName().equals("Type 1 Armor Piercing Shell")) {
+				critBuff += 0.25;
+			}
+			if (gearOne.getGearName().equals("Type 91 Armor Piercing Shell") || gearTwo.getGearName().equals("Type 91 Armor Piercing Shell")) {
+				critBuff += 0.15;
+			}
 		}
 		return critBuff;
 	}

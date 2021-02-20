@@ -28,8 +28,8 @@ public class AuxGear {
 		this.gearName = list.get(0);
 		this.health = Double.parseDouble(list.get(1));
 		this.firepower = Double.parseDouble(list.get(2));
-		this.torpedo = Double.parseDouble(list.get(3));
-		this.AA = Double.parseDouble(list.get(4));
+		this.AA = Double.parseDouble(list.get(3));
+		this.torpedo = Double.parseDouble(list.get(4));
 		this.aviation = Double.parseDouble(list.get(5));
 	}
 	
