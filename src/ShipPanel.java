@@ -62,8 +62,9 @@ public class ShipPanel extends JPanel {
 					guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
 					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
-					
+					guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 					currentShipName = (String) shipNameCBox.getSelectedItem();
+					
 					setAttributes();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -170,8 +171,13 @@ public class ShipPanel extends JPanel {
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
+				
 				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 				currentShipName = (String) shipNameCBox.getSelectedItem();
+				System.out.println("Changing the ship name The current ship name is: " 
+				+ guiVariables.getCurrentShipName());
+				System.out.println("Changing the ship type The current ship type is: " 
+						+ guiVariables.getShipTypeName());
 				try {
 					if(currentShipName != "") {
 						currentShip = new ShipFile(currentShipName, shipTypeName);
@@ -180,6 +186,8 @@ public class ShipPanel extends JPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				//might need to change this so that we only need action listeners 
+				//for only when the panel buttons and calculate is selected
 				setAttributes();
 
 			}
@@ -220,9 +228,14 @@ public class ShipPanel extends JPanel {
 		oddRadio.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
 		evenRadio.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
 		 */
-
+		
 	}
-	
+	//method for when panel changes to weapon
+	public void sendShipInfo(MainGUI gui) {
+		gui.setCurrentShipName((String) shipNameCBox.getSelectedItem());
+		gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
+		
+	}
 	private void setAttributes() {
 		if(currentShipName == "" || shipTypeName == null) {
 			factionTxt.setText("");

@@ -180,7 +180,7 @@ public class GUIUtility {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public ArrayList<String> getAuxNames() throws FileNotFoundException, IOException {
+	public static ArrayList<String> getAuxNames() throws FileNotFoundException, IOException {
 		ArrayList<String> auxNames = getEntityNames("Aux Equipment.tsv");
 		return auxNames;
 	}
@@ -271,7 +271,7 @@ public class GUIUtility {
 	 * @param theFile
 	 * @return theList
 	 */
-	public ArrayList<String> getEntityNames(String theFile) throws FileNotFoundException, IOException {
+	public static ArrayList<String> getEntityNames(String theFile) throws FileNotFoundException, IOException {
 		ArrayList<String> theList = new ArrayList<String>();
 		BufferedReader br = new BufferedReader(new FileReader(theFile));
 		String line = br.readLine(); //Skip the Header Line
@@ -773,20 +773,20 @@ public class GUIUtility {
 			JComboBox<Object> weaponNameSlot1, JComboBox<Object> weaponNameSlot2, JComboBox<Object> weaponNameSlot3, boolean initial) {
 		//if a 
 		if(guiVariables.getCurrentShipName() != "") {
+			System.out.println("INSIDE inserting types, the current ship name is:" + guiVariables.getCurrentShipName());
 			try {
-				if(initial) {
-					guiVariables.setCurrentShipName("Akatsuki");
-					guiVariables.setShipTypeName("Destroyers");
-				} 
-					GUIUtility.insertType(weaponTypeCBox1, 4, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 1);
-					guiVariables.setCurrentWeaponTypeSlot1((String) weaponTypeCBox1.getSelectedItem());
-					GUIUtility.insertNames(weaponNameSlot1, false, guiVariables.getCurrentWeaponTypeSlot1());
+
+				System.out.println("The current ship name is hi " + guiVariables.getCurrentShipName());
+
+				GUIUtility.insertType(weaponTypeCBox1, 4, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 1);
+				guiVariables.setCurrentWeaponTypeSlot1((String) weaponTypeCBox1.getSelectedItem());
+				GUIUtility.insertNames(weaponNameSlot1, false, guiVariables.getCurrentWeaponTypeSlot1());
 				
 				GUIUtility.insertType(weaponTypeCBox2, 5, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 2);
 				guiVariables.setCurrentWeaponTypeSlot2((String) weaponTypeCBox2.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot2, false, guiVariables.getCurrentWeaponTypeSlot2());
-				
 				/*
+				
 				GUIUtility.insertType(weaponTypeCBox3, 6, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 3);
 				guiVariables.setCurrentWeaponTypeSlot3((String) weaponTypeCBox3.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot3, false, guiVariables.getCurrentWeaponTypeSlot3());

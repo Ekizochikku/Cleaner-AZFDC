@@ -4,20 +4,40 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JTextPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JRadioButton;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 //NOTE: Needs to be changed once Brian says GO AHEAD
-public class WeaponPanel extends JPanel {
+public class WeaponPanel extends JPanel implements ActionListener{
 	
-	JComboBox weaponName1Combo, weaponName2Combo, weaponName3Combo, 
-	weaponType1Combo, weaponType2Combo, weaponType3Combo;
+	JComboBox<Object> weaponName1Combo, weaponName2Combo, weaponName3Combo, 
+	weaponType1Combo, weaponType2Combo, weaponType3Combo, aux1Combo, aux2Combo;
 	
-	public WeaponPanel(MainGUI guiVariables) {
+	GUIUtility guiU;
+	public WeaponPanel(MainGUI frame, JComboBox<Object> weaponName1Combo, JComboBox<Object> weaponName2Combo,
+			JComboBox<Object> weaponName3Combo, JComboBox<Object> weaponType1Combo, JComboBox<Object> weaponType2Combo,
+			JComboBox<Object> weaponType3Combo) {
+		super();
+
+		this.weaponName1Combo = weaponName1Combo;
+		this.weaponName2Combo = weaponName2Combo;
+		this.weaponName3Combo = weaponName3Combo;
+		this.weaponType1Combo = weaponType1Combo;
+		this.weaponType2Combo = weaponType2Combo;
+		this.weaponType3Combo = weaponType3Combo;
+	}
+
+
+	public WeaponPanel(MainGUI guiVairables) throws FileNotFoundException, IOException {
 		setLayout(null);
 		
 		JLabel weaponType1Label = new JLabel("Weapon Type Slot 1:");
@@ -32,8 +52,15 @@ public class WeaponPanel extends JPanel {
 		weaponType1Combo.setMaximumRowCount(5);
 		weaponType1Combo.setBounds(10, 47, 161, 25);
 		add(weaponType1Combo);
-		
-		weaponName1Combo = new JComboBox();
+		weaponType1Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+
+			}
+	});
+	
+		weaponName1Combo = new JComboBox<Object>();
 		weaponName1Combo.setBounds(181, 48, 168, 23);
 		add(weaponName1Combo);
 		
@@ -46,11 +73,19 @@ public class WeaponPanel extends JPanel {
 		weaponName2Label.setBounds(181, 97, 144, 20);
 		add(weaponName2Label);
 		
-		weaponType2Combo = new JComboBox();
+		weaponType2Combo = new JComboBox<Object>();
 		weaponType2Combo.setBounds(10, 131, 161, 25);
 		add(weaponType2Combo);
 		
-		weaponName2Combo = new JComboBox();
+		weaponType2Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+
+			}
+	});
+		
+		weaponName2Combo = new JComboBox<Object>();
 		weaponName2Combo.setBounds(181, 132, 168, 23);
 		add(weaponName2Combo);
 		
@@ -62,18 +97,18 @@ public class WeaponPanel extends JPanel {
 		weaponName3Label.setBounds(181, 169, 144, 20);
 		add(weaponName3Label);
 		
-		weaponType3Combo = new JComboBox();
+		weaponType3Combo = new JComboBox<Object>();
 		weaponType3Combo.setBounds(10, 203, 161, 25);
 		add(weaponType3Combo);
 		
-		weaponName3Combo = new JComboBox();
+		weaponName3Combo = new JComboBox<Object>();
 		weaponName3Combo.setBounds(181, 204, 168, 23);
 		add(weaponName3Combo);
 		
-		comboBoxTypeAction(weaponType1Combo, weaponType2Combo, weaponType3Combo, weaponName1Combo, 1);
 		
-		GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
-				weaponName1Combo, weaponName2Combo, weaponName3Combo, true);
+		System.out.println("inserting weapon type slots");
+		GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
 		
 		JLabel lblBombsDropped = new JLabel("Bombs 1 Dropped:");
 		lblBombsDropped.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -253,13 +288,23 @@ public class WeaponPanel extends JPanel {
 		lblAviation.setBounds(755, 360, 109, 25);
 		add(lblAviation);
 		
-		JComboBox aux1Combo = new JComboBox();
+		aux1Combo = new JComboBox<Object>();
 		aux1Combo.setBounds(577, 49, 187, 25);
 		add(aux1Combo);
 		
-		JComboBox aux2Combo = new JComboBox();
+		List<String> auxNames = new ArrayList<String>();
+		auxNames = GUIUtility.getAuxNames();
+		//populating combo box with aux names
+		Collections.sort(auxNames);
+		aux1Combo.setModel(new DefaultComboBoxModel<Object>(auxNames.toArray()));
+		
+
+		
+		aux2Combo = new JComboBox<Object>();
 		aux2Combo.setBounds(577, 133, 187, 25);
 		add(aux2Combo);
+		aux2Combo.setModel(new DefaultComboBoxModel<Object>(auxNames.toArray()));
+		
 		
 		JTextPane auxHealthTxt = new JTextPane();
 		auxHealthTxt.setEditable(false);
@@ -290,8 +335,10 @@ public class WeaponPanel extends JPanel {
 		lblNote.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNote.setBounds(9, 473, 46, 14);
 		add(lblNote);
-
+		
 	}
+	   
+	 
 	//helper method for every weapon name, action listener to set the current Weapon Name
 	/*
 	private void addActionName(MainGUI guiVariables, JComboBox mainBox, String slotNumber) {
@@ -308,32 +355,33 @@ public class WeaponPanel extends JPanel {
 		}
 	});
 }*/
-	
-	//helper method to set the action listeners for every weapon type box action
-	private void comboBoxTypeAction(JComboBox mainBox, JComboBox box2, JComboBox box3, 
-			JComboBox nameBox, int theSlotNumber) {
-		
-		//we can either build the string or have switch cases
-		String weaponSlot = "currentWeaponNameSlot" + theSlotNumber; 
-		mainBox.addActionListener(new ActionListener() {
-		
-		public void actionPerformed(ActionEvent arg0) {
-//			System.out.println("This is a test");
-			//need to grab the calculate button
-			/*
-			if(((String) box2).isEmpty() || box3.isEmpty()) {
-				//calculateButton.setEnabled(false);
-			}*/
-			try {
-				String currentWeaponTypeSlot3 = (String) mainBox.getSelectedItem();
-				GUIUtility.insertNames(nameBox, false, currentWeaponTypeSlot3);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	private void populateCombo(JComboBox box, ArrayList list) {
+		DefaultComboBoxModel dml= new DefaultComboBoxModel();
+		for (int i = 0; i < list.size(); i++) {
+		  dml.addElement(((Object) list.get(i)).getField());
 		}
-	});
-}
 
-	
+		box.setModel(dml);
+	}
+	//made this method on accident leaving for just in case we need weapon info on other panels in the future
+	public String[] sendInformation() {
+		String[] info = new String[5];
+		
+		info[0] = (String) weaponName1Combo.getSelectedItem(); 
+		info[1] = (String) weaponName2Combo.getSelectedItem();
+		info[2] = (String) weaponName3Combo.getSelectedItem(); 
+		info[3] = (String) weaponType1Combo.getSelectedItem(); 
+		info[4] = (String) weaponType2Combo.getSelectedItem(); 
+		info[5]	= (String) weaponType3Combo.getSelectedItem();
+		return info;
+	}
+	//helper method to set the action listeners for every weapon type box action
+	public void comboBoxTypeAction(MainGUI guiVariables) {
+
+			System.out.println("Hello we entered here in combo box type action! " + guiVariables.getCurrentShipName());
+			GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+
+	};
 }
+	

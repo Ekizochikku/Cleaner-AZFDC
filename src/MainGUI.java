@@ -28,8 +28,9 @@ public class MainGUI extends JFrame {
 	private JPanel worldPane;
 	//The current damage type being applied
 	private int currentDMGType = 0; //0 = HE, 1 = AP
-	private String shipTypeName;
-	private String currentShipName;
+	//default type when nothing is selected
+	private String shipTypeName = "Destroyers";
+	private String currentShipName = "Akatsuki";
 	private String currentColorSelected;
 	private String currentWeaponType;
 	
@@ -78,6 +79,7 @@ public class MainGUI extends JFrame {
 		shipPane.setBackground(new Color(210, 210, 210));
 		
 		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		weaponPane = new WeaponPanel(this);
 		weaponPane.setOpaque(true);
 		weaponPane.setBackground(new Color(210, 210, 210));
@@ -134,9 +136,17 @@ public class MainGUI extends JFrame {
 		btnWeaponsgear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.remove(currentPanel);
+				weaponPane.revalidate();
+				weaponPane.repaint();
+
 				currentPanel = weaponPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
-				contentPane.validate();
+				//shipPane.sendInfo();
+				System.out.println("Entering the weapons panel");
+				System.out.println("Current Ship name is " + currentShipName);
+				
+				contentPane.add(currentPanel, BorderLayout.CENTER);
+				contentPane.revalidate();
 				contentPane.repaint();
 				setVisible(true);
 			}
