@@ -81,9 +81,9 @@ public class ShipPanel extends JPanel {
 		shipTypeCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
+					gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
-					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
+					GUIUtility.insertNames(shipNameCBox,true, gui.getShipTypeName());
 					
 					currentShipName = (String) shipNameCBox.getSelectedItem();
 					setAttributes();
@@ -99,9 +99,8 @@ public class ShipPanel extends JPanel {
 			
 		});
 		
-		
-		guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 		shipTypeName = (String) shipTypeCBox.getSelectedItem();
+		gui.setShipTypeName(shipTypeName);
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
 		lblShipName.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -114,8 +113,8 @@ public class ShipPanel extends JPanel {
 		shipNameCBox = new JComboBox();
 		shipNameCBox.setBounds(534, 127, 191, 25);
 		add(shipNameCBox);
-		GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
-		currentShipName = (String) shipNameCBox.getSelectedItem();
+		GUIUtility.insertNames(shipNameCBox, true, shipTypeName);
+//		currentShipName = (String) shipNameCBox.getSelectedItem();
 		
 		JLabel lblFaction = new JLabel("Faction:");
 		lblFaction.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -186,14 +185,13 @@ public class ShipPanel extends JPanel {
 		aviationTxt.setEditable(false);
 		aviationTxt.setBounds(682, 402, 95, 31);
 		add(aviationTxt);
-		setAttributes();
 		AutoCompletion.enable(shipNameCBox);
 		//future action listeners for the color stuff
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
-				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 				currentShipName = (String) shipNameCBox.getSelectedItem();
+				gui.setCurrentShipName(currentShipName);
 				try {
 					if(currentShipName != "") {
 						currentShip = new ShipFile(currentShipName, shipTypeName);
@@ -206,43 +204,7 @@ public class ShipPanel extends JPanel {
 
 			}
 		});
-		
-		
-		/*code we'll need to have in the same panel (ammo types) 
-		
-		// Group for Muse (Notes)
-		colorGroup.add(redRadio = new JRadio("Red"));
-		colorGroup.add(blueRadio = new JRadio("Blue"));
-		colorGroup.add(purpleRadio = new JRadio("Purple"));
-		
-		//Array to enable disable  group (seriously swing needs to let you interact with  groups instead of doing workarounds like this)
-		//now that I know about this might change up code later and add everything into the array
-	    colors = new JRadio[] {redRadio, blueRadio, purpleRadio};
-	    for (JRadio btn : colors) {
-	         btn.setEnabled(false);
-	         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
-	         //radio  action listener to pass in name
-	 		 btn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					currentColorSelected = btn.getText();
-					System.out.println(currentColorSelected);
-				}
-			});
-	    }
-	    
-		
-		//Music Note label
-		label = new JLabel("\u266A");
-		
-		//Tool Tips
-		label.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
-		HE.setToolTipText("HE and AP rounds are only selectable with 'Roon'");
-		AP.setToolTipText("HE and AP rounds are only selectable with 'Roon'");
-		
-		oddRadio.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
-		evenRadio.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
-		 */
-
+		shipNameCBox.setSelectedIndex(1);
 	}
 	
 	/**

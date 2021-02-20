@@ -20,12 +20,12 @@ import javax.swing.border.TitledBorder;
 public class MainGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel shipPane;
-	private JPanel weaponPane;
-	private JPanel skillPane;
-	private JPanel calculatePane;
+	private ShipPanel shipPane;
+	private WeaponPanel weaponPane;
+	private SkillPanel skillPane;
+	private CalculatePanel calculatePane;
 	private JPanel currentPanel;
-	private JPanel worldPane;
+	private WorldPanel worldPane;
 	//The current damage type being applied
 	private int currentDMGType = 0; //0 = HE, 1 = AP
 	private String shipTypeName;
@@ -73,17 +73,17 @@ public class MainGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
 		shipPane = new ShipPanel(this);
 		shipPane.setOpaque(true);
 		shipPane.setBackground(new Color(210, 210, 210));
-		
 		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		weaponPane = new WeaponPanel(this);
 		weaponPane.setOpaque(true);
 		weaponPane.setBackground(new Color(210, 210, 210));
 		
 		skillPane = new SkillPanel(this);
-		
 		skillPane.setOpaque(true);
 		skillPane.setBackground(new Color(210, 210, 210));
 		
@@ -122,6 +122,7 @@ public class MainGUI extends JFrame {
 		skillsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(currentPanel);
+				skillPane.checkShip(currentShipName, shipTypeName);
 				currentPanel = skillPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
@@ -169,7 +170,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		contentPane.add(calculateButton, BorderLayout.SOUTH);
-		
+		currentShipName = "22";
 		
 	}
 	public int getCurrentDMGType() {
