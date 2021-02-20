@@ -86,19 +86,19 @@ public class GUIUtility {
 		String fileName = "";
 		switch (weaponType) {
 			case "Destroyer Guns":
-				fileName = "./Weapons/DestroyerGuns.tsv";
+				fileName = "./Weapons/Destroyer Guns.tsv";
 				break;
 			case "Light Cruiser Guns":
 				fileName = "./Weapons/Light Cruisers Guns.tsv";
 				break;
 			case "Heavy Cruiser Guns":
-				fileName = "./Weapons/HeavyCruiserGuns.tsv";
+				fileName = "./Weapons/Heavy Cruiser Guns.tsv";
 				break;
 			case "Large Cruiser Guns":
 				fileName = "./Weapons/Large Cruiser Guns.tsv";
 				break;
 			case "Battleship Guns":
-				fileName = "./Weapons/BattleshipGuns.tsv";
+				fileName = "./Weapons/Battleship Guns.tsv";
 				break;
 			case "Anti-Air Guns":
 				fileName = "./Weapons/Anti-Air Guns.tsv";
