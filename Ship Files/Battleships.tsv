@@ -1,7 +1,7 @@
 SHIPNAME	FACTION	CLASS	SHIPTYPE	WEP1TYPE	WEP2TYPE	WEP3TYPE	SLOT1EFF	SLOT2EFF	SLOT3EFF	HEALTH	FIREPOWER	TORPEDO	ANTIAIR	SKILL1	SKILL2	SKILL3	SKILL4	SKILL5
 Bismarck	KMS	Bismarck	BB	0	2	0	1.3	1.8	0.9	8792	423	0	208	Wahrheit	Unwavering Strength	Will of the Iron Blood	NULL	NULL
 Tirpitz	KMS	Bismarck	BB	0	2	0	1.3	2	0.9	8401	423	217	208	Lone Queen of the North	Magnetic Torpedoes	NULL	NULL	NULL
-Champagne	FFNF	Champagne	BB	0	2	0	1.8	2	0.8	6896	454	0	241	Augmenting Mechanism: Setzer Principle	Substitue Mechanism: Holy Thurible	Siren Killer	NULL	NULL
+Champagne	FFNF	Champagne	BB	0	2	0	1.8	2	0.8	6896	454	0	241	Augmenting Mechanism: Setzer Principle	Substitute Mechanism: Holy Thurible	Siren Killer	NULL	NULL
 Colorado	USS	Colorado	BB	0	0	0	1.3	2	1	7456	409	0	216	Big Seven	NULL	NULL	NULL	NULL
 Maryland	USS	Colorado	BB	0	0	0	1.25	2	1	7414	405	0	219	Big Seven	Fighting Mary	NULL	NULL	NULL
 West Virginia	USS	Colorado	BB	0	0	0	1.3	2	1	7456	409	0	216	Big Seven	NULL	NULL	NULL	NULL
@@ -43,7 +43,7 @@ Gascogne (Muse)	MNF	Richelieu	BB	0	2	0	1.7	2	0.7	7851	429	0	237	Coeur Battant	Po
 Jean Bart	MNF	Richelieu	BB	0	2	0	1.6	2	0.7	8036	419	0	241	Pirate's Soul	Final Shot	NULL	NULL	NULL
 Richelieu	MNF	Richelieu	BB	0	2	0	1.6	200	1	8428	447	0	293	The Iris's Flagbearer	The Iris's Holy Flame	The Iris's Vindication	NULL	NULL
 Alabama	USS	South Dakota	BB	0	0	0	1.3	2	1	7783	407	0	400	Lucky A	Just Gettin' Fired Up	NULL	NULL	NULL
-Massachusetts	USS	South Dakota	BB	0	0	0	1.3	2	1	7783	414	0	400	Big Mamie	2,700 Pounds of Justive	NULL	NULL	NULL
+Massachusetts	USS	South Dakota	BB	0	0	0	1.3	2	1	7783	414	0	400	Big Mamie	"2,700 Pounds of Justive"	NULL	NULL	NULL
 South Dakota	USS	South Dakota	BB	0	0	0	1.3	2	1	8031	414	0	400	The Strongest Shield	Focused Assault	NULL	NULL	NULL
 Sovetskaya	SN	Sovetsky Soyuz	BB	0	2	0	1.35	2	1	8324	428	0	248	Lod Obstrel	Warcry of Unity	NULL	NULL	NULL
 California	USS	Tennessee	BB	0	0	0	1.3	2	1	7385	391	0	211	Focused Assault	NULL	NULL	NULL	NULL

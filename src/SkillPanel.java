@@ -124,12 +124,12 @@ public class SkillPanel extends JPanel {
 		skillDescriptionScrollPane.setViewportView(skillDescriptionText);
 		
 		JLabel lblSkillUsers = new JLabel("Skill Users:");
-		lblSkillUsers.setBounds(509, 298, 104, 23);
+		lblSkillUsers.setBounds(509, 287, 104, 23);
 		lblSkillUsers.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblSkillUsers);
 		
 		JScrollPane skillUserScrollPane = new JScrollPane();
-		skillUserScrollPane.setBounds(376, 343, 370, 53);
+		skillUserScrollPane.setBounds(344, 318, 435, 78);
 		add(skillUserScrollPane);
 		
 		skillUserText = new JTextPane();
@@ -248,7 +248,7 @@ public class SkillPanel extends JPanel {
 	 * @author Walter Hanson
 	 */
 	public void checkShip(String theShip, String theType) {
-//		System.out.println(theShip + " " + theType);
+		System.out.println(theShip + " " + theType);
 		if(currentShip == null) {
 			try {
 				currentShip = new ShipFile(theShip, theType);
@@ -270,10 +270,10 @@ public class SkillPanel extends JPanel {
 		activeSkillsList.removeAll();
 		currentSkills.clear();
 		int skill = 1;
-//		System.out.println("Skill is " + currentShip.getSkill(skill));
+		System.out.println("Skill is " + currentShip.getSkill(skill));
 		while(!currentShip.getSkill(skill).equals("NULL")) {
 			try {
-//				System.out.println(currentShip.getSkill(skill));
+				System.out.println(currentShip.getSkill(skill));
 				currentSkills.add(new Skill(currentShip.getSkill(skill)));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

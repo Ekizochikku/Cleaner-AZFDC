@@ -104,7 +104,7 @@ public class GUIUtility {
 				fileName = "./Weapons/Anti-Air Guns.tsv";
 				break;
 			case "Torpedos":
-				fileName = "./Weapons/Torpedos.tsv";
+				fileName = "./Weapons/Ship Torpedos.tsv";
 				break;
 			case "Submarine Torpedos":
 				fileName = "./Weapons/Submarine Torpedos.tsv";

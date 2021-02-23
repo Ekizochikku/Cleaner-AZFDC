@@ -158,7 +158,7 @@ public class ShipPanel extends JPanel {
 		
 		classTxt = new JTextPane();
 		classTxt.setEditable(false);
-		classTxt.setBounds(534, 217, 95, 31);
+		classTxt.setBounds(534, 217, 140, 31);
 		add(classTxt);
 		
 		healthTxt = new JTextPane();
