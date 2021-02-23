@@ -7,6 +7,8 @@ Maryland	USS	Colorado	BB	0	0	0	1.25	2	1	7414	405	0	219	Big Seven	Fighting Mary	N
 West Virginia	USS	Colorado	BB	0	0	0	1.3	2	1	7456	409	0	216	Big Seven	NULL	NULL	NULL	NULL
 Conte Di Cavour	RN	Conte Di Cavour	BB	0	0	0	1.25	1.5	0.7	6831	337	146	175	Fading Memories of Glory	NULL	NULL	NULL	NULL
 Giulio Cesare	RN	Conte Di Cavour	BB	0	0	0	1.25	1.5	0.7	7030	347	151	186	Sardegnian Coercion	Fading Memories of Glory	NULL	NULL	NULL
+Honoka	DOA	DOA	BB	0	2	0	1.35	2	1	7903	404	0	216	Rock-Paper-Cannon Salvo	Super Mega Explosion	NULL	NULL	NULL
+Nagisa	DOA	DOA	BB	0	2	0	1.3	2	1	7510	384	0	174	Not-So-Gentle Sister	Venus' Unpredictability	NULL	NULL	NULL
 Friedrich der Grosse (Retrofit)	KMS	Friedrich der Grosse	BB	0	2	0	1.6	2.2	1	9886	449	0	241	Symphony of Destruction	Sonata of Chaos	Rhapsody of Darkness	Siren Killer	NULL
 Fusou	IJN	Fusou	BB	0	2	0	1.3	2	1	6916	390	0	222	Cover Fire	NULL	NULL	NULL	NULL
 Yamashiro	IJN	Fusou	BB	0	2	0	1.3	2	0.85	7309	390	0	222	Cover Fire	NULL	NULL	NULL	NULL
@@ -43,7 +45,7 @@ Gascogne (Muse)	MNF	Richelieu	BB	0	2	0	1.7	2	0.7	7851	429	0	237	Coeur Battant	Po
 Jean Bart	MNF	Richelieu	BB	0	2	0	1.6	2	0.7	8036	419	0	241	Pirate's Soul	Final Shot	NULL	NULL	NULL
 Richelieu	MNF	Richelieu	BB	0	2	0	1.6	200	1	8428	447	0	293	The Iris's Flagbearer	The Iris's Holy Flame	The Iris's Vindication	NULL	NULL
 Alabama	USS	South Dakota	BB	0	0	0	1.3	2	1	7783	407	0	400	Lucky A	Just Gettin' Fired Up	NULL	NULL	NULL
-Massachusetts	USS	South Dakota	BB	0	0	0	1.3	2	1	7783	414	0	400	Big Mamie	"2,700 Pounds of Justive"	NULL	NULL	NULL
+Massachusetts	USS	South Dakota	BB	0	0	0	1.3	2	1	7783	414	0	400	Big Mamie	2,700 Pounds of Justive	NULL	NULL	NULL
 South Dakota	USS	South Dakota	BB	0	0	0	1.3	2	1	8031	414	0	400	The Strongest Shield	Focused Assault	NULL	NULL	NULL
 Sovetskaya	SN	Sovetsky Soyuz	BB	0	2	0	1.35	2	1	8324	428	0	248	Lod Obstrel	Warcry of Unity	NULL	NULL	NULL
 California	USS	Tennessee	BB	0	0	0	1.3	2	1	7385	391	0	211	Focused Assault	NULL	NULL	NULL	NULL
