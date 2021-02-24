@@ -17,6 +17,9 @@ public class AuxGear {
 	private double AA;
 	
 	private double aviation;
+	//made a list just so i don't have to call every getters and setters
+	//makes the code look super ugly for all getters since we already have a list
+	private ArrayList list;
 	
 	public AuxGear(String auxName) throws FileNotFoundException, IOException {
 		utility = new GUIUtility();

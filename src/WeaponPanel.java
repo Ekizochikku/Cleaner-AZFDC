@@ -22,6 +22,12 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	JComboBox<Object> weaponName1Combo, weaponName2Combo, weaponName3Combo, 
 	weaponType1Combo, weaponType2Combo, weaponType3Combo, aux1Combo, aux2Combo;
 	
+	//Auxiliary TextPanes
+	JTextPane auxHealthTxt, firepowerTxt, antiAirTxt, torpedoTxt, aviationTxt; 
+	
+	//making auxgear here aswell and set it on the main gui one at the end since too lazy to write the long chain of getters and setters
+	AuxGear aux1, aux2;
+	
 	GUIUtility guiU;
 	public WeaponPanel(MainGUI frame, JComboBox<Object> weaponName1Combo, JComboBox<Object> weaponName2Combo,
 			JComboBox<Object> weaponName3Combo, JComboBox<Object> weaponType1Combo, JComboBox<Object> weaponType2Combo,
@@ -59,7 +65,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 			}
 	});
-	
+		//carriers, aviation 3rd slot only, i13 third slot only 
 		weaponName1Combo = new JComboBox<Object>();
 		weaponName1Combo.setBounds(181, 48, 168, 23);
 		add(weaponName1Combo);
@@ -297,7 +303,34 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		//populating combo box with aux names
 		Collections.sort(auxNames);
 		aux1Combo.setModel(new DefaultComboBoxModel<Object>(auxNames.toArray()));
-		
+		aux1Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//aux string
+				try {
+					aux1 = new AuxGear((String) aux1Combo.getSelectedItem());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				//JTextPane auxHealthTxt, firepowerTxt, antiAirTxt, torpedoTxt, aviationTxt; 
+				if(aux2 == null) {
+					//why call getters when we can get directly from list? :(
+					//especially when I have to parse the getters anyways? 
+					auxHealthTxt.setText("1: " + String.valueOf(aux1.getHealth()));
+					firepowerTxt.setText("1: " + String.valueOf(aux1.getFirepower()));
+					torpedoTxt.setText("1: " + String.valueOf(aux1.getTorpedo()));
+					antiAirTxt.setText("1: " + String.valueOf(aux1.getAA()));
+					aviationTxt.setText("1: " + String.valueOf(aux1.getAviation()));
+				} else {
+					//textFieldAuxHealth.setText("1: " + (String) auxParameters.get(1) + "   2: " + (String) auxParameters2.get(1));
+					//textFieldAuxFirepower.setText("1: " + (String) auxParameters.get(2) + "   2: " + (String) auxParameters2.get(1));
+					//txtFieldAuxTorpedo.setText("1: " + (String) auxParameters.get(3)+ "   2: " + (String) auxParameters2.get(1));
+					//textFieldAuxAA.setText("1: " + (String) auxParameters.get(4)+ "   2: " + (String) auxParameters2.get(1));
+					//textFieldAuxAviation.setText("1: " + (String) auxParameters.get(5)+ "   2: " + (String) auxParameters2.get(1));
+				}
+			}
+		});
 
 		
 		aux2Combo = new JComboBox<Object>();
@@ -306,30 +339,31 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		aux2Combo.setModel(new DefaultComboBoxModel<Object>(auxNames.toArray()));
 		
 		
-		JTextPane auxHealthTxt = new JTextPane();
+		auxHealthTxt = new JTextPane();
 		auxHealthTxt.setEditable(false);
 		auxHealthTxt.setBounds(586, 239, 161, 30);
 		add(auxHealthTxt);
 		
-		JTextPane firepowerTxt = new JTextPane();
+		firepowerTxt = new JTextPane();
 		firepowerTxt.setEditable(false);
 		firepowerTxt.setBounds(582, 319, 117, 30);
 		add(firepowerTxt);
 		
-		JTextPane antiAirTxt = new JTextPane();
+		antiAirTxt = new JTextPane();
 		antiAirTxt.setEditable(false);
 		antiAirTxt.setBounds(751, 319, 117, 30);
 		add(antiAirTxt);
 		
-		JTextPane torpedoTxt = new JTextPane();
+		torpedoTxt = new JTextPane();
 		torpedoTxt.setEditable(false);
 		torpedoTxt.setBounds(582, 384, 117, 30);
 		add(torpedoTxt);
 		
-		JTextPane aviationTxt = new JTextPane();
+		aviationTxt = new JTextPane();
 		aviationTxt.setEditable(false);
 		aviationTxt.setBounds(751, 384, 117, 30);
 		add(aviationTxt);
+		
 		
 		JLabel lblNote = new JLabel("Note:");
 		lblNote.setFont(new Font("Tahoma", Font.PLAIN, 16));

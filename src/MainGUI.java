@@ -43,6 +43,8 @@ public class MainGUI extends JFrame {
 	private int currentDangerLevel = 3;
 	private String theCurrentEnemy;
 	
+	private AuxGear aux1, aux2;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -60,6 +62,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 	}
+
 
 	/**
 	 * Create the frame.
@@ -261,5 +264,21 @@ public class MainGUI extends JFrame {
 	
 	public String getWorld() {
 		return theCurrentWorld;
+	}
+
+	public AuxGear getAux1() {
+		return aux1;
+	}
+
+	public void setAux1(AuxGear aux1) {
+		this.aux1 = aux1;
+	}
+
+	public AuxGear getAux2() {
+		return aux2;
+	}
+
+	public void setAux2(AuxGear aux2) {
+		this.aux2 = aux2;
 	}
 }

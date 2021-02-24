@@ -173,7 +173,15 @@ public class GUIUtility {
 		skillNames = getEntityNames("./Skill Files/Skill Stats.tsv");
 		return skillNames;
 	}
-	
+	/**
+	 * Populates the information of the auxiliary
+	 * @param auxBox the aux combo box we are listening to
+	 * @param auxBox2 the other auxiliary box where we check if it's empty or not
+	 * @return 
+	 */
+	public void populateAuxBox(JComboBox auxCBox, JComboBox auxCBox2) {
+		
+	}
 	/**
 	 * Returns the names of all the available auxiliary equipment
 	 * @return
