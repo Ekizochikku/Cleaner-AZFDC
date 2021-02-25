@@ -19,19 +19,36 @@ import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
+/**
+ * Panel to display and contain information pertaining to the skills for ships. Allows
+ * user to add skills for their ships to be used in damage calculations. 
+ * 
+ * @author Walter Hanson
+ *
+ */
 public class SkillPanel extends JPanel {
 
+	//List of active skills
 	private ArrayList<Skill> currentSkills;
+	//JList to display the active skills and allow users to remove
 	private JList activeSkillsList;
+	//Main application
 	private MainGUI gui;
+	//Backend methods
 	private GUIUtility gUtil;
+	//Displays the selected skill description
 	private JTextPane skillDescriptionText;
+	//Displays the ships that are allowed to use selected skill
 	private JTextPane skillUserText;
+	//Contains a list of all the skills in the game for user to select
 	private JComboBox<String> skillListCBox;
-	
+	//The current ship being used.
+	private ShipFile currentShip;
 	/**
 	 * Create the panel.
+	 * @param theGui Main application class so information can be transmitted between classes.
+	 * @author Walter Hanson
+	 * 
 	 */
 	public SkillPanel(MainGUI theGui) {
 		setLayout(null);
@@ -39,6 +56,7 @@ public class SkillPanel extends JPanel {
 		gUtil = new GUIUtility();
 		currentSkills = new ArrayList();
 		skillDescriptionText = new JTextPane();
+		currentShip = null;
 		JLabel lblSkillList = new JLabel("Skill List:");
 		lblSkillList.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSkillList.setBounds(509, 11, 85, 23);
@@ -106,12 +124,12 @@ public class SkillPanel extends JPanel {
 		skillDescriptionScrollPane.setViewportView(skillDescriptionText);
 		
 		JLabel lblSkillUsers = new JLabel("Skill Users:");
-		lblSkillUsers.setBounds(509, 298, 104, 23);
+		lblSkillUsers.setBounds(509, 287, 104, 23);
 		lblSkillUsers.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblSkillUsers);
 		
 		JScrollPane skillUserScrollPane = new JScrollPane();
-		skillUserScrollPane.setBounds(376, 343, 370, 53);
+		skillUserScrollPane.setBounds(344, 318, 435, 78);
 		add(skillUserScrollPane);
 		
 		skillUserText = new JTextPane();
@@ -220,5 +238,49 @@ public class SkillPanel extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * When SkillPanel gets selected, check if a new ship has been selected and reset skills.
+	 * Otherwise, keep everything the way it is.
+	 * 
+	 * @param theShip is the current ship being used for calculations.
+	 * @author Walter Hanson
+	 */
+	public void checkShip(String theShip, String theType) {
+		System.out.println(theShip + " " + theType);
+		if(currentShip == null) {
+			try {
+				currentShip = new ShipFile(theShip, theType);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(theShip.equals(currentShip.getShipName())) {
+//			System.out.println("BREAK");
+			return;
+		}
+		try {
+			currentShip = new ShipFile(theShip, theType);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		activeSkillsList.removeAll();
+		currentSkills.clear();
+		int skill = 1;
+		System.out.println("Skill is " + currentShip.getSkill(skill));
+		while(!currentShip.getSkill(skill).equals("NULL")) {
+			try {
+				System.out.println(currentShip.getSkill(skill));
+				currentSkills.add(new Skill(currentShip.getSkill(skill)));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			skill++;
+		}
+		updateActiveSkills();
 	}
 }

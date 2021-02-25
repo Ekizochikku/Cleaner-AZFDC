@@ -27,6 +27,10 @@ public class AAGuns {
 		this.AAStat = Integer.parseInt(list.get(2));
 	}
 	
+	public String getWeaponType() {
+		return weaponType;
+	}
+	
 	public String getWeaponName() {
 		return wepName;
 	}

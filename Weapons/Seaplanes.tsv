@@ -1,4 +1,6 @@
-NAME	AVIATION	BOMBONEDMG	ONETOL	ONETOM	ONETOH	BOMBTWODMG	TWOTOL	TWOTOM	TWOTOH	TORPEDODMG	TORPTOL	TORPTOM	TORPTOH
-Aichi E16A Zuiun T2	12	330	0.8	0.9	1.1	0	0	0	0	0	0	0	0
-Aichi E16A Zuiun T3	25	360	0.8	0.9	1.1	0	0	0	0	0	0	0	0
-Aichi M6A Seiran T0	25	429	0.75	1	1.2	0	0	0	0	0	0	0	0
+Equipment Name	Aviation	Bomb One Damage	Bomb One to L	Bomb One to M	Bomb One to H	Bomb Two Damage	Bomb Two to L	Bomb Two to M	Bomb Two to H	Torpedo Damage	Torpedo to L	Torpedo to M	Torpedo to H
+Aichi E16A Zuiun (Tier 3)	25	369	0.8	0.9	1.1	0	0	0	0	0	0	0	0
+Aichi M6A Seiran (Tier 0)	25	429	0.75	1	1.2	0	0	0	0	0	0	0	0
+Kawanishi N1K1 Kyoufuu (Tier 0)	25	173	0.8	0.85	1	0	0	0	0	0	0	0	0
+Nakajima A6M2-N (Tier 0)	25	173	0.8	0.85	1	0	0	0	0	0	0	0	0
+Yokosuka Suisei Model 21 (Tier 0)	45	402	0.8	0.95	1.15	0	0	0	0	0	0	0	0

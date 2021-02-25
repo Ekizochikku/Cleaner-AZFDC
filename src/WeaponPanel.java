@@ -328,6 +328,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					//txtFieldAuxTorpedo.setText("1: " + (String) auxParameters.get(3)+ "   2: " + (String) auxParameters2.get(1));
 					//textFieldAuxAA.setText("1: " + (String) auxParameters.get(4)+ "   2: " + (String) auxParameters2.get(1));
 					//textFieldAuxAviation.setText("1: " + (String) auxParameters.get(5)+ "   2: " + (String) auxParameters2.get(1));
+					auxHealthTxt.setText("1: " + String.valueOf(aux1.getHealth()) + "   2: " + String.valueOf(aux2.getHealth()));
+					firepowerTxt.setText("1: " + String.valueOf(aux1.getFirepower())+ "   2: " + String.valueOf(aux2.getFirepower()));
+					torpedoTxt.setText("1: " + String.valueOf(aux1.getTorpedo())+ "   2: " + String.valueOf(aux2.getTorpedo()) );
+					antiAirTxt.setText("1: " + String.valueOf(aux1.getAA())+ "   2: " + String.valueOf(aux2.getAA()));
+					aviationTxt.setText("1: " + String.valueOf(aux1.getAviation())+ "   2: " + String.valueOf(aux2.getAviation()));
 				}
 			}
 		});

@@ -19,26 +19,48 @@ import javax.swing.Box;
 import java.awt.Font;
 import javax.swing.JTextPane;
 
+/**
+ * Panel to display information of selected ship by user. Allows user to select a ship to be
+ * used to determine how it will interact in combat.
+ * 
+ * @author Walter Hanson
+ *
+ */
 public class ShipPanel extends JPanel {
-	
+	//The ship type of the selected ship
 	private String shipTypeName;
+	//The name of the selected ship
 	private String currentShipName;
+	//ComboBoxs for user to select the ship type and ship name to use for calculations
 	private JComboBox shipNameCBox, shipTypeCBox;
+	//The current ship selected
 	private ShipFile currentShip;
+	//Main application
 	private MainGUI gui;
+	//Backend methods
 	private GUIUtility gUtil;
+	//Faction of current ship
 	private JTextPane factionTxt;
+	//Class of current ship
 	private JTextPane classTxt;
+	//Health of current ship
 	private JTextPane healthTxt;
+	//Firepower of current ship
 	private JTextPane firepowerTxt;
+	//Torpedo stats of current ship
 	private JTextPane torpedoTxt;
+	//Anti Air of current ship
 	private JTextPane antiAirTxt;
+	//Aviation stats of current ship
 	private JTextPane aviationTxt;
 	
 	/**
 	 * Create the panel.
+	 * 
+	 * @param guiVariables Main application class so information can be transmitted between classes.
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
+	 * @author Walter Hanson
 	 */
 	public ShipPanel(MainGUI guiVariables) throws FileNotFoundException, IOException {
 		setLayout(null);
@@ -59,10 +81,15 @@ public class ShipPanel extends JPanel {
 		shipTypeCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
+					gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
+<<<<<<< HEAD
 					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
 					guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
+=======
+					GUIUtility.insertNames(shipNameCBox,true, gui.getShipTypeName());
+					
+>>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 					currentShipName = (String) shipNameCBox.getSelectedItem();
 					
 					setAttributes();
@@ -78,9 +105,8 @@ public class ShipPanel extends JPanel {
 			
 		});
 		
-		
-		guiVariables.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 		shipTypeName = (String) shipTypeCBox.getSelectedItem();
+		gui.setShipTypeName(shipTypeName);
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
 		lblShipName.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -93,8 +119,8 @@ public class ShipPanel extends JPanel {
 		shipNameCBox = new JComboBox();
 		shipNameCBox.setBounds(534, 127, 191, 25);
 		add(shipNameCBox);
-		GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
-		currentShipName = (String) shipNameCBox.getSelectedItem();
+		GUIUtility.insertNames(shipNameCBox, true, shipTypeName);
+//		currentShipName = (String) shipNameCBox.getSelectedItem();
 		
 		JLabel lblFaction = new JLabel("Faction:");
 		lblFaction.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -138,7 +164,7 @@ public class ShipPanel extends JPanel {
 		
 		classTxt = new JTextPane();
 		classTxt.setEditable(false);
-		classTxt.setBounds(534, 217, 95, 31);
+		classTxt.setBounds(534, 217, 140, 31);
 		add(classTxt);
 		
 		healthTxt = new JTextPane();
@@ -165,19 +191,25 @@ public class ShipPanel extends JPanel {
 		aviationTxt.setEditable(false);
 		aviationTxt.setBounds(682, 402, 95, 31);
 		add(aviationTxt);
-		setAttributes();
 		AutoCompletion.enable(shipNameCBox);
 		//future action listeners for the color stuff
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
+<<<<<<< HEAD
 				
 				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
+=======
+>>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 				currentShipName = (String) shipNameCBox.getSelectedItem();
+<<<<<<< HEAD
 				System.out.println("Changing the ship name The current ship name is: " 
 				+ guiVariables.getCurrentShipName());
 				System.out.println("Changing the ship type The current ship type is: " 
 						+ guiVariables.getShipTypeName());
+=======
+				gui.setCurrentShipName(currentShipName);
+>>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 				try {
 					if(currentShipName != "") {
 						currentShip = new ShipFile(currentShipName, shipTypeName);
@@ -192,6 +224,7 @@ public class ShipPanel extends JPanel {
 
 			}
 		});
+<<<<<<< HEAD
 		
 		
 		/*code we'll need to have in the same panel (ammo types) 
@@ -229,13 +262,25 @@ public class ShipPanel extends JPanel {
 		evenRadio.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
 		 */
 		
+=======
+		shipNameCBox.setSelectedIndex(1);
+>>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 	}
+<<<<<<< HEAD
 	//method for when panel changes to weapon
 	public void sendShipInfo(MainGUI gui) {
 		gui.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 		gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 		
 	}
+=======
+	
+	/**
+	 * Set up text fields to display the stats of the current selected ship.
+	 * 
+	 * @author Walter Hanson
+	 */
+>>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 	private void setAttributes() {
 		if(currentShipName == "" || shipTypeName == null) {
 			factionTxt.setText("");

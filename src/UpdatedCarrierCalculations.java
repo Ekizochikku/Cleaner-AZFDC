@@ -37,6 +37,15 @@ public class UpdatedCarrierCalculations {
 			finalDmg += getCalculatedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, enemy, skills, skillNames, slotOneAuxGear, slotTwoAuxGear, shipSlot, crit, dangerLevel, armorBreak, removeRandom, "torpedo", 3) * torpedosDropped;
 		}
 		
+		// Special exceptions from aux gear
+		if (slotOneAuxGear.getGearName().equals("Awakening Pearl") || slotTwoAuxGear.getGearName().equals("Awakening Pearl")) {
+			finalDmg = finalDmg * 1.03;
+		}
+		if (slotOneAuxGear.getGearName().equals("Frontier Medal") || slotTwoAuxGear.getGearName().equals("Frontier Medal")) {
+			finalDmg = finalDmg * 1.10;
+		}
+		
+		
 		return finalDmg;
 		
 	}
