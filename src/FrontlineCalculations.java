@@ -219,7 +219,7 @@ public class FrontlineCalculations {
 		double shipWeaponStat = 0;
 		if (mainWeapon.getWeaponType().equals("Torpedos")) {
 			shipWeaponStat = ship.getTorpedo() + mainWeapon.getTorpedo() + secondWeapon.getTorpedo() + aaGun.getFirepower() + gearOne.getTorpedo() + gearTwo.getTorpedo();
-		// Special case for seattle where she can equip an AA gun to her second slot, so the stats would be gathered from that.
+		// Special case for Seattle where she can equip an AA gun to her second slot, so the stats would be gathered from that.
 		} else if (seattleGun != null) {
 			shipWeaponStat = ship.getFirepower() + mainWeapon.getFirepower() + seattleGun.getFirepower()  + aaGun.getFirepower() + gearOne.getFirepower() + gearTwo.getFirepower();
 		// Special case where certain ships can use a cannon in their third slot and submarines.
