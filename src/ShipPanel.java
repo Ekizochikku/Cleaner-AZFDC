@@ -83,13 +83,8 @@ public class ShipPanel extends JPanel {
 				try {
 					gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
-<<<<<<< HEAD
-					GUIUtility.insertNames(shipNameCBox,true, guiVariables.getShipTypeName());
-					guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
-=======
 					GUIUtility.insertNames(shipNameCBox,true, gui.getShipTypeName());
-					
->>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
+					guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 					currentShipName = (String) shipNameCBox.getSelectedItem();
 					
 					setAttributes();
@@ -196,20 +191,12 @@ public class ShipPanel extends JPanel {
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
-<<<<<<< HEAD
-				
-				guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
-=======
->>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 				currentShipName = (String) shipNameCBox.getSelectedItem();
-<<<<<<< HEAD
 				System.out.println("Changing the ship name The current ship name is: " 
 				+ guiVariables.getCurrentShipName());
 				System.out.println("Changing the ship type The current ship type is: " 
 						+ guiVariables.getShipTypeName());
-=======
 				gui.setCurrentShipName(currentShipName);
->>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 				try {
 					if(currentShipName != "") {
 						currentShip = new ShipFile(currentShipName, shipTypeName);
@@ -224,7 +211,6 @@ public class ShipPanel extends JPanel {
 
 			}
 		});
-<<<<<<< HEAD
 		
 		
 		/*code we'll need to have in the same panel (ammo types) 
@@ -262,25 +248,19 @@ public class ShipPanel extends JPanel {
 		evenRadio.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
 		 */
 		
-=======
-		shipNameCBox.setSelectedIndex(1);
->>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 	}
-<<<<<<< HEAD
 	//method for when panel changes to weapon
 	public void sendShipInfo(MainGUI gui) {
 		gui.setCurrentShipName((String) shipNameCBox.getSelectedItem());
 		gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 		
+		shipNameCBox.setSelectedIndex(1);
 	}
-=======
-	
 	/**
 	 * Set up text fields to display the stats of the current selected ship.
 	 * 
 	 * @author Walter Hanson
 	 */
->>>>>>> branch 'master' of https://github.com/Ekizochikku/Cleaner-AZFDC.git
 	private void setAttributes() {
 		if(currentShipName == "" || shipTypeName == null) {
 			factionTxt.setText("");

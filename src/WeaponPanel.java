@@ -342,7 +342,39 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		aux2Combo.setBounds(577, 133, 187, 25);
 		add(aux2Combo);
 		aux2Combo.setModel(new DefaultComboBoxModel<Object>(auxNames.toArray()));
-		
+		aux2Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//aux string
+				try {
+					aux2 = new AuxGear((String) aux2Combo.getSelectedItem());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				//JTextPane auxHealthTxt, firepowerTxt, antiAirTxt, torpedoTxt, aviationTxt; 
+				if(aux1 == null) {
+					//why call getters when we can get directly from list? :(
+					//especially when I have to parse the getters anyways? 
+					auxHealthTxt.setText("2: " + String.valueOf(aux2.getHealth()));
+					firepowerTxt.setText("2: " + String.valueOf(aux2.getFirepower()));
+					torpedoTxt.setText("2: " + String.valueOf(aux2.getTorpedo()));
+					antiAirTxt.setText("2: " + String.valueOf(aux2.getAA()));
+					aviationTxt.setText("2: " + String.valueOf(aux2.getAviation()));
+				} else {
+					//textFieldAuxHealth.setText("1: " + (String) auxParameters.get(1) + "   2: " + (String) auxParameters2.get(1));
+					//textFieldAuxFirepower.setText("1: " + (String) auxParameters.get(2) + "   2: " + (String) auxParameters2.get(1));
+					//txtFieldAuxTorpedo.setText("1: " + (String) auxParameters.get(3)+ "   2: " + (String) auxParameters2.get(1));
+					//textFieldAuxAA.setText("1: " + (String) auxParameters.get(4)+ "   2: " + (String) auxParameters2.get(1));
+					//textFieldAuxAviation.setText("1: " + (String) auxParameters.get(5)+ "   2: " + (String) auxParameters2.get(1));
+					auxHealthTxt.setText("1: " + String.valueOf(aux1.getHealth()) + "   2: " + String.valueOf(aux2.getHealth()));
+					firepowerTxt.setText("1: " + String.valueOf(aux1.getFirepower())+ "   2: " + String.valueOf(aux2.getFirepower()));
+					torpedoTxt.setText("1: " + String.valueOf(aux1.getTorpedo())+ "   2: " + String.valueOf(aux2.getTorpedo()) );
+					antiAirTxt.setText("1: " + String.valueOf(aux1.getAA())+ "   2: " + String.valueOf(aux2.getAA()));
+					aviationTxt.setText("1: " + String.valueOf(aux1.getAviation())+ "   2: " + String.valueOf(aux2.getAviation()));
+				}
+			}
+		});
 		
 		auxHealthTxt = new JTextPane();
 		auxHealthTxt.setEditable(false);
