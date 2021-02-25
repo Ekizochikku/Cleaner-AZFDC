@@ -429,7 +429,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	private void populateCombo(JComboBox box, ArrayList list) {
 		DefaultComboBoxModel dml= new DefaultComboBoxModel();
 		for (int i = 0; i < list.size(); i++) {
-		  dml.addElement(((Object) list.get(i)).getField());
+//		  dml.addElement(((Object) list.get(i)).getField());
 		}
 
 		box.setModel(dml);
@@ -448,11 +448,18 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	}
 	//helper method to set the action listeners for every weapon type box action
 	public void comboBoxTypeAction(MainGUI guiVariables) {
-
-			System.out.println("Hello we entered here in combo box type action! " + guiVariables.getCurrentShipName());
+			ShipFile currentShip = guiVariables.getCurrentShip();
+			System.out.println("Hello we entered here in combo box type action! " + currentShip.getShipName());
 			GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
 						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
 
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	};
 }
 	

@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EtchedBorder;
@@ -29,8 +30,7 @@ public class MainGUI extends JFrame {
 	//The current damage type being applied
 	private int currentDMGType = 0; //0 = HE, 1 = AP
 	//default type when nothing is selected
-	private String shipTypeName = "Destroyers";
-	private String currentShipName = "Akatsuki";
+	private ShipFile currentShip;
 	private String currentColorSelected;
 	private String currentWeaponType;
 	
@@ -44,6 +44,7 @@ public class MainGUI extends JFrame {
 	private String theCurrentEnemy;
 	
 	private AuxGear aux1, aux2;
+	private ArrayList<Skill> skill;
 	
 	/**
 	 * Launch the application.
@@ -87,6 +88,7 @@ public class MainGUI extends JFrame {
 		weaponPane.setOpaque(true);
 		weaponPane.setBackground(new Color(210, 210, 210));
 		
+		
 		skillPane = new SkillPanel(this);
 		skillPane.setOpaque(true);
 		skillPane.setBackground(new Color(210, 210, 210));
@@ -126,7 +128,7 @@ public class MainGUI extends JFrame {
 		skillsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(currentPanel);
-				skillPane.checkShip(currentShipName, shipTypeName);
+				skillPane.checkShip(currentShip);
 				currentPanel = skillPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
@@ -146,7 +148,7 @@ public class MainGUI extends JFrame {
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				//shipPane.sendInfo();
 				System.out.println("Entering the weapons panel");
-				System.out.println("Current Ship name is " + currentShipName);
+				System.out.println("Current Ship name is " + currentShip.getShipName());
 				
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.revalidate();
@@ -182,7 +184,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		contentPane.add(calculateButton, BorderLayout.SOUTH);
-		currentShipName = "22";
+		skill = new ArrayList();
 		
 	}
 	public int getCurrentDMGType() {
@@ -193,20 +195,12 @@ public class MainGUI extends JFrame {
 		this.currentDMGType = currentDMGType;
 	}
 
-	public String getShipTypeName() {
-		return shipTypeName;
+	public void setCurrentShip(ShipFile newShip) {
+		this.currentShip = newShip;
 	}
-
-	public void setShipTypeName(String shipTypeName) {
-		this.shipTypeName = shipTypeName;
-	}
-
-	public String getCurrentShipName() {
-		return currentShipName;
-	}
-
-	public void setCurrentShipName(String currentShipName) {
-		this.currentShipName = currentShipName;
+	
+	public ShipFile getCurrentShip() {
+		return currentShip;
 	}
 
 	public String getCurrentWeaponTypeSlot1() {
@@ -280,5 +274,14 @@ public class MainGUI extends JFrame {
 
 	public void setAux2(AuxGear aux2) {
 		this.aux2 = aux2;
+	}
+
+
+	public void setSkills(ArrayList<Skill> currentSkills) {
+		this.skill = currentSkills;
+	}
+	
+	public ArrayList<Skill> getSkills() {
+		return skill;
 	}
 }

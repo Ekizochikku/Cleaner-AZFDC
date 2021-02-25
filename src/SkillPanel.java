@@ -204,6 +204,7 @@ public class SkillPanel extends JPanel {
 		for(Skill s: currentSkills) {
 			skillNames.add(s.getSkillName());
 		}
+		gui.setSkills(currentSkills);
 		activeSkillsList.setListData(skillNames.toArray());
 	}
 	
@@ -247,33 +248,24 @@ public class SkillPanel extends JPanel {
 	 * @param theShip is the current ship being used for calculations.
 	 * @author Walter Hanson
 	 */
-	public void checkShip(String theShip, String theType) {
-		System.out.println(theShip + " " + theType);
+	public void checkShip(ShipFile activeShip) {
+//		System.out.println(theShip + " " + theType);
 		if(currentShip == null) {
-			try {
-				currentShip = new ShipFile(theShip, theType);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			currentShip = activeShip;
+
 		}
-		else if(theShip.equals(currentShip.getShipName())) {
+		else if(activeShip.getShipName().equals(currentShip.getShipName())) {
 //			System.out.println("BREAK");
 			return;
 		}
-		try {
-			currentShip = new ShipFile(theShip, theType);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		currentShip = activeShip;
 		activeSkillsList.removeAll();
 		currentSkills.clear();
 		int skill = 1;
-		System.out.println("Skill is " + currentShip.getSkill(skill));
+//		System.out.println("Skill is " + currentShip.getSkill(skill));
 		while(!currentShip.getSkill(skill).equals("NULL")) {
 			try {
-				System.out.println(currentShip.getSkill(skill));
+//				System.out.println(currentShip.getSkill(skill));
 				currentSkills.add(new Skill(currentShip.getSkill(skill)));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

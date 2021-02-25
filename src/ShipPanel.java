@@ -81,10 +81,8 @@ public class ShipPanel extends JPanel {
 		shipTypeCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
-					GUIUtility.insertNames(shipNameCBox,true, gui.getShipTypeName());
-					guiVariables.setCurrentShipName((String) shipNameCBox.getSelectedItem());
+					GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
 					currentShipName = (String) shipNameCBox.getSelectedItem();
 					
 					setAttributes();
@@ -101,7 +99,8 @@ public class ShipPanel extends JPanel {
 		});
 		
 		shipTypeName = (String) shipTypeCBox.getSelectedItem();
-		gui.setShipTypeName(shipTypeName);
+		currentShip = new ShipFile(currentShipName, shipTypeName);
+		gui.setCurrentShip(currentShip);
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
 		lblShipName.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -191,71 +190,34 @@ public class ShipPanel extends JPanel {
 		shipNameCBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//calculateButton.setEnabled(false);
+				
 				currentShipName = (String) shipNameCBox.getSelectedItem();
-				System.out.println("Changing the ship name The current ship name is: " 
-				+ guiVariables.getCurrentShipName());
-				System.out.println("Changing the ship type The current ship type is: " 
-						+ guiVariables.getShipTypeName());
-				gui.setCurrentShipName(currentShipName);
+//				System.out.println("Changing the ship name The current ship name is: " 
+//				+ guiVariables.getCurrentShipName());
+//				System.out.println("Changing the ship type The current ship type is: " 
+//						+ guiVariables.getShipTypeName());
 				try {
 					if(currentShipName != "") {
 						currentShip = new ShipFile(currentShipName, shipTypeName);
+						gui.setCurrentShip(currentShip);
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//might need to change this so that we only need action listeners 
-				//for only when the panel buttons and calculate is selected
+
 				setAttributes();
 
 			}
 		});
-		
-		
-		/*code we'll need to have in the same panel (ammo types) 
-		
-		// Group for Muse (Notes)
-		colorGroup.add(redRadio = new JRadio("Red"));
-		colorGroup.add(blueRadio = new JRadio("Blue"));
-		colorGroup.add(purpleRadio = new JRadio("Purple"));
-		
-		//Array to enable disable  group (seriously swing needs to let you interact with  groups instead of doing workarounds like this)
-		//now that I know about this might change up code later and add everything into the array
-	    colors = new JRadio[] {redRadio, blueRadio, purpleRadio};
-	    for (JRadio btn : colors) {
-	         btn.setEnabled(false);
-	         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
-	         //radio  action listener to pass in name
-	 		 btn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					currentColorSelected = btn.getText();
-					System.out.println(currentColorSelected);
-				}
-			});
-	    }
-	    
-		
-		//Music Note label
-		label = new JLabel("\u266A");
-		
-		//Tool Tips
-		label.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
-		HE.setToolTipText("HE and AP rounds are only selectable with 'Roon'");
-		AP.setToolTipText("HE and AP rounds are only selectable with 'Roon'");
-		
-		oddRadio.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
-		evenRadio.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
-		 */
-		
+		shipNameCBox.setSelectedIndex(1);
 	}
 	//method for when panel changes to weapon
 	public void sendShipInfo(MainGUI gui) {
-		gui.setCurrentShipName((String) shipNameCBox.getSelectedItem());
-		gui.setShipTypeName((String) shipTypeCBox.getSelectedItem());
+		gui.setCurrentShip(currentShip);
 		
-		shipNameCBox.setSelectedIndex(1);
 	}
+	
 	/**
 	 * Set up text fields to display the stats of the current selected ship.
 	 * 

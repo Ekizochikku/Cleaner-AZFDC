@@ -780,17 +780,18 @@ public class GUIUtility {
 			JComboBox<Object> weaponTypeCBox2,  JComboBox<Object> weaponTypeCBox3, 
 			JComboBox<Object> weaponNameSlot1, JComboBox<Object> weaponNameSlot2, JComboBox<Object> weaponNameSlot3, boolean initial) {
 		//if a 
-		if(guiVariables.getCurrentShipName() != "") {
-			System.out.println("INSIDE inserting types, the current ship name is:" + guiVariables.getCurrentShipName());
+		ShipFile currentShip = guiVariables.getCurrentShip();
+		if(currentShip.getShipName() != "") {
+			System.out.println("INSIDE inserting types, the current ship name is:" + currentShip.getShipName());
 			try {
 
-				System.out.println("The current ship name is hi " + guiVariables.getCurrentShipName());
+				System.out.println("The current ship name is hi " + currentShip.getShipName());
 
-				GUIUtility.insertType(weaponTypeCBox1, 4, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 1);
+				GUIUtility.insertType(weaponTypeCBox1, 4, currentShip.getShipType(), currentShip.getShipName(), 1);
 				guiVariables.setCurrentWeaponTypeSlot1((String) weaponTypeCBox1.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot1, false, guiVariables.getCurrentWeaponTypeSlot1());
 				
-				GUIUtility.insertType(weaponTypeCBox2, 5, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 2);
+				GUIUtility.insertType(weaponTypeCBox2, 5, currentShip.getShipType(), currentShip.getShipName(), 2);
 				guiVariables.setCurrentWeaponTypeSlot2((String) weaponTypeCBox2.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot2, false, guiVariables.getCurrentWeaponTypeSlot2());
 				/*
