@@ -45,6 +45,7 @@ public class MainGUI extends JFrame {
 	
 	private AuxGear aux1, aux2;
 	private ArrayList<Skill> skill;
+	private String shipType;
 	
 	/**
 	 * Launch the application.
@@ -83,7 +84,8 @@ public class MainGUI extends JFrame {
 		shipPane.setOpaque(true);
 		shipPane.setBackground(new Color(210, 210, 210));
 		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
+		currentShip = new ShipFile("22", "Destroyers");
+		shipType = "Destroyers";
 		weaponPane = new WeaponPanel(this);
 		weaponPane.setOpaque(true);
 		weaponPane.setBackground(new Color(210, 210, 210));
@@ -197,8 +199,52 @@ public class MainGUI extends JFrame {
 
 	public void setCurrentShip(ShipFile newShip) {
 		this.currentShip = newShip;
+		this.shipType = convertType(newShip.getShipType());
 	}
 	
+	private String convertType(String shipType) {
+		String type = "";
+		switch (shipType) {
+		case "DD":
+			type = "Destroyers";
+			break;
+		case "CL":
+			type = "Light Cruisers";
+			break;
+		case "CA":
+			type = "Heavy Cruisers";
+			break;
+		case "LC":
+			type = "Large Cruisers";
+			break;
+		case "BC":
+			type = "Battlecruisers";
+			break;
+		case "BS":
+			type = "Battleships";
+			break;
+		case "BBV":
+			type = "Aviation Battleships";
+			break;
+		case "Monitor":
+			type = "Monitors";
+			break;
+		case "CVL":
+			type = "Light Aircraft Carriers";
+			break;
+		case "CV":
+			type = "Aircraft Carriers";
+			break;
+		case "Sub":
+			type = "Submarines";
+			break;
+		default:
+			break;
+	}
+		return type;
+	}
+
+
 	public ShipFile getCurrentShip() {
 		return currentShip;
 	}
@@ -283,5 +329,10 @@ public class MainGUI extends JFrame {
 	
 	public ArrayList<Skill> getSkills() {
 		return skill;
+	}
+
+
+	public String getShipType() {
+		return shipType;
 	}
 }

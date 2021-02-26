@@ -265,7 +265,7 @@ public class SkillPanel extends JPanel {
 //		System.out.println("Skill is " + currentShip.getSkill(skill));
 		while(!currentShip.getSkill(skill).equals("NULL")) {
 			try {
-//				System.out.println(currentShip.getSkill(skill));
+				System.out.println(currentShip.getSkill(skill));
 				currentSkills.add(new Skill(currentShip.getSkill(skill)));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

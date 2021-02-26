@@ -787,11 +787,11 @@ public class GUIUtility {
 
 				System.out.println("The current ship name is hi " + currentShip.getShipName());
 
-				GUIUtility.insertType(weaponTypeCBox1, 4, currentShip.getShipType(), currentShip.getShipName(), 1);
+				GUIUtility.insertType(weaponTypeCBox1, 4, guiVariables.getShipType(), currentShip.getShipName(), 1);
 				guiVariables.setCurrentWeaponTypeSlot1((String) weaponTypeCBox1.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot1, false, guiVariables.getCurrentWeaponTypeSlot1());
 				
-				GUIUtility.insertType(weaponTypeCBox2, 5, currentShip.getShipType(), currentShip.getShipName(), 2);
+				GUIUtility.insertType(weaponTypeCBox2, 5, guiVariables.getShipType(), currentShip.getShipName(), 2);
 				guiVariables.setCurrentWeaponTypeSlot2((String) weaponTypeCBox2.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot2, false, guiVariables.getCurrentWeaponTypeSlot2());
 				/*

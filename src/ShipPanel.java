@@ -99,8 +99,6 @@ public class ShipPanel extends JPanel {
 		});
 		
 		shipTypeName = (String) shipTypeCBox.getSelectedItem();
-		currentShip = new ShipFile(currentShipName, shipTypeName);
-		gui.setCurrentShip(currentShip);
 				
 		JLabel lblShipName = new JLabel("Ship Name:");
 		lblShipName.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -211,6 +209,8 @@ public class ShipPanel extends JPanel {
 			}
 		});
 		shipNameCBox.setSelectedIndex(1);
+		currentShip = new ShipFile(currentShipName, shipTypeName);
+		gui.setCurrentShip(currentShip);
 	}
 	//method for when panel changes to weapon
 	public void sendShipInfo(MainGUI gui) {
