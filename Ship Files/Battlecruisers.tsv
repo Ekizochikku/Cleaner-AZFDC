@@ -12,4 +12,4 @@ Little Renown	IJN	Renown	BC	0	0	0	1.35	1.5	0.7	6318	344	0	303	Knight's Shooting 
 Renown	HMS	Renown	BC	0	0	0	1.35	1.5	0.7	6207	376	0	276	Final Glory	NULL	NULL	NULL	NULL
 Repulse	HMS	Renown	BC	0	0	0	1.35	1.5	0.7	6032	354	0	268	Z's Counterattack	NULL	NULL	NULL	NULL
 Gneisenau	KMS	Scharnhorst	BC	0	2	0	1.35	1.5	0.7	7455	366	154	248	Battle Buster	Torpedo Launch	NULL	NULL	NULL
-Scharnhorst	HMS	Scharnhorst	BC	0	2	0	1.35	1.5	0.7	7455	366	154	248	Sniper	Torpedo Launch	NULL	NULL	NULL
+Scharnhorst	KMS	Scharnhorst	BC	0	2	0	1.35	1.5	0.7	7455	366	154	248	Sniper	Torpedo Launch	NULL	NULL	NULL

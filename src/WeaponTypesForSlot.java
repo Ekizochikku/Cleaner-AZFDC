@@ -311,8 +311,12 @@ public class WeaponTypesForSlot {
 			case 1:
 				weaponType = "Light Cruiser Guns";
 				break;
-			case 3:
+			case 2:
 				weaponType = "Destroyer Guns/Light Cruiser Guns";
+				break;
+			case 3:
+				weaponType = "Torpedos";
+				break;
 			default:
 				break;
 		}
