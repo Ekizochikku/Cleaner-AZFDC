@@ -33,13 +33,12 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	
 	//making auxgear here aswell and set it on the main gui one at the end since too lazy to write the long chain of getters and setters
 	AuxGear aux1, aux2;
-	
+	MainGUI guiVariables;
 	GUIUtility guiU;
 	public WeaponPanel(MainGUI frame, JComboBox<Object> weaponName1Combo, JComboBox<Object> weaponName2Combo,
 			JComboBox<Object> weaponName3Combo, JComboBox<Object> weaponType1Combo, JComboBox<Object> weaponType2Combo,
 			JComboBox<Object> weaponType3Combo) {
 		super();
-
 		this.weaponName1Combo = weaponName1Combo;
 		this.weaponName2Combo = weaponName2Combo;
 		this.weaponName3Combo = weaponName3Combo;
@@ -51,7 +50,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 	public WeaponPanel(MainGUI guiVairables) throws FileNotFoundException, IOException {
 		setLayout(null);
-		
+		this.guiVariables = guiVairables;
 		JLabel weaponType1Label = new JLabel("Weapon Type Slot 1:");
 		weaponType1Label.setBounds(10, 11, 132, 25);
 		add(weaponType1Label);
@@ -462,5 +461,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	};
+	
+	public void onSwitch() {
+		GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+	}
+	
 }
 	

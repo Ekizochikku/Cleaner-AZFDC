@@ -143,9 +143,7 @@ public class MainGUI extends JFrame {
 		btnWeaponsgear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.remove(currentPanel);
-				weaponPane.revalidate();
-				weaponPane.repaint();
-
+				weaponPane.onSwitch();
 				currentPanel = weaponPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				//shipPane.sendInfo();
