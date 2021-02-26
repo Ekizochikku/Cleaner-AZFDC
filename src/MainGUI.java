@@ -333,4 +333,8 @@ public class MainGUI extends JFrame {
 	public String getShipType() {
 		return shipType;
 	}
+	
+	public void setShipType(String newType) {
+		shipType = newType;
+	}
 }

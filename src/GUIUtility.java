@@ -408,6 +408,7 @@ public class GUIUtility {
 	 */
 	public String getGetSpecificWeaponParam(String shiptype, String shipname, int weaponSlot) throws FileNotFoundException, IOException {
 		String theParams = "";
+		System.out.println("Get Specific Type = " + shiptype);
 		String theFile = getShipTypeFile(shiptype);
 		BufferedReader br = new BufferedReader(new FileReader(theFile));
 		String line = br.readLine(); //Skip Header Line
@@ -787,7 +788,7 @@ public class GUIUtility {
 			try {
 
 				System.out.println("The current ship name is hi " + currentShip.getShipName());
-
+				System.out.println("The current ship tpe is hi " + guiVariables.getShipType());
 				GUIUtility.insertType(weaponTypeCBox1, 4, guiVariables.getShipType(), currentShip.getShipName(), 1);
 				guiVariables.setCurrentWeaponTypeSlot1((String) weaponTypeCBox1.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot1, false, guiVariables.getCurrentWeaponTypeSlot1());
