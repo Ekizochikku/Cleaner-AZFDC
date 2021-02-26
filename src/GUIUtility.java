@@ -89,7 +89,7 @@ public class GUIUtility {
 				fileName = "./Weapons/Destroyer Guns.tsv";
 				break;
 			case "Light Cruiser Guns":
-				fileName = "./Weapons/Light Cruisers Guns.tsv";
+				fileName = "./Weapons/Light Cruiser Guns.tsv";
 				break;
 			case "Heavy Cruiser Guns":
 				fileName = "./Weapons/Heavy Cruiser Guns.tsv";

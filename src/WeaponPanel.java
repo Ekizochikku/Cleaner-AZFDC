@@ -22,6 +22,12 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	JComboBox<Object> weaponName1Combo, weaponName2Combo, weaponName3Combo, 
 	weaponType1Combo, weaponType2Combo, weaponType3Combo, aux1Combo, aux2Combo;
 	
+	//Bomb/plane boxes 
+	JTextPane bomb1Plane1Text, bomb1Plane2Text, bomb1Plane3Text, 
+	bomb2Plane1Text, bomb2Plane2Text, bomb2Plane3Text,
+	torpedoPlane1Text, torpedoPlane2Text, torpedoPlane3Text;
+	
+	
 	//Auxiliary TextPanes
 	JTextPane auxHealthTxt, firepowerTxt, antiAirTxt, torpedoTxt, aviationTxt; 
 	
@@ -146,55 +152,55 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		lblPlane_2.setBounds(334, 258, 75, 25);
 		add(lblPlane_2);
 		
-		JTextPane bomb1Plane1Text = new JTextPane();
+		bomb1Plane1Text = new JTextPane();
 		bomb1Plane1Text.setEditable(false);
 		bomb1Plane1Text.setText("0");
 		bomb1Plane1Text.setBounds(177, 286, 49, 25);
 		add(bomb1Plane1Text);
 		
-		JTextPane bomb1Plane2Text = new JTextPane();
+		bomb1Plane2Text = new JTextPane();
 		bomb1Plane2Text.setEditable(false);
 		bomb1Plane2Text.setText("0");
 		bomb1Plane2Text.setBounds(262, 286, 49, 25);
 		add(bomb1Plane2Text);
 		
-		JTextPane bomb1Plane3Text = new JTextPane();
+		bomb1Plane3Text = new JTextPane();
 		bomb1Plane3Text.setEditable(false);
 		bomb1Plane3Text.setText("0");
 		bomb1Plane3Text.setBounds(347, 286, 49, 25);
 		add(bomb1Plane3Text);
 		
-		JTextPane bomb2Plane1Text = new JTextPane();
+		bomb2Plane1Text = new JTextPane();
 		bomb2Plane1Text.setEditable(false);
 		bomb2Plane1Text.setText("0");
 		bomb2Plane1Text.setBounds(177, 326, 49, 25);
 		add(bomb2Plane1Text);
 		
-		JTextPane bomb2Plane2Text = new JTextPane();
+		bomb2Plane2Text = new JTextPane();
 		bomb2Plane2Text.setEditable(false);
 		bomb2Plane2Text.setText("0");
 		bomb2Plane2Text.setBounds(262, 326, 49, 25);
 		add(bomb2Plane2Text);
 		
-		JTextPane bomb2Plane3Text = new JTextPane();
+		bomb2Plane3Text = new JTextPane();
 		bomb2Plane3Text.setEditable(false);
 		bomb2Plane3Text.setText("0");
 		bomb2Plane3Text.setBounds(347, 326, 49, 25);
 		add(bomb2Plane3Text);
 		
-		JTextPane torpedoPlane1Text = new JTextPane();
+		torpedoPlane1Text = new JTextPane();
 		torpedoPlane1Text.setEditable(false);
 		torpedoPlane1Text.setText("0");
 		torpedoPlane1Text.setBounds(177, 365, 49, 25);
 		add(torpedoPlane1Text);
 		
-		JTextPane torpedoPlane2Text = new JTextPane();
+		torpedoPlane2Text = new JTextPane();
 		torpedoPlane2Text.setEditable(false);
 		torpedoPlane2Text.setText("0");
 		torpedoPlane2Text.setBounds(262, 365, 49, 25);
 		add(torpedoPlane2Text);
 		
-		JTextPane torpedoPlane3Text = new JTextPane();
+		torpedoPlane3Text = new JTextPane();
 		torpedoPlane3Text.setEditable(false);
 		torpedoPlane3Text.setText("0");
 		torpedoPlane3Text.setBounds(347, 365, 49, 25);
@@ -323,11 +329,6 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					antiAirTxt.setText("1: " + String.valueOf(aux1.getAA()));
 					aviationTxt.setText("1: " + String.valueOf(aux1.getAviation()));
 				} else {
-					//textFieldAuxHealth.setText("1: " + (String) auxParameters.get(1) + "   2: " + (String) auxParameters2.get(1));
-					//textFieldAuxFirepower.setText("1: " + (String) auxParameters.get(2) + "   2: " + (String) auxParameters2.get(1));
-					//txtFieldAuxTorpedo.setText("1: " + (String) auxParameters.get(3)+ "   2: " + (String) auxParameters2.get(1));
-					//textFieldAuxAA.setText("1: " + (String) auxParameters.get(4)+ "   2: " + (String) auxParameters2.get(1));
-					//textFieldAuxAviation.setText("1: " + (String) auxParameters.get(5)+ "   2: " + (String) auxParameters2.get(1));
 					auxHealthTxt.setText("1: " + String.valueOf(aux1.getHealth()) + "   2: " + String.valueOf(aux2.getHealth()));
 					firepowerTxt.setText("1: " + String.valueOf(aux1.getFirepower())+ "   2: " + String.valueOf(aux2.getFirepower()));
 					torpedoTxt.setText("1: " + String.valueOf(aux1.getTorpedo())+ "   2: " + String.valueOf(aux2.getTorpedo()) );
@@ -362,11 +363,6 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					antiAirTxt.setText("2: " + String.valueOf(aux2.getAA()));
 					aviationTxt.setText("2: " + String.valueOf(aux2.getAviation()));
 				} else {
-					//textFieldAuxHealth.setText("1: " + (String) auxParameters.get(1) + "   2: " + (String) auxParameters2.get(1));
-					//textFieldAuxFirepower.setText("1: " + (String) auxParameters.get(2) + "   2: " + (String) auxParameters2.get(1));
-					//txtFieldAuxTorpedo.setText("1: " + (String) auxParameters.get(3)+ "   2: " + (String) auxParameters2.get(1));
-					//textFieldAuxAA.setText("1: " + (String) auxParameters.get(4)+ "   2: " + (String) auxParameters2.get(1));
-					//textFieldAuxAviation.setText("1: " + (String) auxParameters.get(5)+ "   2: " + (String) auxParameters2.get(1));
 					auxHealthTxt.setText("1: " + String.valueOf(aux1.getHealth()) + "   2: " + String.valueOf(aux2.getHealth()));
 					firepowerTxt.setText("1: " + String.valueOf(aux1.getFirepower())+ "   2: " + String.valueOf(aux2.getFirepower()));
 					torpedoTxt.setText("1: " + String.valueOf(aux1.getTorpedo())+ "   2: " + String.valueOf(aux2.getTorpedo()) );
@@ -426,6 +422,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		}
 	});
 }*/
+	public void sendInfo() throws FileNotFoundException, IOException {
+		MainGUI guiVairables = new MainGUI();
+		GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+	}
 	private void populateCombo(JComboBox box, ArrayList list) {
 		DefaultComboBoxModel dml= new DefaultComboBoxModel();
 		for (int i = 0; i < list.size(); i++) {
