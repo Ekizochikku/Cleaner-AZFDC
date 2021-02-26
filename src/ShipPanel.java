@@ -84,6 +84,7 @@ public class ShipPanel extends JPanel {
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
 					GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
 					currentShipName = (String) shipNameCBox.getSelectedItem();
+					gui.setShipType(shipTypeName);
 					
 					setAttributes();
 				} catch (FileNotFoundException e) {
@@ -198,6 +199,7 @@ public class ShipPanel extends JPanel {
 					if(currentShipName != "") {
 						currentShip = new ShipFile(currentShipName, shipTypeName);
 						gui.setCurrentShip(currentShip);
+						gui.setShipType(shipTypeName);
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
