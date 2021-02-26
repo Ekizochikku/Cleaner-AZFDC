@@ -83,6 +83,7 @@ public class GUIUtility {
 	 */
 	//Might break here on stuff wihtout the name guns
 	public String getWeaponTypeFile(String weaponType) {
+		System.out.println("the weapon type is: "+  weaponType);
 		String fileName = "";
 		switch (weaponType) {
 			case "Destroyer Guns":
