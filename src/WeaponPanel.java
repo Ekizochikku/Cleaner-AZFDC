@@ -48,6 +48,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	}
 
 
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public WeaponPanel(MainGUI guiVairables) throws FileNotFoundException, IOException {
 		setLayout(null);
 		this.guiVariables = guiVairables;
@@ -160,55 +163,46 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(lblPlane_2);
 		
 		bomb1Plane1Text = new JTextPane();
-		bomb1Plane1Text.setEditable(false);
 		bomb1Plane1Text.setText("0");
 		bomb1Plane1Text.setBounds(177, 286, 49, 25);
 		add(bomb1Plane1Text);
 		
 		bomb1Plane2Text = new JTextPane();
-		bomb1Plane2Text.setEditable(false);
 		bomb1Plane2Text.setText("0");
 		bomb1Plane2Text.setBounds(262, 286, 49, 25);
 		add(bomb1Plane2Text);
 		
 		bomb1Plane3Text = new JTextPane();
-		bomb1Plane3Text.setEditable(false);
 		bomb1Plane3Text.setText("0");
 		bomb1Plane3Text.setBounds(347, 286, 49, 25);
 		add(bomb1Plane3Text);
 		
 		bomb2Plane1Text = new JTextPane();
-		bomb2Plane1Text.setEditable(false);
 		bomb2Plane1Text.setText("0");
 		bomb2Plane1Text.setBounds(177, 326, 49, 25);
 		add(bomb2Plane1Text);
 		
 		bomb2Plane2Text = new JTextPane();
-		bomb2Plane2Text.setEditable(false);
 		bomb2Plane2Text.setText("0");
 		bomb2Plane2Text.setBounds(262, 326, 49, 25);
 		add(bomb2Plane2Text);
 		
 		bomb2Plane3Text = new JTextPane();
-		bomb2Plane3Text.setEditable(false);
 		bomb2Plane3Text.setText("0");
 		bomb2Plane3Text.setBounds(347, 326, 49, 25);
 		add(bomb2Plane3Text);
 		
 		torpedoPlane1Text = new JTextPane();
-		torpedoPlane1Text.setEditable(false);
 		torpedoPlane1Text.setText("0");
 		torpedoPlane1Text.setBounds(177, 365, 49, 25);
 		add(torpedoPlane1Text);
 		
 		torpedoPlane2Text = new JTextPane();
-		torpedoPlane2Text.setEditable(false);
 		torpedoPlane2Text.setText("0");
 		torpedoPlane2Text.setBounds(262, 365, 49, 25);
 		add(torpedoPlane2Text);
 		
 		torpedoPlane3Text = new JTextPane();
-		torpedoPlane3Text.setEditable(false);
 		torpedoPlane3Text.setText("0");
 		torpedoPlane3Text.setBounds(347, 365, 49, 25);
 		add(torpedoPlane3Text);
