@@ -111,6 +111,14 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		weaponType3Combo = new JComboBox<Object>();
 		weaponType3Combo.setBounds(10, 203, 161, 25);
 		add(weaponType3Combo);
+		weaponType3Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+
+			}
+	});
+		
 		
 		weaponName3Combo = new JComboBox<Object>();
 		weaponName3Combo.setBounds(181, 204, 168, 23);
@@ -334,6 +342,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					antiAirTxt.setText("1: " + String.valueOf(aux1.getAA())+ "   2: " + String.valueOf(aux2.getAA()));
 					aviationTxt.setText("1: " + String.valueOf(aux1.getAviation())+ "   2: " + String.valueOf(aux2.getAviation()));
 				}
+				guiVariables.setAux1(aux1);
+
 			}
 		});
 
@@ -368,6 +378,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					antiAirTxt.setText("1: " + String.valueOf(aux1.getAA())+ "   2: " + String.valueOf(aux2.getAA()));
 					aviationTxt.setText("1: " + String.valueOf(aux1.getAviation())+ "   2: " + String.valueOf(aux2.getAviation()));
 				}
+				guiVariables.setAux2(aux2);
 			}
 		});
 		
@@ -421,11 +432,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		}
 	});
 }*/
-	public void sendInfo() throws FileNotFoundException, IOException {
-		MainGUI guiVairables = new MainGUI();
-		GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
-				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
-	}
+
 	private void populateCombo(JComboBox box, ArrayList list) {
 		DefaultComboBoxModel dml= new DefaultComboBoxModel();
 		for (int i = 0; i < list.size(); i++) {
@@ -455,12 +462,6 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 	}
 
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	};
 	
 	public void onSwitch() {
 		GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 

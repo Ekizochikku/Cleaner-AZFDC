@@ -281,6 +281,7 @@ public class GUIUtility {
 	 * @return theList
 	 */
 	public static ArrayList<String> getEntityNames(String theFile) throws FileNotFoundException, IOException {
+		System.out.println("THE FILE IS:" + theFile);
 		ArrayList<String> theList = new ArrayList<String>();
 		BufferedReader br = new BufferedReader(new FileReader(theFile));
 		String line = br.readLine(); //Skip the Header Line
@@ -403,7 +404,7 @@ public class GUIUtility {
 	 * Basically Brains code except you return i == 4 or 5
 	 * Will cause errors on certain ship types easy to fix but right now i'm lazy
 	 * Can change to make it better by changing the third parameter to the name of the parameter you want but again i'm lazy right now
-	 * @param weaponSlot always either 4 or 5 to get the weaponNum
+	 * @param weaponSlot always either 4 or 5 to get the weaponNum (slot 1 or 2)
 	 * @return theParams;
 	 */
 	public String getGetSpecificWeaponParam(String shiptype, String shipname, int weaponSlot) throws FileNotFoundException, IOException {
@@ -538,15 +539,40 @@ public class GUIUtility {
 		String slottedWep = "";
 		System.out.println("The ship type is:" + shipType);
 		switch (shipType) {
-			case "Light Aircraft Carriers":
-				slottedWep = weaponType.slotThreeCarriers(weaponNumber);
-				break;
-			case "Aircraft Carriers":
-				slottedWep = weaponType.slotThreeCarriers(weaponNumber);
-				break;
-			case "Submarines":
-				slottedWep = weaponType.slotThreeSubmarines(weaponNumber);
-				break;
+		//only aviation battleships, carriers and subs were allowed to use slot 3 
+		case "Light Aircraft Carriers":
+			slottedWep = weaponType.slotThreeCarriers(weaponNumber);
+			break;
+		case "Aircraft Carriers":
+			slottedWep = weaponType.slotThreeCarriers(weaponNumber);
+			break;
+		case "Submarines":
+			slottedWep = weaponType.slotThreeSubmarines(weaponNumber);
+			break;
+		case "Destroyers":
+			slottedWep = weaponType.slotThreeDestroyers(weaponNumber);
+			break;
+		case "Light Cruisers":
+			slottedWep = weaponType.slotThreeLightCruisers(weaponNumber);
+			break;
+		case "Heavy Cruisers":
+			slottedWep = weaponType.slotThreeHeavyCruisers(weaponNumber);
+			break;
+		case "Large Cruisers":
+			slottedWep = weaponType.slotThreeLargeCruisers(weaponNumber);
+			break;
+		case "Battlecruisers":
+			slottedWep = weaponType.slotThreeBattlecruisers(weaponNumber);
+			break;
+		case "Battleships":
+			slottedWep =  weaponType.slotThreeBattleships(weaponNumber);
+			break;
+		case "Aviation Battleships":
+			slottedWep = weaponType.slotThreeAviationBattleShips(weaponNumber);
+			break;
+		case "Monitors":
+			slottedWep = weaponType.slotThreeMonitors(weaponNumber);
+			break;
 			default:
 				break;
 		}
@@ -613,7 +639,8 @@ public class GUIUtility {
 	 * Method to insert the ship or weapon type into the appropriate combo box. 
 	 * @author Kevin Nguyen
 	 * @param comboBox the combo box
-	 * @param weaponParamNum the weapon parameter number to get the appropriate type 
+	 * @param weaponParamNum the weapon parameter number to get the appropriate type. 
+	 * This is the slot from the tsv file (4=1, 5 = 2, 6 = 3)
 	 * @param shipType 
 	 * @param shipName
 	 * @param firstSlot slot check
@@ -796,12 +823,12 @@ public class GUIUtility {
 				GUIUtility.insertType(weaponTypeCBox2, 5, guiVariables.getShipType(), currentShip.getShipName(), 2);
 				guiVariables.setCurrentWeaponTypeSlot2((String) weaponTypeCBox2.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot2, false, guiVariables.getCurrentWeaponTypeSlot2());
-				/*
 				
-				GUIUtility.insertType(weaponTypeCBox3, 6, guiVariables.getShipTypeName(), guiVariables.getCurrentShipName(), 3);
+				
+				GUIUtility.insertType(weaponTypeCBox3, 6, guiVariables.getShipType(), currentShip.getShipName(), 3);
 				guiVariables.setCurrentWeaponTypeSlot3((String) weaponTypeCBox3.getSelectedItem());
 				GUIUtility.insertNames(weaponNameSlot3, false, guiVariables.getCurrentWeaponTypeSlot3());
-				*/
+				
 													
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
