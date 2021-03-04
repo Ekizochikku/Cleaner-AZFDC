@@ -5,6 +5,8 @@ public class FrontlineCalculations {
 	final private ArrayList<String> cannonTypes = new ArrayList<String>(Arrays.asList("Destroyer Guns", "Light Cruiser Guns", "Heavy Cruiser Guns", "Large Cruiser Guns", "Battleship Guns"));
 	final private ArrayList<String> specialShips = new ArrayList<String>(Arrays.asList("Bearn", "Eagle", "Zeppy"));
 	final private ArrayList<String> IJNGuns= new ArrayList<String>(Arrays.asList("Single 100mm (Type 88)", "Single 120mm (10th Year Type)", "Single 120mm (11th Year Type)", "Single 120mm (Type 3)", "Single 127mm (Type 3 Mod B)", "Twin 100mm (Type 98)", "Twin 127mm (Type 3 Mod B)", "Twin 127mm (Type 3)"));
+	final private ArrayList<String> KMSGuns = new ArrayList<String>(Arrays.asList("Single 127mm (SK C/34)", "Twin 127mm (KM40)", "Twin 128mm (SK C/41)", "Twin 128mm/45 SK C/41", "Single 150mm (SK C/28)", "Single 150mm (TbtsK C/36)", "Triple 150mm (SK C/25)", "Twin 150mm (SK C/28)", "Twin 150mm (TbtsK C/36)", "Triple 203mm (SK C/34 Prototype)", "Triple 283mm (SK C/28)", "Twin 203mm (SK C/34)", "Triple 305mm (SK C/39 Prototype)", "Twin 380mm (SK C/34)", "Twin 406mm (SK C/34 Prototype)"));
+	final private ArrayList<String> SNGuns = new ArrayList<String>(Arrays.asList("Single 130mm (B13 Pattern 1936)", "Twin 130mm (B-2LM)", "Twin 152mm (Pattern 1892)", "Triple 152mm (MK-5)", "Triple 305mm (Pattern 1907)", "Triple 406mm (MK-1)"));
 	final private ArrayList<String> massachusettsGunException = new ArrayList<String>(Arrays.asList("Single 127mm (5\"/38 Mk 21)", "Single 127mm (5\"/38 Mk 30)", "Single 76mm (3\"/50 caliber gun)", "Twin 127mm (5\"/38 Mk 32)", "Twin 127mm (5\"/38 Mk 38)"));
 	final private ArrayList<String> vanguardFleet = new ArrayList<String>(Arrays.asList("Destroyers", "Light Cruisers", "Heavy Cruisers", "Large Cruisers"));
 	final private ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruisers", "Battleships", "Light Aircraft Carriers", "Aircraft Carriers", "Monitors", "Aviation Battleships"));
@@ -113,7 +115,7 @@ public class FrontlineCalculations {
 			dmgNatStat = factionDamage(enemy, skillList);
 			
 			//Damage to Type
-			dmgTypeStat = typeDamage(enemy, skillList, skillNames);
+			dmgTypeStat = typeDamage(mainWeapon, enemy, skillList, skillNames, shipSlot);
 			
 			//Ammo Type Buff
 			if ((ammoType == 0) || (ammoType == 1)) {
@@ -655,6 +657,30 @@ public class FrontlineCalculations {
 				ratio += 0.12;
 			}
 			
+			if (skillNames.contains("Memorial of Ice and Iron")) {
+				CommonWeapon tempWeapon = null;
+				if (shipSlot == 1)  {
+					tempWeapon = mainWeapon;
+				} else if (shipSlot == 2){
+					tempWeapon = secondWeapon;
+				}
+				boolean ratioAdded = false;
+				for (int i = 0; i < KMSGuns.size(); i++) {
+					if (tempWeapon.getWepName().contains(KMSGuns.get(i))) {
+						ratio += 0.12;
+						ratioAdded = true;
+						break;
+					}
+				}
+				if (!ratioAdded) {
+					for (int i = 0; i < SNGuns.size(); i++) {
+						if (tempWeapon.getWepName().contains(SNGuns.get(i))) {
+							ratio += 0.12;
+							break;
+						}
+					}
+				}
+			}
 		}
 		
 		// Skill exceptions that will boost overall damage and other special requirements.
@@ -720,7 +746,7 @@ public class FrontlineCalculations {
 	 * @param skillNames
 	 * @return
 	 */
-	public double typeDamage(Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames) {
+	public double typeDamage(CommonWeapon mainWeapon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames, int shipSlot) {
 		double dmg = 0;
 		String type = enemy.getShipType();
 		dmg = getDmgToTypes(skills, type, 0);
@@ -740,7 +766,12 @@ public class FrontlineCalculations {
 				dmg += 0.25;
 			}
 		}
-		// Ignore Monitors for now
+		
+		if (shipSlot == 1 && skillNames.contains("Capricious Firing") && mainWeapon.getAmmoType().contains("HE") &&
+			(enemy.getShipType().equals("BB") || enemy.getShipType().equals("BC"))) {
+			dmg += 0.10;
+		}
+		
 		return dmg;
 	}
 	
