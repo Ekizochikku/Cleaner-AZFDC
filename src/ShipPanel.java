@@ -206,6 +206,24 @@ public class ShipPanel extends JPanel {
 					e.printStackTrace();
 				}
 
+				int skill = 1;
+//				System.out.println("Skill is " + currentShip.getSkill(skill));
+//							******TESTING PURPOSE**************
+//				while(!currentShip.getSkill(skill).equals("NULL")) {
+//					System.out.println(currentShip.getShipName() + ": " + currentShip.getSkill(skill));
+//					try {
+//						if(currentShip.getSkill(skill).equals("All Out Assault, Open Fire!")) {
+//							skill++;
+//							continue;
+//						}
+//						new Skill(currentShip.getSkill(skill));
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					skill++;
+//				}
+				
 				setAttributes();
 
 			}

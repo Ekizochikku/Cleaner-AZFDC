@@ -26,7 +26,7 @@ Prince of Wales	HMS	King George V	BB	0	2	0	1.35	2	1	7967	422	0	230	Royal Allianc
 Super Gamer Kizuna Ai	KizunaAi	KizunaAI	BB	0	2	0	1.3	2	1	7648	409	212	199	Super Aiming Adjustments	Coercion Assistance Mode	NULL	NULL	NULL
 Littorio	RN	Littorio	BB	0	2	0	1.3	2	1	8367	421	0	243	Rosa Bombardamento	Sardegnian Discipline	NULL	NULL	NULL
 Mikasa	IJN	Mikasa	BB	0	2	0	1.3	1.5	1.5	5372	334	0	172	Reborn Combined Fleet Flagship	T-Cross Formation	NULL	NULL	NULL
-Monarch (Retrofit)	HMS	Monarch	BB	0	2	0	1.45	2.1	1.1	7967	423	0	230	Monarch's Coercion+	Agaisnt the Current+	Siren Killer	NULL	NULL
+Monarch (Retrofit)	HMS	Monarch	BB	0	2	0	1.45	2.1	1.1	7967	423	0	230	Monarch's Coercion	Agaisnt the Current+	Siren Killer	NULL	NULL
 Mutsu	IJN	Nagato	BB	0	2	0	1.3	2.1	1	7896	409	0	185	Big Seven: Sakura	NULL	NULL	NULL	NULL
 Nagato	IJN	Nagato	BB	0	2	0	1.35	2.1	1	8117	719	0	182	4th Combined Fleet Flagship	Big Seven: Sakura	NULL	NULL	NULL
 Nelson	HMS	Nelson	BB	0	2	0	1.3	2	1	7654	407	0	219	Big Seven	NULL	NULL	NULL	NULL
@@ -51,5 +51,5 @@ Sovetskaya Belorussiya	SN	Sovetsky Soyuz	BB	0	2	0	1.35	2	1.1	8262	429	0	215	Curt
 Sovetskaya	SN	Sovetsky Soyuz	BB	0	2	0	1.35	2	1	8324	428	0	248	Lod Obstrel	Warcry of Unity	NULL	NULL	NULL
 California	USS	Tennessee	BB	0	0	0	1.3	2	1	7385	391	0	211	Focused Assault	NULL	NULL	NULL	NULL
 Tennessee	USS	Tennessee	BB	0	0	0	1.3	2	1	7385	391	0	211	Coercion	NULL	NULL	NULL	NULL
-Kaga (Battleship)	IJN	Tosa	BB	0	2	0	1.35	2	0.9	8303	423	217	187	Fight to Win!	Conquer to Loot!	NULL	NULL	NULL
+Kaga (Battleship)	IJN	Tosa	BB	0	2	0	1.35	2	0.9	8303	423	217	187	Fight To Win!	Conquer to Loot!	NULL	NULL	NULL
 Tosa	IJN	Tosa	BB	0	2	0	1.35	2	0.9	8056	423	217	199	Accomplish Any Feat!	Crush Any Contender!	NULL	NULL	NULL

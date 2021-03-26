@@ -7,6 +7,7 @@ Harutsuki	IJN	Akizuki	DD	0	0	0	1	1.35	1.35	2445	74	363	194	Aerial Support	All Ou
 Niizuki	IJN	Akizuki	DD	0	0	0	1	1.35	1.35	2445	76	370	193	Reload Order	Anti-Air Mode	All Out Assault	NULL	NULL
 Suzutsuki	IJN	Akizuki	DD	0	0	0	1.1	1.35	1.45	2538	81	384	205	Suzutsuki, Breaking Through!	Suzutsuki, Causing Confusion!	All Out Assault	NULL	NULL
 Yoizuki	IJN	Akizuki	DD	0	0	0	1	1.35	1.35	2445	74	363	199	Aerial Support	All Out Assault	NULL	NULL	NULL
+Vincenzo Gioberti	RN	Alfredo Oriani	DD	0	0	0	1.25	1.3	1.05	1846	113	154	154	Ontological Rudder	Protologia of Illumination	All Out Assault	NULL	NULL
 Cooper	USS	Allen M. Summer	DD	0	0	0	1.25	1.35	1.3	2190	126	360	200	Black Cat Cyclone	All Out Assault	NULL	NULL	NULL
 An Shan	ROC	Anshan	DD	0	0	0	1.55	1	1.05	2277	131	228	172	An Shan Name Ship	All Out Assault	NULL	NULL	NULL
 Chang Chun	ROC	Anshan	DD	0	0	0	1.55	1	1.05	2277	131	228	172	Mutual Assistance	All Out Assault	NULL	NULL	NULL
@@ -83,7 +84,7 @@ Yuugure (Retrofit)	IJN	Hatsuharu	DD	0	0	0	0.75	1.5	0.75	1619	59	478	145	Carrier 
 Natsuiro Matsuri	Hololive	Hololive	DD	0	0	0	0.75	1.25	1.05	1763	70	468	165	The Summer Flower We Watch	The Third Day of Flirting	NULL	NULL	NULL
 Shirakami Fubuki	Hololive	Hololive	DD	0	0	0	0.85	1.5	0.8	1830	76	484	178	Mach 2.42 Blossom	Two-Faced Fox	NULL	NULL	NULL
 Icarus	HMS	I	DD	0	0	0	1.2	1.45	1	1669	79	376	157	All Out Assault, Open Fire!	Torpedo Mode? ...Sure!	All Out Assault I	NULL	NULL
-Javelin (Retrofit)	HMS	J	DD	0	0	0	1.25	1.45	1.05	1746	90	429	160	Javelin Raid	Assault Mode 	All Out Assault	NULL	NULL
+Javelin (Retrofit)	HMS	J	DD	0	0	0	1.25	1.45	1.05	1746	90	429	160	Javelin Raid	Assault Mode	All Out Assault	NULL	NULL
 Jersey	HMS	J	DD	0	0	0	1.2	1.4	1.05	1536	76	364	156	Dark Side of Fate	All Out Assault	NULL	NULL	NULL
 Juno	HMS	J	DD	0	0	0	1.2	1.4	1.05	1536	76	364	156	Smokescreen	All Out Assault	NULL	NULL	NULL
 Jupiter	HMS	J	DD	0	0	0	1.2	1.4	1.05	1536	76	364	156	Battleship Escort	All Out Assault	NULL	NULL	NULL
@@ -100,11 +101,11 @@ Yukikaze	IJN	Kagerou	DD	0	0	0	0.75	1.5	0.75	2226	68	526	161	Yukikaze of Kure	The
 Hatakaze	IJN	Kamikaze	DD	0	0	0	0.75	1.4	0.75	1561	60	404	139	Swift Defender	All Out Assault	NULL	NULL	NULL
 Kamikaze (Retrofit)	IJN	Kamikaze	DD	0	0	0	0.75	1.45	0.8	1726	60	414	179	Veteran Techniques	First Destroyer	All Out Assault	NULL	NULL
 Matsukaze (Retrofit)	IJN	Kamikaze	DD	0	0	0	0.75	1.45	0.8	1726	59	414	170	Quick Reload	Emergency Maneuvers	All Out Assault	NULL	NULL
-Kitakaze (Retrofit)	IJN	Kitakaze	DD	0	0	0	1.05	1.35	1.35	2641	86	393	197	Kitakaze Style - Horizon Splitter	Kitakaze Style - Six Lotus Torpedos+	Siren Killer	All Out Assault	NULL
+Kitakaze (Retrofit)	IJN	Kitakaze	DD	0	0	0	1.05	1.35	1.35	2641	86	393	197	Kitakaze Style - Horizon Splitter	Kitakaze Style - Lotus Torpedoes+	Siren Killer	All Out Assault	NULL
 Kizuna AI	KizunaAI	KizunaAI	DD	0	0	0	0.75	1.6	1.05	1768	74	473	167	Kizuna Beam	Crisis Prevention!	NULL	NULL	NULL
 Forbin (Retrofit)	FFNF	L'Adroit	DD	0	0	0	1.2	1.45	0.8	1436	89	439	168	Chevalier's Bouclier	Emergency Maneuvers	All Out Assault	NULL	NULL
 Le Mars (Retrofit)	MNF	L'Adroit	DD	0	0	0	1.2	1.45	0.8	1436	89	439	183	Chevalier's Sabre	Emergency Maneuvers	All Out Assault	NULL	NULL
-Le Malin	MNF	Le Fantasque	DD	0	0	0	1.5	1.25	1.2	2021	137	273	138	Poisonous Sting	Vichy'a Vindictive Blade	All Out Assault	NULL	NULL
+Le Malin	MNF	Le Fantasque	DD	0	0	0	1.5	1.25	1.2	2021	137	273	138	Poisonous Sting	Vichya's Vindictive Blade	All Out Assault	NULL	NULL
 Le Malin (Muse)	MNF	Le Fantasque	DD	0	0	0	1.5	1.25	1.2	2021	139	274	135	Heavenly Hymn	Moment of Slackery	All Out Assault II	NULL	NULL
 Le Triomphant	FFNF	Le Fantasque	DD	0	0	0	1.4	1.25	1.4	2021	131	267	167	Radiant Iris	Sword or Shield	All Out Assault	NULL	NULL
 L'Opiniatre	FFNF	Le Hardi	DD	0	0	0	1.3	1.35	0.75	1772	103	370	204	A Witch Who Never Admits Defeat	Swift Defender	All Out Assault	NULL	NULL

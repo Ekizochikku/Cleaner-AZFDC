@@ -1,7 +1,7 @@
 SHIPNAME	FACTION	CLASS	SHIPTYPE	WEP1TYPE	WEP2TYPE	WEP3TYPE	SLOT1EFF	SLOT2EFF	SLOT3EFF	HEALTH	FIREPOWER	TORPEDO	ANTIAIR	AVIATION	SKILL1	SKILL2	SKILL3	SKILL4	SKILL5
 Bogue (Retrofit)	USS	Bogue	CVL	0	1	4	1.3	1.45	0.85	3589	0	0	254	304	Quick Takeoff	Anti-Air Command: Main Fleet	NULL	NULL	NULL
 Chaser	HMS	Bogue	CVL	0	2	4	1.3	1.45	0.8	4707	0	0	257	299	Quick Takeoff	Protector of the North Passage	NULL	NULL	NULL
-Casablanca	USS	Casablanca	CVL	0	2	4	1.35	1.35	1	4707	0	0	258	286	Quick Takeoff	Supporting Wings (Casblanca)	NULL	NULL	NULL
+Casablanca	USS	Casablanca	CVL	0	2	4	1.35	1.35	1	4707	0	0	258	286	Quick Takeoff	Supporting Wings (Casablanca)	NULL	NULL	NULL
 Centaur	HMS	Centaur	CVL	0	0	2	1.25	1.2	1.4	6626	0	0	268	421	Swordfishes, Attack!	Airspace Dominance	NULL	NULL	NULL
 Perseus	HMS	Colossus	CVL	0	2	4	1	1	1.1	5540	0	0	264	327	Mercury's Talaria	Athena's Catapult	Waters of Styx	NULL	NULL
 Hermes (Retrofit)	HMS	Hermes	CVL	2	2	4	1.4	1.4	0.85	4367	0	0	297	300	Assault Carrier	Destiny Draw!	NULL	NULL	NULL

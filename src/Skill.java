@@ -112,6 +112,10 @@ public class Skill implements Comparable<Skill>{
 	}
 	
 	private void setParameters(ArrayList<String> list) {
+		if(list.size() == 0) {
+			System.out.println("ERROR:");
+			return;
+		}
 		this.skillName = list.get(0);
 		this.skillDesc = list.get(1);
 		this.skillUsers = list.get(2);
