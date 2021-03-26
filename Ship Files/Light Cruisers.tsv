@@ -16,7 +16,7 @@ Brooklyn	USS	Brooklyn	CL	1	1	3	1.35	0.65	1	3470	164	0	307	Artillery Command: Cru
 Helena (Retrofit)	USS	Brooklyn	CL	1	1	3	1.4	0.65	1.15	3844	181	0	406	Radar Scan Plus	The Wonder of Kula Gulf	All Out Assault	NULL	NULL
 Honolulu	USS	Brooklyn	CL	1	1	3	1.35	0.65	1	3470	164	0	307	Full Firepower	All Out Assault	NULL	NULL	NULL
 Lena	USS	Brooklyn	CL	1	1	3	1.35	0.65	1	3246	167	0	316	Youthful Light	Girls' Support	All Out Assault	NULL	NULL
-Phoniex	USS	Brooklyn	CL	1	1	3	1.35	0.65	1	3470	164	0	307	Red Phoenix	All Out Assault	NULL	NULL	NULL
+Phoenix	USS	Brooklyn	CL	1	1	3	1.35	0.65	1	3470	164	0	307	Red Phoenix	All Out Assault	NULL	NULL	NULL
 St. Louis	USS	Brooklyn	CL	1	1	3	1.35	0.65	1	3604	171	0	316	Lucky Lou	Anti-Air Mode	All Out Assault	NULL	NULL
 Curacoa (Retrofit)	HMS	Ceres	CL	2	3	3	1.15	0.8	0.8	2981	134	0	154	Aerial Support	Anti-Air Command: Vanguard	All Out Assault	NULL	NULL
 Curlew (Retrofit)	HMS	Ceres	CL	2	3	3	1.1	0.8	0.8	2789	128	0	178	Aerial Support	Air Raid Assistance	All Out Assault	NULL	NULL
@@ -58,7 +58,7 @@ Mikuma	IJN	Mogami	CL	1	0	3	1.1	1.6	1	4015	201	187	186	Carrier Escort	AP Protecti
 Mogami	IJN	Mogami	CL	1	0	3	1.25	1.6	1.05	4015	201	185	186	Full Firepower	AP Protection	All Out Assault	NULL	NULL
 Abukuma (Retrofit)	IJN	Nagara	CL	1	0	3	1.15	1.75	1.25	3131	160	344	279	Torpedo Command: Destroyers	Double Torpedo	All Out Assault	NULL	NULL
 Isuzu (Retrofit)	IJN	Nagara	CL	2	0	3	1.05	1.4	1.6	3214	120	220	343	Anti-Air Mode	I'm Not Afraid Anymore!	All Out Assault	NULL	NULL
-Kinu (Retrofit)	IJN	Nagara	CL	1	0	3	1.2	1.8	1.3	3126	158	354	319	Demon Blade	Demon's Wish	NULL	NULL	NULL
+Kinu (Retrofit)	IJN	Nagara	CL	1	0	3	1.2	1.8	1.3	3126	158	354	319	Demonblade	Demon's Wish	NULL	NULL	NULL
 Nagara	IJN	Nagara	CL	1	0	3	1.1	1.6	1.25	2891	140	279	278	Full Firepower	All Out Assault	NULL	NULL	NULL
 HMS Neptune (Retrofit)	HMS	Neptune	CL	1	0	3	1.5	1.6	1	4637	172	352	363	MKV-Class AP Shells+	Goddess of the Sea	Siren Killer	All Out Assault	NULL
 HDN Neptune	Neptunia	Neptunia	CL	1	0	3	1.4	1.5	1	3430	153	289	303	Protagonist Aura	NULL	NULL	NULL	NULL
