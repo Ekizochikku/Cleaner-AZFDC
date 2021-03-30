@@ -21,6 +21,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JRadioButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
 //NOTE: Needs to be changed once Brian says GO AHEAD
 public class WeaponPanel extends JPanel implements ActionListener{
 	
@@ -158,18 +159,21 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(lblTorpedosDropped);
 		
 		JLabel lblPlane = new JLabel("Plane 1");
+		lblPlane.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlane.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPlane.setBounds(164, 257, 75, 25);
 		add(lblPlane);
 		
 		JLabel lblPlane_1 = new JLabel("Plane 2");
+		lblPlane_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlane_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPlane_1.setBounds(249, 260, 75, 25);
+		lblPlane_1.setBounds(249, 257, 75, 25);
 		add(lblPlane_1);
 		
 		JLabel lblPlane_2 = new JLabel("Plane 3");
+		lblPlane_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlane_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPlane_2.setBounds(334, 258, 75, 25);
+		lblPlane_2.setBounds(334, 257, 75, 25);
 		add(lblPlane_2);
 		
 		/**
@@ -203,6 +207,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		
 		bomb1Plane1Text = new JFormattedTextField(formatter);
+		bomb1Plane1Text.setHorizontalAlignment(SwingConstants.CENTER);
 		bomb1Plane1Text.setColumns(10);
 		bomb1Plane1Text.setText("0");
 		bomb1Plane1Text.setBounds(177, 286, 49, 25);
@@ -210,41 +215,49 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 
 		bomb1Plane2Text = new JFormattedTextField(formatter);
+		bomb1Plane2Text.setHorizontalAlignment(SwingConstants.CENTER);
 		bomb1Plane2Text.setText("0");
 		bomb1Plane2Text.setBounds(262, 286, 49, 25);
 		add(bomb1Plane2Text);
 		
 		bomb1Plane3Text = new JFormattedTextField(formatter);
+		bomb1Plane3Text.setHorizontalAlignment(SwingConstants.CENTER);
 		bomb1Plane3Text.setText("0");
 		bomb1Plane3Text.setBounds(347, 286, 49, 25);
 		add(bomb1Plane3Text);
 		
 		bomb2Plane1Text = new JFormattedTextField(formatter);
+		bomb2Plane1Text.setHorizontalAlignment(SwingConstants.CENTER);
 		bomb2Plane1Text.setText("0");
 		bomb2Plane1Text.setBounds(177, 326, 49, 25);
 		add(bomb2Plane1Text);
 		
 		bomb2Plane2Text = new JFormattedTextField(formatter);
+		bomb2Plane2Text.setHorizontalAlignment(SwingConstants.CENTER);
 		bomb2Plane2Text.setText("0");
 		bomb2Plane2Text.setBounds(262, 326, 49, 25);
 		add(bomb2Plane2Text);
 		
 		bomb2Plane3Text = new JFormattedTextField(formatter);
+		bomb2Plane3Text.setHorizontalAlignment(SwingConstants.CENTER);
 		bomb2Plane3Text.setText("0");
 		bomb2Plane3Text.setBounds(347, 326, 49, 25);
 		add(bomb2Plane3Text);
 		
 		torpedoPlane1Text = new JFormattedTextField(formatter);
+		torpedoPlane1Text.setHorizontalAlignment(SwingConstants.CENTER);
 		torpedoPlane1Text.setText("0");
 		torpedoPlane1Text.setBounds(177, 365, 49, 25);
 		add(torpedoPlane1Text);
 		
 		torpedoPlane2Text = new JFormattedTextField(formatter);
+		torpedoPlane2Text.setHorizontalAlignment(SwingConstants.CENTER);
 		torpedoPlane2Text.setText("0");
 		torpedoPlane2Text.setBounds(262, 365, 49, 25);
 		add(torpedoPlane2Text);
 		
 		torpedoPlane3Text = new JFormattedTextField(formatter);
+		torpedoPlane3Text.setHorizontalAlignment(SwingConstants.CENTER);
 		torpedoPlane3Text.setText("0");
 		torpedoPlane3Text.setBounds(347, 365, 49, 25);
 		add(torpedoPlane3Text);
