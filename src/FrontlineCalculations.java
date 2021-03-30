@@ -722,6 +722,12 @@ public class FrontlineCalculations {
 		if (skillNames.contains("Venus Friends")) {
 			ratio += 0.15;
 		}
+		if (skillNames.contains("Shooting Gun-Star") || enemy.getArmor().equals("L")) {
+			ratio += 0.15;
+		}
+		if (skillNames.contains("Whimsical Protector") || vanguardFleet.contains(ship.getShipType())) {
+			ratio += 0.10;
+		}
 		
 		return ratio;
 	}

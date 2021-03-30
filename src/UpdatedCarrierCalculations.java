@@ -343,6 +343,9 @@ public class UpdatedCarrierCalculations {
 		if (skillNames.contains("Venus Friends")) {
 			dmgRatio += 0.15;
 		}
+		if (skillNames.contains("Shooting Gun-Star") || enemy.getArmor().equals("L")) {
+			dmgRatio += 0.15;
+		}
 		
 		return dmgRatio;
 	}
