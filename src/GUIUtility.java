@@ -713,8 +713,15 @@ public class GUIUtility {
 		
 	}
 	
-	
-	
+	/**
+	 * Setting and sending the array list for the 3x3 bombs dropped
+	 * @author Kevin Nguyen
+	 * @param 
+	 */
+	public static ArrayList<Integer> bombsDroppedSetter(int theBomb, ArrayList<Integer> theList) {
+		
+		return theList;		
+	}
 	/**
 	 * Using Brians methods we check what types of weapons can be used in what slot. Whatever string it returns we convert that into
 	 * an array to insert it into the combo box.

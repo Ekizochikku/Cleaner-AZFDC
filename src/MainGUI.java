@@ -45,6 +45,7 @@ public class MainGUI extends JFrame {
 	
 	private AuxGear aux1, aux2;
 	private ArrayList<Skill> skill;
+	private ArrayList<Integer> bombsDropped;
 	private String shipType;
 	
 	/**
@@ -175,6 +176,7 @@ public class MainGUI extends JFrame {
 		JButton calculateButton = new JButton("Calculate");
 		calculateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				contentPane.remove(currentPanel);
 				currentPanel = calculatePane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
@@ -336,5 +338,15 @@ public class MainGUI extends JFrame {
 	
 	public void setShipType(String newType) {
 		shipType = newType;
+	}
+
+
+	public ArrayList<Integer> getBombsDropped() {
+		return bombsDropped;
+	}
+
+
+	public void setBombsDropped(ArrayList<Integer> bombsDropped) {
+		this.bombsDropped = bombsDropped;
 	}
 }

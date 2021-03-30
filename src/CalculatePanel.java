@@ -37,5 +37,20 @@ public class CalculatePanel extends JPanel {
 		damage3Result.setEditable(false);
 		damage3Result.setBounds(407, 419, 300, 39);
 		add(damage3Result);
+		
+		
+	}
+	/**
+	 * Small Method to convert the Jtextfield into a int so it's not too repetitive (avoids calling get text -> parse int on everything).
+	 * This might have to be used in the weapon panel and then sent over to calculate as int first
+	 * Just call this for every 3x3 object
+	 * @author Kevin Nguyen
+	 * @param planeOrdinance the bombs or torpedo
+	 */
+	protected int parseInt(JTextField planeOrdinance) {
+		int converted;
+		String textFieldAsAString = planeOrdinance.getText();
+		converted = Integer.parseInt(textFieldAsAString);
+		return converted;
 	}
 }

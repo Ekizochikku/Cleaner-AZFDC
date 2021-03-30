@@ -1,17 +1,22 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JTextPane;
+import javax.swing.text.NumberFormatter;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JRadioButton;
 import javax.swing.DefaultComboBoxModel;
@@ -22,10 +27,15 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	JComboBox<Object> weaponName1Combo, weaponName2Combo, weaponName3Combo, 
 	weaponType1Combo, weaponType2Combo, weaponType3Combo, aux1Combo, aux2Combo;
 	
-	//Bomb/plane boxes 
-	JTextPane bomb1Plane1Text, bomb1Plane2Text, bomb1Plane3Text, 
+
+
+	//Bomb/plane boxes
+	//changes to jformatted text field to restrict to only numbers
+	//fudge you Walter
+	JFormattedTextField bomb1Plane3Text, bomb1Plane1Text, bomb1Plane2Text,
 	bomb2Plane1Text, bomb2Plane2Text, bomb2Plane3Text,
-	torpedoPlane1Text, torpedoPlane2Text, torpedoPlane3Text;
+	torpedoPlane1Text, torpedoPlane2Text, torpedoPlane3Text, nodesKilledTxt;
+	
 	
 	
 	//Auxiliary TextPanes
@@ -162,47 +172,79 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		lblPlane_2.setBounds(334, 258, 75, 25);
 		add(lblPlane_2);
 		
-		bomb1Plane1Text = new JTextPane();
+		/**
+		 * @author Kevin Nguyen
+		 * Number formatter for the 3x3 bombs
+		 */
+		NumberFormat format = NumberFormat.getInstance();
+	    NumberFormatter formatter = new NumberFormatter(format) {
+	    	/**
+			 * no idea what this is for but it told me to
+			 */
+			private static final long serialVersionUID = 1L;
+
+			//Overrides the number formatter so that it allows blanks
+	    	//Before it didn't allow you to delete the last digit which was stupid
+	    	@Override
+	    	public Object stringToValue(String string)
+                    throws ParseException {
+                    if (string == null || string.length() == 0) {
+                        return null;
+                    }
+						return super.stringToValue(string);
+	    	}
+        };
+	    
+	    formatter.setValueClass(Integer.class);
+	    formatter.setMinimum(0);
+	    formatter.setMaximum(99);
+	    formatter.setAllowsInvalid(false);
+	    formatter.setCommitsOnValidEdit(true);
+		
+		
+		bomb1Plane1Text = new JFormattedTextField(formatter);
+		bomb1Plane1Text.setColumns(10);
 		bomb1Plane1Text.setText("0");
 		bomb1Plane1Text.setBounds(177, 286, 49, 25);
 		add(bomb1Plane1Text);
-		
-		bomb1Plane2Text = new JTextPane();
+
+
+		bomb1Plane2Text = new JFormattedTextField(formatter);
 		bomb1Plane2Text.setText("0");
 		bomb1Plane2Text.setBounds(262, 286, 49, 25);
 		add(bomb1Plane2Text);
 		
-		bomb1Plane3Text = new JTextPane();
+		bomb1Plane3Text = new JFormattedTextField(formatter);
 		bomb1Plane3Text.setText("0");
 		bomb1Plane3Text.setBounds(347, 286, 49, 25);
 		add(bomb1Plane3Text);
 		
-		bomb2Plane1Text = new JTextPane();
+		bomb2Plane1Text = new JFormattedTextField(formatter);
 		bomb2Plane1Text.setText("0");
 		bomb2Plane1Text.setBounds(177, 326, 49, 25);
 		add(bomb2Plane1Text);
 		
-		bomb2Plane2Text = new JTextPane();
+		bomb2Plane2Text = new JFormattedTextField(formatter);
 		bomb2Plane2Text.setText("0");
 		bomb2Plane2Text.setBounds(262, 326, 49, 25);
 		add(bomb2Plane2Text);
 		
-		bomb2Plane3Text = new JTextPane();
+		bomb2Plane3Text = new JFormattedTextField(formatter);
 		bomb2Plane3Text.setText("0");
 		bomb2Plane3Text.setBounds(347, 326, 49, 25);
 		add(bomb2Plane3Text);
 		
-		torpedoPlane1Text = new JTextPane();
+		torpedoPlane1Text = new JFormattedTextField(formatter);
 		torpedoPlane1Text.setText("0");
 		torpedoPlane1Text.setBounds(177, 365, 49, 25);
 		add(torpedoPlane1Text);
 		
-		torpedoPlane2Text = new JTextPane();
+		torpedoPlane2Text = new JFormattedTextField(formatter);
 		torpedoPlane2Text.setText("0");
 		torpedoPlane2Text.setBounds(262, 365, 49, 25);
 		add(torpedoPlane2Text);
 		
-		torpedoPlane3Text = new JTextPane();
+		torpedoPlane3Text = new JFormattedTextField(formatter);
 		torpedoPlane3Text.setText("0");
 		torpedoPlane3Text.setBounds(347, 365, 49, 25);
 		add(torpedoPlane3Text);
@@ -261,7 +303,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		lblNodesKilled.setBounds(272, 532, 97, 30);
 		add(lblNodesKilled);
 		
-		JTextPane nodesKilledTxt = new JTextPane();
+		nodesKilledTxt = new JFormattedTextField(formatter);
 		nodesKilledTxt.setEditable(false);
 		nodesKilledTxt.setBounds(395, 532, 87, 30);
 		add(nodesKilledTxt);
@@ -315,6 +357,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				//aux string
 				try {
 					aux1 = new AuxGear((String) aux1Combo.getSelectedItem());
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -460,6 +503,13 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	public void onSwitch() {
 		GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
 				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
