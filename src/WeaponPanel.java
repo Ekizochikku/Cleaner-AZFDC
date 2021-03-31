@@ -29,6 +29,7 @@ import javax.swing.JRadioButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
+import javax.swing.ButtonGroup;
 //NOTE: Needs to be changed once Brian says GO AHEAD
 public class WeaponPanel extends JPanel implements ActionListener{
 	
@@ -54,6 +55,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	AuxGear aux1, aux2;
 	MainGUI guiVariables;
 	GUIUtility guiU;
+	private final ButtonGroup ammoGroup = new ButtonGroup();
+	private final ButtonGroup evenOddGroup = new ButtonGroup();
+	private final ButtonGroup colorGroup = new ButtonGroup();
 	public WeaponPanel(MainGUI frame, JComboBox<Object> weaponName1Combo, JComboBox<Object> weaponName2Combo,
 			JComboBox<Object> weaponName3Combo, JComboBox<Object> weaponType1Combo, JComboBox<Object> weaponType2Combo,
 			JComboBox<Object> weaponType3Combo) {
@@ -305,30 +309,37 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(lblNewLabel);
 		
 		JRadioButton rdbtnHe = new JRadioButton("HE");
+		ammoGroup.add(rdbtnHe);
 		rdbtnHe.setBounds(20, 426, 49, 23);
 		add(rdbtnHe);
 		
 		JRadioButton rdbtnAp = new JRadioButton("AP");
+		ammoGroup.add(rdbtnAp);
 		rdbtnAp.setBounds(71, 426, 48, 23);
 		add(rdbtnAp);
 		
 		JRadioButton rdbtnEven = new JRadioButton("Even");
+		evenOddGroup.add(rdbtnEven);
 		rdbtnEven.setBounds(134, 426, 66, 23);
 		add(rdbtnEven);
 		
 		JRadioButton rdbtnOdd = new JRadioButton("Odd");
+		evenOddGroup.add(rdbtnOdd);
 		rdbtnOdd.setBounds(207, 426, 49, 23);
 		add(rdbtnOdd);
 		
 		JRadioButton rdbtnBlue = new JRadioButton("Blue");
+		colorGroup.add(rdbtnBlue);
 		rdbtnBlue.setBounds(61, 469, 58, 23);
 		add(rdbtnBlue);
 		
 		JRadioButton rdbtnPurple = new JRadioButton("Purple");
+		colorGroup.add(rdbtnPurple);
 		rdbtnPurple.setBounds(124, 469, 76, 23);
 		add(rdbtnPurple);
 		
 		JRadioButton rdbtnRed = new JRadioButton("Red");
+		colorGroup.add(rdbtnRed);
 		rdbtnRed.setBounds(207, 469, 49, 23);
 		add(rdbtnRed);
 		
