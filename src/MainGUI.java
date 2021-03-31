@@ -85,7 +85,7 @@ public class MainGUI extends JFrame {
 		shipPane.setOpaque(true);
 		shipPane.setBackground(new Color(210, 210, 210));
 		shipPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		currentShip = new ShipFile("22", "Destroyers");
+		currentShip = null;
 		shipType = "Destroyers";
 		weaponPane = new WeaponPanel(this);
 		weaponPane.setOpaque(true);
@@ -149,7 +149,9 @@ public class MainGUI extends JFrame {
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				//shipPane.sendInfo();
 				System.out.println("Entering the weapons panel");
-				System.out.println("Current Ship name is " + currentShip.getShipName());
+				if(currentShip != null) {
+					System.out.println("Current Ship name is " + currentShip.getShipName());
+				}
 				
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.revalidate();
@@ -199,7 +201,9 @@ public class MainGUI extends JFrame {
 
 	public void setCurrentShip(ShipFile newShip) {
 		this.currentShip = newShip;
-		this.shipType = convertType(newShip.getShipType());
+		if(currentShip != null) {
+			this.shipType = convertType(newShip.getShipType());
+		}
 	}
 	
 	private String convertType(String shipType) {

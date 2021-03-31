@@ -263,6 +263,9 @@ public class SkillPanel extends JPanel {
 		currentSkills.clear();
 		int skill = 1;
 //		System.out.println("Skill is " + currentShip.getSkill(skill));
+		if(currentShip == null) {
+			return;
+		}
 		while(!currentShip.getSkill(skill).equals("NULL")) {
 			try {
 				System.out.println(currentShip.getSkill(skill));
