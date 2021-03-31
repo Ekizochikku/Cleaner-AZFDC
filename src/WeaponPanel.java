@@ -328,6 +328,10 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		rdbtnOdd.setBounds(207, 426, 49, 23);
 		add(rdbtnOdd);
 		
+		//adding tool tip to both manually since no point for loop for 2
+		rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		
 		JRadioButton rdbtnBlue = new JRadioButton("Blue");
 		colorGroup.add(rdbtnBlue);
 		rdbtnBlue.setBounds(61, 469, 58, 23);
@@ -563,11 +567,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 	}
 
-	
+	/*
 	public void onSwitch() {
 		GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
 				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
-	}
+	}*/
 
 
 	@Override

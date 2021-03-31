@@ -144,15 +144,15 @@ public class MainGUI extends JFrame {
 		btnWeaponsgear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.remove(currentPanel);
-				weaponPane.onSwitch();
 				currentPanel = weaponPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
+				
 				//shipPane.sendInfo();
 				System.out.println("Entering the weapons panel");
 				System.out.println("Current Ship name is " + currentShip.getShipName());
 				
 				contentPane.add(currentPanel, BorderLayout.CENTER);
-				contentPane.revalidate();
+				contentPane.validate();
 				contentPane.repaint();
 				setVisible(true);
 			}
