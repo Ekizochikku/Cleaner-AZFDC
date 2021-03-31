@@ -3,9 +3,16 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -37,7 +44,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	bomb2Plane1Text, bomb2Plane2Text, bomb2Plane3Text,
 	torpedoPlane1Text, torpedoPlane2Text, torpedoPlane3Text, nodesKilledTxt;
 	
-	
+	//array list for the 3x3
+	ArrayList<Object> threeByThreeMouse;
 	
 	//Auxiliary TextPanes
 	JTextPane auxHealthTxt, firepowerTxt, antiAirTxt, torpedoTxt, aviationTxt; 
@@ -262,6 +270,35 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		torpedoPlane3Text.setBounds(347, 365, 49, 25);
 		add(torpedoPlane3Text);
 		
+		//might move this to the guiUtil
+		//adding all elements to the array
+		 threeByThreeMouse = new ArrayList<Object>();
+		 //all elements of the 3x3 thingy
+		 threeByThreeMouse.add(bomb1Plane1Text);
+		 threeByThreeMouse.add(bomb1Plane2Text);
+		 threeByThreeMouse.add(bomb1Plane3Text);
+		 threeByThreeMouse.add(bomb2Plane1Text);
+		 threeByThreeMouse.add(bomb2Plane2Text);
+		 threeByThreeMouse.add(bomb2Plane3Text);
+		 threeByThreeMouse.add(torpedoPlane1Text);
+		 threeByThreeMouse.add(torpedoPlane2Text);
+		 threeByThreeMouse.add(torpedoPlane3Text);
+		 
+		
+		//focus listener for the 3x3 to erase the 0 values when clicked
+		FocusListener eraseZero = new FocusAdapter(){
+	           public void focusGained(FocusEvent e){
+		            JFormattedTextField source = (JFormattedTextField)e.getComponent();
+		            source.setText("");
+		            source.removeFocusListener(this);
+	           }
+	        };
+	    
+	    
+	    for(int i = 0; i < threeByThreeMouse.size(); i++) {
+			((JFormattedTextField)threeByThreeMouse.get(i)).addFocusListener(eraseZero);
+	    }
+		
 		JLabel lblNewLabel = new JLabel("Ammo Type:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(10, 399, 109, 25);
@@ -320,6 +357,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		nodesKilledTxt.setEditable(false);
 		nodesKilledTxt.setBounds(395, 532, 87, 30);
 		add(nodesKilledTxt);
+		
+
+		
 		
 		JLabel lblAuxiliary = new JLabel("Auxiliary 1:");
 		lblAuxiliary.setFont(new Font("Tahoma", Font.PLAIN, 16));
