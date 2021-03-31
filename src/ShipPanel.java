@@ -228,9 +228,8 @@ public class ShipPanel extends JPanel {
 
 			}
 		});
-		shipNameCBox.setSelectedIndex(1);
-		currentShip = new ShipFile(currentShipName, shipTypeName);
-		gui.setCurrentShip(currentShip);
+		shipNameCBox.setSelectedIndex(0);
+		gui.setCurrentShip(null);
 	}
 	//method for when panel changes to weapon
 	public void sendShipInfo(MainGUI gui) {

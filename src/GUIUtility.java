@@ -817,6 +817,9 @@ public class GUIUtility {
 			JComboBox<Object> weaponNameSlot1, JComboBox<Object> weaponNameSlot2, JComboBox<Object> weaponNameSlot3, boolean initial) {
 		//if a 
 		ShipFile currentShip = guiVariables.getCurrentShip();
+		if(currentShip == null) {
+			return;
+		}
 		if(currentShip.getShipName() != "") {
 			System.out.println("INSIDE inserting types, the current ship name is:" + currentShip.getShipName());
 			try {

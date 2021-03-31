@@ -98,7 +98,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	});
 		//carriers, aviation 3rd slot only, i13 third slot only 
 		weaponName1Combo = new JComboBox<Object>();
-		weaponName1Combo.setBounds(181, 48, 168, 23);
+		weaponName1Combo.setBounds(181, 48, 309, 23);
 		add(weaponName1Combo);
 		
 		
@@ -123,7 +123,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	});
 		
 		weaponName2Combo = new JComboBox<Object>();
-		weaponName2Combo.setBounds(181, 132, 168, 23);
+		weaponName2Combo.setBounds(181, 132, 309, 23);
 		add(weaponName2Combo);
 		
 		JLabel weaponType3Label = new JLabel("Weapon Type Slot 3:");
@@ -147,7 +147,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		
 		weaponName3Combo = new JComboBox<Object>();
-		weaponName3Combo.setBounds(181, 204, 168, 23);
+		weaponName3Combo.setBounds(181, 204, 309, 23);
 		add(weaponName3Combo);
 		
 		
