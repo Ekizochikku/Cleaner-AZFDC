@@ -1,6 +1,7 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 
 import java.awt.Component;
@@ -29,6 +30,7 @@ import javax.swing.JRadioButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 //NOTE: Needs to be changed once Brian says GO AHEAD
 public class WeaponPanel extends JPanel implements ActionListener{
@@ -329,8 +331,19 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(rdbtnOdd);
 		
 		//adding tool tip to both manually since no point for loop for 2
-		rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
-		rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		//rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		//rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		
+		//enumaration to get all elements
+		//ArrayList<JRadioButton> listRadioButton = (ArrayList<JRadioButton>) evenOddGroup.getElements();
+		
+		//show the list of JRadioButton
+		/*
+		for (JRadioButton button : listRadioButton) {
+			((JRadioButton) listRadioButton).setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		}*/
+
+		
 		
 		JRadioButton rdbtnBlue = new JRadioButton("Blue");
 		colorGroup.add(rdbtnBlue);
@@ -567,11 +580,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 	}
 
-	/*
+	
 	public void onSwitch() {
 		GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
 				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
-	}*/
+	}
 
 
 	@Override

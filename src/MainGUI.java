@@ -146,7 +146,8 @@ public class MainGUI extends JFrame {
 				contentPane.remove(currentPanel);
 				currentPanel = weaponPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
-				
+				weaponPane.onSwitch();
+
 				//shipPane.sendInfo();
 				System.out.println("Entering the weapons panel");
 				if(currentShip != null) {
