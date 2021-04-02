@@ -1,19 +1,46 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.io.IOException;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 public class CalculatePanel extends JPanel {
-	public CalculatePanel() {
+	
+	private MainGUI mainGUI;
+	private ShipFile activeShip;
+	private JTextPane damage1Result;
+	private JTextPane damage2Result;
+	private JTextPane damage3Result;
+	private String currentWeaponName;
+	private String currentShipType;
+	private String theCurrentWorld;
+	private List currentSkills;
+	private String currentWeaponType;
+	private String theCurrentEnemy;
+	private int currentDangerLevel;
+	
+	public CalculatePanel(MainGUI gui) {
 		setLayout(null);
+		
+		mainGUI = gui;
+		activeShip = mainGUI.getCurrentShip();
+		currentWeaponName = mainGUI.getCurrentWeaponNameSlot1();
+		currentShipType = mainGUI.getShipType();
+		theCurrentWorld = mainGUI.getWorld();
+		currentSkills = mainGUI.getSkills();
+		currentWeaponType = mainGUI.getCurrentWeaponTypeSlot1();
+		theCurrentEnemy = mainGUI.getEnemy();
+		currentDangerLevel = mainGUI.getDangerLvl();
 		
 		JLabel lblSlotDamage = new JLabel("Slot 1 Damage Range:");
 		lblSlotDamage.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSlotDamage.setBounds(464, 35, 187, 39);
 		add(lblSlotDamage);
 		
-		JTextPane damage1Result = new JTextPane();
+		damage1Result = new JTextPane();
 		damage1Result.setEditable(false);
 		damage1Result.setBounds(407, 85, 300, 39);
 		add(damage1Result);
@@ -28,18 +55,123 @@ public class CalculatePanel extends JPanel {
 		lblSlotDamage_2.setBounds(464, 346, 187, 39);
 		add(lblSlotDamage_2);
 		
-		JTextPane damage2Result = new JTextPane();
+		damage2Result = new JTextPane();
 		damage2Result.setEditable(false);
 		damage2Result.setBounds(407, 250, 300, 39);
 		add(damage2Result);
 		
-		JTextPane damage3Result = new JTextPane();
+		damage3Result = new JTextPane();
 		damage3Result.setEditable(false);
 		damage3Result.setBounds(407, 419, 300, 39);
 		add(damage3Result);
-		
-		
+
 	}
+	
+	private void performCalculations() {
+		FrontlineCalculations finalDamage = new FrontlineCalculations();
+		//Checking if all the parameters are correct
+		/*System.out.println("Checking all the parameters:  " + "\n Current Ship type: " + currentShipType +  "\n Ship Name: " + currentShipName +  
+				"\n Weapon Type Slot 1: " + currentWeaponType +  "\n Weapon Name Slot 1: " + currentWeaponName +  "\n Current Skills: " +
+				currentSkills +  "\n is Critical: " + critical +  "\n World number: " + theCurrentWorld + "\n Enemy Name: " + theCurrentEnemy+   "\n damage type int (0 HE, 1 AP) : " + 
+				currentDMGType +  "\n is manual" + manual +  "\n is first salvo: " + firstSalvo +  "\n current max danger Level: " + currentDangerLevel + "\n current even odd: " + evenOdd);*/
+		
+		/*hi System.out.println("Checking parameters SLot 2:  " +
+				"\n Weapon Type Slot 2: " + currentWeaponTypeSlot2 +  "\n Weapon Name Slot 2: " + currentWeaponNameSlot2);*/
+		try {
+			//Will add more if statements to check each parameter later to avoid null pointer exceptions especially when slot 1 has a weapon but 2 doesn't
+			//Ship slot hard coded in, no idea what that is yet.
+			
+			//changed the order for null first before is empty
+			if (currentWeaponName != null && !currentWeaponName.isEmpty()) {
+				if(currentShipType == "CVL" || currentShipType == "CV") {
+					UpdatedCarrierCalculations plane1 = new UpdatedCarrierCalculations(currentSkills, currentShipType, activeShip.getShipName(), currentWeaponType, 
+							currentWeaponName, theCurrentEnemy, theCurrentWorld, parseInt(textFieldP1B1), parseInt(textFieldP1B2), parseInt(textFieldP1T), currentColorSelected, auxParameters, auxParameters2);
+					Double plane1FinalMaxDamage = plane1.getFinalTotalDamage(1, currentSkills, critical, theCurrentWorld, currentDangerLevel, 2);
+					String maxDamageSlot1 = Double.toString(plane1FinalMaxDamage);
+					damage1Result.setText(maxDamageSlot1);
+	
+				} else {
+
+					Double finalMaxDamageSlot1 = finalDamage.getFinalDamage(currentShipType, activeShip.getShipName(), currentWeaponType, currentWeaponName, 1
+							,currentSkills, critical, theCurrentWorld, theCurrentEnemy, currentDMGType, manual, firstSalvo, currentDangerLevel, evenOdd, 2, armorBreak, currentColorSelected, auxParameters, auxParameters2);
+					Double finalMinDamageSlot1 = finalDamage.getFinalDamage(currentShipType, currentShipName, currentWeaponType, currentWeaponName, 1
+							,currentSkills, critical, theCurrentWorld, theCurrentEnemy, currentDMGType, manual, firstSalvo, currentDangerLevel, evenOdd, 0, armorBreak, currentColorSelected, auxParameters, auxParameters2);
+					
+					System.out.println("The final max damage = " + finalMaxDamageSlot1 );
+					System.out.println("The final min damage = " + finalMinDamageSlot1 );
+
+					String displayDamageSlot1 = Double.toString(finalMaxDamageSlot1);
+					String displayMinDamageSlot1 = Double.toString(finalMinDamageSlot1);
+					
+					//Nodes killed test case 
+					System.out.println("Current value in the nodes text field: " + 
+					nodesKilledTextField.getValue());
+					
+					damage1Result.setText(displayMinDamageSlot1 + " - " + displayDamageSlot1);
+				}
+			} else {
+				//System.out.println("Null check working!");
+				damage1Result.setText("No Gun Selected for this Slot.");
+			}
+			System.out.println("The weapon name for slot 2: " + currentWeaponNameSlot2);
+			if (currentWeaponNameSlot2 != null && !currentWeaponNameSlot2.isEmpty()) {
+				//System.out.println("Null check not working!");
+				//Nodes killed test case 
+				//Very weird bug, cannot do != for CVL and CV for some reason
+				if(currentShipType == "CVL" || currentShipType == "CV") {
+					UpdatedCarrierCalculations plane2 = new UpdatedCarrierCalculations(currentSkills, currentShipType, activeShip.getShipName()e, currentWeaponTypeSlot2, 
+							currentWeaponNameSlot2, theCurrentEnemy, theCurrentWorld, parseInt(textFieldP2B1), parseInt(textFieldP2B2), parseInt(textFieldP2T), currentColorSelected, auxParameters, auxParameters2); 
+					Double finalMaxDamageSlot2 = plane2.getFinalTotalDamage(2, currentSkills, critical, theCurrentWorld, currentDangerLevel, 2);
+					String displayMaxDamageSlot2 = Double.toString(finalMaxDamageSlot2);
+					
+					System.out.println("The amount of bombs dropped from plane 2" + plane2.getBomb1());
+					damage2Result.setText(displayMaxDamageSlot2);
+				} 	else {
+
+					Double finalMaxDamageSlot2 = finalDamage.getFinalDamage(currentShipType, activeShip.getShipName(), currentWeaponTypeSlot2, currentWeaponNameSlot2, 2
+							,currentSkills, critical, theCurrentWorld, theCurrentEnemy, currentDMGType, manual, firstSalvo, currentDangerLevel, evenOdd, 2, armorBreak, currentColorSelected, auxParameters, auxParameters2);
+					
+					Double finalMinDamageSlot2 = finalDamage.getFinalDamage(currentShipType, activeShip.getShipName(), currentWeaponTypeSlot2, currentWeaponNameSlot2, 2
+							,currentSkills, critical, theCurrentWorld, theCurrentEnemy, currentDMGType, manual, firstSalvo, currentDangerLevel, evenOdd, 0, armorBreak, currentColorSelected, auxParameters, auxParameters2);
+					
+					System.out.println("The final damage Slot 2 = " + finalMaxDamageSlot2 );
+					String displayDamageSlot2 = Double.toString(finalMaxDamageSlot2);
+					String displayMinDamageSlot2 = Double.toString(finalMinDamageSlot2);
+
+					damage2Result.setText(displayMinDamageSlot2 + " - " + displayDamageSlot2);
+					
+					}
+				} else {
+				//System.out.println("Null check working!");
+				damage2Result.setText("No Gun Selected for this Slot.");
+				} 
+			
+			//Since Calclculations.java will be overridden slot3 will currently just replace slot1&2 weapon damage for now 
+			//easy way to just have a if statement if cvl is selected but will make	
+			if (currentWeaponNameSlot3 != null && !currentWeaponNameSlot3.isEmpty()) {
+				System.out.println("The weapon name for slot 3: " + currentWeaponNameSlot3);
+
+				//Getting the amount of bombs for each plane. 
+				//Carrier Calculations might want to be changed to accept an array so this part looks better
+
+				UpdatedCarrierCalculations plane3 = new UpdatedCarrierCalculations(currentSkills, currentShipType, activeShip.getShipName(), currentWeaponTypeSlot3, 
+						currentWeaponNameSlot3, theCurrentEnemy, theCurrentWorld, parseInt(textFieldP3B1), parseInt(textFieldP3B2), parseInt(textFieldP3T) , currentColorSelected, auxParameters, auxParameters2);
+				System.out.println("checking npassing color" + currentColorSelected);
+				Double plane3FinalMaxDamage = plane3.getFinalTotalDamage(3, currentSkills, critical, theCurrentWorld, currentDangerLevel, 2);
+				System.out.println("The final min damage fro plane3 = " + plane3FinalMaxDamage);
+				String displayMaxDamageSlot3 = Double.toString(plane3FinalMaxDamage);
+				damage3Result.setText(displayMaxDamageSlot3);
+			} else {
+				//System.out.println("Null check working!");
+				damage3Result.setText("No Gun Selected for this Slot.");
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Small Method to convert the Jtextfield into a int so it's not too repetitive (avoids calling get text -> parse int on everything).
 	 * This might have to be used in the weapon panel and then sent over to calculate as int first
@@ -52,5 +184,11 @@ public class CalculatePanel extends JPanel {
 		String textFieldAsAString = planeOrdinance.getText();
 		converted = Integer.parseInt(textFieldAsAString);
 		return converted;
+	}
+	
+	protected void onSwitch() {
+		activeShip = mainGUI.getCurrentShip();
+		
+		performCalculations();
 	}
 }

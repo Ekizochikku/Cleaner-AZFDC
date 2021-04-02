@@ -100,7 +100,7 @@ public class MainGUI extends JFrame {
 		worldPane.setOpaque(true);
 		worldPane.setBackground(new Color(210, 210, 210));
 		
-		calculatePane = new CalculatePanel();
+		calculatePane = new CalculatePanel(this);
 		calculatePane.setOpaque(true);
 		calculatePane.setBackground(new Color(210, 210, 210));
 		currentPanel = shipPane;
@@ -182,6 +182,7 @@ public class MainGUI extends JFrame {
 				
 				contentPane.remove(currentPanel);
 				currentPanel = calculatePane;
+				//calculatePane.onSwitch();
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
 				contentPane.repaint();
