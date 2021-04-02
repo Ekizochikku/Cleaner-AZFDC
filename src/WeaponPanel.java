@@ -299,10 +299,23 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		            source.removeFocusListener(this);
 	           }
 	        };
-	    
+	    boolean carrier = false;
+	    //get from main gui or ship file?
+		//System.out.println(guiVariables.getShipType());
+	    //we do this outside so we don't have to do .contains on every single element
+	    if(guiVariables.getShipType().contains("Destroyers") ) {
+	    	carrier = true;
+	    }
 	    
 	    for(int i = 0; i < threeByThreeMouse.size(); i++) {
 			((JFormattedTextField)threeByThreeMouse.get(i)).addFocusListener(eraseZero);
+			//get from main gui or ship file?
+			//System.out.println(guiVariables.getShipType());
+			if(carrier) {
+				((JFormattedTextField)threeByThreeMouse.get(i)).setEnabled(true);
+			} else {
+				((JFormattedTextField)threeByThreeMouse.get(i)).setEnabled(false);
+			}
 	    }
 		
 		JLabel lblNewLabel = new JLabel("Ammo Type:");
@@ -582,8 +595,35 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 	
 	public void onSwitch() {
-		GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
-				weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+		
+		
+		boolean carrier = false;
+		String type = null;
+		String name = null;
+		if(guiVariables.getCurrentShip() != null && guiVariables.getCurrentShip().getShipName() != "") {
+			name = guiVariables.getCurrentShip().getShipName();
+			type = guiVariables.getShipType();
+			//check to see if the ship name has changed 
+			GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+					weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+			
+		}
+	    //get from main gui or ship file?
+	    //we do this outside so we don't have to do .contains on every single element
+	    if(type != null && (type.contains("Carriers") || type.equals("Aviation Battleships")) || (name != null && name.equals("I-13")) ) {
+	    	carrier = true;
+	    }
+	    
+	    for(int i = 0; i < threeByThreeMouse.size(); i++) {
+			//get from main gui or ship file?
+			//System.out.println(guiVariables.getShipType());
+			if(carrier) {
+				((JFormattedTextField)threeByThreeMouse.get(i)).setEnabled(true);
+			} else {
+				((JFormattedTextField)threeByThreeMouse.get(i)).setEnabled(false);
+				((JFormattedTextField)threeByThreeMouse.get(i)).setText("0");
+			}
+	    }
 	}
 
 
