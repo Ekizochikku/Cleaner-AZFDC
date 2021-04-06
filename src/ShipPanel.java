@@ -84,6 +84,7 @@ public class ShipPanel extends JPanel {
 					shipTypeName = (String) shipTypeCBox.getSelectedItem();
 					GUIUtility.insertNames(shipNameCBox,true, shipTypeName);
 					currentShipName = (String) shipNameCBox.getSelectedItem();
+					gui.setCurrentShip(null);
 					gui.setShipType(shipTypeName);
 					
 					setAttributes();

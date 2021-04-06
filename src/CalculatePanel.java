@@ -98,7 +98,7 @@ public class CalculatePanel extends JPanel {
 				//System.out.println("Null check working!");
 				damage1Result.setText("No Gun Selected for this Slot.");
 			}
-			System.out.println("The weapon name for slot 2: " + mainGUI.getmainGUI.getCurrentWeaponNameSlot2()());
+			System.out.println("The weapon name for slot 2: " + mainGUI.getCurrentWeaponNameSlot2());
 			if (mainGUI.getCurrentWeaponNameSlot2() != null && !mainGUI.getCurrentWeaponNameSlot2().isEmpty()) {
 				//System.out.println("Null check not working!");
 				//Nodes killed test case 
