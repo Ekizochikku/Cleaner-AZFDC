@@ -201,6 +201,8 @@ public class ShipPanel extends JPanel {
 						currentShip = new ShipFile(currentShipName, shipTypeName);
 						gui.setCurrentShip(currentShip);
 						gui.setShipType(shipTypeName);
+					} else {
+						gui.setCurrentShip(null);
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -230,7 +232,6 @@ public class ShipPanel extends JPanel {
 			}
 		});
 		shipNameCBox.setSelectedIndex(0);
-		gui.setCurrentShip(null);
 	}
 	//method for when panel changes to weapon
 	public void sendShipInfo(MainGUI gui) {

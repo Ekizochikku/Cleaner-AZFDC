@@ -21,6 +21,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.JTextPane;
@@ -53,6 +54,12 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	//Auxiliary TextPanes
 	JTextPane auxHealthTxt, firepowerTxt, antiAirTxt, torpedoTxt, aviationTxt; 
 	
+	JRadioButton rdbtnBlue, rdbtnPurple, rdbtnRed, rdbtnHe, rdbtnAP, rdbtnEven, rdbtnOdd;
+	JCheckBox chckbxFirstSalvo, chckbxCriticalHit, chckbxManual, chckbxArmor; 
+	
+	ArrayList<JRadioButton> colorGroupList = new ArrayList<JRadioButton>(); 
+	
+	String previousName = null;
 	//making auxgear here aswell and set it on the main gui one at the end since too lazy to write the long chain of getters and setters
 	AuxGear aux1, aux2;
 	MainGUI guiVariables;
@@ -323,22 +330,22 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		lblNewLabel.setBounds(10, 399, 109, 25);
 		add(lblNewLabel);
 		
-		JRadioButton rdbtnHe = new JRadioButton("HE");
+		rdbtnHe = new JRadioButton("HE");
 		ammoGroup.add(rdbtnHe);
 		rdbtnHe.setBounds(20, 426, 49, 23);
 		add(rdbtnHe);
 		
-		JRadioButton rdbtnAp = new JRadioButton("AP");
-		ammoGroup.add(rdbtnAp);
-		rdbtnAp.setBounds(71, 426, 48, 23);
-		add(rdbtnAp);
+		rdbtnAP = new JRadioButton("AP");
+		ammoGroup.add(rdbtnAP);
+		rdbtnAP.setBounds(71, 426, 48, 23);
+		add(rdbtnAP);
 		
-		JRadioButton rdbtnEven = new JRadioButton("Even");
+		rdbtnEven = new JRadioButton("Even");
 		evenOddGroup.add(rdbtnEven);
 		rdbtnEven.setBounds(134, 426, 66, 23);
 		add(rdbtnEven);
 		
-		JRadioButton rdbtnOdd = new JRadioButton("Odd");
+		rdbtnOdd = new JRadioButton("Odd");
 		evenOddGroup.add(rdbtnOdd);
 		rdbtnOdd.setBounds(207, 426, 49, 23);
 		add(rdbtnOdd);
@@ -358,34 +365,41 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 		
 		
-		JRadioButton rdbtnBlue = new JRadioButton("Blue");
+		rdbtnBlue = new JRadioButton("Blue");
 		colorGroup.add(rdbtnBlue);
+		colorGroupList.add(rdbtnBlue);
 		rdbtnBlue.setBounds(61, 469, 58, 23);
 		add(rdbtnBlue);
 		
-		JRadioButton rdbtnPurple = new JRadioButton("Purple");
+		rdbtnPurple = new JRadioButton("Purple");
 		colorGroup.add(rdbtnPurple);
+		colorGroupList.add(rdbtnPurple);
+
 		rdbtnPurple.setBounds(124, 469, 76, 23);
 		add(rdbtnPurple);
 		
-		JRadioButton rdbtnRed = new JRadioButton("Red");
+		rdbtnRed = new JRadioButton("Red");
 		colorGroup.add(rdbtnRed);
+		colorGroupList.add(rdbtnRed);
+
 		rdbtnRed.setBounds(207, 469, 49, 23);
 		add(rdbtnRed);
 		
-		JCheckBox chckbxFirstSalvo = new JCheckBox("First Salvo");
+		
+		
+		chckbxFirstSalvo = new JCheckBox("First Salvo");
 		chckbxFirstSalvo.setBounds(31, 506, 97, 23);
 		add(chckbxFirstSalvo);
 		
-		JCheckBox chckbxCriticalHit = new JCheckBox("Critical Hit");
+		chckbxCriticalHit = new JCheckBox("Critical Hit");
 		chckbxCriticalHit.setBounds(124, 506, 97, 23);
 		add(chckbxCriticalHit);
 		
-		JCheckBox chckbxManual = new JCheckBox("Manual");
+		chckbxManual = new JCheckBox("Manual");
 		chckbxManual.setBounds(31, 546, 97, 23);
 		add(chckbxManual);
 		
-		JCheckBox chckbxArmor = new JCheckBox("Armor Broken");
+		chckbxArmor = new JCheckBox("Armor Broken");
 		chckbxArmor.setBounds(124, 546, 107, 23);
 		add(chckbxArmor);
 		
@@ -600,18 +614,105 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		boolean carrier = false;
 		String type = null;
 		String name = null;
-		if(guiVariables.getCurrentShip() != null && guiVariables.getCurrentShip().getShipName() != "") {
+		
+		
+		if(guiVariables.getShipType() != null && guiVariables.getCurrentShip() != null && guiVariables.getCurrentShip().getShipName() != "") {
 			name = guiVariables.getCurrentShip().getShipName();
 			type = guiVariables.getShipType();
-			//check to see if the ship name has changed 
-			GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
-					weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+			//check to see if the ship name has changed so we only insert if new ship
+			if(previousName != name) {
+				previousName = name;
+				GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
+						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+				if(name.equals("Roon")) {
+					//System.out.println("Not entering this check!!!");
+					//Need to be changed so they're in array to reduce redundancy
+					rdbtnHe.setEnabled(true);
+					rdbtnAP.setEnabled(true);
+					
+					rdbtnHe.setToolTipText(null);
+					rdbtnAP.setToolTipText(null);
+					
+					//will put this in it's own method to reduce redundancy later or for loop
+					
+					for (JRadioButton btn : colorGroupList) {
+				         btn.setSelected(false);
+				         btn.setEnabled(false);
+				    }
+				//battleship	
+				} else if(name.equals("Friedrich der Grosse (Retrofit)")) {
+					rdbtnHe.setEnabled(false);
+					rdbtnAP.setEnabled(false);
+					
+					//Any default for radio buttons?
+					rdbtnEven.setSelected(true);
+					rdbtnEven.setEnabled(true);
+					rdbtnOdd.setEnabled(true);
+					rdbtnOdd.setToolTipText(null);
+					rdbtnEven.setToolTipText(null);
+					for (JRadioButton btn : colorGroupList) {
+				         btn.setSelected(false);
+				         btn.setEnabled(false);
+				    }
+					
+				
+				//checking for ships that have Muse
+				//this is an else if, i'm assuming there are no muse ships that are named Roon, Friedrich, Alabama
+				//will need to be changed if otherwise
+					
+				}else if(name.indexOf("Muse") != -1) {
+					
+					for (JRadioButton btn : colorGroupList) {
+				         btn.setEnabled(true);
+				    }
+				}	
+				/*	
+				} else if(name.equals("Alabama") && skillExist) {
+					nodesKilledTextField.setEnabled(true);
+					nodeKilledLabel.setEnabled(true);
+					isArmorBroken.setEnabled(true);
+					
+				}*/ else {
+					rdbtnHe.setSelected(true);
+					rdbtnHe.setEnabled(false);
+					rdbtnAP.setEnabled(false);
+					//buttonGroup.clearSelection();
+					
+					rdbtnHe.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
+					rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
+					rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+					rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
+					
+					for (JRadioButton btn : colorGroupList) {
+				         btn.setSelected(false);
+				         btn.setEnabled(false);
+				    }
+				    //for some reason setSelected above doesnt work so this has to be done
+					colorGroup.clearSelection();
+					
+					rdbtnEven.setEnabled(false);
+					rdbtnOdd.setEnabled(false);
+					//evenOdd = -1;
+					//System.out.println("The current even odd:" + evenOdd);
+					/*
+					nodesKilledTextField.setEnabled(false);
+					nodesKilledTextField.setText("");
+					nodeKilledLabel.setEnabled(false);
+					isArmorBroken.setEnabled(false);
+					isArmorBroken.setSelected(false);
+					*/
+				}
+			}
+			
 			
 		}
+		
 	    //get from main gui or ship file?
 	    //we do this outside so we don't have to do .contains on every single element
 	    if(type != null && (type.contains("Carriers") || type.equals("Aviation Battleships")) || (name != null && name.equals("I-13")) ) {
 	    	carrier = true;
+	    } else {
+	    	carrier = false;
 	    }
 	    
 	    for(int i = 0; i < threeByThreeMouse.size(); i++) {
