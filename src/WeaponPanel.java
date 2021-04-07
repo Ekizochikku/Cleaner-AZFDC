@@ -39,14 +39,14 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	JComboBox<Object> weaponName1Combo, weaponName2Combo, weaponName3Combo, 
 	weaponType1Combo, weaponType2Combo, weaponType3Combo, aux1Combo, aux2Combo;
 	
-	JLabel lblNodesKilled;
-	
+
+
 	//Bomb/plane boxes
 	//changes to jformatted text field to restrict to only numbers
 	//fudge you Walter
 	JFormattedTextField bomb1Plane3Text, bomb1Plane1Text, bomb1Plane2Text,
 	bomb2Plane1Text, bomb2Plane2Text, bomb2Plane3Text,
-	torpedoPlane1Text, torpedoPlane2Text, torpedoPlane3Text, nodesKilledTxt;
+	torpedoPlane1Text, torpedoPlane2Text, torpedoPlane3Text;
 	
 	//array list for the 3x3
 	ArrayList<Object> threeByThreeMouse;
@@ -327,31 +327,31 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		JLabel lblNewLabel = new JLabel("Ammo Type:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(10, 399, 109, 25);
+		lblNewLabel.setBounds(10, 426, 109, 25);
 		add(lblNewLabel);
 		
 		rdbtnHe = new JRadioButton("HE");
 		rdbtnHe.setEnabled(false);
 		ammoGroup.add(rdbtnHe);
-		rdbtnHe.setBounds(20, 426, 49, 23);
+		rdbtnHe.setBounds(10, 453, 49, 23);
 		add(rdbtnHe);
 		
 		rdbtnAP = new JRadioButton("AP");
 		rdbtnAP.setEnabled(false);
 		ammoGroup.add(rdbtnAP);
-		rdbtnAP.setBounds(71, 426, 48, 23);
+		rdbtnAP.setBounds(71, 453, 48, 23);
 		add(rdbtnAP);
 		
 		rdbtnEven = new JRadioButton("Even");
 		rdbtnEven.setEnabled(false);
 		evenOddGroup.add(rdbtnEven);
-		rdbtnEven.setBounds(134, 426, 66, 23);
+		rdbtnEven.setBounds(134, 453, 66, 23);
 		add(rdbtnEven);
 		
 		rdbtnOdd = new JRadioButton("Odd");
 		rdbtnOdd.setEnabled(false);
 		evenOddGroup.add(rdbtnOdd);
-		rdbtnOdd.setBounds(207, 426, 49, 23);
+		rdbtnOdd.setBounds(215, 453, 49, 23);
 		add(rdbtnOdd);
 		
 		//adding tool tip to both manually since no point for loop for 2
@@ -372,21 +372,21 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		rdbtnBlue = new JRadioButton("Blue");
 		colorGroup.add(rdbtnBlue);
 		colorGroupList.add(rdbtnBlue);
-		rdbtnBlue.setBounds(61, 469, 58, 23);
+		rdbtnBlue.setBounds(437, 426, 58, 23);
 		add(rdbtnBlue);
 		
 		rdbtnPurple = new JRadioButton("Purple");
 		colorGroup.add(rdbtnPurple);
 		colorGroupList.add(rdbtnPurple);
 
-		rdbtnPurple.setBounds(124, 469, 76, 23);
+		rdbtnPurple.setBounds(500, 426, 76, 23);
 		add(rdbtnPurple);
 		
 		rdbtnRed = new JRadioButton("Red");
 		colorGroup.add(rdbtnRed);
 		colorGroupList.add(rdbtnRed);
 
-		rdbtnRed.setBounds(207, 469, 49, 23);
+		rdbtnRed.setBounds(583, 426, 49, 23);
 		add(rdbtnRed);
 		Enumeration<AbstractButton> elements = colorGroup.getElements();
 	    while (elements.hasMoreElements()) {
@@ -395,30 +395,20 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		
 		chckbxFirstSalvo = new JCheckBox("First Salvo");
-		chckbxFirstSalvo.setBounds(31, 506, 97, 23);
+		chckbxFirstSalvo.setBounds(407, 463, 97, 23);
 		add(chckbxFirstSalvo);
 		
 		chckbxCriticalHit = new JCheckBox("Critical Hit");
-		chckbxCriticalHit.setBounds(124, 506, 97, 23);
+		chckbxCriticalHit.setBounds(525, 463, 97, 23);
 		add(chckbxCriticalHit);
 		
 		chckbxManual = new JCheckBox("Manual");
-		chckbxManual.setBounds(31, 546, 97, 23);
+		chckbxManual.setBounds(407, 503, 97, 23);
 		add(chckbxManual);
 		
 		chckbxArmor = new JCheckBox("Armor Broken");
-		chckbxArmor.setBounds(124, 546, 107, 23);
+		chckbxArmor.setBounds(525, 503, 107, 23);
 		add(chckbxArmor);
-		
-		lblNodesKilled = new JLabel("Nodes Killed:");
-		lblNodesKilled.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNodesKilled.setBounds(272, 532, 97, 30);
-		add(lblNodesKilled);
-		
-		nodesKilledTxt = new JFormattedTextField(formatter);
-		nodesKilledTxt.setEditable(false);
-		nodesKilledTxt.setBounds(395, 532, 87, 30);
-		add(nodesKilledTxt);
 		
 
 		
@@ -562,7 +552,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		JLabel lblNote = new JLabel("Note:");
 		lblNote.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNote.setBounds(9, 473, 46, 14);
+		lblNote.setBounds(385, 430, 46, 14);
 		add(lblNote);
 		
 	}
