@@ -84,12 +84,12 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(weaponType1Label);
 		
 		JLabel weaponName1Label = new JLabel("Weapon Name Slot 1:");
-		weaponName1Label.setBounds(181, 13, 144, 20);
+		weaponName1Label.setBounds(287, 11, 144, 20);
 		add(weaponName1Label);
 		
 		weaponType1Combo = new JComboBox<Object>(new Object[]{});
 		weaponType1Combo.setMaximumRowCount(5);
-		weaponType1Combo.setBounds(10, 47, 161, 25);
+		weaponType1Combo.setBounds(10, 47, 217, 25);
 		add(weaponType1Combo);
 		weaponType1Combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -100,7 +100,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	});
 		//carriers, aviation 3rd slot only, i13 third slot only 
 		weaponName1Combo = new JComboBox<Object>();
-		weaponName1Combo.setBounds(181, 48, 309, 23);
+		weaponName1Combo.setBounds(287, 46, 364, 23);
 		add(weaponName1Combo);
 		
 		
@@ -109,11 +109,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(weaponType2Label);
 		
 		JLabel weaponName2Label = new JLabel("Weapon Name Slot 2:");
-		weaponName2Label.setBounds(181, 97, 144, 20);
+		weaponName2Label.setBounds(287, 95, 144, 20);
 		add(weaponName2Label);
 		
 		weaponType2Combo = new JComboBox<Object>();
-		weaponType2Combo.setBounds(10, 131, 161, 25);
+		weaponType2Combo.setBounds(10, 131, 217, 25);
 		add(weaponType2Combo);
 		
 		weaponType2Combo.addActionListener(new ActionListener() {
@@ -125,7 +125,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	});
 		
 		weaponName2Combo = new JComboBox<Object>();
-		weaponName2Combo.setBounds(181, 132, 309, 23);
+		weaponName2Combo.setBounds(287, 130, 364, 23);
 		add(weaponName2Combo);
 		
 		JLabel weaponType3Label = new JLabel("Weapon Type Slot 3:");
@@ -133,11 +133,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(weaponType3Label);
 		
 		JLabel weaponName3Label = new JLabel("Weapon Name Slot 3:");
-		weaponName3Label.setBounds(181, 169, 144, 20);
+		weaponName3Label.setBounds(287, 167, 144, 20);
 		add(weaponName3Label);
 		
 		weaponType3Combo = new JComboBox<Object>();
-		weaponType3Combo.setBounds(10, 203, 161, 25);
+		weaponType3Combo.setBounds(10, 203, 217, 25);
 		add(weaponType3Combo);
 		weaponType3Combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -149,7 +149,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		
 		weaponName3Combo = new JComboBox<Object>();
-		weaponName3Combo.setBounds(181, 204, 309, 23);
+		weaponName3Combo.setBounds(287, 202, 364, 23);
 		add(weaponName3Combo);
 		
 		
@@ -404,41 +404,41 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		JLabel lblAuxiliary = new JLabel("Auxiliary 1:");
 		lblAuxiliary.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAuxiliary.setBounds(586, 16, 109, 25);
+		lblAuxiliary.setBounds(760, 13, 109, 25);
 		add(lblAuxiliary);
 		
 		JLabel lblAuxiliary_1 = new JLabel("Auxiliary 2:");
 		lblAuxiliary_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAuxiliary_1.setBounds(586, 100, 109, 25);
+		lblAuxiliary_1.setBounds(760, 97, 109, 25);
 		add(lblAuxiliary_1);
 		
 		JLabel lblAuxHealth = new JLabel("Aux Health:");
 		lblAuxHealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAuxHealth.setBounds(586, 203, 109, 25);
+		lblAuxHealth.setBounds(755, 185, 109, 25);
 		add(lblAuxHealth);
 		
 		JLabel lblFirepower = new JLabel("Firepower:");
 		lblFirepower.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblFirepower.setBounds(586, 288, 109, 25);
+		lblFirepower.setBounds(755, 270, 109, 25);
 		add(lblFirepower);
 		
 		JLabel lblAntiAir = new JLabel("Anti Air:");
 		lblAntiAir.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAntiAir.setBounds(755, 288, 109, 25);
+		lblAntiAir.setBounds(924, 270, 109, 25);
 		add(lblAntiAir);
 		
 		JLabel lblTorpedo = new JLabel("Torpedo:");
 		lblTorpedo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblTorpedo.setBounds(586, 359, 109, 25);
+		lblTorpedo.setBounds(755, 341, 109, 25);
 		add(lblTorpedo);
 		
 		JLabel lblAviation = new JLabel("Aviation:");
 		lblAviation.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAviation.setBounds(755, 360, 109, 25);
+		lblAviation.setBounds(924, 342, 109, 25);
 		add(lblAviation);
 		
 		aux1Combo = new JComboBox<Object>();
-		aux1Combo.setBounds(577, 49, 187, 25);
+		aux1Combo.setBounds(751, 46, 330, 25);
 		add(aux1Combo);
 		
 		List<String> auxNames = new ArrayList<String>();
@@ -480,7 +480,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 		
 		aux2Combo = new JComboBox<Object>();
-		aux2Combo.setBounds(577, 133, 187, 25);
+		aux2Combo.setBounds(751, 130, 330, 25);
 		add(aux2Combo);
 		aux2Combo.setModel(new DefaultComboBoxModel<Object>(auxNames.toArray()));
 		aux2Combo.addActionListener(new ActionListener() {
@@ -515,27 +515,27 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		auxHealthTxt = new JTextPane();
 		auxHealthTxt.setEditable(false);
-		auxHealthTxt.setBounds(586, 239, 161, 30);
+		auxHealthTxt.setBounds(755, 221, 161, 30);
 		add(auxHealthTxt);
 		
 		firepowerTxt = new JTextPane();
 		firepowerTxt.setEditable(false);
-		firepowerTxt.setBounds(582, 319, 117, 30);
+		firepowerTxt.setBounds(751, 301, 117, 30);
 		add(firepowerTxt);
 		
 		antiAirTxt = new JTextPane();
 		antiAirTxt.setEditable(false);
-		antiAirTxt.setBounds(751, 319, 117, 30);
+		antiAirTxt.setBounds(920, 301, 117, 30);
 		add(antiAirTxt);
 		
 		torpedoTxt = new JTextPane();
 		torpedoTxt.setEditable(false);
-		torpedoTxt.setBounds(582, 384, 117, 30);
+		torpedoTxt.setBounds(751, 366, 117, 30);
 		add(torpedoTxt);
 		
 		aviationTxt = new JTextPane();
 		aviationTxt.setEditable(false);
-		aviationTxt.setBounds(751, 384, 117, 30);
+		aviationTxt.setBounds(920, 366, 117, 30);
 		add(aviationTxt);
 		
 		
