@@ -39,8 +39,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	JComboBox<Object> weaponName1Combo, weaponName2Combo, weaponName3Combo, 
 	weaponType1Combo, weaponType2Combo, weaponType3Combo, aux1Combo, aux2Combo;
 	
-
-
+	JLabel lblNodesKilled;
+	
 	//Bomb/plane boxes
 	//changes to jformatted text field to restrict to only numbers
 	//fudge you Walter
@@ -331,21 +331,25 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(lblNewLabel);
 		
 		rdbtnHe = new JRadioButton("HE");
+		rdbtnHe.setEnabled(false);
 		ammoGroup.add(rdbtnHe);
 		rdbtnHe.setBounds(20, 426, 49, 23);
 		add(rdbtnHe);
 		
 		rdbtnAP = new JRadioButton("AP");
+		rdbtnAP.setEnabled(false);
 		ammoGroup.add(rdbtnAP);
 		rdbtnAP.setBounds(71, 426, 48, 23);
 		add(rdbtnAP);
 		
 		rdbtnEven = new JRadioButton("Even");
+		rdbtnEven.setEnabled(false);
 		evenOddGroup.add(rdbtnEven);
 		rdbtnEven.setBounds(134, 426, 66, 23);
 		add(rdbtnEven);
 		
 		rdbtnOdd = new JRadioButton("Odd");
+		rdbtnOdd.setEnabled(false);
 		evenOddGroup.add(rdbtnOdd);
 		rdbtnOdd.setBounds(207, 426, 49, 23);
 		add(rdbtnOdd);
@@ -384,7 +388,10 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 		rdbtnRed.setBounds(207, 469, 49, 23);
 		add(rdbtnRed);
-		
+		Enumeration<AbstractButton> elements = colorGroup.getElements();
+	    while (elements.hasMoreElements()) {
+	      ((JRadioButton) elements.nextElement()).setEnabled(false);
+	    }
 		
 		
 		chckbxFirstSalvo = new JCheckBox("First Salvo");
@@ -403,7 +410,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		chckbxArmor.setBounds(124, 546, 107, 23);
 		add(chckbxArmor);
 		
-		JLabel lblNodesKilled = new JLabel("Nodes Killed:");
+		lblNodesKilled = new JLabel("Nodes Killed:");
 		lblNodesKilled.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNodesKilled.setBounds(272, 532, 97, 30);
 		add(lblNodesKilled);
@@ -666,13 +673,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				         btn.setEnabled(true);
 				    }
 				}	
-				/*	
-				} else if(name.equals("Alabama") && skillExist) {
-					nodesKilledTextField.setEnabled(true);
-					nodeKilledLabel.setEnabled(true);
-					isArmorBroken.setEnabled(true);
-					
-				}*/ else {
+				else {
 					rdbtnHe.setSelected(true);
 					rdbtnHe.setEnabled(false);
 					rdbtnAP.setEnabled(false);
@@ -693,20 +694,35 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					rdbtnEven.setEnabled(false);
 					rdbtnOdd.setEnabled(false);
 					//evenOdd = -1;
-					//System.out.println("The current even odd:" + evenOdd);
-					/*
-					nodesKilledTextField.setEnabled(false);
-					nodesKilledTextField.setText("");
-					nodeKilledLabel.setEnabled(false);
-					isArmorBroken.setEnabled(false);
-					isArmorBroken.setSelected(false);
-					*/
 				}
 			}
 			
 			
 		}
+		//adding a checker if skills changed later
+		//well fuck
+		/*
+		ArrayList<Skill> theSkills = guiVariables.getSkills();
+		boolean skillExist = false;
+		for( int i = 0; i <  theSkills.size(); i++){
+		     if(theSkills.get(i).getSkillName().equals("Just Gettin' Fired Up")) {
+		    	 skillExist = true;
+		    	 nodesKilledTxt.setEnabled(true);
+		    	 nodesKilledTxt.setEditable(true);
+		    	 lblNodesKilled.setEnabled(true);
+				 chckbxArmor.setEnabled(true);
+				 break;
+		     } 
+		}
 		
+		if(!skillExist) {
+			nodesKilledTxt.setEnabled(false);
+			nodesKilledTxt.setText("");
+			lblNodesKilled.setEnabled(false);
+			chckbxArmor.setEnabled(false);
+			chckbxArmor.setSelected(false);
+		}
+		*/
 	    //get from main gui or ship file?
 	    //we do this outside so we don't have to do .contains on every single element
 	    if(type != null && (type.contains("Carriers") || type.equals("Aviation Battleships")) || (name != null && name.equals("I-13")) ) {
