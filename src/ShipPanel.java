@@ -111,7 +111,7 @@ public class ShipPanel extends JPanel {
 		
 		
 		shipNameCBox = new JComboBox();
-		shipNameCBox.setBounds(534, 127, 191, 25);
+		shipNameCBox.setBounds(534, 127, 234, 25);
 		add(shipNameCBox);
 		GUIUtility.insertNames(shipNameCBox, true, shipTypeName);
 //		currentShipName = (String) shipNameCBox.getSelectedItem();

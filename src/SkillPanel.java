@@ -77,7 +77,7 @@ public class SkillPanel extends JPanel {
 				updateSkillDescription(0);
 			}
 		});
-		skillListCBox.setBounds(434, 36, 255, 28);
+		skillListCBox.setBounds(376, 36, 313, 28);
 		skillListCBox.setMaximumRowCount(10);
 		skillListCBox.addItem("");
 		ArrayList<String> skillNames = null;
