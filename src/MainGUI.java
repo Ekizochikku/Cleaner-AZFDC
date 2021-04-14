@@ -425,6 +425,14 @@ public class MainGUI extends JFrame {
 		return this.evenOdd;
 	}
 
+	public void setHeAp(int option) {
+		this.currentDMGType = option;
+	}
+	
+	public int getHeAp() {
+		return this.currentDMGType;
+	}
+	
 	public void setColor(int color) {
 		this.currentColorSelected = color;
 	}

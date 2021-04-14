@@ -340,11 +340,26 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		rdbtnHe.setBounds(10, 453, 49, 23);
 		add(rdbtnHe);
 		
+		rdbtnHe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guiVariables.setHeAp(0);
+				System.out.println("HE is selected should display 0 :" + guiVariables.getHeAp());
+			}
+		});
+		
+		
 		rdbtnAP = new JRadioButton("AP");
 		rdbtnAP.setEnabled(false);
 		ammoGroup.add(rdbtnAP);
 		rdbtnAP.setBounds(71, 453, 48, 23);
 		add(rdbtnAP);
+		
+		rdbtnAP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guiVariables.setHeAp(1);
+				System.out.println("Ap is selected should display 1 :" + guiVariables.getHeAp());
+			}
+		});
 		
 		rdbtnEven = new JRadioButton("Even");
 		rdbtnEven.setEnabled(false);
@@ -648,6 +663,12 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				previousName = name;
 				GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
 						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+				//default values
+				guiVariables.setEvenOdd(0);
+				guiVariables.setHeAp(0);
+				
+				
+				//have to change this to only be the skill expert loader
 				if(name.equals("Roon")) {
 					//System.out.println("Not entering this check!!!");
 					//Need to be changed so they're in array to reduce redundancy
@@ -680,8 +701,6 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				         btn.setEnabled(false);
 				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
 				    }
-					guiVariables.setEvenOdd(0);
-					
 				//checking for ships that have Muse
 				//this is an else if, i'm assuming there are no muse ships that are named Roon, Friedrich, Alabama
 				//will need to be changed if otherwise
@@ -699,8 +718,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					rdbtnAP.setEnabled(false);
 					//buttonGroup.clearSelection();
 					
-					rdbtnHe.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
-					rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
+					rdbtnHe.setToolTipText("HE and AP rounds are only selectable with the skill 'Expert Loader' ");
+					rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Expert Loader' ");
 					rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
 					rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
 					
@@ -716,7 +735,6 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					//default value
 					rdbtnEven.setSelected(true);
 					rdbtnOdd.setEnabled(false);
-					evenOdd = 0;
 					
 				}
 			}
