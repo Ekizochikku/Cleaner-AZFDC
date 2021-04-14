@@ -64,9 +64,13 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	AuxGear aux1, aux2;
 	MainGUI guiVariables;
 	GUIUtility guiU;
+	
+	private int evenOdd = -1; //0 for even, 1 for odd, -1 for non selected
+	
 	private final ButtonGroup ammoGroup = new ButtonGroup();
 	private final ButtonGroup evenOddGroup = new ButtonGroup();
 	private final ButtonGroup colorGroup = new ButtonGroup();
+	
 	public WeaponPanel(MainGUI frame, JComboBox<Object> weaponName1Combo, JComboBox<Object> weaponName2Combo,
 			JComboBox<Object> weaponName3Combo, JComboBox<Object> weaponType1Combo, JComboBox<Object> weaponType2Combo,
 			JComboBox<Object> weaponType3Combo) {
@@ -348,15 +352,36 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		rdbtnEven.setBounds(134, 453, 66, 23);
 		add(rdbtnEven);
 		
+		rdbtnEven.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guiVariables.setEvenOdd(0);
+				evenOdd = 0;
+				System.out.println("even is selected should display 0: " + evenOdd + 
+						" Getter:" + guiVariables.getEvenOdd());
+			}
+		});
+		
+		
 		rdbtnOdd = new JRadioButton("Odd");
 		rdbtnOdd.setEnabled(false);
 		evenOddGroup.add(rdbtnOdd);
 		rdbtnOdd.setBounds(215, 453, 49, 23);
 		add(rdbtnOdd);
 		
+		rdbtnOdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guiVariables.setEvenOdd(1);
+				evenOdd = 1;
+				System.out.println("Odd is selected should display 1 :" + evenOdd +
+						" Getter:" + guiVariables.getEvenOdd());
+			}
+		});
+		
 		//adding tool tip to both manually since no point for loop for 2
-		//rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
-		//rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		rdbtnHe.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
+		rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
+		rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
+		rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
 		
 		//enumaration to get all elements
 		//ArrayList<JRadioButton> listRadioButton = (ArrayList<JRadioButton>) evenOddGroup.getElements();
@@ -390,7 +415,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(rdbtnRed);
 		Enumeration<AbstractButton> elements = colorGroup.getElements();
 	    while (elements.hasMoreElements()) {
-	      ((JRadioButton) elements.nextElement()).setEnabled(false);
+	    	JRadioButton theButton = (JRadioButton) elements.nextElement();
+	    	theButton.setEnabled(false);
+	    	theButton.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
 	    }
 		
 		
@@ -635,8 +662,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					for (JRadioButton btn : colorGroupList) {
 				         btn.setSelected(false);
 				         btn.setEnabled(false);
+				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
 				    }
-				//battleship	
+				//needs to be changed to a skill and ship type later	
 				} else if(name.equals("Friedrich der Grosse (Retrofit)")) {
 					rdbtnHe.setEnabled(false);
 					rdbtnAP.setEnabled(false);
@@ -650,9 +678,10 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					for (JRadioButton btn : colorGroupList) {
 				         btn.setSelected(false);
 				         btn.setEnabled(false);
+				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
 				    }
+					guiVariables.setEvenOdd(0);
 					
-				
 				//checking for ships that have Muse
 				//this is an else if, i'm assuming there are no muse ships that are named Roon, Friedrich, Alabama
 				//will need to be changed if otherwise
@@ -661,6 +690,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					
 					for (JRadioButton btn : colorGroupList) {
 				         btn.setEnabled(true);
+				         btn.setToolTipText(null);
 				    }
 				}	
 				else {
@@ -677,13 +707,17 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					for (JRadioButton btn : colorGroupList) {
 				         btn.setSelected(false);
 				         btn.setEnabled(false);
+				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
 				    }
 				    //for some reason setSelected above doesnt work so this has to be done
 					colorGroup.clearSelection();
 					
 					rdbtnEven.setEnabled(false);
+					//default value
+					rdbtnEven.setSelected(true);
 					rdbtnOdd.setEnabled(false);
-					//evenOdd = -1;
+					evenOdd = 0;
+					
 				}
 			}
 			
@@ -712,6 +746,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 			chckbxArmor.setEnabled(false);
 			chckbxArmor.setSelected(false);
 		}
+		
 		*/
 	    //get from main gui or ship file?
 	    //we do this outside so we don't have to do .contains on every single element
