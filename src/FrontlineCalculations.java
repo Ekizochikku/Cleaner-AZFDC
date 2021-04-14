@@ -15,6 +15,7 @@ public class FrontlineCalculations {
 	 * Calculate the total final Damage a ship will do. The exceptions will he handled in its own class. (Maybe).
 	 * For the methods that have specialShipFound passed in, those ships will only have one weapon being used since places won't be giving firepower stats and are a different object.
 	 * Pass in the weapon being calculated into the second weapon to avoid errors. (This second weapon for SPECIAL SHIPS ONLY will have no effect on the calculation since it will be a duplicate.
+	 * noteColor 0 - Blue, 1 - Purple, 2 Red
 	 * @param ship
 	 * @param mainWeapon
 	 * @param secondWeapon
@@ -39,7 +40,7 @@ public class FrontlineCalculations {
 	 * @return
 	 */
 	public double getFinalDamage(ShipFile ship, CommonWeapon mainWeapon, CommonWeapon secondWeapon, AAGuns aaGun, AAGuns seattleGun, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames, AuxGear gearOne, AuxGear gearTwo, 
-			int shipSlot, boolean crit, String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, String noteColor) {
+			int shipSlot, boolean crit, String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, int noteColor) {
 		boolean specialShipFound = specialShips.contains(ship.getShipName());
 
 		double finalDamage = 0;
@@ -424,7 +425,7 @@ public class FrontlineCalculations {
 	 * @param noteColor
 	 * @return
 	 */
-	public double getArmorModifier(ShipFile ship, Enemy enemy, CommonWeapon mainWeapon, CommonWeapon secondWeapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int ammoType, int shipSlot, String noteColor, boolean specialShipFound) {
+	public double getArmorModifier(ShipFile ship, Enemy enemy, CommonWeapon mainWeapon, CommonWeapon secondWeapon, ArrayList<Skill> skills, ArrayList<String> skillNames, int ammoType, int shipSlot, int noteColor, boolean specialShipFound) {
 		double armorMod = 0;
 		boolean change = false;
 		
@@ -479,7 +480,7 @@ public class FrontlineCalculations {
 				} else { // Heavy Armor
 					armorMod = 0.85;
 				}
-			} else if (skillNames.contains("Armor-Penetrating Arrow") && noteColor.equals("Blue")) {
+			} else if (skillNames.contains("Armor-Penetrating Arrow") && noteColor == 0) {
 				if (enemyArmor.equals("L")) {
 					armorMod = 1.20;
 				} else if (enemyArmor.equals("M")) {
@@ -488,8 +489,15 @@ public class FrontlineCalculations {
 					armorMod = 0.90;
 				}
 				mainWeapon.setAmmoType("AP");
-			}
-			else if (skillNames.contains("Armor-Piercing Hypercharge")) {
+			} else if (skillNames.contains("Spirited Guidance") && noteColor == 1) {
+				if (enemyArmor.equals("L")) {
+					armorMod = 1.20;
+				} else if (enemyArmor.equals("M")) {
+					armorMod = 1.20;
+				} else { // Heavy Armor
+					armorMod = 1.00;
+				}
+			} else if (skillNames.contains("Armor-Piercing Hypercharge")) {
 				if (enemyArmor.equals("L")) {
 					armorMod = 1.0;
 				} else if (enemyArmor.equals("M")) {
@@ -516,7 +524,7 @@ public class FrontlineCalculations {
 						armorMod = .75;
 					}
 				}
-			} else if (skillNames.contains("High-Explosive Volley Fever") && noteColor.equals("Red")) {
+			} else if (skillNames.contains("High-Explosive Volley Fever") && noteColor == 2) {
 				if (enemyArmor.equals("L")) {
 					armorMod = 1.10;
 				} else if (enemyArmor.equals("M")) {
