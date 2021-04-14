@@ -71,6 +71,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	private final ButtonGroup evenOddGroup = new ButtonGroup();
 	private final ButtonGroup colorGroup = new ButtonGroup();
 	
+	private int colorNumber = 0;
+	
 	public WeaponPanel(MainGUI frame, JComboBox<Object> weaponName1Combo, JComboBox<Object> weaponName2Combo,
 			JComboBox<Object> weaponName3Combo, JComboBox<Object> weaponType1Combo, JComboBox<Object> weaponType2Combo,
 			JComboBox<Object> weaponType3Combo) {
@@ -414,11 +416,10 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		colorGroupList.add(rdbtnBlue);
 		rdbtnBlue.setBounds(437, 426, 58, 23);
 		add(rdbtnBlue);
-		
+			
 		rdbtnPurple = new JRadioButton("Purple");
 		colorGroup.add(rdbtnPurple);
 		colorGroupList.add(rdbtnPurple);
-
 		rdbtnPurple.setBounds(500, 426, 76, 23);
 		add(rdbtnPurple);
 		
@@ -428,13 +429,23 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 		rdbtnRed.setBounds(583, 426, 49, 23);
 		add(rdbtnRed);
+				
 		Enumeration<AbstractButton> elements = colorGroup.getElements();
+		//enumeration to reduce redundancy for colors
+		//need to test more for bugs
 	    while (elements.hasMoreElements()) {
 	    	JRadioButton theButton = (JRadioButton) elements.nextElement();
+	    	theButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					guiVariables.setColor(colorNumber);
+					System.out.println("A Color is selected, 0-2 :" + guiVariables.getColor());
+					colorNumber++;
+				}
+			});
 	    	theButton.setEnabled(false);
-	    	theButton.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
+	    	theButton.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");	    	
 	    }
-		
+
 		
 		chckbxFirstSalvo = new JCheckBox("First Salvo");
 		chckbxFirstSalvo.setBounds(407, 463, 97, 23);
@@ -666,8 +677,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				//default values
 				guiVariables.setEvenOdd(0);
 				guiVariables.setHeAp(0);
-				
-				
+				guiVariables.setColor(0);
+				rdbtnBlue.setSelected(true);
+
 				//have to change this to only be the skill expert loader
 				if(name.equals("Roon")) {
 					//System.out.println("Not entering this check!!!");
@@ -685,7 +697,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				         btn.setEnabled(false);
 				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
 				    }
-				//needs to be changed to a skill and ship type later	
+				//needs to be changed to a skill and ship type later
+				//needs Sonata of chaos instead of friedrich the grosse
 				} else if(name.equals("Friedrich der Grosse (Retrofit)")) {
 					rdbtnHe.setEnabled(false);
 					rdbtnAP.setEnabled(false);
@@ -701,6 +714,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				         btn.setEnabled(false);
 				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
 				    }
+					
 				//checking for ships that have Muse
 				//this is an else if, i'm assuming there are no muse ships that are named Roon, Friedrich, Alabama
 				//will need to be changed if otherwise
@@ -711,7 +725,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				         btn.setEnabled(true);
 				         btn.setToolTipText(null);
 				    }
-				}	
+					
+				}
+				
 				else {
 					rdbtnHe.setSelected(true);
 					rdbtnHe.setEnabled(false);
