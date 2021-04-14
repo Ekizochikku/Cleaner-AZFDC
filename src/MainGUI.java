@@ -51,7 +51,7 @@ public class MainGUI extends JFrame {
 	private boolean isCritical;
 	private boolean armorBreak;
 	private boolean firstSalvo;
-	private int manual;
+	private boolean manual;
 	private int evenOdd;
 	private int currentColorSelected;
 	
@@ -201,7 +201,7 @@ public class MainGUI extends JFrame {
 		isCritical = false;
 		armorBreak = false;
 		firstSalvo = false;
-		manual = 0;
+		manual = false;
 		evenOdd = 0;
 		currentColorSelected = 0;
 		
@@ -401,11 +401,11 @@ public class MainGUI extends JFrame {
 		return this.armorBreak;
 	}
 
-	public void setManual(int manual) {
+	public void setManual(boolean manual) {
 		this.manual = manual;
 	}
 	
-	public int getManual() {
+	public boolean getManual() {
 		return this.manual;
 	}
 
