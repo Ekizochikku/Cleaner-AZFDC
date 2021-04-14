@@ -23,6 +23,7 @@ public class Enemy {
 	 private String nation;
 	 
 	 public Enemy(String enemy, String world) throws FileNotFoundException, IOException {
+		 utility = new GUIUtility();
 		 ArrayList<String> ep = utility.getEnemyParameters(enemy, world);
 		 setVariables(ep);
 	 }

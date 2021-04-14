@@ -376,13 +376,13 @@ public class GUIUtility {
 	 */
 	public ArrayList<String> getEnemyParameters(String enemy, String world) throws FileNotFoundException, IOException{
 		//Adding in print statements to debug
-		//System.out.println("In the enemy parameters method:  "+ enemy + " " + world);
+//		System.out.println("In the enemy parameters method:  "+ enemy + " " + world);
 		ArrayList<String> theParams = new ArrayList<String>();
 		String[] enemyNameAndLevel = enemy.split(","); //Name and Level
 		
 		String parseOutLvl = enemyNameAndLevel[1].replaceAll("[^\\d.]", "");
 		enemyNameAndLevel[1] = parseOutLvl;
-		//System.out.println("the enemy name and level fields: " + Arrays.toString(enemyNameAndLevel));
+//		System.out.println("the enemy name and level fields: " + Arrays.toString(enemyNameAndLevel));
 
 		BufferedReader br = new BufferedReader(new FileReader("Enemies.tsv"));
 		String line = br.readLine();

@@ -31,22 +31,29 @@ public class MainGUI extends JFrame {
 	private int currentDMGType = 0; //0 = HE, 1 = AP
 	//default type when nothing is selected
 	private ShipFile currentShip;
-	private String currentColorSelected;
 	private String currentWeaponType;
+	private String currentWeaponType2;
+	private String currentWeaponType3;
 	
 	//The current selected weapon name
 	private String currentWeaponName = null;
-	private String currentWeaponNameSlot2 = null;
-	private String curentWeaponNameSlot3 = null;
+	private String currentWeaponName2 = null;
+	private String currentWeaponName3 = null;
 	
 	private String theCurrentWorld;
 	private int currentDangerLevel = 3;
-	private String theCurrentEnemy;
+	private Enemy theCurrentEnemy;
 	
 	private AuxGear aux1, aux2;
 	private ArrayList<Skill> skill;
 	private ArrayList<Integer> bombsDropped;
 	private String shipType;
+	private boolean isCritical;
+	private boolean armorBreak;
+	private boolean firstSalvo;
+	private int manual;
+	private int evenOdd;
+	private int currentColorSelected;
 	
 	/**
 	 * Launch the application.
@@ -182,7 +189,7 @@ public class MainGUI extends JFrame {
 				
 				contentPane.remove(currentPanel);
 				currentPanel = calculatePane;
-				//calculatePane.onSwitch();
+				calculatePane.onSwitch();
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
 				contentPane.repaint();
@@ -191,6 +198,12 @@ public class MainGUI extends JFrame {
 		});
 		contentPane.add(calculateButton, BorderLayout.SOUTH);
 		skill = new ArrayList();
+		isCritical = false;
+		armorBreak = false;
+		firstSalvo = false;
+		manual = 0;
+		evenOdd = 0;
+		currentColorSelected = 0;
 		
 	}
 	public int getCurrentDMGType() {
@@ -263,28 +276,44 @@ public class MainGUI extends JFrame {
 		this.currentWeaponType = currentWeaponType;
 	}
 
-	public String getCurrentWeaponNameSlot1() {
-		return currentWeaponName;
-	}
 	public String getCurrentWeaponTypeSlot2() {
-		return currentWeaponType;
+		return currentWeaponType2;
 	}
 
 	public void setCurrentWeaponTypeSlot2(String currentWeaponType) {
-		this.currentWeaponType = currentWeaponType;
+		this.currentWeaponType2 = currentWeaponType;
 	}
 	public String getCurrentWeaponTypeSlot3() {
-		return currentWeaponType;
+		return currentWeaponType3;
 	}
 
 	public void setCurrentWeaponTypeSlot3(String currentWeaponType) {
-		this.currentWeaponType = currentWeaponType;
+		this.currentWeaponType3 = currentWeaponType;
 	}
 	
 	public void setCurrentWeaponNameSlot1(String currentWeaponName) {
 		this.currentWeaponName = currentWeaponName;
 	}
+
+	public String getCurrentWeaponNameSlot1() {
+		return currentWeaponName;
+	}
 	
+	public void setCurrentWeaponNameSlot2(String currentWeaponName) {
+		this.currentWeaponName2 = currentWeaponName;
+	}
+
+	public String getCurrentWeaponNameSlot2() {
+		return currentWeaponName2;
+	}
+	
+	public void setCurrentWeaponNameSlot3(String currentWeaponName) {
+		this.currentWeaponName3 = currentWeaponName;
+	}
+
+	public String getCurrentWeaponNameSlot3() {
+		return currentWeaponName3;
+	}
 	public void setDangerLvl(int dangerlvl) {
 //		System.out.println("Danger Level set to: " + dangerlvl);
 		this.currentDangerLevel = dangerlvl;
@@ -294,12 +323,12 @@ public class MainGUI extends JFrame {
 		return currentDangerLevel;
 	}
 	
-	public void setEnemy(String enemyName) {
+	public void setEnemy(Enemy enemy) {
 //		System.out.println("Enemy set to: " + enemyName);
-		this.theCurrentEnemy = enemyName;
+		this.theCurrentEnemy = enemy;
 	}
 	
-	public String getEnemy() {
+	public Enemy getEnemy() {
 		return theCurrentEnemy;
 	}
 	
@@ -355,4 +384,53 @@ public class MainGUI extends JFrame {
 	public void setBombsDropped(ArrayList<Integer> bombsDropped) {
 		this.bombsDropped = bombsDropped;
 	}
+
+	public void setCrit(boolean critStat) {
+		this.isCritical = critStat;
+	}
+
+	public boolean getCrit() {
+		return this.isCritical;
+	}
+
+	public void setArmorBreak(boolean value) {
+		this.armorBreak = value;
+	}
+	
+	public boolean getArmorBreak() {
+		return this.armorBreak;
+	}
+
+	public void setManual(int manual) {
+		this.manual = manual;
+	}
+	
+	public int getManual() {
+		return this.manual;
+	}
+
+	public void setFirstSalvo(boolean salvo) {
+		this.firstSalvo = salvo;
+	}
+	
+	public boolean getFirstSalvo() {
+		return this.firstSalvo;
+	}
+
+	public void setEvenOdd(int option) {
+		this.evenOdd = option;
+	}
+	
+	public int getEvenOdd() {
+		return this.evenOdd;
+	}
+
+	public void setColor(int color) {
+		this.currentColorSelected = color;
+	}
+	
+	public int getColor() {
+		return this.currentColorSelected;
+	}
+
 }

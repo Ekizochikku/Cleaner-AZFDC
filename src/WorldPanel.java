@@ -3,6 +3,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +30,7 @@ public class WorldPanel extends JPanel {
 	//Current danger level of selected enemy
 	private int currentDangerLevel = 3;
 	//Current selected enemy
-	private String theCurrentEnemy;
+	private Enemy theCurrentEnemy;
 	//Contains all enemies in the selected level
 	private JComboBox enemySelection;
 	//Danger level of selected enemy
@@ -181,27 +182,24 @@ public class WorldPanel extends JPanel {
 	 * @author Walter Hanson
 	 */
 	private void setUpEnemies() {
-		theCurrentEnemy = (String) enemySelection.getSelectedItem();
-		ArrayList<String> enemyParameters;
-		//System.out.println("the current enemy is" + theCurrentEnemy);
 		try {
-			currentDangerLevel = guiUtil.getDangerLevel(theCurrentWorld);
-			String theMaxDangerLevel = Integer.toString(currentDangerLevel);
-			dangerLvlText.setText(theMaxDangerLevel);
-			enemyParameters = new ArrayList<String>();
-			enemyParameters = guiUtil.getEnemyParameters(theCurrentEnemy, theCurrentWorld);
-			healthText.setText((String) enemyParameters.get(3));
-			armorText.setText((String) enemyParameters.get(4));
-			antiAirText.setText((String) enemyParameters.get(5));
-			typeText.setText((String) enemyParameters.get(6));
-			nationText.setText((String) enemyParameters.get(7));
-			mainGUI.setDangerLvl(currentDangerLevel);
-			mainGUI.setWorld(theCurrentWorld);
-			mainGUI.setEnemy(theCurrentEnemy);
+			String name = (String) enemySelection.getSelectedItem();
+			theCurrentEnemy = new Enemy(name, theCurrentWorld);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		currentDangerLevel = guiUtil.getDangerLevel(theCurrentWorld);
+		String theMaxDangerLevel = Integer.toString(currentDangerLevel);
+		dangerLvlText.setText(theMaxDangerLevel);
+		healthText.setText(Double.toString(theCurrentEnemy.getHealth()));
+		armorText.setText(theCurrentEnemy.getArmor());
+		antiAirText.setText(Double.toString(theCurrentEnemy.getAA()));
+		typeText.setText(theCurrentEnemy.getShipType());
+		nationText.setText(theCurrentEnemy.getNation());
+		mainGUI.setDangerLvl(currentDangerLevel);
+		mainGUI.setWorld(theCurrentWorld);
+		mainGUI.setEnemy(theCurrentEnemy);
 	}
 
 }
