@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EtchedBorder;
@@ -34,6 +35,8 @@ public class MainGUI extends JFrame {
 	private String currentWeaponType;
 	private String currentWeaponType2;
 	private String currentWeaponType3;
+	
+	private String[] weaponTypesAndNames; 
 	
 	//The current selected weapon name
 	private String currentWeaponName = null;
@@ -189,6 +192,7 @@ public class MainGUI extends JFrame {
 				
 				contentPane.remove(currentPanel);
 				currentPanel = calculatePane;
+				weaponPane.sendInfo();
 				calculatePane.onSwitch();
 				contentPane.add(currentPanel, BorderLayout.CENTER);
 				contentPane.validate();
@@ -206,6 +210,7 @@ public class MainGUI extends JFrame {
 		currentColorSelected = 0;
 		
 	}
+	
 	public int getCurrentDMGType() {
 		return currentDMGType;
 	}
@@ -440,5 +445,8 @@ public class MainGUI extends JFrame {
 	public int getColor() {
 		return this.currentColorSelected;
 	}
-
+	public void setWeaponNamesAndTypes(String[] theArray) {
+		weaponTypesAndNames = Arrays.copyOf(theArray, 5);
+		
+	}
 }

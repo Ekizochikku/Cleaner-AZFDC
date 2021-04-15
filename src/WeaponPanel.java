@@ -55,7 +55,11 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	JTextPane auxHealthTxt, firepowerTxt, antiAirTxt, torpedoTxt, aviationTxt; 
 	
 	JRadioButton rdbtnBlue, rdbtnPurple, rdbtnRed, rdbtnHe, rdbtnAP, rdbtnEven, rdbtnOdd;
+	
+	//First Salvo is Battle ships, battle cruisers, and aviation battleships
+	//critical, manual, armor  always on
 	JCheckBox chckbxFirstSalvo, chckbxCriticalHit, chckbxManual, chckbxArmor; 
+	boolean salvo, critical, manual, armor;
 	
 	ArrayList<JRadioButton> colorGroupList = new ArrayList<JRadioButton>(); 
 	
@@ -342,6 +346,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		rdbtnHe.setBounds(10, 453, 49, 23);
 		add(rdbtnHe);
 		
+		//move these to sendInfo
 		rdbtnHe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guiVariables.setHeAp(0);
@@ -399,23 +404,13 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
 		rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
 		rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
-		
-		//enumaration to get all elements
-		//ArrayList<JRadioButton> listRadioButton = (ArrayList<JRadioButton>) evenOddGroup.getElements();
-		
-		//show the list of JRadioButton
-		/*
-		for (JRadioButton button : listRadioButton) {
-			((JRadioButton) listRadioButton).setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
-		}*/
-
-		
-		
+				
 		rdbtnBlue = new JRadioButton("Blue");
 		colorGroup.add(rdbtnBlue);
 		colorGroupList.add(rdbtnBlue);
 		rdbtnBlue.setBounds(437, 426, 58, 23);
 		add(rdbtnBlue);
+		
 			
 		rdbtnPurple = new JRadioButton("Purple");
 		colorGroup.add(rdbtnPurple);
@@ -463,7 +458,38 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		chckbxArmor.setBounds(525, 503, 107, 23);
 		add(chckbxArmor);
 		
-
+		//action listeners for the checkbox stuff, might be bad if user spams it
+		//since we constantly keep updating main gui
+		/*
+		chckbxFirstSalvo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(chckbxFirstSalvo.isSelected()) {
+					guiVariables.setFirstSalvo(true);
+				} else {
+					guiVariables.setFirstSalvo(false);
+				}
+			}
+		});
+		chckbxCriticalHit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(chckbxCriticalHit.isSelected()) {
+					guiVariables.setCrit(true);
+				} else {
+					guiVariables.setCrit(false);
+				}
+			}
+		});
+		chckbxArmor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(chckbxArmor.isSelected()) {
+					guiVariables.setArmorBreak(true);
+				} else {
+					guiVariables.setArmorBreak(false);
+				}
+			}
+		}); 
+		*/
+		
 		
 		
 		JLabel lblAuxiliary = new JLabel("Auxiliary 1:");
@@ -636,17 +662,54 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 		box.setModel(dml);
 	}
+
 	//made this method on accident leaving for just in case we need weapon info on other panels in the future
-	public String[] sendInformation() {
-		String[] info = new String[5];
+	public void sendInfo() {
+		String[] weaponInfo = new String[5];
 		
-		info[0] = (String) weaponName1Combo.getSelectedItem(); 
-		info[1] = (String) weaponName2Combo.getSelectedItem();
-		info[2] = (String) weaponName3Combo.getSelectedItem(); 
-		info[3] = (String) weaponType1Combo.getSelectedItem(); 
-		info[4] = (String) weaponType2Combo.getSelectedItem(); 
-		info[5]	= (String) weaponType3Combo.getSelectedItem();
-		return info;
+		weaponInfo[0] = (String) weaponName1Combo.getSelectedItem(); 
+		weaponInfo[1] = (String) weaponName2Combo.getSelectedItem();
+		weaponInfo[2] = (String) weaponName3Combo.getSelectedItem(); 
+		weaponInfo[3] = (String) weaponType1Combo.getSelectedItem(); 
+		weaponInfo[4] = (String) weaponType2Combo.getSelectedItem(); 
+		weaponInfo[5]	= (String) weaponType3Combo.getSelectedItem();
+		
+		if(chckbxCriticalHit.isSelected()) {
+			guiVariables.setCrit(true);
+		} else {
+			guiVariables.setCrit(false);
+		}
+		
+		if(chckbxArmor.isSelected()) {
+			guiVariables.setArmorBreak(true);
+		} else {
+			guiVariables.setArmorBreak(false);
+		}
+		if(chckbxFirstSalvo.isSelected()) {
+			guiVariables.setFirstSalvo(true);
+		} else {
+			guiVariables.setFirstSalvo(false);
+		}
+		
+		if(rdbtnHe.isSelected()) {
+			guiVariables.setHeAp(0);
+		} else {
+			guiVariables.setHeAp(1);
+		}
+		
+		if(rdbtnEven.isSelected()) {
+			guiVariables.setEvenOdd(0);
+		} else {
+			guiVariables.setEvenOdd(1);
+		}
+		
+		
+		guiVariables.setWeaponNamesAndTypes(weaponInfo);
+		System.out.println("The send info test for Radio Buttons : " + guiVariables.getHeAp() + " EvenOdd: " + guiVariables.getEvenOdd());
+		//will move and replace rest of the action listeners (like Aux) down here once we know rest is working
+		
+		
+		
 	}
 	//helper method to set the action listeners for every weapon type box action
 	public void comboBoxTypeAction(MainGUI guiVariables) {
@@ -679,7 +742,10 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				guiVariables.setHeAp(0);
 				guiVariables.setColor(0);
 				rdbtnBlue.setSelected(true);
-
+				chckbxArmor.setSelected(false);
+				chckbxCriticalHit.setSelected(false);
+				chckbxFirstSalvo.setSelected(false);
+				
 				//have to change this to only be the skill expert loader
 				if(name.equals("Roon")) {
 					//System.out.println("Not entering this check!!!");
@@ -689,7 +755,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					
 					rdbtnHe.setToolTipText(null);
 					rdbtnAP.setToolTipText(null);
-					
+					rdbtnBlue.setSelected(true);
+
 					//will put this in it's own method to reduce redundancy later or for loop
 					
 					for (JRadioButton btn : colorGroupList) {
@@ -702,7 +769,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				} else if(name.equals("Friedrich der Grosse (Retrofit)")) {
 					rdbtnHe.setEnabled(false);
 					rdbtnAP.setEnabled(false);
-					
+					rdbtnBlue.setSelected(true);
+
 					//Any default for radio buttons?
 					rdbtnEven.setSelected(true);
 					rdbtnEven.setEnabled(true);
@@ -733,7 +801,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 					rdbtnHe.setEnabled(false);
 					rdbtnAP.setEnabled(false);
 					//buttonGroup.clearSelection();
-					
+					rdbtnBlue.setSelected(true);
+
 					rdbtnHe.setToolTipText("HE and AP rounds are only selectable with the skill 'Expert Loader' ");
 					rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Expert Loader' ");
 					rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
@@ -789,6 +858,13 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	    } else {
 	    	carrier = false;
 	    }
+	    //First Salvo Battle ships, battle cruisers, and aviation battleships
+	    if(type != null && (type.contains("Battle"))) {
+	    	chckbxFirstSalvo.setEnabled(true);
+	    } else {
+	    	chckbxFirstSalvo.setEnabled(false);
+	    }
+	    
 	    
 	    for(int i = 0; i < threeByThreeMouse.size(); i++) {
 			//get from main gui or ship file?
