@@ -361,7 +361,7 @@ public class FrontlineCalculations {
 		}
 		
 		// Use a method that will return the max between if armorBreak is true or getting the method to see if there's a skill that causes an armor break;
-		if (enemy.getArmor().equals("H") && cannonTypes.contains(mainWeapon.getWeaponType())) {
+		if (enemy.getArmor().equals("H") && cannonTypes.contains(mainWeapon.getWeaponType()) && armorBreak) {
 			buffDamage += 0.08;
 		}
 		if (skillNames.contains("Poisonous Sting") && ship.getShipType().equals("Destroyers")) {
