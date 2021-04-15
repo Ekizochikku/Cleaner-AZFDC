@@ -90,7 +90,7 @@ public class WeaponTypesForSlot {
 				weaponType = "Torpedos";
 				break;
 			case 1:
-				weaponType = "Destoryer Guns";
+				weaponType = "Destroyer Guns";
 				break;
 			case 2:
 				weaponType = "Light Cruiser Guns";
@@ -115,7 +115,7 @@ public class WeaponTypesForSlot {
 				weaponType = "Torpedos";
 				break;
 			case 1:
-				weaponType = "Destoryer Guns";
+				weaponType = "Destroyer Guns";
 				break;
 			case 2:
 				weaponType = "Light Cruiser Guns";
