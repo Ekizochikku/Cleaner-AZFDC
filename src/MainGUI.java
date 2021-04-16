@@ -457,7 +457,7 @@ public class MainGUI extends JFrame {
 		return this.currentColorSelected;
 	}
 	public void setWeaponNamesAndTypes(String[] theArray) {
-		weaponTypesAndNames = Arrays.copyOf(theArray, 5);
+		weaponTypesAndNames = Arrays.copyOf(theArray, 6);
 		
 	}
 }
