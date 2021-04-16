@@ -462,5 +462,6 @@ public class MainGUI extends JFrame {
 	}
 	public void threeByThree(int[] theArray) {
 		threeByThree = Arrays.copyOf(theArray, 9);		
+
 	}
 }
