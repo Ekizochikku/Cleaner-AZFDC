@@ -1,74 +1,74 @@
 Equipment Name	Firepower	Torpedo	Anti-Air	Damage	Coefficient	Ammo Type	Damage to L	Damage to M	Damage to H
-Quadruple 130mm (Mle 1932) (Tier 0)	12	0	0	10	125%	Normal	1	0.5	0.2
-Single 100mm (Type 88) (Tier 0)	10	0	0	9	110%	Normal	1	0.5	0.2
-Single 102mm (QF Mk V)  (Tier 1)	0	0	0	4	125%	Normal	1	0.5	0.2
-Single 102mm (QF Mk V) (Tier 2)	5	0	0	4	125%	Normal	1	0.5	0.2
-Single 102mm (QF Mk V) (Tier 3)	12	0	0	7	125%	Normal	1	0.5	0.2
-Single 120mm (10th Year Type) (Tier 0)	10	0	15	11	120%	Normal	1	0.5	0.2
-Single 120mm (11th Year Type) (Tier 0)	12	0	0	8	120%	Normal	1	0.5	0.2
-Single 120mm (QF Mark IX) (Tier 1)	0	0	0	6	125%	Normal	1	0.5	0.2
-Single 120mm (QF Mark IX) (Tier 2)	5	0	0	7	125%	Normal	1	0.5	0.2
-Single 120mm (QF Mark IX) (Tier 3)	12	0	0	11	125%	Normal	1	0.5	0.2
-Single 120mm (Type 3) (Tier 1)	0	0	0	4	125%	Normal	1	0.5	0.2
-Single 120mm (Type 3) (Tier 2)	5	0	0	4	125%	Normal	1	0.5	0.2
-Single 120mm (Type 3) (Tier 3)	12	0	0	8	125%	Normal	1	0.5	0.2
-Single 127mm (5"/38 Mk 21) (Tier 0)	12	0	0	12	125%	Normal	1	0.5	0.2
-Single 127mm (5"/38 Mk 30) (Tier 1)	5	0	0	6	125%	Normal	1	0.5	0.2
-Single 127mm (5"/38 Mk 30) (Tier 2)	12	0	0	10	125%	Normal	1	0.5	0.2
-Single 127mm (5"/38 Mk 30) (Tier 3)	25	0	0	15	125%	HE	1.2	0.6	0.6
-Single 127mm (SK C/34) (Tier 1)	0	0	0	6	125%	AP	0.9	0.7	0.4
-Single 127mm (SK C/34) (Tier 2)	5	0	0	6	125%	AP	0.9	0.7	0.4
-Single 127mm (SK C/34) (Tier 3)	12	0	0	9	125%	AP	0.9	0.7	0.4
-Single 127mm (Type 3 Mod B) (Tier 2)	5	0	7	8	125%	Normal	1	0.5	0.2
-Single 130mm (B13 Pattern 1936) (Tier 1)	5	0	0	7	125%	Normal	1	0.5	0.2
-Single 130mm (B13 Pattern 1936) (Tier 2)	12	0	0	12	125%	Normal	1	0.5	0.2
-Single 130mm (B13 Pattern 1936) (Tier 3)	25	0	0	17	125%	HE	1.2	0.6	0.6
-Single 130mm (Mle 1924) (Tier 1)	0	0	0	4	110%	Normal	1	0.5	0.2
-Single 130mm (Mle 1924) (Tier 3)	12	0	0	8	110%	Normal	1	0.5	0.2
-Single 138.6mm (Mle 1927) (Tier 1)	5	0	0	6	110%	Normal	1	0.5	0.2
-Single 138.6mm (Mle 1927) (Tier 2)	12	0	0	14	110%	Normal	1	0.5	0.2
-Single 138.6mm (Mle 1927) (Tier 3)	25	0	0	19	110%	Normal	1	0.5	0.2
-Single 138.6mm (Mle 1929) (Tier 1)	12	0	0	9	110%	Normal	1	0.5	0.2
-Single 138.6mm (Mle 1929) (Tier 2)	25	0	0	14	110%	HE	1.2	0.6	0.6
-Single 138.6mm (Mle 1929) (Tier 3)	35	0	0	15	110%	HE	1.2	0.6	0.6
-Single 76mm (3"/50 caliber gun) (Tier 1)	0	0	0	4	125%	Normal+	1	0.6	0.2
-Single 76mm (3"/50 caliber gun) (Tier 2)	5	0	0	4	125%	Normal+	1	0.6	0.2
-Single 76mm (3"/50 caliber gun) (Tier 3)	12	0	0	7	125%	Normal+	1	0.6	0.2
-Triple 102mm (BL 4" Mk IX) (Tier 1)	5	0	0	4	125%	Normal	1	0.5	0.2
-Triple 102mm (BL 4" Mk IX) (Tier 2)	12	0	0	7	125%	Normal	1	0.5	0.2
-Triple 102mm (BL 4" Mk IX) (Tier 3)	25	0	0	10	125%	Normal	1	0.5	0.2
-Twin 100mm (Type 98) (Tier 1)	4	0	8	7	110%	Normal	1	0.5	0.2
-Twin 100mm (Type 98) (Tier 2)	9	0	16	11	110%	Normal	1	0.5	0.2
-Twin 100mm (Type 98) (Tier 3)	15	0	30	12	110%	Normal	1	0.5	0.2
-Twin 102mm (QF Mk XVI) (Tier 1)	0	0	0	4	110%	Normal	1	0.5	0.2
-Twin 102mm (QF Mk XVI) (Tier 2)	5	0	0	4	110%	Normal	1	0.5	0.2
-Twin 102mm (QF Mk XVI) (Tier 3)	12	0	0	7	110%	Normal	1	0.5	0.2
-Twin 102mm (QF Mk XVI*) (Tier 3)	25	0	0	10	110%	Normal	1	0.5	0.2
-Twin 114mm (QF Mk IV Prototype) (Tier 0)	25	0	20	13	125%	Normal	1	0.5	0.2
-Twin 120mm (Model 1933) (Tier 0)	12	0	0	9	110%	HE	1.2	0.6	0.6
-Twin 120mm (Model 1936) (Tier 1)	5	0	0	8	125%	Normal	1	0.5	0.2
-Twin 120mm (Model 1936) (Tier 2)	12	0	0	11	125%	Normal	1	0.5	0.2
-Twin 120mm (Model 1936) (Tier 3)	25	0	0	17	125%	Normal	1	0.5	0.2
-Twin 120mm (QF Mark XI) (Tier 0)	20	0	25	17	125%	Normal	1	0.5	0.2
-Twin 120mm (QF Mark XII) (Tier 1)	5	0	0	6	125%	Normal	1	0.5	0.2
-Twin 120mm (QF Mark XII) (Tier 2)	12	0	0	10	125%	Normal	1	0.5	0.2
-Twin 120mm (QF Mark XII) (Tier 3)	25	0	0	15	125%	Normal	1	0.5	0.2
-Twin 127mm (5"/38 Mk 32) (Tier 0)	25	0	0	15	125%	HE	1.2	0.6	0.6
-Twin 127mm (5"/38 Mk 38) (Tier 1)	5	0	7	9	110%	Normal	1	0.5	0.2
-Twin 127mm (5"/38 Mk 38) (Tier 2)	11	0	14	14	110%	HE	1.2	0.6	0.6
-Twin 127mm (5"/38 Mk 38) (Tier 3)	20	0	25	15	110%	HE	1.2	0.6	0.6
-Twin 127mm (KM40) (Tier 0)	25	0	0	10	125%	AP	0.9	0.7	0.4
-Twin 127mm (Type 3 Mod B) (Tier 0)	25	0	0	14	110%	HE	1.2	0.6	0.6
-Twin 127mm (Type 3) (Tier 1)	5	0	0	5	110%	Normal	1	0.5	0.2
-Twin 127mm (Type 3) (Tier 2)	12	0	0	8	110%	Normal	1	0.5	0.2
-Twin 127mm (Type 3) (Tier 3)	25	0	0	12	110%	HE	1.2	0.6	0.6
-Twin 128mm (SK C/41) (Tier 1)	3	0	2	6	115%	AP	0.9	0.7	0.4
-Twin 128mm (SK C/41) (Tier 2)	7	0	5	8	115%	AP	0.9	0.7	0.4
-Twin 128mm (SK C/41) (Tier 3)	15	0	10	11	115%	AP	0.9	0.7	0.4
-Twin 128mm/45 SK C/41 (Tier 0)	30	0	15	16	120%	AP	0.9	0.7	0.4
-Twin 130mm (B-2LM) (Tier 1)	12	0	0	7	125%	Normal*	1	0.55	0.25
-Twin 130mm (B-2LM) (Tier 3)	35	0	0	15	125%	Normal*	1	0.55	0.25
-Twin 130mm (Mle 1935) (Tier 1)	5	0	0	10	125%	Normal	1	0.5	0.2
-Twin 134mm (QF Mark II) (Tier 1)	2	0	3	6	110%	Normal	1	0.5	0.2
-Twin 134mm (QF Mark II) (Tier 2)	5	0	7	8	110%	AP	0.9	0.7	0.4
-Twin 134mm (QF Mark II) (Tier 3)	10	0	15	11	110%	AP	0.9	0.7	0.4
+Quadruple 130mm (Mle 1932) (Tier 0)	12	0	0	10	1.25	Normal	1	0.5	0.2
+Single 100mm (Type 88) (Tier 0)	10	0	0	9	1.10	Normal	1	0.5	0.2
+Single 102mm (QF Mk V)  (Tier 1)	0	0	0	4	1.25	Normal	1	0.5	0.2
+Single 102mm (QF Mk V) (Tier 2)	5	0	0	4	1.25	Normal	1	0.5	0.2
+Single 102mm (QF Mk V) (Tier 3)	12	0	0	7	1.25	Normal	1	0.5	0.2
+Single 120mm (10th Year Type) (Tier 0)	10	0	15	11	1.20	Normal	1	0.5	0.2
+Single 120mm (11th Year Type) (Tier 0)	12	0	0	8	1.20	Normal	1	0.5	0.2
+Single 120mm (QF Mark IX) (Tier 1)	0	0	0	6	1.25	Normal	1	0.5	0.2
+Single 120mm (QF Mark IX) (Tier 2)	5	0	0	7	1.25	Normal	1	0.5	0.2
+Single 120mm (QF Mark IX) (Tier 3)	12	0	0	11	1.25	Normal	1	0.5	0.2
+Single 120mm (Type 3) (Tier 1)	0	0	0	4	1.25	Normal	1	0.5	0.2
+Single 120mm (Type 3) (Tier 2)	5	0	0	4	1.25	Normal	1	0.5	0.2
+Single 120mm (Type 3) (Tier 3)	12	0	0	8	1.25	Normal	1	0.5	0.2
+Single 127mm (5"/38 Mk 21) (Tier 0)	12	0	0	12	1.25	Normal	1	0.5	0.2
+Single 127mm (5"/38 Mk 30) (Tier 1)	5	0	0	6	1.25	Normal	1	0.5	0.2
+Single 127mm (5"/38 Mk 30) (Tier 2)	12	0	0	10	1.25	Normal	1	0.5	0.2
+Single 127mm (5"/38 Mk 30) (Tier 3)	25	0	0	15	1.25	HE	1.2	0.6	0.6
+Single 127mm (SK C/34) (Tier 1)	0	0	0	6	1.25	AP	0.9	0.7	0.4
+Single 127mm (SK C/34) (Tier 2)	5	0	0	6	1.25	AP	0.9	0.7	0.4
+Single 127mm (SK C/34) (Tier 3)	12	0	0	9	1.25	AP	0.9	0.7	0.4
+Single 127mm (Type 3 Mod B) (Tier 2)	5	0	7	8	1.25	Normal	1	0.5	0.2
+Single 130mm (B13 Pattern 1936) (Tier 1)	5	0	0	7	1.25	Normal	1	0.5	0.2
+Single 130mm (B13 Pattern 1936) (Tier 2)	12	0	0	12	1.25	Normal	1	0.5	0.2
+Single 130mm (B13 Pattern 1936) (Tier 3)	25	0	0	17	1.25	HE	1.2	0.6	0.6
+Single 130mm (Mle 1924) (Tier 1)	0	0	0	4	1.10	Normal	1	0.5	0.2
+Single 130mm (Mle 1924) (Tier 3)	12	0	0	8	1.10	Normal	1	0.5	0.2
+Single 138.6mm (Mle 1927) (Tier 1)	5	0	0	6	1.10	Normal	1	0.5	0.2
+Single 138.6mm (Mle 1927) (Tier 2)	12	0	0	14	1.10	Normal	1	0.5	0.2
+Single 138.6mm (Mle 1927) (Tier 3)	25	0	0	19	1.10	Normal	1	0.5	0.2
+Single 138.6mm (Mle 1929) (Tier 1)	12	0	0	9	1.10	Normal	1	0.5	0.2
+Single 138.6mm (Mle 1929) (Tier 2)	25	0	0	14	1.10	HE	1.2	0.6	0.6
+Single 138.6mm (Mle 1929) (Tier 3)	35	0	0	15	1.10	HE	1.2	0.6	0.6
+Single 76mm (3"/50 caliber gun) (Tier 1)	0	0	0	4	1.25	Normal+	1	0.6	0.2
+Single 76mm (3"/50 caliber gun) (Tier 2)	5	0	0	4	1.25	Normal+	1	0.6	0.2
+Single 76mm (3"/50 caliber gun) (Tier 3)	12	0	0	7	1.25	Normal+	1	0.6	0.2
+Triple 102mm (BL 4" Mk IX) (Tier 1)	5	0	0	4	1.25	Normal	1	0.5	0.2
+Triple 102mm (BL 4" Mk IX) (Tier 2)	12	0	0	7	1.25	Normal	1	0.5	0.2
+Triple 102mm (BL 4" Mk IX) (Tier 3)	25	0	0	10	1.25	Normal	1	0.5	0.2
+Twin 100mm (Type 98) (Tier 1)	4	0	8	7	1.10	Normal	1	0.5	0.2
+Twin 100mm (Type 98) (Tier 2)	9	0	16	11	1.10	Normal	1	0.5	0.2
+Twin 100mm (Type 98) (Tier 3)	15	0	30	12	1.10	Normal	1	0.5	0.2
+Twin 102mm (QF Mk XVI) (Tier 1)	0	0	0	4	1.10	Normal	1	0.5	0.2
+Twin 102mm (QF Mk XVI) (Tier 2)	5	0	0	4	1.10	Normal	1	0.5	0.2
+Twin 102mm (QF Mk XVI) (Tier 3)	12	0	0	7	1.10	Normal	1	0.5	0.2
+Twin 102mm (QF Mk XVI*) (Tier 3)	25	0	0	10	1.10	Normal	1	0.5	0.2
+Twin 114mm (QF Mk IV Prototype) (Tier 0)	25	0	20	13	1.25	Normal	1	0.5	0.2
+Twin 120mm (Model 1933) (Tier 0)	12	0	0	9	1.10	HE	1.2	0.6	0.6
+Twin 120mm (Model 1936) (Tier 1)	5	0	0	8	1.25	Normal	1	0.5	0.2
+Twin 120mm (Model 1936) (Tier 2)	12	0	0	11	1.25	Normal	1	0.5	0.2
+Twin 120mm (Model 1936) (Tier 3)	25	0	0	17	1.25	Normal	1	0.5	0.2
+Twin 120mm (QF Mark XI) (Tier 0)	20	0	25	17	1.25	Normal	1	0.5	0.2
+Twin 120mm (QF Mark XII) (Tier 1)	5	0	0	6	1.25	Normal	1	0.5	0.2
+Twin 120mm (QF Mark XII) (Tier 2)	12	0	0	10	1.25	Normal	1	0.5	0.2
+Twin 120mm (QF Mark XII) (Tier 3)	25	0	0	15	1.25	Normal	1	0.5	0.2
+Twin 127mm (5"/38 Mk 32) (Tier 0)	25	0	0	15	1.25	HE	1.2	0.6	0.6
+Twin 127mm (5"/38 Mk 38) (Tier 1)	5	0	7	9	1.10	Normal	1	0.5	0.2
+Twin 127mm (5"/38 Mk 38) (Tier 2)	11	0	14	14	1.10	HE	1.2	0.6	0.6
+Twin 127mm (5"/38 Mk 38) (Tier 3)	20	0	25	15	1.10	HE	1.2	0.6	0.6
+Twin 127mm (KM40) (Tier 0)	25	0	0	10	1.25	AP	0.9	0.7	0.4
+Twin 127mm (Type 3 Mod B) (Tier 0)	25	0	0	14	1.10	HE	1.2	0.6	0.6
+Twin 127mm (Type 3) (Tier 1)	5	0	0	5	1.10	Normal	1	0.5	0.2
+Twin 127mm (Type 3) (Tier 2)	12	0	0	8	1.10	Normal	1	0.5	0.2
+Twin 127mm (Type 3) (Tier 3)	25	0	0	12	1.10	HE	1.2	0.6	0.6
+Twin 128mm (SK C/41) (Tier 1)	3	0	2	6	1.15	AP	0.9	0.7	0.4
+Twin 128mm (SK C/41) (Tier 2)	7	0	5	8	1.15	AP	0.9	0.7	0.4
+Twin 128mm (SK C/41) (Tier 3)	15	0	10	11	1.15	AP	0.9	0.7	0.4
+Twin 128mm/45 SK C/41 (Tier 0)	30	0	15	16	1.20	AP	0.9	0.7	0.4
+Twin 130mm (B-2LM) (Tier 1)	12	0	0	7	1.25	Normal*	1	0.55	0.25
+Twin 130mm (B-2LM) (Tier 3)	35	0	0	15	1.25	Normal*	1	0.55	0.25
+Twin 130mm (Mle 1935) (Tier 1)	5	0	0	10	1.25	Normal	1	0.5	0.2
+Twin 134mm (QF Mark II) (Tier 1)	2	0	3	6	1.10	Normal	1	0.5	0.2
+Twin 134mm (QF Mark II) (Tier 2)	5	0	7	8	1.10	AP	0.9	0.7	0.4
+Twin 134mm (QF Mark II) (Tier 3)	10	0	15	11	1.10	AP	0.9	0.7	0.4
