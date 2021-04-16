@@ -288,19 +288,43 @@ public class MainGUI extends JFrame {
 		return currentWeaponType;
 	}
 
+	public void setCurrentWeaponTypeSlot1(String currentWeaponType) {
+		this.currentWeaponType = currentWeaponType;
+	}
+
 	public String getCurrentWeaponTypeSlot2() {
 		return currentWeaponType2;
+	}
+
+	public void setCurrentWeaponTypeSlot2(String currentWeaponType) {
+		this.currentWeaponType2 = currentWeaponType;
 	}
 	public String getCurrentWeaponTypeSlot3() {
 		return currentWeaponType3;
 	}
 
+	public void setCurrentWeaponTypeSlot3(String currentWeaponType) {
+		this.currentWeaponType3 = currentWeaponType;
+	}
+	
+	public void setCurrentWeaponNameSlot1(String currentWeaponName) {
+		this.currentWeaponName = currentWeaponName;
+	}
+
 	public String getCurrentWeaponNameSlot1() {
 		return currentWeaponName;
+	}
+	
+	public void setCurrentWeaponNameSlot2(String currentWeaponName) {
+		this.currentWeaponName2 = currentWeaponName;
 	}
 
 	public String getCurrentWeaponNameSlot2() {
 		return currentWeaponName2;
+	}
+	
+	public void setCurrentWeaponNameSlot3(String currentWeaponName) {
+		this.currentWeaponName3 = currentWeaponName;
 	}
 
 	public String getCurrentWeaponNameSlot3() {
