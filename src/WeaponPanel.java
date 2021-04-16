@@ -665,7 +665,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 
 	//made this method on accident leaving for just in case we need weapon info on other panels in the future
 	public void sendInfo() {
-		String[] weaponInfo = new String[5];
+		String[] weaponInfo = new String[6];
 		
 		weaponInfo[0] = (String) weaponName1Combo.getSelectedItem(); 
 		weaponInfo[1] = (String) weaponName2Combo.getSelectedItem();
@@ -707,7 +707,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		guiVariables.setWeaponNamesAndTypes(weaponInfo);
 		
 		//this is the 3x3, needs to be tested (especially the parsing)
-		int[] threeByThreeArray = new int[5];
+		int[] threeByThreeArray = new int[9];
 		for(int i = 0; i < threeByThreeMouse.size(); i++) {
 			if((JFormattedTextField) threeByThreeMouse.get(i) != null) {
 				int theNumber = (Integer)threeByThreeMouse.get(i);
