@@ -718,6 +718,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				threeByThreeArray[i] =  0;
 			}
 	    }
+		guiVariables.threeByThree(threeByThreeArray);
 		
 		System.out.println("The send info test for Radio Buttons : " + guiVariables.getHeAp() + " EvenOdd: " + guiVariables.getEvenOdd());
 		//will move and replace rest of the action listeners (like Aux) down here once we know rest is working

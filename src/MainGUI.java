@@ -37,6 +37,7 @@ public class MainGUI extends JFrame {
 	private String currentWeaponType3;
 	
 	private String[] weaponTypesAndNames; 
+	private int[] threeByThree; 
 	
 	//The current selected weapon name
 	private String currentWeaponName = null;
@@ -457,7 +458,9 @@ public class MainGUI extends JFrame {
 		return this.currentColorSelected;
 	}
 	public void setWeaponNamesAndTypes(String[] theArray) {
-		weaponTypesAndNames = Arrays.copyOf(theArray, 5);
-		
+		weaponTypesAndNames = Arrays.copyOf(theArray, 6);		
+	}
+	public void threeByThree(int[] theArray) {
+		threeByThree = Arrays.copyOf(theArray, 9);		
 	}
 }
