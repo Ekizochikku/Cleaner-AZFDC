@@ -710,7 +710,9 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		int[] threeByThreeArray = new int[9];
 		for(int i = 0; i < threeByThreeMouse.size(); i++) {
 			if((JFormattedTextField) threeByThreeMouse.get(i) != null) {
-				int theNumber = (Integer)threeByThreeMouse.get(i);
+				JFormattedTextField textField = (JFormattedTextField)threeByThreeMouse.get(i);
+				String theString = textField.getText();
+				int theNumber = Integer.parseInt(theString);
 				threeByThreeArray[i] =  theNumber;
 			} else {
 				threeByThreeArray[i] =  0;
