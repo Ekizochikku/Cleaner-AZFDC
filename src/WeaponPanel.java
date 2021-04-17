@@ -64,6 +64,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	ArrayList<JRadioButton> colorGroupList = new ArrayList<JRadioButton>(); 
 	
 	String previousName = null;
+	
+	ArrayList<Skill> previousSkills = new ArrayList<>();
 	//making auxgear here aswell and set it on the main gui one at the end since too lazy to write the long chain of getters and setters
 	AuxGear aux1, aux2;
 	MainGUI guiVariables;
@@ -74,6 +76,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	private final ButtonGroup ammoGroup = new ButtonGroup();
 	private final ButtonGroup evenOddGroup = new ButtonGroup();
 	private final ButtonGroup colorGroup = new ButtonGroup();
+
 	
 	private int colorNumber = 0;
 	
@@ -400,10 +403,10 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		});
 		
 		//adding tool tip to both manually since no point for loop for 2
-		rdbtnHe.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
-		rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Roon' ");
-		rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
-		rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
+		rdbtnHe.setToolTipText("HE and AP rounds are only selectable with the skill 'Expert Loader' with a ship selected");
+		rdbtnAP.setToolTipText("HE and AP rounds are only selectable with the skill 'Expert Loader' with a ship selected");
+		rdbtnEven.setToolTipText("Even and Odd rounds are only selectable when 'Sonata of Chaos' with a ship selected");
+		rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable when 'Sonata of Chaos' with a ship selected");
 				
 		rdbtnBlue = new JRadioButton("Blue");
 		colorGroup.add(rdbtnBlue);
@@ -736,17 +739,79 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	}
 
 	
-	public void onSwitch() {
+	public void onSwitch() throws FileNotFoundException, IOException {
 		
 		
 		boolean carrier = false;
 		String type = null;
 		String name = null;
+		Skill sonata = new Skill("Sonata of Chaos");
+		Skill expert = new Skill("Expert Loader");
+		
+		if(!guiVariables.getSkills().isEmpty()){
+			ArrayList<Skill> sonataCheck = new ArrayList<>();
+			sonataCheck.addAll(guiVariables.getSkills());
+			//checking to see if the user changed skills
+			if(!previousSkills.equals(sonataCheck)){
+				previousSkills = new ArrayList<>();
+				previousSkills.addAll(sonataCheck);
+				boolean disableEvenOdd = true;
+				boolean disableHeAp = true;
+				
+				for(int i = 0; i < sonataCheck.size(); i++) {
+					//Skill check name
+					System.out.println(sonataCheck.get(i).getSkillName());
+					if(sonataCheck.get(i).getSkillName().equals("Sonata of Chaos")) {
+						disableEvenOdd = false;
+						//Any default for radio buttons?
+						rdbtnEven.setSelected(true);
+						rdbtnEven.setEnabled(true);
+						rdbtnOdd.setEnabled(true);
+						rdbtnOdd.setToolTipText(null);
+						rdbtnEven.setToolTipText(null);
+						//stop checking skills if both expert loader and sonata is found
+						if(rdbtnHe.isEnabled()) {
+							break;
+						}
+					} 
+					if(sonataCheck.get(i).getSkillName().equals("Expert Loader")) {
+							//System.out.println("Not entering this check!!!");
+							//Need to be changed so they're in array to reduce redundancy
+							disableHeAp = false;
+							rdbtnHe.setEnabled(true);
+							rdbtnHe.setSelected(true);
+							rdbtnAP.setEnabled(true);
+							
+							rdbtnHe.setToolTipText(null);
+							rdbtnAP.setToolTipText(null);
+							if(rdbtnEven.isEnabled()) {
+								break;
+							}
+	
+						}
+					}
+					if(disableEvenOdd) {
+						rdbtnEven.setEnabled(false);
+						rdbtnEven.setSelected(true);
+						rdbtnOdd.setEnabled(false);
+						rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with the skill 'Sonata of Chaos'");
+						rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable with the skill 'Sonata of Chaos'");
+					}
+					if(disableHeAp) {
+						rdbtnHe.setEnabled(false);
+						rdbtnHe.setSelected(true);
+						rdbtnHe.setEnabled(false);
+						rdbtnHe.setToolTipText("HE and AP rounds are only selectable with the skill 'Expert Loader'");
+						rdbtnAP.setToolTipText("HE and AP rounds are only selectable with the skill 'Expert Loader'");
+					}
+				}
+			}
 		
 		
 		if(guiVariables.getShipType() != null && guiVariables.getCurrentShip() != null && guiVariables.getCurrentShip().getShipName() != "") {
 			name = guiVariables.getCurrentShip().getShipName();
 			type = guiVariables.getShipType();
+			
 			//check to see if the ship name has changed so we only insert if new ship
 			if(previousName != name) {
 				previousName = name;
@@ -761,68 +826,19 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				chckbxCriticalHit.setSelected(false);
 				chckbxFirstSalvo.setSelected(false);
 				
-				//have to change this to only be the skill expert loader
-				if(name.equals("Roon")) {
-					//System.out.println("Not entering this check!!!");
-					//Need to be changed so they're in array to reduce redundancy
-					rdbtnHe.setEnabled(true);
-					rdbtnAP.setEnabled(true);
-					
-					rdbtnHe.setToolTipText(null);
-					rdbtnAP.setToolTipText(null);
-					rdbtnBlue.setSelected(true);
 
-					//will put this in it's own method to reduce redundancy later or for loop
-					
-					for (JRadioButton btn : colorGroupList) {
-				         btn.setSelected(false);
-				         btn.setEnabled(false);
-				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
-				    }
-				//needs to be changed to a skill and ship type later
-				//needs Sonata of chaos instead of friedrich the grosse
-				} else if(name.equals("Friedrich der Grosse (Retrofit)")) {
-					rdbtnHe.setEnabled(false);
-					rdbtnAP.setEnabled(false);
-					rdbtnBlue.setSelected(true);
-
-					//Any default for radio buttons?
-					rdbtnEven.setSelected(true);
-					rdbtnEven.setEnabled(true);
-					rdbtnOdd.setEnabled(true);
-					rdbtnOdd.setToolTipText(null);
-					rdbtnEven.setToolTipText(null);
-					for (JRadioButton btn : colorGroupList) {
-				         btn.setSelected(false);
-				         btn.setEnabled(false);
-				         btn.setToolTipText("Color Ammo Types are only applicable to 'Muse' ships");
-				    }
-					
 				//checking for ships that have Muse
 				//this is an else if, i'm assuming there are no muse ships that are named Roon, Friedrich, Alabama
 				//will need to be changed if otherwise
 					
-				}else if(name.indexOf("Muse") != -1) {
+				if(name.indexOf("Muse") != -1) {
 					
 					for (JRadioButton btn : colorGroupList) {
 				         btn.setEnabled(true);
 				         btn.setToolTipText(null);
 				    }
 					
-				}
-				
-				else {
-					rdbtnHe.setSelected(true);
-					rdbtnHe.setEnabled(false);
-					rdbtnAP.setEnabled(false);
-					//buttonGroup.clearSelection();
-					rdbtnBlue.setSelected(true);
-
-					rdbtnHe.setToolTipText("HE and AP rounds are only selectable with the skill 'Expert Loader' ");
-					rdbtnAP.setToolTipText("HE and AP rounds are only selectable with 'Expert Loader' ");
-					rdbtnEven.setToolTipText("Even and Odd rounds are only selectable with Friedrich der Grosse");
-					rdbtnOdd.setToolTipText("Even and Odd rounds are only selectable when Friedrich der Grosse");
-					
+				} else {
 					for (JRadioButton btn : colorGroupList) {
 				         btn.setSelected(false);
 				         btn.setEnabled(false);
@@ -830,11 +846,6 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				    }
 				    //for some reason setSelected above doesnt work so this has to be done
 					colorGroup.clearSelection();
-					
-					rdbtnEven.setEnabled(false);
-					//default value
-					rdbtnEven.setSelected(true);
-					rdbtnOdd.setEnabled(false);
 					
 				}
 			}

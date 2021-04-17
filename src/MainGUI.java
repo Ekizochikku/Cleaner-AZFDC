@@ -157,7 +157,12 @@ public class MainGUI extends JFrame {
 				contentPane.remove(currentPanel);
 				currentPanel = weaponPane;
 				contentPane.add(currentPanel, BorderLayout.CENTER);
-				weaponPane.onSwitch();
+				try {
+					weaponPane.onSwitch();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				//shipPane.sendInfo();
 				System.out.println("Entering the weapons panel");
