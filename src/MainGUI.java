@@ -50,7 +50,6 @@ public class MainGUI extends JFrame {
 	
 	private AuxGear aux1, aux2;
 	private ArrayList<Skill> skill;
-	private ArrayList<Integer> bombsDropped;
 	private String shipType;
 	private boolean isCritical;
 	private boolean armorBreak;
@@ -393,13 +392,8 @@ public class MainGUI extends JFrame {
 	}
 
 
-	public ArrayList<Integer> getBombsDropped() {
-		return bombsDropped;
-	}
-
-
-	public void setBombsDropped(ArrayList<Integer> bombsDropped) {
-		this.bombsDropped = bombsDropped;
+	public int[] getBombsDropped() {
+		return threeByThree;
 	}
 
 	public void setCrit(boolean critStat) {
@@ -462,6 +456,5 @@ public class MainGUI extends JFrame {
 	}
 	public void threeByThree(int[] theArray) {
 		threeByThree = Arrays.copyOf(theArray, 9);		
-
 	}
 }
