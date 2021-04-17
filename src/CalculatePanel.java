@@ -27,6 +27,7 @@ public class CalculatePanel extends JPanel {
 		add(lblSlotDamage);
 		
 		damage1Result = new JTextPane();
+		damage1Result.setFont(new Font("Yu Gothic", Font.BOLD, 15));
 		damage1Result.setEditable(false);
 		damage1Result.setBounds(407, 85, 300, 39);
 		add(damage1Result);
@@ -42,11 +43,13 @@ public class CalculatePanel extends JPanel {
 		add(lblSlotDamage_2);
 		
 		damage2Result = new JTextPane();
+		damage2Result.setFont(new Font("Yu Gothic", Font.BOLD, 15));
 		damage2Result.setEditable(false);
 		damage2Result.setBounds(407, 250, 300, 39);
 		add(damage2Result);
 		
 		damage3Result = new JTextPane();
+		damage3Result.setFont(new Font("Yu Gothic", Font.BOLD, 15));
 		damage3Result.setEditable(false);
 		damage3Result.setBounds(407, 419, 300, 39);
 		add(damage3Result);
@@ -57,10 +60,8 @@ public class CalculatePanel extends JPanel {
 		FrontlineCalculations finalDamage = new FrontlineCalculations();
 		UpdatedCarrierCalculations UCC= new UpdatedCarrierCalculations();
 		Planes plane;
-		List<Integer> planeBombs = mainGUI.getBombsDropped();
+		int[] planeBombs = mainGUI.getBombsDropped();
 		//Random and shipSlot unknown. Need Clarification
-		int random = 0;
-		int shipSlot = 0;
 		ArrayList<String> skillNames = new ArrayList();
 		getSkillNames(skillNames);
 		//Checking if all the parameters are correct
@@ -78,12 +79,15 @@ public class CalculatePanel extends JPanel {
 			//changed the order for null first before is empty
 //getCarrierFinalDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames,
 //AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear, int shipSlot, boolean crit, int dangerLevel, boolean armorBreak, int removeRandom, int bombOneDropped, int bombTwoDropped, int torpedosDropped)
-			if (mainGUI.getCurrentWeaponNameSlot1() != null && !mainGUI.getCurrentWeaponNameSlot1().isEmpty()) {
+			if(mainGUI.getAux1() == null || mainGUI.getAux2() == null) {
+				return;
+			}
+			if (mainGUI.getCurrentWeaponNameSlot1() != null && !mainGUI.getCurrentWeaponNameSlot1().isEmpty() && !mainGUI.getCurrentWeaponTypeSlot1().equals("Anti-Air Guns")) {
 				System.out.println("Ship type is: " + mainGUI.getShipType());
 				if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers")) {
-					plane = new Planes(mainGUI.getCurrentWeaponTypeSlot1(), mainGUI.getCurrentWeaponNameSlot1());
+					plane = new Planes(mainGUI.getCurrentWeaponNameSlot1(), mainGUI.getCurrentWeaponTypeSlot1());
 					double carrierCalc1 = UCC.getCarrierFinalDamage(mainGUI.getCurrentShip(), plane, plane, plane, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(),
-							shipSlot, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), random, planeBombs.get(0), planeBombs.get(3), planeBombs.get(6));
+							1, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), 2, planeBombs[0], planeBombs[3], planeBombs[6]);
 					String maxDamageSlot1 = Double.toString(carrierCalc1);
 					damage1Result.setText(maxDamageSlot1);
 	
@@ -92,11 +96,13 @@ public class CalculatePanel extends JPanel {
 //AuxGear gearOne, AuxGear gearTwo, int shipSlot, boolean crit, String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, String noteColor)
 					CommonWeapon weapon = new CommonWeapon(mainGUI.getCurrentWeaponNameSlot1(), mainGUI.getCurrentWeaponTypeSlot1());
 					AAGuns aaGun = new AAGuns(mainGUI.getCurrentWeaponNameSlot3(), mainGUI.getCurrentWeaponTypeSlot3());
-					Double damageSlot1 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon, aaGun, null, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), shipSlot, 
-							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), random, mainGUI.getArmorBreak(), mainGUI.getColor());
-					String displayDamageSlot1 = Double.toString(damageSlot1);
-					
-					damage1Result.setText(displayDamageSlot1);
+					Double damageSlot1Max = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 1, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 2, mainGUI.getArmorBreak(), mainGUI.getColor());
+					Double damageSlot1Min = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 1, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 0, mainGUI.getArmorBreak(), mainGUI.getColor());
+					String displayDamageSlotMax1 = Double.toString(damageSlot1Max);
+					String displayDamageSlotMin1 = Double.toString(damageSlot1Min);
+					damage1Result.setText(displayDamageSlotMin1 + " - " + displayDamageSlotMax1);
 				}
 			} else {
 				//System.out.println("Null check working!");
@@ -105,11 +111,22 @@ public class CalculatePanel extends JPanel {
 			System.out.println("The weapon name for slot 2: " + mainGUI.getCurrentWeaponNameSlot2());
 			if (mainGUI.getCurrentWeaponNameSlot2() != null && !mainGUI.getCurrentWeaponNameSlot2().isEmpty()) {
 				//System.out.println("Null check not working!");
-
-				if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers")) {
-					plane = new Planes(mainGUI.getCurrentWeaponTypeSlot2(), mainGUI.getCurrentWeaponNameSlot2());
+				if(mainGUI.getCurrentWeaponTypeSlot2().equals("Anti-Air Guns") && mainGUI.getCurrentWeaponNameSlot2().equals("Seattle (Retrofit)")) {
+					CommonWeapon weapon = new CommonWeapon(mainGUI.getCurrentWeaponNameSlot2(), mainGUI.getCurrentWeaponTypeSlot2());
+					CommonWeapon weapon2 = new CommonWeapon(mainGUI.getCurrentWeaponNameSlot2(), mainGUI.getCurrentWeaponTypeSlot2());
+					AAGuns aaGun = new AAGuns(mainGUI.getCurrentWeaponNameSlot2(), mainGUI.getCurrentWeaponTypeSlot2());
+					Double damageSlotMax2 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon2, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 2, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 2, mainGUI.getArmorBreak(), mainGUI.getColor());
+					Double damageSlotMin2 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon2, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 2, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 0, mainGUI.getArmorBreak(), mainGUI.getColor());
+					String displayDamageSlotMax2 = Double.toString(damageSlotMax2);
+					String displayDamageSlotMin2 = Double.toString(damageSlotMin2);
+					damage2Result.setText(displayDamageSlotMin2 + " - " + displayDamageSlotMax2);
+				}
+				else if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers")) {
+					plane = new Planes(mainGUI.getCurrentWeaponNameSlot2(), mainGUI.getCurrentWeaponTypeSlot2());
 					double carrierCalc2 = UCC.getCarrierFinalDamage(mainGUI.getCurrentShip(), plane, plane, plane, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(),
-							shipSlot, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), random, planeBombs.get(1), planeBombs.get(4), planeBombs.get(7)); 
+							2, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), 2, planeBombs[1], planeBombs[4], planeBombs[7]); 
 					
 					String displayMaxDamageSlot2 = Double.toString(carrierCalc2);
 					
@@ -119,11 +136,13 @@ public class CalculatePanel extends JPanel {
 					
 					CommonWeapon weapon = new CommonWeapon(mainGUI.getCurrentWeaponNameSlot2(), mainGUI.getCurrentWeaponTypeSlot2());
 					AAGuns aaGun = new AAGuns(mainGUI.getCurrentWeaponNameSlot3(), mainGUI.getCurrentWeaponTypeSlot3());
-					Double damageSlot2 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon, aaGun, null, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), shipSlot, 
-							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), random, mainGUI.getArmorBreak(), mainGUI.getColor());
-					String displayDamageSlot2 = Double.toString(damageSlot2);
-					
-					damage2Result.setText(displayDamageSlot2);
+					Double damageSlotMax2 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 2, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 2, mainGUI.getArmorBreak(), mainGUI.getColor());
+					Double damageSlotMin2 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 2, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 0, mainGUI.getArmorBreak(), mainGUI.getColor());
+					String displayDamageSlotMax2 = Double.toString(damageSlotMax2);
+					String displayDamageSlotMin2 = Double.toString(damageSlotMin2);
+					damage2Result.setText(displayDamageSlotMin2 + " - " + displayDamageSlotMax2);
 					
 					}
 				} else {
@@ -132,23 +151,29 @@ public class CalculatePanel extends JPanel {
 				} 
 			
 			if (mainGUI.getCurrentWeaponNameSlot3() != null && !mainGUI.getCurrentWeaponNameSlot3().isEmpty()) {
-				if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers")) {
-					plane = new Planes(mainGUI.getCurrentWeaponTypeSlot3(), mainGUI.getCurrentWeaponNameSlot3());
+				if(mainGUI.getCurrentWeaponTypeSlot3().equals("Anti-Air Guns")) {
+					damage3Result.setText("0");
+				}
+				else if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers")) {
+					plane = new Planes(mainGUI.getCurrentWeaponNameSlot3(), mainGUI.getCurrentWeaponTypeSlot3());
 					double carrierCalc3 = UCC.getCarrierFinalDamage(mainGUI.getCurrentShip(), plane, plane, plane, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(),
-							shipSlot, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), random, planeBombs.get(2), planeBombs.get(5), planeBombs.get(8));
+							3, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), 2, planeBombs[2], planeBombs[5], planeBombs[8]);
 				
 					String displayMaxDamageSlot3 = Double.toString(carrierCalc3);
 //					System.out.println("The amount of bombs dropped from plane 2" + plane2.getBomb1());
 					damage3Result.setText(displayMaxDamageSlot3);
 				} 	else {
-
-					CommonWeapon weapon = new CommonWeapon(mainGUI.getCurrentWeaponNameSlot3(), mainGUI.getCurrentWeaponTypeSlot3());
-					AAGuns aaGun = new AAGuns(mainGUI.getCurrentWeaponNameSlot3(), mainGUI.getCurrentWeaponTypeSlot3());
-					Double damageSlot3 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon, aaGun, null, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), shipSlot, 
-							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), random, mainGUI.getArmorBreak(), mainGUI.getColor());
-					String displayDamageSlot3 = Double.toString(damageSlot3);
 					
-					damage2Result.setText(displayDamageSlot3);
+					CommonWeapon weapon = new CommonWeapon(mainGUI.getCurrentWeaponNameSlot1(), mainGUI.getCurrentWeaponTypeSlot1());
+					CommonWeapon weapon2 = new CommonWeapon(mainGUI.getCurrentWeaponNameSlot2(), mainGUI.getCurrentWeaponTypeSlot2());
+					AAGuns aaGun = new AAGuns(mainGUI.getCurrentWeaponNameSlot3(), mainGUI.getCurrentWeaponTypeSlot3());
+					Double damageSlotMax3 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon2, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 3, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 2, mainGUI.getArmorBreak(), mainGUI.getColor());
+					Double damageSlotMin3 = finalDamage.getFinalDamage(mainGUI.getCurrentShip(), weapon, weapon2, aaGun, aaGun, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(), 3, 
+							mainGUI.getCrit(), mainGUI.getWorld(), mainGUI.getHeAp(), mainGUI.getManual(), mainGUI.getFirstSalvo(), mainGUI.getDangerLvl(), mainGUI.getEvenOdd(), 0, mainGUI.getArmorBreak(), mainGUI.getColor());
+					String displayDamageSlotMax3 = Double.toString(damageSlotMax3);
+					String displayDamageSlotMin3 = Double.toString(damageSlotMin3);
+					damage3Result.setText(displayDamageSlotMin3 + " - " + displayDamageSlotMax3);
 					
 					}
 				} else {

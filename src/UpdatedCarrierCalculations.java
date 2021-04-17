@@ -45,7 +45,7 @@ public class UpdatedCarrierCalculations {
 			finalDmg = finalDmg * 1.10;
 		}
 		
-		
+		System.out.println("Final Damage is: " + finalDmg);
 		return finalDmg;
 		
 	}

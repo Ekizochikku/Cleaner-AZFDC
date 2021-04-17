@@ -327,7 +327,9 @@ public class GUIUtility {
 	 */
 	public ArrayList<String> getWeaponParameters (String weaponType, String weaponName) throws FileNotFoundException, IOException {
 		ArrayList<String> theParams = new ArrayList<String>();
+		System.out.println("The weapon type in getWeaponParameters is: " + weaponType);
 		String theFile = getWeaponTypeFile(weaponType);
+		System.out.println("The file is: " + theFile);
 		BufferedReader br = new BufferedReader(new FileReader(theFile));
 		String line = br.readLine(); //Skip Header Line
 		while ((line = br.readLine()) != null && !line.isEmpty()) {
