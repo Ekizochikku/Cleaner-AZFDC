@@ -39,8 +39,8 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	JComboBox<Object> weaponName1Combo, weaponName2Combo, weaponName3Combo, 
 	weaponType1Combo, weaponType2Combo, weaponType3Combo, aux1Combo, aux2Combo;
 	
-
-
+	String previousType1, previousType2, previousType3;
+	
 	//Bomb/plane boxes
 	//changes to jformatted text field to restrict to only numbers
 	//fudge you Walter
@@ -113,11 +113,22 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(weaponType1Combo);
 		weaponType1Combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
-						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+				try {
+					//checks if users actually changes the type
+					String currentWeaponType = (String)weaponType1Combo.getSelectedItem();
+					System.out.println("Current selected type is: " +  currentWeaponType);
+					if(currentWeaponType != previousType1) {
+						previousType1 = currentWeaponType;
+						GUIUtility.insertNames(weaponName1Combo, false, (String)weaponType1Combo.getSelectedItem());
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
-	});
+		});
+		
 		//carriers, aviation 3rd slot only, i13 third slot only 
 		weaponName1Combo = new JComboBox<Object>();
 		weaponName1Combo.setBounds(287, 46, 364, 23);
@@ -138,11 +149,21 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		
 		weaponType2Combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
-						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+				try {
+					//checks if users actually changes the type
+					String currentWeaponType = (String)weaponType2Combo.getSelectedItem();
+					System.out.println("Current selected type2 is: " +  currentWeaponType);
+					if(currentWeaponType != previousType2) {
+						previousType2 = currentWeaponType;
+						GUIUtility.insertNames(weaponName2Combo, false, (String)weaponType2Combo.getSelectedItem());
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
-	});
+		});
 		
 		weaponName2Combo = new JComboBox<Object>();
 		weaponName2Combo.setBounds(287, 130, 364, 23);
@@ -161,11 +182,21 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		add(weaponType3Combo);
 		weaponType3Combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIUtility.insertAllWeaponTypeSlots(guiVairables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
-						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+				try {
+					//checks if users actually changes the type
+					String currentWeaponType = (String)weaponType3Combo.getSelectedItem();
+					System.out.println("Current selected type3 is: " +  currentWeaponType);
+					if(currentWeaponType != previousType1) {
+						previousType3 = currentWeaponType;
+						GUIUtility.insertNames(weaponName3Combo, false, (String)weaponType3Combo.getSelectedItem());
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
-	});
+		});
 		
 		
 		weaponName3Combo = new JComboBox<Object>();
@@ -817,6 +848,10 @@ public class WeaponPanel extends JPanel implements ActionListener{
 				previousName = name;
 				GUIUtility.insertAllWeaponTypeSlots(guiVariables, weaponType1Combo, weaponType2Combo,  weaponType3Combo, 
 						weaponName1Combo, weaponName2Combo, weaponName3Combo, false);
+				previousType1 = (String) weaponType1Combo.getSelectedItem();
+				previousType2 = (String) weaponType1Combo.getSelectedItem();
+				previousType3 = (String) weaponType1Combo.getSelectedItem();
+				
 				//default values
 				guiVariables.setEvenOdd(0);
 				guiVariables.setHeAp(0);
