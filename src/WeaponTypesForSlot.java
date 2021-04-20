@@ -509,6 +509,9 @@ public class WeaponTypesForSlot {
 			case 0:
 				weaponType = "Destroyer Guns";
 				break;
+			case 1:
+				weaponType = "Seaplanes";
+				break;
 			default:
 				break;
 		}
