@@ -183,6 +183,7 @@ public class CalculatePanel extends JPanel {
 				} 	else if (mainGUI.getShipType().equals("Submarines")) {
 						if(mainGUI.getCurrentShip().getShipName().equals("I-13")) {
 							//Carrier Calc
+							System.out.println("Calculate I-13 Planes slot 3");
 							plane = new Planes(mainGUI.getCurrentWeaponNameSlot3(), mainGUI.getCurrentWeaponTypeSlot3());
 							double carrierCalc3 = UCC.getCarrierFinalDamage(mainGUI.getCurrentShip(), plane, plane, plane, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(),
 									3, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), 2, planeBombs[2], planeBombs[5], planeBombs[8]);
