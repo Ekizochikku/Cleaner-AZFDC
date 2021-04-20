@@ -284,6 +284,7 @@ public class FrontlineCalculations {
 				statsFromSkills += tempAA * 0.30;
 			}
 			
+			
 			// Firepower stat since the weapon being calculated is a cannon. (No need to worry about special ship since the first and second weapon name will be the same.)
 			if (skillNames.contains("Air-Surface Switch")) {
 				if (mainWeapon.getWepName().contains("Twin 127mm (5\"/38 Mk 38)") || secondWeapon.getWepName().contains("Twin 127mm (5\"/38 Mk 38)")) {
