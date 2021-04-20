@@ -172,7 +172,7 @@ public class FrontlineCalculations {
 			}
 			// Seattle Exception. Not caring for AA efficiency because AA damage is not being calculated.
 			if (seattleGun != null && skillNames.contains("Dual Nock")) {
-				System.out.println("Executing Seattle Exception");
+				System.out.println("EXECUTING SEATTLE EXCEPTION!!!!!!!!!");
 				slotEfficiency += 0.15;
 			}
 			
