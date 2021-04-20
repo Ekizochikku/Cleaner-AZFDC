@@ -270,7 +270,7 @@ public class FrontlineCalculations {
 			if (skillNames.contains("AA Firepower") && !ship.getShipType().equals("Submarines") && !specialShipFound) {
 				double tempAA = ship.getAA() + mainWeapon.getAAStat() + secondWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
 				statsFromSkills += tempAA * 0.30;
-			// If a special ship is found, do this.
+			// This section is for the special ships that won't have an AA gun.
 			} else {
 				double tempAA = ship.getAA() + mainWeapon.getAAStat() + gearOne.getAA() + gearTwo.getAA();
 				statsFromSkills += tempAA * 0.30;
@@ -280,7 +280,7 @@ public class FrontlineCalculations {
 				double tempAA = ship.getAA() + mainWeapon.getAAStat() + secondWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
 				statsFromSkills += tempAA * 0.15;
 			} else {
-				double tempAA = ship.getAA() + mainWeapon.getAAStat() + aaGun.getAAStat() + gearOne.getAA() + gearTwo.getAA();
+				double tempAA = ship.getAA() + mainWeapon.getAAStat() + gearOne.getAA() + gearTwo.getAA();
 				statsFromSkills += tempAA * 0.30;
 			}
 			
