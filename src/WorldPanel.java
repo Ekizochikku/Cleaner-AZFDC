@@ -77,7 +77,7 @@ public class WorldPanel extends JPanel {
 		
 		JLabel lblDangerlvl = new JLabel("Danger Lvl:");
 		lblDangerlvl.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblDangerlvl.setBounds(463, 185, 100, 25);
+		lblDangerlvl.setBounds(454, 185, 100, 25);
 		add(lblDangerlvl);
 		
 		JLabel lblHealth = new JLabel("Health:");
@@ -97,7 +97,7 @@ public class WorldPanel extends JPanel {
 		
 		JLabel lblType = new JLabel("Type:");
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblType.setBounds(463, 373, 73, 25);
+		lblType.setBounds(468, 373, 73, 25);
 		add(lblType);
 		
 		JLabel lblNation = new JLabel("Nation:");
@@ -108,7 +108,7 @@ public class WorldPanel extends JPanel {
 		dangerLvlText = new JTextPane();
 		dangerLvlText.setText("3");
 		dangerLvlText.setEditable(false);
-		dangerLvlText.setBounds(472, 213, 82, 25);
+		dangerLvlText.setBounds(463, 213, 82, 25);
 		add(dangerLvlText);
 		
 		healthText = new JTextPane();
