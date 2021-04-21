@@ -80,6 +80,9 @@ public class CalculatePanel extends JPanel {
 //getCarrierFinalDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames,
 //AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear, int shipSlot, boolean crit, int dangerLevel, boolean armorBreak, int removeRandom, int bombOneDropped, int bombTwoDropped, int torpedosDropped)
 			if(mainGUI.getAux1() == null || mainGUI.getAux2() == null) {
+				damage1Result.setText("Check Auxiliary");
+				damage2Result.setText("Check Auxiliary");
+				damage3Result.setText("Check Auxiliary");
 				return;
 			}
 			if (mainGUI.getCurrentWeaponNameSlot1() != null && !mainGUI.getCurrentWeaponNameSlot1().isEmpty() && !mainGUI.getCurrentWeaponTypeSlot1().equals("Anti-Air Guns")) {
