@@ -192,6 +192,7 @@ public class MainGUI extends JFrame {
 		toolBar.add(worldButton);
 		
 		JButton calculateButton = new JButton("Calculate");
+		calculateButton.setToolTipText("Make sure all fields are set before pressing. No damage will display if AUX, Weapons, or Ship has not been selected.");
 		calculateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				

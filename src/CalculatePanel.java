@@ -126,7 +126,7 @@ public class CalculatePanel extends JPanel {
 					damage2Result.setText("0");
 				}
 				
-				else if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers")) {
+				else if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers") || mainGUI.getShipType().equals("Aviation Battleships")) {
 					plane = new Planes(mainGUI.getCurrentWeaponNameSlot2(), mainGUI.getCurrentWeaponTypeSlot2());
 					double carrierCalc2 = UCC.getCarrierFinalDamage(mainGUI.getCurrentShip(), plane, plane, plane, mainGUI.getEnemy(), mainGUI.getSkills(), skillNames, mainGUI.getAux1(), mainGUI.getAux2(),
 							2, mainGUI.getCrit(), mainGUI.getDangerLvl(), mainGUI.getArmorBreak(), 2, planeBombs[1], planeBombs[4], planeBombs[7]); 
