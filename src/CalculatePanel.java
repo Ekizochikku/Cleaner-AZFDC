@@ -85,6 +85,12 @@ public class CalculatePanel extends JPanel {
 				damage3Result.setText("Check Auxiliary");
 				return;
 			}
+			if(mainGUI.getCurrentWeaponNameSlot3().equals("") || mainGUI.getCurrentWeaponNameSlot2().equals("") || mainGUI.getCurrentWeaponNameSlot1().equals("")) {
+				damage1Result.setText("Select all weapons");
+				damage2Result.setText("Select all weapons");
+				damage3Result.setText("Select all weapons");
+				return;
+			}
 			if (mainGUI.getCurrentWeaponNameSlot1() != null && !mainGUI.getCurrentWeaponNameSlot1().isEmpty() && !mainGUI.getCurrentWeaponTypeSlot1().equals("Anti-Air Guns")) {
 				System.out.println("Ship type is: " + mainGUI.getShipType());
 				if(mainGUI.getShipType().equals("Light Aircraft Carriers") || mainGUI.getShipType().equals("Aircraft Carriers")) {
