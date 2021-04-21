@@ -1,4 +1,4 @@
-SHIPNAME	FACTION	CLASS	SHIPTYPE	WEP1TYPE	WEP2TYPE	WEP3TYPE	SLOT1EFF	SLOT2EFF	SLOT3EFF	HEALTH	FIREPOWER	TORPEDO	ANTIAIR	AVIATION	SKILL1	SKILL2	SKILL3	SKILL4	SKILL5
+Dutiful 	FACTION	CLASS	SHIPTYPE	WEP1TYPE	WEP2TYPE	WEP3TYPE	SLOT1EFF	SLOT2EFF	SLOT3EFF	HEALTH	FIREPOWER	TORPEDO	ANTIAIR	AVIATION	SKILL1	SKILL2	SKILL3	SKILL4	SKILL5
 Akagi	IJN	Akagi	CV	0	1	2	1.25	1.25	1.25	6588	0	0	323	409	Preemptive Strike	First Carrier Division	NULL	NULL	NULL
 Akagi (Muse)	IJN	Akagi	CV	0	1	2	1.25	1.25	1.25	6541	0	0	323	408	Airborne Dualism	Crimson Overture	NULL	NULL	NULL
 Akagi-Chan	IJN	Akagi	CV	0	1	2	1.25	1.15	1.25	6250	0	0	311	394	Take the Initiative!	Crimson God's Protection	NULL	NULL	NULL
@@ -26,7 +26,8 @@ Kaga	IJN	Kaga	CV	0	1	2	1.1	1.1	1.5	6771	0	0	323	408	Preemptive Strike	First Carr
 Anniversary Kizuna Ai	KizunaAi	KizunaAI	CV	0	1	2	1.1	1.35	1.35	6626	0	0	323	410	Future Base	Melty World	NULL	NULL	NULL
 Lexington	USS	Lexington	CV	0	1	1	1.2	1.3	1.3	6912	0	0	303	397	Artillery Cover	Fleet Carrier	NULL	NULL	NULL
 Saratoga (Retrofit)	USS	Lexington	CV	0	1	1	1.25	1.4	1.4	7122	0	0	353	442	Artillery Cover	Fleet Carrier	Witch's Prank	NULL	NULL
-Hiryuu META	META	META	CV	0	1	2	1.1	1.1	1.5	5699	0	0	312	424	Scorched Blade (Red)	Cards of Light and Dark	The Cherry Petal Memento	Scorched Blade (Yellow)	NULL
+Ark Royal META	USS	META	CV	2	2	1	1.45	1.4	0.8	6338	0	0	320	419	Shadowflame Torch	Shadow Skirmisher	Glorious Onslaught	Scorched Blade: Ark Royal	NULL
+Hiryuu META	META	META	CV	0	1	2	1.1	1.1	1.5	5699	0	0	312	424	Scorched Blade	Cards of Light and Dark	The Cherry Petal Memento	Scorched Blade: Hiryuu	NULL
 Green Heart	HDN	Neptunia	CV	0	1	1	1.2	1.25	1.25	5781	0	0	298	395	Darjeeling Rotation	Rainy Ratnapura	NULL	NULL	NULL
 Vert	HDN	Neptunia	CV	0	1	1	1.2	1.25	1.25	5523	0	0	288	377	Assam Link	NULL	NULL	NULL	NULL
 Shoukaku	IJN	Shoukaku	CV	0	1	2	1.1	1.1	1.5	6729	0	0	349	412	Fifth Carrier Division (Shoukaku)	Crane's Protection	NULL	NULL	NULL
