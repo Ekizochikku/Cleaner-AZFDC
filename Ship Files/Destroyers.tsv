@@ -116,6 +116,8 @@ Le Temeraire	FFNF	Le Hardi	DD	0	0	0	1.3	1.15	0.75	1571	93	394	172	Bold But Reckl
 Minsk	SN	Leningrad	DD	0	0	0	1.55	1.1	1	2612	145	228	172	Mobility Mastery	Smokescreen	All Out Assault	NULL	NULL
 Matchless	HMS	M	DD	0	0	0	1.2	1.45	1	1683	76	394	157	Target Designator: Torpedo	Interference	All Out Assault	NULL	NULL
 Musketeer	HMS	M	DD	0	0	0	1.2	1.45	1	1683	76	400	156	Calibrated Firing	All Out Assault	NULL	NULL	NULL
+Libeccio	RN	Maestrale	DD	0	0	0	1.4	1.3	1.1	1783	115	299	154	The Southwesterly Wind	Southwesterly Sailor	All Out Assault	NULL	NULL
+Maestrale	RN	Maestrale	DD	0	0	0	1.4	1.3	1.1	1821	109	293	160	The Northwesterly Wind	Northwesterly Ace Student	All Out Assault	NULL	NULL
 Cassin (Retrofit)	USS	Mahan	DD	0	0	0	1.25	1.35	1.3	1900	101	293	168	Baptismal Flames	Quick Reload	All Out Assault	NULL	NULL
 Downes (Retrofit)	USS	Mahan	DD	0	0	0	1.25	1.35	1.3	1900	101	293	168	Baptismal Flames	Quick Reload	All Out Assault	NULL	NULL
 Fumizuki	IJN	Mutsuki	DD	0	0	0	0.75	1.45	0.75	1516	60	438	128	Quick Reload	All Out Assault	NULL	NULL	NULL
@@ -125,6 +127,7 @@ Minazuki	IJN	Mutsuki	DD	0	0	0	0.75	1.45	0.75	1487	59	427	138	Quick Reload	All Ou
 Mutsuki (Retrofit)	IJN	Mutsuki	DD	0	0	0	0.75	1.5	0.8	1652	59	462	173	Quick Reload	Torpedo Command: Destroyers	All Out Assault	NULL	NULL
 Nagatsuki	IJN	Mutsuki	DD	0	0	0	0.75	1.45	0.75	1516	60	438	128	Quick Reload	All Out Assault	NULL	NULL	NULL
 Uzuki	IJN	Mutsuki	DD	0	0	0	0.75	1.45	0.75	1487	59	427	138	Quick Reload	All Out Assault	NULL	NULL	NULL
+Nicoloso da Recco	RN	Navigatori	DD	0	0	0	1.5	1.2	0.85	1850	115	279	171	The Exploration Sensation	Navigator's Intrepidity	All Out Assault	NULL	NULL
 Blanc	HDN	Neptunia	DD	0	0	0	0.75	1.5	0.75	1800	70	439	149	Power Break	NULL	NULL	NULL	NULL
 White Heart	HDN	Neptunia	DD	0	0	0	0.8	1.5	0.75	1947	74	476	154	Tanzerin Trombe	Getter Ravine	NULL	NULL	NULL
 Kawakaze	IJN	Shiratsuyu	DD	0	0	0	0.85	1.5	0.85	1830	69	545	161	Lunga Point's Strike	Impartial Destruction	All Out Assault	NULL	NULL

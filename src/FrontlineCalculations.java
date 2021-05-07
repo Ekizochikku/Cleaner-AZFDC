@@ -261,6 +261,9 @@ public class FrontlineCalculations {
 			if (skillNames.contains("I Love My Sisters!") || ship.getShipType().equals("Destroyers")) {
 				statsFromSkills += 0.15;
 			}
+			if (skillNames.contains("Eternal Light of Sardegna") || vanguardFleet.contains(ship.getShipType())) {
+				statsFromSkills += 0.15;
+			}
 		} else {
 			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Cannon", 1, "");
 		}
@@ -325,10 +328,14 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Royal Alliance") && vanguardFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.12;
 			}
+			if (skillNames.contains("Eternal Light of Sardegna") || mainFleet.contains(ship.getShipType())) {
+				statsFromSkills += 0.15;
+			}
 			// Exception for auxgear
 			if (gearOne.getGearName().equals("Z Flag") || gearTwo.getGearName().equals("Z Flag")) {
 				statsFromSkills += 0.05;
 			}
+			
 		}
 		
 		
@@ -736,10 +743,9 @@ public class FrontlineCalculations {
 		if (skillNames.contains("Shooting Gun-Star") || enemy.getArmor().equals("L")) {
 			ratio += 0.15;
 		}
-		if (skillNames.contains("Whimsical Protector") || vanguardFleet.contains(ship.getShipType())) {
+		if (skillNames.contains("Whimsical Protector") && vanguardFleet.contains(ship.getShipType())) {
 			ratio += 0.10;
 		}
-		
 		return ratio;
 	}
 	

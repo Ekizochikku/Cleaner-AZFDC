@@ -2,6 +2,7 @@ Dutiful 	FACTION	CLASS	SHIPTYPE	WEP1TYPE	WEP2TYPE	WEP3TYPE	SLOT1EFF	SLOT2EFF	SLO
 Akagi	IJN	Akagi	CV	0	1	2	1.25	1.25	1.25	6588	0	0	323	409	Preemptive Strike	First Carrier Division	NULL	NULL	NULL
 Akagi (Muse)	IJN	Akagi	CV	0	1	2	1.25	1.25	1.25	6541	0	0	323	408	Airborne Dualism	Crimson Overture	NULL	NULL	NULL
 Akagi-Chan	IJN	Akagi	CV	0	1	2	1.25	1.15	1.25	6250	0	0	311	394	Take the Initiative!	Crimson God's Protection	NULL	NULL	NULL
+Aquila	RN	Aquila	CV	0	6	2	1.2	1.2	1.3	6217	0	0	363	398	Freccia dell'Aquila	Rain of Starlight	Disarming but Deadly	NULL	NULL
 Ark Royal	IJN	Ark Royal	CV	2	2	1	1.4	1.4	0.8	6107	0	0	307	400	Swordfishes, Strike!	Assault Carrier	NULL	NULL	NULL
 Bearn	FFNF	Bearn	CV	0	2	6	1.35	1.4	0.55	6261	174	255	307	307	Sacrament: Holy Bombardment	Sacrament: Sacred Second Wing	NULL	NULL	NULL
 Glorious	HMS	Courageous	CV	0	2	2	1.4	1.15	1.15	6313	0	0	292	360	Fleet Carrier	Air Cover	NULL	NULL	NULL

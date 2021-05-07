@@ -10,7 +10,10 @@ public class UpdatedCarrierCalculations {
 	// KMS Planes
 	private final ArrayList<String> KMSPlanes = new ArrayList<String>(Arrays.asList("Arado Ar 197", "Focke-Wulf Fw 190 A-5 (Carrier-based Prototype)", "Messerschmitt BF-109T", "Messerschmitt Me-155A", "Heinkel He 50b", "Junkers Ju-87C", "Arado Ar 195",
 			"Fieseler Fi 167", "Junkers Ju-87 D-4"));
-	final private ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruisers", "Battleships", "Light Aircraft Carriers", "Aircraft Carriers", "Monitors", "Aviation Battleships"));
+	private final ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruisers", "Battleships", "Light Aircraft Carriers", "Aircraft Carriers", "Monitors", "Aviation Battleships"));
+	
+	private final ArrayList<String> bombers = new ArrayList<String>(Arrays.asList("Aichi D3A Type 99", "Aichi D3A2 Type 99", "Blackburn Skua", "Curtiss SB2C Helldiver", "Curtiss XSB3C (Experimental)", "Douglas BTD-1 Destroyer", "Douglas SBD Dauntless",
+			"Douglas SBD Dauntless (McClusky)", "Fairey Barracuda (831 Squadron)", "Fairey Firefly", "Fairey Fulmar", "Heinkel He 50b", "Junkers Ju-87C", "Yokosuka D4Y Suisei", "Yokosuka Suisei Model 12A"));
 	
 	// CARRIERS THAT CAN USE CANNONS AND HAVE CANNONS SELECTED WITH BE USING THE OTHER CALUCLATION METHOD.
 	
@@ -102,7 +105,7 @@ public class UpdatedCarrierCalculations {
 			injRatStat = getInjureRatio(skills, skillNames);
 			
 			// Damage Ratio
-			dmgRatStat = getDamageRatio(ship, enemy, skills, skillNames);
+			dmgRatStat = getDamageRatio(ship, enemy, mainWeapon, secondWeapon, thirdWeapon, shipSlot, skills, skillNames);
 			
 			// Damage to Nation
 			dmgNatStat = getDamageToNation(skills, enemy);
@@ -311,7 +314,7 @@ public class UpdatedCarrierCalculations {
 		return injBuff;
 	}
 	
-	private double getDamageRatio(ShipFile ship, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames) {
+	private double getDamageRatio(ShipFile ship, Enemy enemy, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, int shipSlot, ArrayList<Skill> skillList, ArrayList<String> skillNames) {
 		double dmgRatio = 0;
 		for (int i = 0; i < skillList.size(); i++) {
 			Skill skill = skillList.get(i);
@@ -346,7 +349,14 @@ public class UpdatedCarrierCalculations {
 		if (skillNames.contains("Shooting Gun-Star") || enemy.getArmor().equals("L")) {
 			dmgRatio += 0.15;
 		}
-		
+		if (skillNames.contains("Rain of Starlight")) {
+			if ((shipSlot == 1 || bombers.contains(secondWeapon.getPlaneName()) || (shipSlot == 2 || bombers.contains(mainWeapon.getPlaneName()) || (shipSlot == 3 && bombers.contains(thirdWeapon.getPlaneName()))))) {
+				dmgRatio += 0.08;
+			}
+		}
+		if (skillNames.contains("Eternal Light of Sardegna")) {
+			dmgRatio += 0.12;
+		}
 		return dmgRatio;
 	}
 	
