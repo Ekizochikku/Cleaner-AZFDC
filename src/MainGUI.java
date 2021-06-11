@@ -57,6 +57,7 @@ public class MainGUI extends JFrame {
 	private boolean manual;
 	private int evenOdd;
 	private int currentColorSelected;
+	private boolean isBias = false;
 	
 	/**
 	 * Launch the application.
@@ -462,5 +463,14 @@ public class MainGUI extends JFrame {
 	}
 	public void threeByThree(int[] theArray) {
 		threeByThree = Arrays.copyOf(theArray, 9);		
+	}
+
+
+	public void setIsBias(boolean noBias) {
+		isBias = noBias;
+	}
+	
+	public boolean getBias() {
+		return isBias;
 	}
 }

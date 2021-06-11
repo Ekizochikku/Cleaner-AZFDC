@@ -71,6 +71,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 	MainGUI guiVariables;
 	GUIUtility guiU;
 	
+	private boolean noBias = false;
 	private int evenOdd = -1; //0 for even, 1 for odd, -1 for non selected
 	
 	private final ButtonGroup ammoGroup = new ButtonGroup();
@@ -668,6 +669,15 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		lblNote.setBounds(385, 430, 46, 14);
 		add(lblNote);
 		
+		JCheckBox chckbxNoBias = new JCheckBox("No Bias");
+		chckbxNoBias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				noBias = !noBias;
+			}
+		});
+		chckbxNoBias.setBounds(479, 529, 97, 23);
+		add(chckbxNoBias);
+		
 	}
 	   
 	 
@@ -737,7 +747,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 			guiVariables.setEvenOdd(1);
 		}
 		
-		
+		guiVariables.setIsBias(noBias);
 		guiVariables.setWeaponNamesAndTypes(weaponInfo);
 		
 		//this is the 3x3, needs to be tested (especially the parsing)
@@ -778,7 +788,7 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		String name = null;
 		Skill sonata = new Skill("Sonata of Chaos");
 		Skill expert = new Skill("Expert Loader");
-		
+		guiVariables.setIsBias(noBias);
 		if(!guiVariables.getSkills().isEmpty()){
 			ArrayList<Skill> sonataCheck = new ArrayList<>();
 			sonataCheck.addAll(guiVariables.getSkills());
@@ -945,6 +955,5 @@ public class WeaponPanel extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
 }
 	
