@@ -40,7 +40,7 @@ public class FrontlineCalculations {
 	 * @return
 	 */
 	public double getFinalDamage(ShipFile ship, CommonWeapon mainWeapon, CommonWeapon secondWeapon, AAGuns aaGun, AAGuns seattleGun, Enemy enemy, ArrayList<Skill> skillList, ArrayList<String> skillNames, AuxGear gearOne, AuxGear gearTwo, 
-			int shipSlot, boolean crit, String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, int noteColor) {
+			int shipSlot, boolean crit, String world, int ammoType, boolean manual, boolean firstSalvo, int dangerLvl, int evenOdd, int removeRandom, boolean armorBreak, int noteColor, boolean removeBias) {
 		boolean specialShipFound = specialShips.contains(ship.getShipName());
 
 		double finalDamage = 0;
@@ -261,8 +261,11 @@ public class FrontlineCalculations {
 			if (skillNames.contains("I Love My Sisters!") || ship.getShipType().equals("Destroyers")) {
 				statsFromSkills += 0.15;
 			}
-			if (skillNames.contains("Eternal Light of Sardegna") || vanguardFleet.contains(ship.getShipType())) {
+			if (skillNames.contains("Eternal Light of Sardegna") && vanguardFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.15;
+			}
+			if (skillNames.contains("Hottier Hunters") || ship.getShipType().equals("Submarines")) {
+				statsFromSkills += 0.08;
 			}
 		} else {
 			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Cannon", 1, "");
@@ -328,7 +331,7 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Royal Alliance") && vanguardFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.12;
 			}
-			if (skillNames.contains("Eternal Light of Sardegna") || mainFleet.contains(ship.getShipType())) {
+			if (skillNames.contains("Eternal Light of Sardegna") && mainFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.15;
 			}
 			// Exception for auxgear
@@ -407,6 +410,9 @@ public class FrontlineCalculations {
 		
 		// Overall crit damage buff
 		if (skillNames.contains("Wolf Pack Formation - U-96") && ship.getShipType().equals("Submarines")) {
+			critBuff += 0.15;
+		}
+		if (skillNames.contains("Hottier Hunters") || ship.getShipType().equals("Submarines")) {
 			critBuff += 0.15;
 		}
 		
@@ -716,7 +722,6 @@ public class FrontlineCalculations {
 				ratio -= 0.35;
 			}
 		}
-		// Ship is either part of the vanguard fleet or main fleet.
 		if (skillNames.contains("Auspice of the Stars")) {
 			if (vanguardFleet.contains(ship.getShipType())) {
 				ratio += 0.15;
@@ -745,6 +750,18 @@ public class FrontlineCalculations {
 		}
 		if (skillNames.contains("Whimsical Protector") && vanguardFleet.contains(ship.getShipType())) {
 			ratio += 0.10;
+		}
+		if (skillNames.contains("The Bigger They Are...") && enemy.getArmor().equals("H")) {
+			ratio += 0.15;
+		}
+		if(skillNames.contains("Right Place at the Right Time") && vanguardFleet.contains(ship.getShipType())) {
+			ratio += 0.05;
+		}
+		if (skillNames.contains("Don'tcha Just Love It?") && (ship.getShipType().equals("Battleships") || ship.getShipType().equals("Battlecruisers"))) {
+			ratio += 0.10;
+		}
+		if (skillNames.contains("Hottie Hunters") && enemy.getArmor().equals("H")) {
+			ratio += 0.15;
 		}
 		return ratio;
 	}

@@ -24,7 +24,7 @@ public class UpdatedCarrierCalculations {
 	 * Different from the Cannon and Torpedo calculation method due to different requirements on how air damage is dealt.
 	 */
 	public double getCarrierFinalDamage(ShipFile ship, Planes mainWeapon, Planes secondWeapon, Planes thirdWeapon, Enemy enemy, ArrayList<Skill> skills, ArrayList<String> skillNames,
-			AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear, int shipSlot, boolean crit, int dangerLevel, boolean armorBreak, int removeRandom, int bombOneDropped, int bombTwoDropped, int torpedosDropped) {
+			AuxGear slotOneAuxGear, AuxGear slotTwoAuxGear, int shipSlot, boolean crit, int dangerLevel, boolean armorBreak, int removeRandom, int bombOneDropped, int bombTwoDropped, int torpedosDropped, boolean removeBias) {
 		
 		// Calculating damage that will be done depending on what bomb or torpedo is dropped. This will calculate the damage assuming each ordinance hits.
 		double finalDmg = 0;
@@ -212,6 +212,9 @@ public class UpdatedCarrierCalculations {
 		}
 		if (skillNames.contains("Royal Alliance") && mainFleet.contains(ship.getShipType())) {
 			statsFromBuff += 0.12;
+		}
+		if (skillNames.contains("Freedom Through Firepower") || (ship.getShipType().equals("Light Aircraft Carriers") || (ship.getShipType().equals("Aircraft Carriers")))) {
+			statsFromBuff += 0.15;
 		}
 		
 		double finalStatAttacker = basicStatBoost * statsFromBuff * 0.80;
