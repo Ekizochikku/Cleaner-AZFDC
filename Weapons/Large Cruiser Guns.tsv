@@ -2,4 +2,5 @@ WEAPON NAME	FIREPOWER	TORPEDO	ANTIAIR	DAMAGE	COEFFICIENT	AMMO	DMGTOL	DMGTOM	DMGT
 Triple 283mm (SK C/28) (Tier 1)	5	0	0	36	1.1	AP	0.75	1.1	0.75
 Triple 283mm (SK C/28) (Tier 2)	12	0	0	44	1.1	AP	0.75	1.1	0.75
 Triple 283mm (SK C/28) (Tier 3)	25	0	0	55	1.1	AP	0.75	1.1	0.75
-Triple 310mm (Type 0 Prototype) (Tier 0)	45	0	0	56	1.1	HE+	1.4	1.1	0.7
+Triple 305mm (SK C/39 Prototype)	45	0	0	105	1.1	AP*	0.75	1.15	0.75
+Triple 310mm (Type 0 Prototype) (Tier 0)	45	0	0	56	1.1	HE	1.35	1	0.75

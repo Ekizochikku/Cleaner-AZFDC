@@ -467,10 +467,10 @@ public class GUIUtility {
 				slottedWep = weaponType.slotOneMonitors(weaponNumber);
 				break;
 			case "Light Aircraft Carriers":
-				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
+				slottedWep = weaponType.slotOneCarriers(weaponNumber);
 				break;
 			case "Aircraft Carriers":
-				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
+				slottedWep = weaponType.slotOneCarriers(weaponNumber);
 				break;
 			case "Submarines":
 				slottedWep = weaponType.slotOneAndTwoSubmarines(weaponNumber);
@@ -516,10 +516,10 @@ public class GUIUtility {
 				slottedWep = weaponType.slotTwoMonitors(weaponNumber);
 				break;
 			case "Light Aircraft Carriers":
-				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
+				slottedWep = weaponType.slotTwoCarriers(weaponNumber);
 				break;
 			case "Aircraft Carriers":
-				slottedWep = weaponType.slotOneAndTwoCarriers(weaponNumber);
+				slottedWep = weaponType.slotTwoCarriers(weaponNumber);
 				break;
 			case "Submarines":
 				slottedWep = weaponType.slotOneAndTwoSubmarines(weaponNumber);

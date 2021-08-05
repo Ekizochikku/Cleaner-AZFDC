@@ -8,8 +8,14 @@ public class UpdatedCarrierCalculations {
 			"Grumman F6F Hellcat", "Grumman F7F Tigercat", "Grumman F8F Bearcat", "Grumman XF5F Skyrocket", "Vought F4U Corsair", "Vought F4U Corsair", "Douglas TBD Devastator", "Douglas XTB2D-1 Skypirate", "Grumman TBF Avenger", 
 			"TBM Avenger (VT-18 Squadron)", "Douglas TBD Devastator (VT-8)", "Grumman TBF Avenger (VT-8)", "Curtiss SB2C Helldiver", "Curtiss XSB3C (Experimental)", "Douglas BTD-1 Destroyer", "Douglas SBD Dauntless", "Douglas SBD Dauntless (McClusky)"));
 	// KMS Planes
-	private final ArrayList<String> KMSPlanes = new ArrayList<String>(Arrays.asList("Arado Ar 197", "Focke-Wulf Fw 190 A-5 (Carrier-based Prototype)", "Messerschmitt BF-109T", "Messerschmitt Me-155A", "Heinkel He 50b", "Junkers Ju-87C", "Arado Ar 195",
+	private final ArrayList<String> KMSPlanes = new ArrayList<String>(Arrays.asList("Arado Ar 197", "Focke-Wulf Fw 190 A-5 (Carrier-based Prototype)", "Messerschmitt Bf 109G (Carrier-based Prototype", "Messerschmitt BF-109T", "Messerschmitt Me-155A", "Heinkel He 50b", "Junkers Ju-87C", "Arado Ar 195",
 			"Fieseler Fi 167", "Junkers Ju-87 D-4"));
+	private final ArrayList<String> KMSFighters = new ArrayList<String>(Arrays.asList("Arado Ar 197", "Focke-Wulf Fw 190 A-5 (Carrier-based Prototype)", "Messerschmitt Bf 109G (Carrier-based Prototype", "Messerschmitt BF-109T", "Messerschmitt Me-155A"));
+	
+	private final ArrayList<String> IJNPlanes = new ArrayList<String>(Arrays.asList("Kawanishi N1K3-A Shiden Kai 2", "Mitsubishi A5M Type 96", "Mitsubishi A6M2 Zero", "Mitsubishi A6M3 Type 0 Model 32", "Mitsubishi A6M5 Zero", "Mitsubishi A7M Reppuu",
+			"Aichi D3A Type 99", "Aichi D3A2 Type 99", "Nakajima J5N Tenrai (Dive Bomber Prototype)", "Yokosuka D4Y Suisei", "Yokosuka Suisei Model 12A", "Aichi B7A Ryuusei", "Nakajima B5N Type 97", "Nakajima B5N2 Type 97", "Nakajima B6N Tenzan",
+			"Nakajima B6N2 Tenzan Model 12A", "Nakajima C6N Saiun (Model 21 Prototype)", "Aichi E16A Zuiun", "Aichi M6A Seiran", "Kawanishi N1K1 Kyoufuu", "Nakajima A6M2-N", "Yokosuka Suisei Model 21"));
+	
 	private final ArrayList<String> mainFleet = new ArrayList<String>(Arrays.asList("Battlecruisers", "Battleships", "Light Aircraft Carriers", "Aircraft Carriers", "Monitors", "Aviation Battleships"));
 	
 	private final ArrayList<String> bombers = new ArrayList<String>(Arrays.asList("Aichi D3A Type 99", "Aichi D3A2 Type 99", "Blackburn Skua", "Curtiss SB2C Helldiver", "Curtiss XSB3C (Experimental)", "Douglas BTD-1 Destroyer", "Douglas SBD Dauntless",
@@ -79,7 +85,7 @@ public class UpdatedCarrierCalculations {
 			correctedDamageStat = getCorrectedDamage(ship, mainWeapon, secondWeapon, thirdWeapon, shipSlot, skills, skillNames, ordinance, slotOneAuxGear, slotTwoAuxGear, isAviationBB);
 			
 			// Weapon Type Mod (Scaling Weapon Buffs)
-			weaponTypeModStat = getWeaponTypeMod(skills, skillNames);
+			weaponTypeModStat = getWeaponTypeMod(skills, skillNames, enemy);
 			
 			// Critical Damage Buff
 			if (crit) {
@@ -197,6 +203,16 @@ public class UpdatedCarrierCalculations {
 			effSlot += 0.15;
 		}
 		
+		if (skillNames.contains("Hex-Principle of Dominance")) {
+			for (int i = 0; i < KMSFighters.size(); i++) {
+				String name = KMSFighters.get(i);
+				if (mainWeapon.getPlaneName().contains(name) || secondWeapon.getPlaneName().contains(name)|| thirdWeapon.getPlaneName().contains(name)) {
+					effSlot += 0.10;
+					break;
+				}
+			}
+		}
+		
 		// Stats from the ship and gear (weapon and auxiliary gear) and skills that grant a flat amount instead of a percentage.
 		double basicStatBoost = 0;
 		if (isAviationBB || ship.getShipName().equals("I-13")) {
@@ -205,7 +221,7 @@ public class UpdatedCarrierCalculations {
 			basicStatBoost = ship.getAviation() + mainWeapon.getAviation() + secondWeapon.getAviation() + thirdWeapon.getAviation() + slotOneAuxGear.getAviation() + slotTwoAuxGear.getAviation();
 		}
 		
-		// Stats that would be gained from skills
+		// Stats that would be gained from skills (Aviation Buff)
 		double statsFromBuff = getDmgRatiotoStatBuffs(skills, "Buff To Aviation", 1, "");
 		if (skillNames.contains("Mark of Sirius")) {
 			statsFromBuff += 0.10;
@@ -215,6 +231,24 @@ public class UpdatedCarrierCalculations {
 		}
 		if (skillNames.contains("Freedom Through Firepower") || (ship.getShipType().equals("Light Aircraft Carriers") || (ship.getShipType().equals("Aircraft Carriers")))) {
 			statsFromBuff += 0.15;
+		}
+		if (skillNames.contains("Hex-Principle of Dominance")) {
+			for (int i = 0; i < KMSPlanes.size(); i++) {
+				String name = KMSPlanes.get(i);
+				if (mainWeapon.getPlaneName().contains(name) || secondWeapon.getPlaneName().contains(name)|| thirdWeapon.getPlaneName().contains(name)) {
+					statsFromBuff += 0.12;
+					break;
+				}
+			}
+		}
+		if (skillNames.contains("The Great One's Shadow")) {
+			for (int i = 0; i < IJNPlanes.size(); i++) {
+				String name = IJNPlanes.get(i);
+				if (mainWeapon.getPlaneName().contains(name) || secondWeapon.getPlaneName().contains(name)|| thirdWeapon.getPlaneName().contains(name)) {
+					statsFromBuff += 0.15;
+					break;
+				}
+			}
 		}
 		
 		double finalStatAttacker = basicStatBoost * statsFromBuff * 0.80;
@@ -227,11 +261,16 @@ public class UpdatedCarrierCalculations {
 	 * @param skills
 	 * @return
 	 */
-	private double getWeaponTypeMod(ArrayList<Skill> skills, ArrayList<String> skillNames) {
+	private double getWeaponTypeMod(ArrayList<Skill> skills, ArrayList<String> skillNames, Enemy enemy) {
 		double buffDamage = 1;
 		buffDamage += getMiscStats(skills, "Injure Air", 0) + getMiscStats(skills, "Damage Air", 0);
 		if (skillNames.contains("Beckoning of Ice")) {
 			buffDamage += 0.05;
+		}
+		if (skillNames.contains("Hex-Principle of Shattering")) {
+			if (enemy.getArmor().equals("L") || enemy.getArmor().equals("M")) {
+				buffDamage += 0.08;
+			}
 		}
 		
 		return buffDamage;
@@ -360,6 +399,12 @@ public class UpdatedCarrierCalculations {
 		if (skillNames.contains("Eternal Light of Sardegna")) {
 			dmgRatio += 0.12;
 		}
+		if (skillNames.contains("Kazagumo's Air Raid Assistance")) {
+			if (ship.getShipType().equals("Aircraft Carriers") || ship.getShipType().equals("Light Aircraft Carriers")) {
+				dmgRatio += 0.15;
+			}
+		}
+		
 		return dmgRatio;
 	}
 	

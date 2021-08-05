@@ -255,8 +255,10 @@ public class WeaponTypesForSlot {
 				weaponType = "Light Cruiser Guns";
 				break;
 			case 2:
-				weaponType = "Anti-Air Guns";
+				weaponType = "Torpedos";
 				break;
+			case 3:
+				weaponType = "Anti-Air Guns";
 			default:
 				break;
 		}
@@ -272,8 +274,10 @@ public class WeaponTypesForSlot {
 				weaponType = "Light Cruiser Guns";
 				break;
 			case 2:
-				weaponType = "Anti-Air Guns";
+				weaponType = "Torpedos";
 				break;
+			case 3:
+				weaponType = "Anti-Air Guns";
 			default:
 				break;
 		}
@@ -525,7 +529,38 @@ public class WeaponTypesForSlot {
 	 * @param weaponNumber
 	 * @return
 	 */
-	public String slotOneAndTwoCarriers(int weaponNumber) {
+	public String slotOneCarriers(int weaponNumber) {
+		switch (weaponNumber) {
+			case 0:
+				weaponType = "Fighter Planes";
+				break;
+			case 1:
+				weaponType = "Bomber Planes";
+				break;
+			case 2:
+				weaponType = "Torpedo Planes";
+				break;
+			case 3:
+				weaponType = "Seaplanes";
+				break;
+			case 4:
+				weaponType = "Anti-Air Guns";
+				break;
+			case 5:
+				weaponType = "Light Cruiser Guns";
+				break;
+			case 6:
+				weaponType = "Fighter Planes/Bomber Planes/Torpedo Planes";
+				break;
+			case 7:
+				weaponType = "Fighter Planes/Bomber Planes";
+			default:
+				break;
+		}
+		return weaponType;
+	}
+	
+	public String slotTwoCarriers(int weaponNumber) {
 		switch (weaponNumber) {
 			case 0:
 				weaponType = "Fighter Planes";

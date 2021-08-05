@@ -136,6 +136,9 @@ public class FrontlineCalculations {
 				double lostDamage = finalDamage * 0.10;
 				finalDamage -= lostDamage;
 			}
+			if (skillNames.contains("Hex-Principle Insight")) {
+				finalDamage += 234;
+			}
 		}
 		return finalDamage;
 	}
@@ -205,8 +208,18 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Reno Barrage") && (mainWeapon.getWeaponType().equals("Destroyer Guns") || secondWeapon.getWeaponType().equals("Destroyer Guns"))) {
 				slotEfficiency += 0.10;
 			}
-			if (skillNames.contains("Dual Nock") || shipSlot == 1 && secondWeapon.getWeaponType().equals("Anti-Air Guns")) {
+			if (skillNames.contains("Dual Nock") && secondWeapon.getWeaponType().equals("Anti-Air Guns")) {
 				slotEfficiency += 0.15;
+			}
+			if (skillNames.contains("II Milione")) {
+				slotEfficiency += 0.10;
+			}
+			if (skillNames.contains("Abyssal Banquet")) {
+				String value = mainWeapon.getWepName().replaceAll("[^0-9]","");
+				int num = Integer.parseInt(value);
+				if (num >= 280) {
+					slotEfficiency += 0.12;
+				}
 			}
 		} else if (shipSlot == 2) {
 			slotEfficiency = ship.getEffSlot(2);
@@ -266,6 +279,13 @@ public class FrontlineCalculations {
 			}
 			if (skillNames.contains("Hottier Hunters") || ship.getShipType().equals("Submarines")) {
 				statsFromSkills += 0.08;
+			}
+			if (mainWeapon.getWeaponType().equals("Torpedos")) {
+				if (skillNames.contains("Foo and Friends and Kasumi Too")) {
+					if (vanguardFleet.contains(ship.getShipType())) {
+						statsFromSkills += 0.15;
+					}
+				}
 			}
 		} else {
 			statsFromSkills = getDmgRatiotoStatBuffs(skillList, "Buff To Cannon", 1, "");
@@ -334,6 +354,9 @@ public class FrontlineCalculations {
 			if (skillNames.contains("Eternal Light of Sardegna") && mainFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.15;
 			}
+			if (skillNames.contains("Strike Orders Received!") && vanguardFleet.contains(ship.getShipType()) && cannonTypes.contains(mainWeapon.getWeaponType())) {
+				statsFromSkills += 0.10;
+			}
 			// Exception for auxgear
 			if (gearOne.getGearName().equals("Z Flag") || gearTwo.getGearName().equals("Z Flag")) {
 				statsFromSkills += 0.05;
@@ -374,7 +397,7 @@ public class FrontlineCalculations {
 		}
 		
 		// Use a method that will return the max between if armorBreak is true or getting the method to see if there's a skill that causes an armor break;
-		if (enemy.getArmor().equals("H") && cannonTypes.contains(mainWeapon.getWeaponType()) && armorBreak) {
+		if (enemy.getArmor().equals("H") && cannonTypes.contains(mainWeapon.getWeaponType()) && (armorBreak || skillNames.contains("Jottun's Jaws"))) {
 			buffDamage += 0.08;
 		}
 		if (skillNames.contains("Poisonous Sting") && ship.getShipType().equals("Destroyers")) {
@@ -652,6 +675,8 @@ public class FrontlineCalculations {
 		
 		// Skill exceptions area.
 		
+		// Make sure weapon is a torpedo
+		
 		// Makes sure weapon is a gun.
 		if (!mainWeapon.getWeaponType().equals("Torpedos")) {
 			if (skillNames.contains("Sonata of Chaos") && evenOdd == 1) {
@@ -703,6 +728,11 @@ public class FrontlineCalculations {
 							break;
 						}
 					}
+				}
+			}
+			if (skillNames.contains("Abyssal Banquet")) {
+				if ((shipSlot == 1 && mainWeapon.getAmmoType().equals("HE")) || (shipSlot == 2 && secondWeapon.getAmmoType().equals("HE")) || (shipSlot == 3 && secondWeapon.getAmmoType().equals("HE"))) {
+					ratio += 0.12;
 				}
 			}
 		}

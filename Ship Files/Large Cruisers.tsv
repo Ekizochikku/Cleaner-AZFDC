@@ -1,2 +1,3 @@
 SHIPNAME	FACTION	CLASS	SHIPTYPE	WEP1TYPE	WEP2TYPE	WEPTYPE3	SLOT1EFF	SLOT2EFF	SLOT3EFF	HEALTH	FIREPOWER	TORPEDO	ANTIAIR	SKILL1	SKILL2	SKILL3	SKILL4	SKILL5
-Azuma	IJN	Azuma	LC	2	0	2	1	0.6	1.1	7541	307	0	226	Blazing Peaks	Mizuho's Intuition	Special Gunnery Training	Siren Killer	NULL
+Azuma	IJN	Azuma	LC	2	0	3	1	0.6	1.1	7541	307	0	226	Blazing Peaks	Mizuho's Intuition	Special Gunnery Training	Siren Killer	NULL
+Agit	KMS	Agir	LC	2	2	3	1.2	1.1	1.1	7877	282	202	252	Engulfer of the Golden Vortex	Abyssal Banquet	Jottun's Jaws	Siren Killer	NULL

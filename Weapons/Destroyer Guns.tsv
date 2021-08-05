@@ -1,7 +1,7 @@
 Equipment Name	Firepower	Torpedo	Anti-Air	Damage	Coefficient	Ammo Type	Damage to L	Damage to M	Damage to H
 Quadruple 130mm (Mle 1932) (Tier 0)	12	0	0	10	1.25	Normal	1	0.5	0.2
 Single 100mm (Type 88) (Tier 0)	10	0	0	9	1.10	Normal	1	0.5	0.2
-Single 102mm (QF Mk V)  (Tier 1)	0	0	0	4	1.25	Normal	1	0.5	0.2
+Single 102mm (QF Mk V) (Tier 1)	0	0	0	4	1.25	Normal	1	0.5	0.2
 Single 102mm (QF Mk V) (Tier 2)	5	0	0	4	1.25	Normal	1	0.5	0.2
 Single 102mm (QF Mk V) (Tier 3)	12	0	0	7	1.25	Normal	1	0.5	0.2
 Single 120mm (10th Year Type) (Tier 0)	10	0	15	11	1.20	Normal	1	0.5	0.2
@@ -19,7 +19,7 @@ Single 127mm (5"/38 Mk 30) (Tier 3)	25	0	0	15	1.25	HE	1.2	0.6	0.6
 Single 127mm (SK C/34) (Tier 1)	0	0	0	6	1.25	AP	0.9	0.7	0.4
 Single 127mm (SK C/34) (Tier 2)	5	0	0	6	1.25	AP	0.9	0.7	0.4
 Single 127mm (SK C/34) (Tier 3)	12	0	0	9	1.25	AP	0.9	0.7	0.4
-Single 127mm (Type 3 Mod B) (Tier 2)	5	0	7	8	1.25	Normal	1	0.5	0.2
+Single 127mm (Type 3 Mod B) (Tier 0)	5	0	7	8	1.25	Normal	1	0.5	0.2
 Single 130mm (B13 Pattern 1936) (Tier 1)	5	0	0	7	1.25	Normal	1	0.5	0.2
 Single 130mm (B13 Pattern 1936) (Tier 2)	12	0	0	12	1.25	Normal	1	0.5	0.2
 Single 130mm (B13 Pattern 1936) (Tier 3)	25	0	0	17	1.25	HE	1.2	0.6	0.6
@@ -45,6 +45,7 @@ Twin 102mm (QF Mk XVI) (Tier 2)	5	0	0	4	1.10	Normal	1	0.5	0.2
 Twin 102mm (QF Mk XVI) (Tier 3)	12	0	0	7	1.10	Normal	1	0.5	0.2
 Twin 102mm (QF Mk XVI*) (Tier 3)	25	0	0	10	1.10	Normal	1	0.5	0.2
 Twin 114mm (QF Mk IV Prototype) (Tier 0)	25	0	20	13	1.25	Normal	1	0.5	0.2
+Twin 120mm (Model 1926) (Tier 1)	5	0	0	7	1.25	Normal	1	0.5	0.2
 Twin 120mm (Model 1933) (Tier 0)	12	0	0	9	1.10	HE	1.2	0.6	0.6
 Twin 120mm (Model 1936) (Tier 1)	5	0	0	8	1.25	Normal	1	0.5	0.2
 Twin 120mm (Model 1936) (Tier 2)	12	0	0	11	1.25	Normal	1	0.5	0.2
