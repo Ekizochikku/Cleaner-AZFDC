@@ -62,6 +62,7 @@ Abukuma (Retrofit)	IJN	Nagara	CL	1	0	3	1.15	1.75	1.25	3131	160	344	279	Torpedo C
 Isuzu (Retrofit)	IJN	Nagara	CL	2	0	3	1.05	1.4	1.6	3214	120	220	343	Anti-Air Mode	I'm Not Afraid Anymore!	All Out Assault	NULL	NULL
 Kinu (Retrofit)	IJN	Nagara	CL	1	0	3	1.2	1.8	1.3	3126	158	354	319	Demonblade	Demon's Wish	NULL	NULL	NULL
 Nagara	IJN	Nagara	CL	1	0	3	1.1	1.6	1.25	2891	140	279	278	Full Firepower	All Out Assault	NULL	NULL	NULL
+Yura	IJN	Nagara	CL	1	0	3	1.2	1.65	1.25	2898	146	292	303	Sunglint Phantasm	Blessed Self	All Out Assault	NULL	NULL
 HMS Neptune (Retrofit)	HMS	Neptune	CL	1	0	3	1.5	1.6	1	4637	172	352	363	MKV-Class AP Shells+	Goddess of the Sea	Siren Killer	All Out Assault	NULL
 HDN Neptune	Neptunia	Neptunia	CL	1	0	3	1.4	1.5	1	3430	153	289	303	Protagonist Aura	NULL	NULL	NULL	NULL
 Purple Heart	Neptunia	Neptunia	CL	1	0	3	1.45	1.5	1	3695	167	310	313	Cross Combination	Victory Slash	Blaze Break	NULL	NULL
@@ -79,6 +80,8 @@ Seattle (Retrofit)	USS	Seattle	CL	1	5	3	1.45	0.65	1.3	5257	178	0	365	No-Fly Zone
 Jintsuu (Retrofit)	IJN	Sendai	CL	1	0	3	1.25	1.8	1.15	2855	176	402	300	2nd Torpedo Squadron	The Unyielding Jintsuu	All Out Assault	NULL	NULL
 Naka	IJN	Sendai	CL	1	0	3	1.2	1.65	1.15	2540	151	337	286	Torpedo Squadron	All Out Assault	NULL	NULL	NULL
 Sendai (Retrofit)	IJN	Sendai	CL	1	0	3	1.25	1.8	1.15	2780	170	391	276	Torpedo Squadron	Flares	All Out Assault	NULL	NULL
+Rikka Takarada	SSSS	SSSS	CL	1	0	3	1.55	1.6	1.1	4547	179	369	386	Grid Beam	Slash & Circus	Grid Fixer Beam	NULL	NULL
+Hass	SSSS	SSSS	CL	1	0	3	1.35	1.6	1.1	3569	140	286	341	Coordinated Volley	Amp Laser Circus	NULL	NULL	NULL
 Belfast	HMS	Town	CL	1	0	3	1.5	1.55	1	3970	179	340	293	Burn Order	Smokescreen: Light Cruisers	All Out Assault	NULL	NULL
 Edinburgh	HMS	Town	CL	1	0	3	1.5	1.55	1	4486	157	280	313	Piercing Shells	All Out Assault	NULL	NULL	NULL
 Glasgow	HMS	Town	CL	1	0	3	1.35	1.3	1.1	3688	151	273	344	Full Firepower	Swift Defender	All Out Assault	NULL	NULL

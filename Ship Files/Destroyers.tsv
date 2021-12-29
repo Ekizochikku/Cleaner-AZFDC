@@ -10,6 +10,7 @@ Yoizuki	IJN	Akizuki	DD	0	0	0	1	1.35	1.35	2445	74	363	199	Aerial Support	All Out 
 Vincenzo Gioberti	RN	Alfredo Oriani	DD	0	0	0	1.25	1.3	1.05	1846	113	154	154	Ontological Rudder	Protologia of Illumination	All Out Assault	NULL	NULL
 Allen M. Sumner	USS	Allen M. Sumner	DD	0	0	0	1.35	1.35	1.6	2526	140	373	233	Shooting Gun-Star	Bang for Your Buck	All Out Assault	NULL	NULL
 Cooper	USS	Allen M. Sumner	DD	0	0	0	1.25	1.35	1.3	2190	126	360	200	Black Cat Cyclone	All Out Assault	NULL	NULL	NULL
+Ingraham	USS	Allen M. Sumner	DD	0	0	0	1.35	1.35	1.8	2400	137	378	230	Support Robot Mk IV	Combat Mechanic	All Out Assault II	NULL	NULL
 An Shan	ROC	Anshan	DD	0	0	0	1.55	1	1.05	2277	131	228	172	An Shan Name Ship	All Out Assault	NULL	NULL	NULL
 Chang Chun	ROC	Anshan	DD	0	0	0	1.55	1	1.05	2277	131	228	172	Mutual Assistance	All Out Assault	NULL	NULL	NULL
 Fu Shun	ROC	Anshan	DD	0	0	0	1.55	1	1.05	2277	128	231	174	Rezkiy Assault	All Out Assault	NULL	NULL	NULL
@@ -112,6 +113,7 @@ Forbin (Retrofit)	FFNF	L'Adroit	DD	0	0	0	1.2	1.45	0.8	1436	89	439	168	Chevalier'
 Le Mars (Retrofit)	MNF	L'Adroit	DD	0	0	0	1.2	1.45	0.8	1436	89	439	183	Chevalier's Sabre	Emergency Maneuvers	All Out Assault	NULL	NULL
 Le Malin	MNF	Le Fantasque	DD	0	0	0	1.5	1.25	1.2	2021	137	273	138	Poisonous Sting	Vichya's Vindictive Blade	All Out Assault	NULL	NULL
 Le Malin (Muse)	MNF	Le Fantasque	DD	0	0	0	1.5	1.25	1.2	2021	139	274	135	Heavenly Hymn	Moment of Slackery	All Out Assault II	NULL	NULL
+Le Terrible	FFNF	Le Fantasque	DD	0	0	0	1.5	1.25	1.2	2116	141	270	132	Terrific Terror	I'll Give You A Head Start~	All Out Assault	NULL	NULL
 Le Triomphant	FFNF	Le Fantasque	DD	0	0	0	1.4	1.25	1.4	2021	131	267	167	Radiant Iris	Sword or Shield	All Out Assault	NULL	NULL
 L'Opiniatre	FFNF	Le Hardi	DD	0	0	0	1.3	1.35	0.75	1772	103	370	204	A Witch Who Never Admits Defeat	Swift Defender	All Out Assault	NULL	NULL
 Le Temeraire	FFNF	Le Hardi	DD	0	0	0	1.3	1.15	0.75	1571	93	394	172	Bold But Reckless	Swift Defender	All Out Assault	NULL	NULL
@@ -132,10 +134,13 @@ Uzuki	IJN	Mutsuki	DD	0	0	0	0.75	1.45	0.75	1487	59	427	138	Quick Reload	All Out A
 Nicoloso da Recco	RN	Navigatori	DD	0	0	0	1.5	1.2	0.85	1850	115	279	171	The Exploration Sensation	Navigator's Intrepidity	All Out Assault	NULL	NULL
 Blanc	HDN	Neptunia	DD	0	0	0	0.75	1.5	0.75	1800	70	439	149	Power Break	NULL	NULL	NULL	NULL
 White Heart	HDN	Neptunia	DD	0	0	0	0.8	1.5	0.75	1947	74	476	154	Tanzerin Trombe	Getter Ravine	NULL	NULL	NULL
+Shimakaze	IJN	Shimakaze	DD	0	0	0	0.8	1.7	0.9	2362	76	602	161	Upon the Wind's Edge	Before the Lightning's Flash	Within the Thuder's Roar	All Out Assault	NULL
 Kawakaze	IJN	Shiratsuyu	DD	0	0	0	0.85	1.5	0.85	1830	69	545	161	Lunga Point's Strike	Impartial Destruction	All Out Assault	NULL	NULL
 Shigure (Retrofit)	IJN	Shiratsuyu	DD	0	0	0	0.85	1.65	0.75	1928	85	589	150	Shigure of Sasebo	Rain and Snow	All Out Assault	NULL	NULL
 Shiratsuyu	IJN	Shiratsuyu	DD	0	0	0	0.75	1.5	0.75	1712	65	509	150	Torpedo Command: Vanguard	All Out Assault	NULL	NULL	NULL
-Yuudachi	IJN	Shiratsuyu	DD	0	0	0	0.85	1.5	0.85	1828	70	545	157	Nightmare of Solomon	All Out Assault	NULL	NULL	NULL
+Umikaze	IJN	Shiratsuyu	DD	0	0	0	0.75	1.5	0.75	1682	64	494	139	Reverent and Graceful	Delicate by Devoted	All Out Assault	NULL	NULL
+Yamakaze	IJN	Shiratsuyu	DD	0	0	0	0.75	1.5	0.75	1682	65	488	139	Motivating Roooaaar	Torpedo Command: Destroyers	All Out Assault	NULL	NULL
+Yuudachi (Retrofit)	IJN	Shiratsuyu	DD	0	0	0	1	1.6	0.85	1993	110	585	157	Nightmare of Solomon+	Feral Claws	All Out Assault	NULL	NULL
 Hammann (Retrofit)	USS	Sims	DD	0	0	0	1.25	1.3	1.35	2025	96	286	262	Flagship Cover	Anti-Air Mode	All Out Assault	NULL	NULL
 Sims (Retrofit)	USS	Sims	DD	0	0	0	1.25	1.3	1.35	2025	111	286	262	Artillery Command: Destroyers	Smokescreen	All Out Assault	NULL	NULL
 Carabiniere	RN	Soldati	DD	0	0	0	1.6	1.2	0.75	1788	126	267	160	Ricarica!	Fuoco di Copertura!	All Out Assault	NULL	NULL
@@ -158,6 +163,7 @@ Z36	KMS	Type 1936B	DD	0	0	0	1.45	1.25	1.25	2092	82	437	187	Devilish Strike	All O
 Z46	KMS	Type 1936C	DD	0	0	0	1.6	1.2	1.4	2595	90	452	255	Iron Wing Annihilation	Piercing Shells	All Out Assault	NULL	NULL
 Nekone	Utawarerumono	Utawarerumono	DD	0	0	0	0.85	1.2	0.65	1941	98	356	210	White Rainbow	Evening Star	NULL	NULL	NULL
 Vampire	HMS	V	DD	0	0	0	1.15	1.45	1.05	1314	71	376	156	Vampire's Kiss	All Out Assault	NULL	NULL	NULL
+Maille Breze	FFNF	Vauquelin	DD	0	0	0	1.4	1.4	0.75	1868	109	270	154	Templar's Holy Advance	All Out Assault	NULL	NULL	NULL
 Tartu	MNF	Vauquelin	DD	0	0	0	1.4	1.4	0.75	1868	120	273	141	Arbiter of Z	All Out Assault	NULL	NULL	NULL
 Vauquelin	MNF	Vauquelin	DD	0	0	0	1.4	1.4	0.75	1868	113	279	143	Sonnez la Charge!	All Out Assault	NULL	NULL	NULL
 Kazagumo	IJN	Yuugumo	DD	0	0	0	0.85	1.6	0.8	2238	74	556	160	Gales and Thunder	Kazagumo's Air Raid Assistance	All Out Assault	NULL	NULL

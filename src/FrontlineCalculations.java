@@ -170,8 +170,12 @@ public class FrontlineCalculations {
 		double slotEfficiency = 0;
 		if (shipSlot == 1) {
 			slotEfficiency = ship.getEffSlot(1);
-			if (skillNames.contains("Special Gunnery Training") && mainWeapon.getWepName().equals("Triple 310mm (Type 0 Prototype")) {
-				slotEfficiency += 0.12;
+			if (skillNames.contains("Special Gunnery Training+")) {
+				String value = mainWeapon.getWepName().replaceAll("[^0-9]","");
+				int val = Integer.parseInt(value);
+				if (val > 280) {
+					slotEfficiency += 0.12;
+				}
 			}
 			// Seattle Exception. Not caring for AA efficiency because AA damage is not being calculated.
 			if (seattleGun != null && skillNames.contains("Dual Nock")) {
@@ -271,13 +275,16 @@ public class FrontlineCalculations {
 			if (skillNames.contains("8th Destroyer Division") && ship.getShipType().equals("Destroyers")) {
 				statsFromSkills += 0.08;
 			}
-			if (skillNames.contains("I Love My Sisters!") || ship.getShipType().equals("Destroyers")) {
+			if (skillNames.contains("I Love My Sisters!") && ship.getShipType().equals("Destroyers")) {
 				statsFromSkills += 0.15;
+			}
+			if (skillNames.contains("Blessed Self") && ship.getShipType().equals("Destroyers")) {
+				statsFromSkills += 0.10;
 			}
 			if (skillNames.contains("Eternal Light of Sardegna") && vanguardFleet.contains(ship.getShipType())) {
 				statsFromSkills += 0.15;
 			}
-			if (skillNames.contains("Hottier Hunters") || ship.getShipType().equals("Submarines")) {
+			if (skillNames.contains("Hottier Hunters") && ship.getShipType().equals("Submarines")) {
 				statsFromSkills += 0.08;
 			}
 			if (mainWeapon.getWeaponType().equals("Torpedos")) {
@@ -421,6 +428,9 @@ public class FrontlineCalculations {
 		double critBuff = 0;
 		if (weapon.getWeaponType().equals("Torpedos")) {
 			critBuff = getMiscStats(skills, "Crit Torpedo", 0);
+			if (skillNames.contains("Nightmare of Solomon+") && vanguardFleet.contains(ship.getShipType())) {
+				critBuff += 0.25;
+			}
 		} else {
 			critBuff = getMiscStats(skills, "Crit Cannon", 0);
 			if (weapon.getWepName().equals("Quadruple 380mm (Mle 1935)") && skillNames.contains("Final Shot")) {
@@ -792,6 +802,9 @@ public class FrontlineCalculations {
 		}
 		if (skillNames.contains("Hottie Hunters") && enemy.getArmor().equals("H")) {
 			ratio += 0.15;
+		}
+		if (skillNames.contains("Destruction Bolt") && (vanguardFleet.contains(ship.getShipType()) || ship.getShipType().equals("Destroyers"))) {
+			ratio += 0.10;
 		}
 		return ratio;
 	}

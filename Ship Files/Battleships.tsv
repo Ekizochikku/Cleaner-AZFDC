@@ -12,6 +12,7 @@ Nagisa	DOA	DOA	BB	0	2	0	1.3	2	1	7510	384	0	174	Not-So-Gentle Sister	Venus' Unpre
 Friedrich der Grosse (Retrofit)	KMS	Friedrich der Grosse	BB	0	2	0	1.6	2.2	1	9886	449	0	241	Symphony of Destruction	Sonata of Chaos	Rhapsody of Darkness	Siren Killer	NULL
 Fusou	IJN	Fusou	BB	0	2	0	1.3	2	1	6916	390	0	222	Cover Fire	NULL	NULL	NULL	NULL
 Yamashiro	IJN	Fusou	BB	0	2	0	1.3	2	0.85	7309	390	0	222	Cover Fire	NULL	NULL	NULL	NULL
+Fusou META	IJN	META	BB	0	2	0	1.3	2	0.85	7306	400	0	235	Cinderflame Curse	The Butterfly's Last Gasp	Echoes of Annihilation - Fusou	Ashen Might - Fusou	NULL
 Gangut	SN	Gangut	BB	0	2	0	1.1	2	1	6491	324	0	174	Long Live the Revolution!	Icebreaker	NULL	NULL	NULL
 Georgia (Retrofit)	USS	Georgia	BB	0	2	0	1.65	2	1.1	8297	436	0	409	Ironsight Caliber+	Heavy Barrel Buster	Siren Killer	NULL	NULL
 New Jersey	USS	Iowa	BB	0	0	0	1.5	2.1	1.3	9520	447	0	427	Dragon's Breath	Freedom Through Firepower	Don'tcha Just Love It?	NULL	NULL
@@ -26,6 +27,7 @@ King George V	HMS	King George V	BB	0	2	0	1.35	2	1	7970	423	0	264	Armament Optimi
 Prince of Wales	HMS	King George V	BB	0	2	0	1.35	2	1	7967	422	0	230	Royal Alliance	NULL	NULL	NULL	NULL
 Super Gamer Kizuna Ai	KizunaAi	KizunaAI	BB	0	2	0	1.3	2	1	7648	409	212	199	Super Aiming Adjustments	Coercion Assistance Mode	NULL	NULL	NULL
 Marco Polo	RN	Marco Polo	BB	0	2	0	1.45	2	1.2	8422	432	0	258	Legendary Voyage	II Milione	Untold Tales	Siren Killer	NULL
+Gneisenau META	META	META	BB	0	2	0	1.3	2	1	7489	389	168	287	Seething Chains	Disruption Wave	Memory Mining	Cinders of Hope - Gneisenau II	NULL
 Mikasa	IJN	Mikasa	BB	0	2	0	1.3	1.5	1.5	5372	334	0	172	Reborn Combined Fleet Flagship	T-Cross Formation	NULL	NULL	NULL
 Monarch (Retrofit)	HMS	Monarch	BB	0	2	0	1.45	2.1	1.1	7967	423	0	230	Monarch's Coercion	Agaisnt the Current+	Siren Killer	NULL	NULL
 Mutsu	IJN	Nagato	BB	0	2	0	1.3	2.1	1	7896	409	0	185	Big Seven: Sakura	NULL	NULL	NULL	NULL
@@ -50,6 +52,8 @@ Massachusetts	USS	South Dakota	BB	0	0	0	1.3	2	1	7783	414	0	400	Big Mamie	2,700 P
 South Dakota	USS	South Dakota	BB	0	0	0	1.3	2	1	8031	414	0	400	The Strongest Shield	Focused Assault	NULL	NULL	NULL
 Sovetskaya Belorussiya	SN	Sovetsky Soyuz	BB	0	2	0	1.35	2	1.1	8262	429	0	215	Curtain of Rime	Ingenious Tactician	NULL	NULL	NULL
 Sovetskaya	SN	Sovetsky Soyuz	BB	0	2	0	1.35	2	1	8324	428	0	248	Lod Obstrel	Warcry of Unity	NULL	NULL	NULL
+Akane Shinjo	SSSS	SSSS	BB	0	2	0	1.35	2	1	7639	429	0	353	Energy Pulse	Instance Abreaction	Ever-Burning Flame	NULL	NULL
+Mujina	SSSS	SSSS	BB	0	2	0	1.3	2	1	7586	394	0	192	Instance Domination: Wings	Instance Domination: Flames	NULL	NULL	NULL
 California	USS	Tennessee	BB	0	0	0	1.3	2	1	7385	391	0	211	Focused Assault	NULL	NULL	NULL	NULL
 Tennessee	USS	Tennessee	BB	0	0	0	1.3	2	1	7385	391	0	211	Coercion	NULL	NULL	NULL	NULL
 Kaga (Battleship)	IJN	Tosa	BB	0	2	0	1.35	2	0.9	8303	423	217	187	Fight To Win!	Conquer to Loot!	NULL	NULL	NULL
